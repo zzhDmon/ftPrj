@@ -1,0 +1,41 @@
+<div class="group-name-desc">
+    <div class="header">
+        <div ng-click="closeChangeInfoModal()" class="back">
+            <i class=" iconfont icon-xiangzuo1"></i>
+        </div>
+        <div class="title">
+            <span ng-if="changeModalView==1">修改群名称</span>
+            <span ng-if="changeModalView==2">修改群描述</span>
+        </div>
+    </div>
+    <ion-content>
+        <div class="offline"></div>
+        <div class="main">
+            <input ng-show="changeModalView==1" type="text" ng-model="changeData.Name" placeholder="请输入群名称…">
+            <input ng-show="changeModalView==2" type="text" ng-model="changeData.Intro" placeholder="请输入群描述…">
+            <div ng-click="clearNameData()" ng-show="changeModalView==1&&changeData.Name" class="clear">
+                <i class="iconfont icon-qingchu"></i>
+            </div>
+            <div ng-click="clearDescData()" ng-show="changeModalView==2&&changeData.Desc" class="clear">
+                <i class="iconfont icon-qingchu"></i>
+            </div>
+        </div>
+                        
+        <div 
+            ng-show="changeModalView==1" 
+            ng-click="changeName()" 
+            class="ft-sub-btn"
+            ripple ripple-dark
+        >
+            修改
+        </div>
+        <div 
+            ng-show="changeModalView==2" 
+            ng-click="changeIntro()" 
+            class="ft-sub-btn"
+            ripple ripple-dark
+        >
+            修改
+        </div>
+    </ion-content>
+</div>

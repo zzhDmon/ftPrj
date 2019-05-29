@@ -1,0 +1,36 @@
+<!--发现界面模板-->
+<ion-view id="bind_login" view-title="绑定账号" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			绑定账号
+		</div>
+		<div class="right" >
+			
+		</div>
+	</div>
+	
+	<!-- has-bouncing=false 不可滚动-->
+	<ion-content class="bind-login" has-bouncing=false>
+		<form novalidate name="formlogin">
+			<div class="login-list">
+				<label class="item item-input">
+		          <input type="tel" name="phone" ng-model="logininfo.username" required=""  placeholder="请输入手机号" pattern="^1[0-9]{10}$">
+		        </label>
+				<label class="item item-input">
+		          <input type="password" name="psw" ng-model="logininfo.password" required="" placeholder="请输入密码" pattern="^.{6,16}$" >
+		        </label>
+			</div>
+
+			<div class="loginbtn">
+				<div class="subbtn">
+					<button ripple ripple-hold ripple-dark ng-disabled="formlogin.$invalid" ng-click="login()" class="button button-balanced">绑定</button>
+				</div>
+			</div>
+		</form>
+
+	</ion-content>
+	
+</ion-view>

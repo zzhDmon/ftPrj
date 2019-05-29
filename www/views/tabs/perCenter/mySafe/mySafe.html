@@ -1,0 +1,35 @@
+
+<!--对话模板-->
+<ion-view id="my_safe" view-title="我的保险" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			我的保险
+		</div>
+		<div class="right">
+		</div>
+	</div>
+	
+	<ion-content on-drag-down="onDragDown()"  delegate-handle="mysafeScroll" has-bouncing="false" on-swipe-right="onSwipeRight()" class="my-safe">
+			
+	<hr>
+		<ul id="items">
+			<li ng-repeat="item in data.topicContentList track by $index" style="position:relative;margin:0 10px 5px 0;width:100px;height:40px;border:1px solid #888888;">
+				<div style="width:10px;height:10px;border-radius:50%;background-color:red;position:absolute;top:5px;right:5px"></div>
+				{{item}} 1
+			</li>
+		</ul>
+		<div style="clear:both;"></div>
+		<div style="position:relative;margin:0 10px 5px 0;width:100px;height:40px;border:1px solid #888888;">
+
+		</div>
+
+			
+	</ion-content>
+				
+
+	
+</ion-view>
+

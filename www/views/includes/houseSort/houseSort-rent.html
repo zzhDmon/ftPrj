@@ -1,0 +1,121 @@
+<!-- <div class="filter-content">
+    <ion-content scrollbar-y="false">
+        <ion-list>
+            <ion-item ng-click="chooseDistrict($index,district.text)" ng-repeat="district in filterData.districts">
+                {{district.text}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <div class="child-content">
+        <ion-content scrollbar-y="false">
+            <ion-list>
+                <ion-item ng-click="chooseStreet(street.text)" ng-repeat="street in filterData.districts[showStreetIndex].children">
+                    {{street.text}}
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </div>
+</div> -->
+<div ng-show="filterActiveIndex==0" class="filter-content">
+	<ion-content scrollbar-y="false">
+		<ion-list>
+			<ion-item 
+				ng-click="chooseDistrict(key,value)" 
+				ng-repeat="(key,value) in filterData.utilsDistricts track by $index">
+				{{key}}
+			</ion-item>
+		</ion-list>
+	</ion-content>
+	<div class="child-content">
+		<ion-content scrollbar-y="false">
+			<ion-list>
+				<ion-item 
+					ng-click="chooseStreet(street)" 
+					ng-repeat="street in streetList track by $index">
+					{{street}}
+				</ion-item>
+			</ion-list>
+		</ion-content>
+	</div>
+</div>
+<div ng-show="filterActiveIndex==1" class="filter-content">
+    <ion-content delegate-handle="rent-filter-street-scroll" scrollbar-y="false">
+        <ion-list>
+            <ion-item ng-click="choosePrice(price.minprice,price.maxprice)" ng-repeat="price in filterData.rentPrice">
+                <span ng-if="!price.minprice&&!price.maxprice">不限</span>
+                <span ng-if="!price.minprice&&price.maxprice">{{price.maxprice}}元/月以下</span>
+                <span ng-if="price.minprice&&price.maxprice">{{price.minprice}}-{{price.maxprice}}元/月</span>
+                <span ng-if="price.minprice&&!price.maxprice">{{price.minprice}}元/月以上</span>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</div>
+<div ng-show="filterActiveIndex==2" class="filter-content">
+    <ion-content scrollbar-y="false">
+        <ion-list>
+            <ion-item ng-click="chooseRoomType(room.text,room.id)" ng-repeat="room in filterData.roomNum">
+                {{room.text}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</div>
+<!-- <div ng-show="filterActiveIndex==3" class="filter-content">
+    <ion-content scrollbar-y="false">
+        <ion-list>
+            <ion-item ng-click="chooseSort(sort.text,sort.id)" ng-repeat="sort in filterData.rentsort">
+                {{sort.text}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</div> -->
+<div ng-show="filterActiveIndex==3" class="filter-content-more">
+    <ion-content scrollbar-y="false">
+        <div ng-repeat="group in moreFilterData track by $index">
+            <!-- 多选	 -->
+            <div ng-hide="group.type=='radio'" class="special-check">
+                <div class="title">{{group.title}}</div>
+                <div class="list checkpicker">
+                    <label ng-repeat="item in group.list track by $index">
+                        <input ng-model="item.isChecked" ng-checked="item.isChecked" type="checkbox"/>
+                        <span class="wrap">{{item.text}}</span>	
+                    </label>
+                </div>
+            </div>
+            <!-- 单选 排序 住宅-->
+            <div ng-show="group.type=='radio' && group.title=='排序'&&classify=='住宅'" class="special-check">
+                <div class="title">{{group.title}}</div>
+                <div class="list checkpicker">
+                    <label ng-repeat="item in group.list track by $index">
+                        <input ng-model="rentQueryData.sort" type="radio" value="{{item.value}}"/>
+                        <span class="wrap">{{item.text}}</span>	
+                    </label>
+                </div>
+            </div>
+            <!-- 单选 住宅-->
+            <div ng-show="group.type=='radio' && group.title=='排序'&&classify!='住宅'" class="special-check">
+                <div class="title">{{group.title}}</div>
+                <div class="list checkpicker">
+                    <label ng-repeat="item in group.list track by $index">
+                        <input ng-model="simpleQueryData.sort" type="radio" value="{{item.value}}"/>
+                        <span class="wrap">{{item.text}}</span>	
+                    </label>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <div class="bot-action">
+        <div ng-click="resetFilter()" class="action-item cancel">重置</div>
+        <div ng-click="confirmFilter()" class="action-item confirm">确认</div>
+    </div>
+</div>
+<div ng-show="filterActiveIndex==4" class="filter-content">
+        <ion-content scrollbar-y="false">
+            <ion-list>
+                <ion-item ng-click="chooseHouseType(type.text,type.id)" ng-repeat="type in filterData.renthouseType">
+                    {{type.text}}
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </div>
+<div ng-show="filterActiveIndex==0 || filterActiveIndex>0" ng-click="closeFilter()" class="filter-mask"></div>
+    

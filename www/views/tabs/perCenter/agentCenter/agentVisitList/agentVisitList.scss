@@ -1,0 +1,152 @@
+#agent_visit_list{
+    $content-top:$head-height+40px;
+    background-color: $bg-gray-color;
+    .header{
+        background-color: $bg-main-color;
+        border-bottom: none;
+        .back{
+            color: white;
+        }
+        .title{
+            color: white;
+        }
+    }
+    .head-slide{
+        position: absolute;
+        top: $head-height;
+        width: 100%;
+        height: 40px;
+        background-color: white;
+        ul{
+            width: 100%;
+            li{
+                width: 20%;
+                height: 40px;
+                text-align: center;
+                line-height: 40px;
+                color: $font-sup-color;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                word-break: keep-all;
+                white-space: nowrap;
+            }
+            .active{
+                color: $bg-main-color;
+            }
+        }
+        .under-line{
+            position: absolute;
+            bottom: 0;
+            left: 5%;
+            width: 10%;
+            height: 0;
+            border-top: 1px solid $bg-main-color;
+        }
+    }
+    
+    .agent-visit-list{
+        margin: $content-top 0 0;
+        .main{
+            h5{
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                font-size: 16px;
+                color: $font-main-color;
+                background-color: white;
+            }
+            .up-ul{
+                padding: 0 $view-padding;
+                width: 100%;
+                height: 40px;
+                background-color: $bg-gray-color;
+                div{
+                    float: left;
+                    width: 33.33%;
+                    height: 40px;
+                    // text-align: center;
+                    line-height: 40px;
+                    font-size: 14px;
+                    color: $font-main-color;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    word-break: keep-all;
+                }
+                .left{
+                    text-align: left;
+                }
+                .mid{
+                    text-align: center;
+                }
+                .right{
+                    text-align: right;
+                }
+            }
+            .info-list{
+               width: 100%;
+                li{
+                    padding: 0 $view-padding;
+                    margin: 0;
+                    width: 100%;
+                    background-color: white;
+                    border-bottom: 1px solid $line-main-color;
+                    div.equal{
+                        float: left;
+                        height: 50px;
+                        width: 33.33%;
+                        // text-align: center;
+                        line-height: 50px;
+                        font-size: 16px;
+                        color: $font-main-color;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        word-break: keep-all;
+                    }
+                    .left{
+                        text-align: left;
+                    }
+                    .mid{
+                        text-align: center;
+                    }
+                    .right{
+                        text-align: right;
+                        color: $font-sup-color;
+                    }
+                    .info-foot:before{
+                        display: block;
+                        content: '';
+                        height: 0;
+                        clear: both;
+                    }
+                    .info-foot{
+                        width: 100%;
+                        height: 60px;
+                        padding: 10px 0;
+                        border-top: 1px solid $line-main-color;
+                        .foot{
+                            float: right;
+                            padding: 0 10px;
+                            margin: 0 5px 0 0;
+                            min-width: 80px;
+                            height: 40px;
+                            line-height: 40px;
+                            text-align: center;
+                            font-size: 16px;
+                            color: $bg-main-color;
+                            border: 1px solid $bg-main-color;
+                            border-radius: 3px;
+                        }
+                    }
+                }
+                li:last-child{
+                    border: none;
+                }
+            }
+        }
+    }
+}

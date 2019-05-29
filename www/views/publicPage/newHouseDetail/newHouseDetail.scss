@@ -1,0 +1,144 @@
+#new_house_detail { 
+    //底部联系人
+    .contacts{
+        padding: 5px $view-padding 0;
+        position: fixed;
+        z-index: 999;
+        bottom: 0;
+        width: 100%;
+        $height:50px + $safe-bottom;
+        height: $height;
+        display: flex;
+        justify-content: space-around;
+        background-color: white;
+        box-shadow: 0 -2px 4px 0 rgba(0,0,0,0.3);
+        .contact-item{
+            width: calc(25% - 5px);
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            border-radius: 5px;
+            color: $font-main-color;
+            background-color: $bg-main-color;
+            a{
+                display: block;
+                width: 100%;
+                height: 100%;
+                text-decoration: none;
+                color: $font-main-color;
+            }
+        }
+    }
+  
+    .new-house-detail {
+        padding: 0;
+        $margin-bottom:60px + $safe-bottom;
+        margin-bottom: $margin-bottom;
+        .coupon-wrapper{
+            padding: 0 $view-padding 10px;
+            .usage-rules{
+                line-height: 30px;
+                text-align: right;
+                font-size: 12px;
+                color: $font-blue-color;
+            }
+            .coupon{
+                padding: 10px 8px;
+                width: 100%;
+                height: 50px;
+                background-color:rgb(255,240,221);
+                display: flex;
+                justify-content: flex-start;
+                line-height: 30px;
+                color: $font-main-color;
+                border-radius: 5px;
+                .icon-cell{
+                    width: 40px;
+                    .icon{
+                        width: 30px;
+                        height: 30px;
+                        &:after{
+                            content: '';
+                            height: 0;
+                            display: block;
+                            clear: both;
+                        }
+                    }
+                }
+                .txt-cell{
+                    width: calc(50% - 40px);
+                    font-size: 16px;
+                }
+                .right-cell{
+                    width: 50%;
+                    font-size: 14px;
+                    text-align: right;
+                }
+            }
+        }
+        .newhuxing-iscroll{
+            h5{
+                width: 100%;
+                margin: 20px 0 15px;
+                padding: 0 $view-padding;
+                font-size: 16px;
+            }
+            // swiper
+            #new_house_detail_swiper {
+                width: 100%;
+                height: 145px;
+                overflow: hidden;
+                font-size: 16px;
+                background-color: white;
+                .swiper-slide {
+                    float: left;
+                    margin-left: 12px;
+                    width: 130px;
+                    height: 100%;
+                    font-size: 14px;
+                    overflow: hidden;
+                    background-color: rgb(255,255,255);
+                    .img{
+                        width: 130px;
+                        height: 120px;
+                        position: relative;
+                        img{
+                            display: block;
+                            margin: auto;
+                            width: 100%;
+                            height: 100%;
+                        }
+                        .tag{
+                            position: absolute;
+                            right: 0;
+                            bottom: 0;
+                            padding: 2px 5px;
+                            color: white;
+                        }
+                        .onsale{
+                            background-color: $bg-main-color;
+                        }
+                        .hotsale{
+                            background-color: $font-price-color;
+                        }
+                        .saleout{
+                            background-color: rgb(150,150,150);
+                        }
+                    }
+                    p{
+                        margin: 0;
+                        height: 25px;
+                        line-height: 25px;
+                        font-size: 14px;
+                        color: $font-main-color;
+                    }
+                    .price{
+                        color: $font-price-color;
+                    }
+                }
+            }
+        }
+    }
+    
+}

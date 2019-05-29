@@ -1,0 +1,101 @@
+#bonus_list{
+    .bonus-list{ 
+        margin-top: $head-height;
+        background-color: $bg-gray-color;
+        
+        .main-content{
+            padding: 10px $view-padding;
+            .no-bonus{
+                margin: 20px 0;
+                line-height: 20px;
+                text-align: center;
+                font-size: 12px;
+                color: $font-main-color;
+                span{
+                    padding: 0 10px;
+                    font-size: 16px;
+                    color: rgb(76,160,255);
+                }
+            }
+            .bonus-item{
+                margin: 0 0 10px;
+                width: 100%;
+                height: 106px;
+                display: flex;
+                justify-content: flex-start;
+                .left-cell{
+                    position: relative;
+                    width: 106px;
+                    height: 106px;
+                    .icon{
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .up-icon{
+                        position: absolute;
+                        z-index: 1;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        color: white;
+                        .top{
+                            width: 100%;
+                            font-size: 16px;
+                            line-height: 20px;
+                            span{
+                                font-size: 20px;
+                            }
+                        }
+                        .bot{
+                            width: 100%;
+                            font-size: 14px;
+                            line-height: 20px;
+                        }
+                    }
+                }
+                .right-cell{
+                    padding: 10px 10px 6px;
+                    width: calc(100% - 106px);
+                    height: 106px;
+                    background-color: white;
+                    .top-txt{
+                        height: 60px;
+                        line-height: 20px;
+                        font-size: 14px;
+                    }
+                    .bot-info{
+                        padding: 8px 0 0;
+                        height: 30px;
+                        display: flex;
+                        justify-content: flex-start;
+                        .left-txt{
+                            width: calc(100% - 68px);
+                            height: 22px;
+                            line-height: 24px;
+                            font-size: 10px;
+                            color: $font-sup-color;
+                            span{
+                                color: $font-main-color;
+                            }
+                        } 
+                        .right-btn{
+                            width: 68px;
+                            height: 22px;
+                            text-align: center;
+                            line-height: 22px;
+                            font-size: 14px;
+                            color: white;
+                            border-radius: 11px;
+                            background-color: $bg-main-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

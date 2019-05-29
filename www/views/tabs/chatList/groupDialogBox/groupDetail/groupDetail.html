@@ -1,0 +1,130 @@
+<!--发现界面模板-->
+<ion-view id="group_detail" view-title="{{targetInfo.name}}" hide-nav-bar=true>
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			{{targetInfo.name}}
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	
+	<ion-content class="group-detail">
+		<div class="group-members">
+			<div class="member-title">群聊成员</div>
+			<div class="members-wrapper">
+				<div 
+					ng-repeat="item in groupMembers track by $index" 
+					class="member-item"
+					>
+					<div class="img-wrap">
+						<img 
+							ui-sref="linkManDetail({account:item.account})"
+							ng-src="{{item.avatar || 'http://imgs.wujiuyun.com//Images//logo.png'}}" 
+							onError="src='http://imgs.wujiuyun.com//Images//logo.png'"
+							alt=""/>
+						<div 
+							ng-click="removeTeamMembers(item.account,$index)" 
+							ng-if="showRemove" 
+							ng-hide="item.account==myselfInfo.account"
+							class="icon-wrap">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-y"></use>
+							</svg>
+						</div>
+					</div>
+					<div class="nickname overflow-omit-one">
+						{{item.nick || "房田用户"}}
+					</div>
+				</div>
+				
+				<div ui-sref="tabs.groupInvite({id:targetId})" class="member-item">
+					<div class="img-wrap">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-tianjia2"></use>
+						</svg>
+					</div>
+					<div class="nickname overflow-omit-one main-color">邀请</div>
+				</div>
+				<div ng-if="myselfInfo.account==targetInfo.owner" ng-click="changeShowRemove()" class="member-item">
+					<div class="img-wrap">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-yichu"></use>
+						</svg>
+					</div>
+					<div class="nickname overflow-omit-one main-color">移除</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-main">
+			<div class="offline"></div>
+			<div class="text-item">
+				<div class="left-cell">群名称</div>
+				<div ng-click="showChangeInfoModal(1)" class="right-cell overflow-omit-one">
+					{{targetInfo.name}}
+				</div>
+			</div>
+			<div class="borderline"></div>
+			<div class="text-item">
+				<div class="left-cell">群描述</div>
+				<div ng-click="showChangeInfoModal(2)" class="right-cell overflow-omit-one">
+					{{targetInfo.intro}}
+				</div>
+			</div>
+			<div ng-if="myselfInfo.account==targetInfo.owner" class="borderline"></div>
+			<div ng-if="myselfInfo.account==targetInfo.owner" class="row-item">
+				<div class="left-name">需被邀请人同意</div>
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-change="changeInviteMode()" ng-model="targetInfo.beInviteMode" ng-true-value="'needVerify'" ng-false-value="'noVerify'">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+
+			<div class="offline"></div>
+			<div class="row-item">
+				<div class="left-name">消息免打扰</div>
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-change="blockChange()" ng-model="isMute" ng-checked="isMute">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+
+			<div ng-if="myselfInfo.account==targetInfo.owner" class="offline"></div>
+			<div ng-if="myselfInfo.account==targetInfo.owner" ui-sref="groupAvatar({id:targetId})" class="text-item">
+				<div class="left-cell">群头像</div>
+				<div class="right-cell">
+					<img 
+						ng-src="{{targetInfo.avatar || 'http://imgs.wujiuyun.com//Images//logo.png'}}" 
+						onError="src='http://imgs.wujiuyun.com//Images//logo.png'"
+						alt="">
+				</div>
+			</div>
+
+			<div class="offline"></div>
+			<div ng-click="exitGroup()" ng-hide="myselfInfo.account==targetInfo.owner" class="ft-sub-btn" ripple ripple-dark>
+				退出群聊
+			</div>
+			<div ui-sref="transferTeam({id:targetId})" ng-show="myselfInfo.account==targetInfo.owner" class="ft-sub-btn">
+				群转让
+			</div>
+			<div ng-click="dismissTeam()" ng-show="myselfInfo.account==targetInfo.owner" class="ft-sub-btn" ripple ripple-dark>
+				解散群聊
+			</div>
+		</div>
+	</ion-content>
+	
+	<!-- 群昵称 描述 -->
+	<script id="group_detail_name_desc_modal" type="text/ng-template">
+		<ion-modal-view class="group-name-desc-modalview">
+			<div ng-include="'views/includes/groupNameDescModal/groupNameDescModal.html'"></div>
+		</ion-modal-view>
+	</script>
+</ion-view>

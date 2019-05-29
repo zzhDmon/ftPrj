@@ -1,0 +1,74 @@
+<div ng-click="closePreviewModal()" class="closeicon"><i class="iconfont icon-guanbi1"></i></div>
+<ion-content scrollbar-y="false" ng-click="closePreviewModal()">
+    <ion-slide-box does-continue="false"  class="preview-cursor" on-slide-changed='changeindex()' show-pager="true">
+        <ion-slide ng-repeat="banner in addSellSubData.IndoorShowImages track by $index">
+            <img ng-src="{{banner}}"/>
+        </ion-slide>
+    </ion-slide-box>
+
+    <div class="detailname">
+        <h4>{{addSellSubData.Title}}</h4>
+        <div class="undertitle">
+            <span>环境优美</span><span>交通便利</span><span>物业规范</span>
+        </div>
+        <div class="borderline"></div>
+        <div class="flex-wrapper">
+            <div class="flex-item">
+                <p class="top">售价</p>
+                <p class="bottom">{{addSellSubData.Price}}万</p>
+            </div>
+            <div class="line"></div>
+            <!-- <li class="line"></div> -->
+            <div class="flex-item">
+                <p class="top">房型</p>
+                <p class="bottom">{{addSellSubData.RoomType}}室{{addSellSubData.HallType}}厅{{addSellSubData.BathType}}卫</p>
+            </div>
+            <div class="line"></div>
+            <!-- <li class="line"></div> -->
+            <div class="flex-item">
+                <p class="top">面积</p>
+                <p class="bottom">{{addSellSubData.Space}}m²</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="houseinfo">
+        <div class="houseinfo-wrapper">
+            <div class="house-item ovwrflow-omit-one"><span class="leftdesc">年代：</span>{{addSellSubData.Year}}<span ng-if="!addSellSubData.Year">--</span>年</div>
+            <div class="house-item ovwrflow-omit-one"><span class="leftdesc">朝向：</span>{{addSellSubData.Orientation}}<span ng-if="!addSellSubData.Orientation">--</span></div>
+            <div class="house-item ovwrflow-omit-one"><span class="leftdesc">楼层：</span><span ng-if="addSellSubData.Floor<0">{{-addSellSubData.Floor}}</span><span ng-if="addSellSubData.Floor>=0">{{addSellSubData.Floor}}</span>/{{addSellSubData.TotalFloor}}<span ng-if="!addSellSubData.Floor">--</span></div>
+            <div class="house-item ovwrflow-omit-one"><span class="leftdesc">装修：</span>{{addSellSubData.Fitment}}<span ng-if="!addSellSubData.Fitment">--</span></div>
+            <div class="house-item ovwrflow-omit-one"><span class="leftdesc">类型：</span>{{addSellSubData.BuildType}} <span ng-if="!addSellSubData.BuildType">--</span></div>
+            <div class="house-item ovwrflow-omit-one">
+                <span class="leftdesc">产权年限：</span>
+                <span ng-if="addSellSubData.ExProp.RightYear==1">70年</span>
+                <span ng-if="addSellSubData.ExProp.RightYear==2">50年</span>
+                <span ng-if="addSellSubData.ExProp.RightYear==3">40年</span>
+                <span ng-if="!addSellSubData.ExProp.RightYear">--</span></div>
+            <div class="house-item ovwrflow-omit-one">
+                <span class="leftdesc">产权类型：</span>
+                <span ng-if="addSellSubData.ExProp.RightType==1">商品房</span>
+                <span ng-if="addSellSubData.ExProp.RightType==2">商住两用</span>
+                <span ng-if="addSellSubData.ExProp.RightType==3">经济适用房</span>
+                <span ng-if="addSellSubData.ExProp.RightType==4">使用权</span>
+                <span ng-if="addSellSubData.ExProp.RightType==5">公房</span>
+                <span ng-if="addSellSubData.ExProp.RightType==6">其他</span>
+                <span ng-if="!addSellSubData.ExProp.RightType">--</span>
+            </div>
+            <div class="house-item allLine ovwrflow-omit-one"><span class="leftdesc">小区名称：</span>{{addSellSubData.CommunityName}}<span ng-if="!addSellSubData.CommunityName">--</span></div>
+        </div>
+    </div>
+
+    <div class="offline"></div>
+    <div class="fymiaoshu">
+        <h5>房源介绍</h5>
+        <h6>房源详情</h6>
+        <p>{{addSellSubData.Discription}}</p>
+        <h6 ng-if="addSellSubData.OwnerPsy">业主心态</h6>
+        <p>{{addSellSubData.OwnerPsy}}</p>
+        <h6 ng-if="addSellSubData.Commuport">小区配套</h6>
+        <p>{{addSellSubData.Commuport}}</p>
+        <h6 ng-if="addSellSubData.ServiceIntro">服务介绍</h6>
+        <p>{{addSellSubData.ServiceIntro}}</p>
+    </div>
+</ion-content>

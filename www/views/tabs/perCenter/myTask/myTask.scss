@@ -1,0 +1,119 @@
+#my_task{
+    .abs-foot{
+        position: absolute;
+        bottom: 0;
+        z-index: 1;
+        padding: 10px 0;
+        width: 100%;
+        height: 50px;
+        background-color: $font-price-color;
+        ul{
+            width: 100%;
+            li:first-child{
+                border-right: 1px solid white;
+            }
+            li{
+                float: left;
+                width: 50%;
+                height: 30px;
+                text-align: center;
+                line-height: 30px;
+                font-size: 16px;
+                color: white;
+                .iconfont{
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+    
+    .scroll-task{
+        padding: 0;
+        margin: $head-height 0 0;
+    }
+
+    .my-task{
+        padding: 0;
+        margin: $head-height 0 44px;
+        .task-list{
+            padding: 10px $view-padding;
+            width: 100%;
+            .task-name{
+                width: 100%;
+                height: 50px;
+                line-height: 50px;
+                font-size: 16px;
+                color: $font-main-color;
+                border-bottom: 1px solid $line-main-color;
+            }
+            ul{
+                width: 100%;
+                li{
+                    width: 100%;
+                    padding: 10px 0;
+                    border-bottom: 1px solid $line-main-color;
+                    .left-icon{
+                        float: left;
+                        width: 50px;
+                        height: 50px;
+                        text-align: center;
+                        line-height: 50px;
+                        border-radius: 50%;
+                        color: $font-price-color;
+                        background-color: rgb(255,247,240);
+                        .iconfont{
+                            font-size: 25px;
+                        }
+                    }
+                    .mid-info{
+                        float: left;
+                        padding: 0 0 0 10px;
+                        width: calc(100% - 130px);
+                        height: 50px;
+                        .name{
+                            width: 100%;
+                            height: 25px;
+                            line-height: 25px;
+                            font-size: 16px;
+                            color: $font-main-color;
+                        }
+                        .num{
+                            width: 100%;
+                            height: 25px;
+                            line-height: 25px;
+                            font-size: 14px;
+                            color: $font-minor-color;
+                            span{
+                                padding: 0 5px 0 0;
+                                font-size: 16px;
+                                color: $font-price-color;
+                            }
+                        }
+                    }
+                    .right-do{
+                        float: left;
+                        padding: 10px 0;
+                        width: 80px;
+                        height: 50px;
+                        .inner{
+                            width: 100%;
+                            height: 30px;
+                            text-align: center;
+                            line-height: 30px;
+                            border-radius: 15px;
+                            font-size: 14px;
+                            color: $font-price-color;
+                            border: 1px solid $font-price-color;
+                        }
+                    }
+                }
+            }
+        }
+        .daily-task{
+
+        }
+        .jixiao-task{
+
+        }
+    }
+}

@@ -1,0 +1,82 @@
+
+<!--对话模板-->
+<ion-view id="number_of_invite" view-title="邀请人数" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">邀请人数</div>
+		<div class="right"></div>
+	</div>
+	<div class="head-bgimg"></div>
+
+	<ion-content class="number-of-invite" has-bouncing="false">
+		<div class="head-info">
+			<div class="total-num">
+				<div class="num">
+					<span>{{myInvitation.count + myInvitation.childCount}}</span>人
+				</div>
+				<div class="count-info">总人数</div>
+			</div>
+
+			<div class="child-wrapper">
+				<div class="child-item">
+					<div class="count-info">直推人数</div>
+					<div class="num"><span>{{myInvitation.count}}</span>人</div>
+				</div>
+				<div class="child-item">
+					<div class="count-info">二级总数</div>
+					<div class="num"><span>{{myInvitation.childCount}}</span>人</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="white-content">
+			<div class="members-list">
+				<div 
+					ng-repeat="member in myInvitation.children track by $index" 
+					class="member-item">
+					<div class="member-info">
+						<div ng-click="toLinkMan(member.Id)" class="left-cell">
+							<img ng-src="{{member.Image || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+						</div>
+						<div class="mid-cell overflow-omit-one">{{member.Name}}</div>
+						<div ng-click="showSubList($index)" class="right-cell">
+							<div class="top-cell">
+								<div class="txt-item">
+									二&nbsp;级
+								</div>
+								<div class="icon-item" ng-class="{true:'active',false:''}[subListActive==$index]">
+									<i class="iconfont icon-xiangyou1"></i>
+								</div>
+							</div>
+							<div class="bot-cell">
+								<i class="iconfont icon-weibiaoti-_huabanfuben"></i>&nbsp;{{member.Children.length}}
+							</div>
+						</div>
+					</div>
+
+					<div 
+						class="sub-members-list" 
+						ng-class="{true:'active',false:''}[subListActive==$index]">
+						<div ng-show="!member.Children.length || member.Children.length<=0" class="sub-members-title">暂无{{member.Name}}的邀请人</div>
+						<div class="list-wrapper">
+							<div 
+								ng-click="toLinkMan(subItem.Id)"
+								ng-repeat="subItem in member.Children track by $index" 
+								class="sub-member-item">
+								<div class="img-cell">
+									<img ng-src="{{subItem.Image || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+								</div>
+								<div class="name-cell overflow-omit-one">
+									{{subItem.Name}}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
+

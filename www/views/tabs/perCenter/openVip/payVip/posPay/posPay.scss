@@ -1,0 +1,22 @@
+#pos_pay{
+    .pos-pay{
+        margin-top: $head-height;
+        .qrcode-wrap{
+            margin: 20px auto 0;
+            padding: 0 calc(50% - 100px);
+            height: 225px;
+            .qrcode-name{
+                width: 100%;
+                line-height: 25px;
+                text-align: center;
+                font-size: 16px;
+            }
+        }
+        .order-number{
+            padding: 10px $view-padding;
+            width: 100%;
+            line-height: 20px;
+            font-size: 16px;
+        }
+    }
+}

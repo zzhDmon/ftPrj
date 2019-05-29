@@ -1,0 +1,30 @@
+
+<ion-view id="change_pwd" view-title="修改密码" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			修改密码
+		</div>
+		<div ng-click="save()" class="right" >
+			保存
+		</div>
+	</div>
+	
+	<ion-content class="change-pwd" has-bouncing=false>
+		<div class="input-list">
+			<label class="item item-input">
+				<input type="password" name="psw" ng-model="subData.Password" required="" placeholder="请输入密码" pattern="^.{6,16}$" >
+			</label>
+			<label class="item item-input">
+				<input type="password" name="psw" ng-model="subData.NewPassword" required="" placeholder="请输入新密码(6-16位)" pattern="^.{6,16}$" >
+			</label>
+			<label class="item item-input">
+				<input type="password" name="psw" ng-model="subData.ConfirmPassword" required="" placeholder="请再次输入新密码" pattern="^.{6,16}$" >
+			</label>
+		</div>
+	</ion-content>
+	
+</ion-view>
+

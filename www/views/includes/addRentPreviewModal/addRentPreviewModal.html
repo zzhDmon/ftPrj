@@ -1,0 +1,98 @@
+<div ng-click="closePreviewModal()" class="closeicon"><i class="iconfont icon-guanbi1"></i></div>
+<ion-content scrollbar-y="false" ng-click="closePreviewModal()">
+    <ion-slide-box does-continue="false"  class="preview-cursor" on-slide-changed='changeindex()' show-pager="true">
+        <ion-slide ng-repeat="banner in addRentSubData.IndoorShowImages track by $index">
+            <img ng-src="{{banner}}"/>
+        </ion-slide>
+    </ion-slide-box>
+
+    <div class="detailname">
+        <h4>{{addRentSubData.Title}}</h4>
+        <div class="undertitle">
+            <span>环境优美</span><span>交通便利</span><span>物业规范</span>
+        </div>
+        <div class="borderline"></div>
+        <div class="flex-wrapper">
+            <div class="flex-item">
+                <p class="top">租金</p>
+                <p class="bottom">{{addRentSubData.Price}}元/月</p>
+            </div>
+            <div class="line"></div>
+            <!-- <li class="line"></div> -->
+            <div class="flex-item">
+                <p class="top">房型</p>
+                <p class="bottom">{{addRentSubData.RoomType}}室{{addRentSubData.HallType}}厅{{addRentSubData.BathType}}卫</p>
+            </div>
+            <div class="line"></div>
+            <!-- <li class="line"></div> -->
+            <div class="flex-item">
+                <p class="top">面积</p>
+                <p class="bottom">{{addRentSubData.Space}}m²</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="houseinfo">
+        <div class="houseinfo-wrapper">
+            <div class="house-item overflow-omit-one"><span class="leftdesc">年代：</span>{{addRentSubData.Year}}<span ng-if="!addRentSubData.Year">--</span>年</div>
+            <div class="house-item overflow-omit-one"><span class="leftdesc">朝向：</span>{{addRentSubData.Orientation}}<span ng-if="!addRentSubData.Orientation">--</span></div>
+            <div class="house-item overflow-omit-one"><span class="leftdesc">楼层：</span><span ng-if="addRentSubData.Floor<0">{{-addRentSubData.Floor}}</span><span ng-if="addRentSubData.Floor>=0">{{addRentSubData.Floor}}</span>/{{addRentSubData.TotalFloor}}<span ng-if="!addRentSubData.Floor">--</span></div>
+            <div class="house-item overflow-omit-one"><span class="leftdesc">装修：</span>{{addRentSubData.Fitment}}<span ng-if="!addRentSubData.Fitment">--</span></div>
+            <div class="house-item overflow-omit-one"><span class="leftdesc">类型：</span>{{addRentSubData.BuildType}} <span ng-if="!addRentSubData.BuildType">--</span></div>
+            <div class="house-item overflow-omit-one">
+                <span class="leftdesc">房源类型：</span>
+                <span ng-if="addRentSubData.UserType==1">品牌公寓</span>
+                <span ng-if="addRentSubData.UserType==2">个人房源</span>
+                <span ng-if="addRentSubData.UserType==3">房东委托</span>
+                <span ng-if="!addRentSubData.UserType">--</span>
+            </div>
+            <div class="house-item overflow-omit-one">
+                <span class="leftdesc">付款方式：</span>
+                <span ng-if="addRentSubData.PayType==1">付1押1</span>
+                <span ng-if="addRentSubData.PayType==2">付1押2</span>
+                <span ng-if="addRentSubData.PayType==3">付2押1</span>
+                <span ng-if="addRentSubData.PayType==4">付2押2</span>
+                <span ng-if="addRentSubData.PayType==5">付3押1</span>
+                <span ng-if="addRentSubData.PayType==6">付3押2</span>
+                <span ng-if="addRentSubData.PayType==7">面议</span>
+                <span ng-if="addRentSubData.PayType==8">半年付</span>
+                <span ng-if="addRentSubData.PayType==9">年付</span>
+                <span ng-if="addRentSubData.PayType==10">半年付押1</span>
+                <span ng-if="addRentSubData.PayType==11">半年付不押</span>
+                <span ng-if="addRentSubData.PayType==12">年付不押</span>
+                <span ng-if="addRentSubData.PayType==13">年付押1</span>
+                <span ng-if="!addRentSubData.PayType">--</span>
+            </div>
+            <div class="house-item allLine overflow-omit-one"><span class="leftdesc">小区名称：</span>{{addRentSubData.CommunityName}}<span ng-if="!addRentSubData.CommunityName">--</span></div>
+        </div>
+    </div>
+
+    <div class="offline"></div>
+    <div class="fymiaoshu">
+        <h5>房源介绍</h5>
+        <p>{{addRentSubData.Discription}}</p>
+    </div>
+    <div class="offline"></div>
+    <div class="fypeizhi">
+        <h5>房屋配套</h5>
+        <ul>
+            <li ng-repeat="config in addRentSubData.ExProp track by $index" ng-class="{true:'',false:'disabled'}[config.isChecked]">
+                <i ng-if="config.text=='床'" class="iconfont icon-chuang"></i>
+                <i ng-if="config.text=='衣柜'" class="iconfont icon-yigui"></i>
+                <i ng-if="config.text=='暖气'" class="iconfont icon-gongnuan"></i>
+                <i ng-if="config.text=='沙发'" class="iconfont icon-shafa"></i>
+                <i ng-if="config.text=='电视'" class="iconfont icon-dianshi"></i>
+                <i ng-if="config.text=='冰箱'" class="iconfont icon-bingxiang"></i>
+                <i ng-if="config.text=='洗衣机'" class="iconfont icon-xiyiji"></i>
+                <i ng-if="config.text=='空调'" class="iconfont icon-kongtiao"></i>
+                <i ng-if="config.text=='热水器'" class="iconfont icon-reshuiqi"></i>
+                <i ng-if="config.text=='宽带'" class="iconfont icon-iconfontkuandai"></i>
+                <i ng-if="config.text=='可做饭'" class="iconfont icon-webiconyunxuzuofan"></i>
+                <i ng-if="config.text=='独立卫生间'" class="iconfont icon-duwei"></i>
+                <i ng-if="config.text=='独立阳台'" class="iconfont icon-31"></i>
+                <span>{{config.text}}</span>
+            </li>
+            
+        </ul>
+    </div>
+</ion-content>

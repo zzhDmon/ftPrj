@@ -1,0 +1,35 @@
+
+<!--对话模板-->
+<ion-view id="aisle_page" hide-nav-bar=true view-title="房源资讯">
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class="iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			房源资讯
+		</div>
+		<div class="right">
+			
+		</div>
+	</div>
+	
+
+	<ion-content class="aisle-page">
+		<div ng-show="paramsData.type==1" class="flex-wrapper">
+			<div ng-click="switchActive(1)" class="flex-item" ng-class="{true:'active',false:''}[activeIndex==1]">楼市动态</div>
+			<div ng-click="switchActive(2)" class="flex-item" ng-class="{true:'active',false:''}[activeIndex==2]">房产热闻</div>
+			<div ng-click="switchActive(3)" class="flex-item" ng-class="{true:'active',false:''}[activeIndex==3]">专家点评</div>
+		</div>
+		<div ng-show="paramsData.type==2" class="flex-wrapper">
+			<div ng-click="switchActive(1)" class="flex-item" ng-class="{true:'active',false:''}[activeIndex==1]">使用手册</div>
+			<div ng-click="switchActive(2)" class="flex-item" ng-class="{true:'active',false:''}[activeIndex==2]">发展历程</div>
+			<div ng-click="switchActive(3)" class="flex-item" ng-class="{true:'active',false:''}[activeIndex==3]">房源资讯</div>
+		</div>
+
+		<img src="imgs/home/aislepage/cur-no.png" alt="">
+	</ion-content>
+	
+	
+</ion-view>
+

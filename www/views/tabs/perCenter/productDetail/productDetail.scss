@@ -1,0 +1,114 @@
+#product_detail{
+    .abs-foot{
+        position: absolute;
+        bottom: 0;
+        z-index: 1;
+        width: 100%;
+        height: 44px;
+        font-size: 16px;
+        text-align: center;
+        line-height: 44px;
+        color: white;
+        background-color: $bg-main-color;
+    }
+    .product-detail{
+        margin: $head-height 0 44px;
+        padding: 0;
+        .img-full{
+            width: 100%;
+            height: auto;
+            img{
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+        }
+        .name-price{
+            padding: 0 $view-padding;
+            width: 100%;
+            .name{
+                width: 100%;
+                line-height: 20px;
+                font-size: 16px;
+                color: $font-main-color;
+            }
+            .price{
+                width: 100%;
+                height: 30px;
+                line-height: 30px;
+                color: $bg-main-color;
+                font-size: 20px;
+                .iconfont{
+                    font-size: 20px;
+                    padding: 0 3px 0 0;
+                    color: $font-sup-color;
+                }
+            }
+        }
+        .change-num{
+            width: 100%;
+            height: 40px;
+            padding: 5px $view-padding;
+            line-height: 30px;
+            font-size: 16px;
+            color: $font-main-color;
+            border-top: 1px solid $line-main-color;
+            border-bottom: 1px solid $line-main-color;
+            .float:after{
+                content: '';
+                display: block;
+                height: 0;
+                clear: both;
+            }
+            .float{
+                float: right;
+                max-width: calc(100% - 50px);
+                .btn{
+                    float: right;
+                    display: block;
+                    padding: 0;
+                    width: 35px;
+                    height: 30px;
+                    text-align: center;
+                    line-height: 30px;
+                    color: $font-main-color;
+                    background-color: rgb(245,245,245);
+                }
+                .show-count{
+                    float: right;
+                    margin: 0 3px;
+                    min-width: 25px;
+                    max-width: 50px;
+                    height: 30px;
+                    text-align: center;
+                    line-height: 30px;
+                    color: $font-main-color;
+                    background-color: rgb(245,245,245);
+                }
+            }
+        }
+        .description{
+            .head-title{
+                padding: 0 $view-padding;
+                width: 100%;
+                height: 50px;
+                line-height: 50px;
+                font-size: 16px;
+                color: $font-main-color;
+                border-bottom: 1px solid $line-main-color;
+            }
+            .des-list{
+                padding: 10px $view-padding 10px;
+                width: 100%;
+                li{
+                    width: 100%;
+                    height: 25px;
+                    line-height: 25px;
+                    color: $font-main-color;
+                    font-size: 16px;
+                }
+            }
+        }
+
+    }
+}

@@ -1,0 +1,18 @@
+#my_privacy{
+    .my-privacy{
+        margin-top: $head-height;
+        .main{
+            .route-item{
+                padding: 5px 12px 5px 12px;
+                height: 44px;
+                line-height: 34px;
+                font-size: 16px;
+                .icon{
+                    display: block;
+                    float: right;
+                    color: $font-sup-color;
+                }
+            }
+        }
+    }
+}

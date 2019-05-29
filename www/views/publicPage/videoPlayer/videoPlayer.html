@@ -1,0 +1,36 @@
+<ion-view cache-view='false' class='video' id="video_player" hide-nav-bar=true ng-class="{cur:renderData.hideBar}">
+	
+    <ion-content class="video-player" scroll="false" overflow-scroll="true" data-tap-disable="true" scrollbar-y="false" has-bouncing="false">
+		<div class="top-video" ng-class="{'full-screen': renderData.fullScreenStatus}">
+			<!-- 竖屏返回分享 -->
+			<div ng-if="!renderData.fullScreenStatus" class="backbotton btn" ng-click="back()"><i class="iconfont icon-xiangzuo1"></i></div>
+			<!-- <div ng-if="!renderData.fullScreenStatus" class="sharebotton btn" ng-click="showBottomShareModal()"><i class="iconfont icon-fenxiang1" style="font-size: 20px!important;"></i> </div> -->
+			<!-- 全屏=>收缩 -->
+			<div ng-click="closeFullscreen()" ng-if="renderData.fullScreenStatus" class="close-fullscreen" ng-class="{cur:renderData.hideBar}">
+				<i class="iconfont icon-xiangzuo1"></i>&nbsp;
+				地球脉动
+			</div>
+			<!-- 视频缓冲loading -->
+			<div ng-if="videoIsLoading" class="video-loading">
+				<ion-spinner icon="spiral" class="spinner-stable"></ion-spinner>
+			</div>
+			<video-container x-source="renderData.videoSrc"></video-container>
+		</div>
+	</ion-content>
+	
+	<!-- 竖屏状态下显示 -->
+	<div ng-show="!renderData.fullScreenStatus" class="bot-content">
+		<ion-content class="video-detail" scroll="true">
+			<div class="video-title">
+				地球脉动
+			</div>
+			<div class="video-introduction">
+				《地球脉动》是由英国广播电视中心公司制作的电视剧纪录片，由大卫·艾登堡执导并解说，该剧于2006年2月27日在英国首播 [1]  。
+				<br>
+				&#x3000;&#x3000;该剧是根据英国广播公司系列片《行星地球》改编，讲述了通过三种动物在全球环境日趋恶劣下迁徙的经历，唤醒世人好好珍惜地球，对抗全球气温变暖。
+			</div>
+			
+		</ion-content>
+	</div>
+</ion-view>
+<!-- overflow-scroll="true" 与 data-tap-disable="true" 在视频播放中起到了关键的作用，这两句话要加上其中一个 -->

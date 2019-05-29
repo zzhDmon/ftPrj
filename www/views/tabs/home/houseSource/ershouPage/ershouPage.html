@@ -1,0 +1,104 @@
+
+<ion-view id="ershou_page" view-title="二手房" hide-nav-bar="true">
+	<div class="search-header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div ui-sref="houseSearch({type:1})" class="title">
+			<div class="fake-input">
+				<div class="fake-search">
+					<i class="iconfont icon-sousuo2"></i>请输入小区/商圈
+				</div>
+			</div> 
+		</div>
+	</div>
+	
+	<div class="head-bg-houseimg"></div>
+	<ion-content delegate-handle="ershou-page-Scroll" class="ershou-page">
+		<ion-refresher 
+            pulling-icon="" 
+            pulling-text="" 
+            spinner="lines"  
+            on-refresh="initData()" 
+		>
+		</ion-refresher>
+
+		<div class="white-content">
+			<div class="under-head">
+				<div class="fix-wrapper">
+					<div ui-sref="ershouHouseList({classify:'住宅',date:paramsDate})" class="fix-item">
+						<div class="img ershou">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-zhuzhai-"></use>
+							</svg>
+						</div>
+						<p>住宅</p>
+					</div>
+					<div ui-sref="ershouHouseList({classify:'商铺',date:paramsDate})" class="fix-item">
+						<div class="img shangpu">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-shangpu-"></use>
+							</svg>
+						</div>
+						<p>商铺</p>
+					</div>
+					<div ui-sref="ershouHouseList({classify:'写字楼',date:paramsDate})" class="fix-item">
+						<div class="img xiezilou">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-xiezilou-"></use>
+							</svg>
+						</div>
+						<p>写字楼</p>
+					</div>
+					<div ui-sref="newHouseListPage" class="fix-item">
+						<div class="img changfang">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-changfangjijiangshangxian-"></use>
+							</svg>
+						</div>
+						<p>厂房</p>
+					</div>
+					<div class="fix-item">
+						<div class="img cangku">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-cangkujijiangshangxian-"></use>
+							</svg>
+						</div>
+						<p>仓库</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="offline"></div>
+			<div class="main">
+				<h5>热门房源</h5>
+				<div 
+					ui-sref="sellHouseDetail({id:sellhouse.Id})" 
+					ng-repeat="sellhouse in oldhousearr track by $index" 
+					class="house-list-item"
+					ripple-hold ripple-dark
+				>
+					<div class="left-img"><img ng-src="{{sellhouse.Thumb}}" alt=""></div>
+					<div class="right-text">
+						<div class="title overflow-omit-one">{{sellhouse.Title}}</div>
+						<div class="br-price-type overflow-omit-one">
+							<span class="spanprice">
+								<span class="large">{{sellhouse.Price}}</span>万
+							</span>
+							<span class="span-gray">&nbsp;|&nbsp;{{sellhouse.HouseType}}</span>
+							<span class="span-gray">&nbsp;|&nbsp;{{sellhouse.Space}}m²</span>
+						</div>
+						<div class="info overflow-omit-one">
+							<span class="span-gray"><i class="iconfont icon-dingwei"></i>{{sellhouse.CommunityName}}</span>
+						</div>
+						<div class="by-tags overflow-omit-one">
+							<span class="tag-item" ng-repeat="tag in sellhouse.Tags track by $index">{{tag}}</span>
+						</div>
+					</div>
+				</div>
+				
+				<div ui-sref="ershouHouseList({classify:'住宅',date:paramsDate})" class="look-more">查看全部</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

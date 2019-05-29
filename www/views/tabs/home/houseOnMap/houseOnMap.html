@@ -1,0 +1,93 @@
+<ion-view id="house_on_map" hide-nav-bar="true" view-title="地图找房">
+	<div class="header">
+		<div ng-click="back()" class="left-back">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="mid-switch">
+			<div ng-click="typeSwitch(1)" ng-class="{true:'active',false:''}[switchIndex==1]" class="switch-item">二手房</div>
+			<div ng-click="typeSwitch(2)" ng-class="{true:'active',false:''}[switchIndex==2]" class="switch-item">租房</div>
+			<div class="under-line"></div>
+		</div>
+		<div class="right-two">
+			<!-- <div ng-click="showModal()" class="right-item">
+				<i class=" iconfont icon-shaixuan"></i>
+			</div> -->
+		</div>
+	</div>
+
+	<ion-content class="house-on-map" has-bouncing="false">
+		<div id="house_on_map_baidumap"></div>
+	</ion-content>
+
+
+	<script id="house_on_map_modal" type="text/ng-template">
+		<ion-modal-view id="house_on_map_modalview">
+			<div class="header">
+				<div class="back" ng-click="closeModal()">
+					<i class="iconfont icon-ego-guanbi"></i>
+				</div>
+				<div class="title">{{community_name}}</div>
+			</div>
+			<ion-content class="house-on-map-houses">
+				<div ng-show="switchIndex==1" class="main">
+					<div 
+						ui-sref="sellHouseDetail({id:sellhouse.Id})" 
+						ng-repeat="sellhouse in oldhousearr track by $index" 
+						class="house-list-item"
+						ripple-hold ripple-dark
+					>
+						<div class="left-img"><img ng-src="{{sellhouse.Thumb}}" alt=""></div>
+						<div class="right-text">
+							<div class="title overflow-omit-one">{{sellhouse.Title}}</div>
+							<div class="br-price-type overflow-omit-one">
+								<span class="spanprice">
+									<span class="large">{{sellhouse.Price}}</span>万
+								</span>
+								<span class="span-gray">&nbsp;|&nbsp;{{sellhouse.HouseType}}</span>
+								<span class="span-gray">&nbsp;|&nbsp;{{sellhouse.Space}}m²</span>
+							</div>
+							<div class="info overflow-omit-one">
+								<span class="span-gray"><i class="iconfont icon-dingwei"></i>{{sellhouse.CommunityName}}</span>
+							</div>
+							<div class="by-tags overflow-omit-one">
+								<span class="tag-item" ng-repeat="tag in sellhouse.Tags track by $index">{{tag}}</span>
+							</div>
+						</div>
+					</div>
+					<div ng-if="!oldhousearr || oldhousearr.length<1" class="no-result">暂无房源</div>
+				</div>
+
+				<div ng-show="switchIndex==2" class="main">
+					<div 
+						ui-sref="rentHouseDetail({id:sellhouse.Id})" 
+						ng-repeat="sellhouse in renthousearr track by $index" 
+						ripple-hold ripple-dark
+						class="house-list-item"
+					>
+						<div class="left-img"><img ng-src="{{sellhouse.Thumb}}" alt=""></div>
+						<div class="right-text">
+							<div class="title overflow-omit-one">{{sellhouse.Title}}</div>
+							<div class="br-price-type overflow-omit-one">
+								<span class="spanprice">
+									<span class="large">{{sellhouse.Price}}</span>元/月
+								</span>
+								<span class="span-gray">&nbsp;|&nbsp;{{sellhouse.HouseType}}</span>
+								<span class="span-gray">&nbsp;|&nbsp;{{sellhouse.Space}}m²</span>
+							</div>
+							<div class="info overflow-omit-one">
+								<span class="span-gray"><i class="iconfont icon-dingwei"></i>{{sellhouse.CommunityName}}</span>
+							</div>
+							<div class="by-tags overflow-omit-one">
+								<span class="tag-item" ng-repeat="tag in sellhouse.Tags track by $index">{{tag}}</span>
+							</div>
+						</div>
+					</div>
+					<div ng-if="!renthousearr || renthousearr.length<1" class="no-result">暂无房源</div>
+				</div>
+			</ion-content>
+		</ion-modal-view>
+	</script>
+</ion-view>
+
+
+

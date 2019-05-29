@@ -1,0 +1,57 @@
+
+<!--对话模板-->
+<ion-view id="product_detail" view-title="商品详情" hide-nav-bar=true>
+        <div class="header">
+            <div class="back" ng-click="back()">
+                <i class=" iconfont icon-xiangzuo1"></i>
+            </div>
+            <div class="title">
+                    日本进口资生堂洗面奶 新品珊珂绵 润泡沫洁面乳120g*2女深层清
+            </div>
+            <div class="right">
+            </div>
+        </div>
+        <div ui-sref="confirmOrder" class="abs-foot">
+            兑换商品
+        </div>
+
+        <ion-content has-bouncing="false" class="product-detail">
+               <div class="img-full">
+                    <img ng-src="http://imgs.wujiuyun.com//staticImage//goods//商品兑换.jpg" alt="">
+               </div>
+
+               <div class="name-price">
+                    <div class="name">日本进口资生堂洗面奶 新品珊珂绵 润泡沫洁面乳120g*2女深层清</div>
+                    <div class="price"><i class="iconfont icon-jinbi"></i>60</div>
+                </div>
+
+                <div class="change-num">
+                    数量
+                    <div class="float">
+                        <div ng-click="changeGoodsCount(true)" class="add btn">+</div>
+                        <div class="show-count">{{goodsCount}}</div>
+                        <div ng-click="changeGoodsCount(false)" ng-if="goodsCount>0" class="reduce btn">-</div>
+                        <div ng-if="goodsCount<=0" class="reduce btn"><i class="iconfont icon-jianhao"></i></div>
+                    </div>
+                </div>
+
+                <div class="description">
+                    <div class="head-title">商品描述</div>
+                    <ul class="des-list">
+                        <li>产品名称:SNKE/珊珂洁面乳</li>
+                        <li>上市时间:2017年8月</li>
+                        <li>保质期:36个月</li>
+                        <li>化妆品净含量:120g</li>
+                        <li>适合肤:质任何肤质</li>
+                        <li>分类:洗面奶</li>
+                    </ul>
+                </div>
+               <div class="img-full">
+                    <img ng-src="http://imgs.wujiuyun.com//staticImage//goods//商品详情.jpg" alt="">
+               </div>
+            
+        </ion-content>
+        
+    </ion-view>
+    
+    

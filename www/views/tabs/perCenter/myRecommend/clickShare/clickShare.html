@@ -1,0 +1,49 @@
+
+<!--对话模板-->
+<ion-view id="click_share" view-title="我的推荐码" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			我的推荐码
+		</div>
+		<div class="right" ng-click="showBottomShareModal($event,true)">
+			<i class="iconfont icon-fenxiang"></i>
+		</div>
+	</div>
+	<ion-content on-swipe-right="onSwipeRight()" class="click-share">
+		<div class="main">
+			<div class="img">
+				<img on-hold="showBottomShareModal($event,false)" ng-src="{{qcode}}" alt="">
+			</div>
+			<h5>邀请卡操作提示</h5>
+			<p>1.长按保存图片，发送给好友</p>
+			<p>2.点击右上角将邀请卡直接分享给好友</p>
+		</div>
+	</ion-content>
+
+	<script id="click_share_share_modal" type="text/ng-template">
+		<ion-modal-view class="bottom-share-modal">
+			<div ng-show="showShare">
+				<div ng-include="'views/includes/bottomShareModal/bottomShareModal.html'"></div>
+			</div>
+			<div ng-show="!showShare">
+				<div class="saveImg" ng-click="downloadImage(qcode)">保存图片</div>
+				<div class="saveImg" ng-click="closeBottomShareModal($event)">取消</div>
+			</div>
+		</ion-modal-view>
+	</script>
+	<!-- <script id="click_share_popover.html" type="text/ng-template">
+		<ion-popover-view class="Bottom-share-popover">
+			<div ng-show="showShare">
+				<div ng-include="'views/includes/bottomShareModal/bottomShareModal.html'"></div>
+			</div>
+			<div ng-show="!showShare">
+				<div class="saveImg" ng-click="downloadImage(qcode)">保存图片</div>
+				<div class="saveImg" ng-click="closePopoverView($event)">取消</div>
+			</div>
+		</ion-popover-view>
+	</script> -->
+</ion-view>
+

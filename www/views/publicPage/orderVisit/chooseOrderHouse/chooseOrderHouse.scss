@@ -1,0 +1,40 @@
+#choose_order_house{
+    $head-height:61px;
+   .choose-order-house{
+        margin: $head-height 0 0;
+        padding: 0;
+        .main{
+            padding: 10px $view-padding 0;
+            p.baseLine {
+                margin: 0;
+                padding: 15px 12px 15px;
+                span {
+                    text-align: center;
+                    display: block;
+                    font-size: 14px;
+                    color: #969696;
+                    position: relative;
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        top: 52%;
+                        background: #e6e6e6;
+                        width: 28%;
+                        height: 1px;
+                        left: 0;
+                    }
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        top: 52%;
+                        background: #e6e6e6;
+                        width: 28%;
+                        height: 1px;
+                        right: 0;
+                    }
+                }
+            }
+        }
+        
+    }
+}

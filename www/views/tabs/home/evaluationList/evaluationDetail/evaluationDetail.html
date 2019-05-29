@@ -1,0 +1,64 @@
+<!--发现界面模板-->
+<ion-view id="evaluation_detail" view-title="评测详情" hide-nav-bar=true>
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div ng-click="actionDo()" class="title">
+			评测详情
+		</div>
+		<div class="right" >
+			
+		</div>
+	</div>
+
+	<div class="bot-action">
+		<div class="action-item">阅读量{{evaluationDetail.ReadNum}}</div>
+		<div ng-click="actionDo(1,0,0)" class="action-item">点赞{{evaluationDetail.AgreeNum}}</div>
+		<div ng-click="actionDo(0,1,0)" class="action-item">差评{{evaluationDetail.DisAgreeNum}}</div>
+		<div ng-click="actionDo(0,0,1)" class="action-item">打赏{{evaluationDetail.Tips}}</div>
+	</div>
+	
+	<ion-content class="evaluation-detail">
+		<div class="head-img">	
+			<img ng-src="{{evaluationDetail.IndoorImages[0]}}" alt="">	
+		</div>
+		<div class="main">
+			<div class="title">
+				{{evaluationDetail.Title}}
+			</div>
+			<div class="time">
+				{{evaluationDetail.CreateTime}}
+			</div>
+			<div class="cont">
+				{{evaluationDetail.Content}}
+			</div>
+		</div>
+
+		<div class="comment-arr">
+			<div class="title">
+				<div class="left">最新评论</div>
+				<div ng-click="showCommentModal()" class="right">评论</div>
+			</div>
+			<div class="comment-list">
+				<div ng-repeat="item in evaluationDetail.ReplyJson track by $index" class="comment-item">
+					<div class="left-img">
+						<img ng-src="{{item.comment.userinfo.ShowImage}}" alt="">
+					</div>
+					<div class="name-comment">
+						<div class="name">{{item.comment.userinfo.Name}}</div>
+						<div class="comment">{{item.comment.content}}</div>
+					</div>
+					<div class="time">{{item.comment.createTime}}</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+	<!-- 评论 -->
+	<script id="evaluation_detail_comment_modal" type="text/ng-template">
+		<ion-modal-view class="call-comment-modalview">
+			<div ng-include="'views/includes/callCommentModal/callCommentModal.html'"></div>
+		</ion-modal-view>
+	</script>
+</ion-view>

@@ -1,0 +1,48 @@
+<ion-view id="article_detail" hide-nav-bar=true view-title="">	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class="iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			
+		</div>
+		<div class="right">			
+		</div>
+	</div>
+
+	<ion-content scroll="true" overflow-scroll="true" class="article-detail">
+		<div class="main" ng-bind-html="dataDetail.Content">
+			
+		</div>	
+		<div ng-click="agreeAction()" class="like-wrapper">
+			<i ng-class="{true:'active',false:''}[dataDetail.agreed]" class="iconfont icon-dianzan-"></i>
+			{{dataDetail.agreeNum}}
+		</div>
+		<div class="com-wrapper">
+			<h5>评论列表</h5>
+			<div ng-repeat="com in dataDetail.Children" class="com-item">
+				<div class="avatar-cell">
+					<img ng-src="{{com.UserImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+				</div>
+				<div class="com-cell">
+					<div class="name">{{com.UserName || '房田用户'}}</div>
+					<div class="con">{{com.Content}}</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+
+	<div class="bot-input">
+		<div class="input-wrapper">
+			<div class="textarea">
+				<textarea msd-elastic ng-model="replyData.data" placeholder="回复"></textarea>
+			</div>
+			<div class="send">
+				<div ng-click="replyComment()" class="send-btn">发送</div>
+			</div>
+		</div>
+		<div ng-if="keyboardShow" ng-style="{'height': keyboardHeight + 'px'}"></div>
+	</div>
+	
+</ion-view>
+

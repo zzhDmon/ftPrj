@@ -1,0 +1,600 @@
+.head-bg-houseimg{
+    width: 100vw;
+    height: 50vw;
+    background-image: url('../imgs/home/底图.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+// 列表
+.house-list-item{
+    margin:  0 0 10px;
+    padding: 10px 0 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    border-top: 1px solid $line-main-color;
+    .left-img{
+        position: relative;
+        width:120px;
+        height: 90px;
+        img{
+            border-radius: 5px;
+            margin: auto;
+            display: block;
+            width: 100%;
+            height: 90px;
+        }
+        .sell-tag{
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 1px 5px;
+            font-size: 12px;
+            border-radius: 0 0 5px 0;
+            color: white;
+            background-color: rgb(230,33,41);
+        }
+    }
+    .right-text{
+        width: calc(100% - 120px);
+        padding: 0 0 0 10px;
+        .title{
+            width: 100%;
+            height: 25px;
+            line-height: 25px;
+            font-size: 16px;
+            color: $font-main-color;
+        }
+        .housetype{
+            width: 100%;
+            height: 20px;
+            line-height: 20px;
+            font-size: 14px;
+            color: $font-sup-color;
+        }
+        .info{
+            width: 100%;
+            height: 20px;
+            line-height: 20px;
+        }
+        .tags{
+            width: 100%;
+            height: 25px;
+            line-height: 25px;
+            span{
+                margin: 0 3px 0 0;
+                padding: 2px 5px;
+                color: white;
+                border-radius: 3px;
+                background-color: $bg-main-color;
+            }
+        }
+        .price-commission{
+            width: 100%;
+            height: 25px;
+            line-height: 25px;
+            display: flex;
+            justify-content: flex-start;
+            .left-cell{
+                width: 50%;
+                height: 25px;
+                color: $font-price-red;
+                font-size: 16px;
+            }
+            .right-cell{
+                width: 50%;
+                height: 25px;
+                text-align: right;
+                .icon{
+                    margin: 2px;
+                    width: 21px;
+                    height: 21px;
+                }
+                span.commission{
+                    position: relative;
+                    top: -7px;
+                    display: inline-block;
+                    height: 25px;
+                    color: $font-sup-color;
+                }
+            }
+        }
+        .br-price-type{
+            width: 100%;
+            height: 20px;
+            line-height: 20px;
+        }
+        .by-tags{
+            width: 100%;
+            height: 25px;
+            line-height: 25px;
+            span.tag-item{
+                margin: 3px 3px 0 0;
+                padding: 2px 3px;
+                border-radius: 3px;
+                color: $bg-main-color;
+                background-color: $coffee-color;
+            }
+        }
+        .spanprice{
+            color: $font-price-red;
+            font-size: 16px;
+            font-family:"幼圆";
+            .large{
+                font-size: 18px;
+            }
+        }
+        .span-gray{
+            color: $font-sup-color;
+        }
+    }
+}
+
+// 房源需求列表
+.house-need-main{
+    width: 100%;
+    padding: 0 $view-padding 10px;
+    .look-more{
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        font-size: 16px;
+        color: $font-sup-color;
+    }
+    .arr-item{
+        margin:  0 0 10px;
+        padding: 10px 0 0;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        border-top: 1px solid $line-main-color;
+        .left-img{
+            width:31vw;
+            height: 90px;
+            img{
+                // border-radius: 5px;
+                margin: auto;
+                display: block;
+                width: 90px;
+                height: 90px;
+            }
+        }
+        .right-text{
+            width: calc(100% - 31vw);
+            padding: 0 0 0 10px;
+            .title{
+                width: 100%;
+                height: 25px;
+                line-height: 25px;
+                font-size: 16px;
+                color: $font-main-color;
+            }
+            .housetype{
+                width: 100%;
+                height: 20px;
+                line-height: 20px;
+                font-size: 14px;
+                color: $font-sup-color;
+            }
+            .info{
+                width: 100%;
+                height: 20px;
+                line-height: 20px;
+            }
+            .tags{
+                width: 100%;
+                height: 25px;
+                line-height: 25px;
+                span{
+                    margin: 0 3px 0 0;
+                    padding: 2px 5px;
+                    color: white;
+                    border-radius: 3px;
+                    background-color: $bg-main-color;
+                }
+            }
+            .br-price-type{
+                width: 100%;
+                height: 20px;
+                line-height: 20px;
+            }
+            .by-tags{
+                width: 100%;
+                height: 25px;
+                line-height: 25px;
+                span.tag-item{
+                    margin: 3px 3px 0 0;
+                    padding: 2px 3px;
+                    border-radius: 3px;
+                    color: $bg-main-color;
+                    background-color: $coffee-color;
+                }
+            }
+            .spanprice{
+                color: $font-price-red;
+                font-size: 16px;
+                font-family:"幼圆";
+                .large{
+                    font-size: 18px;
+                }
+            }
+            .span-gray{
+                color: $font-sup-color;
+            }
+        }
+    }
+}
+
+// 房源详情
+.house-detail{
+    // 返回 分享按钮
+    .btn{
+        z-index: 999;
+        position: absolute;
+        top: $abs-top;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 35px;
+        font-size: 25px;
+        background-color: rgba(0,0,0,0.1);
+        color: white;
+        .iconfont{
+            font-size: 20px;
+        }
+        &.backbotton {
+            left: 5px;
+        }
+        &.sharebotton {
+            right: 5px;
+        } 
+    }
+    // 轮播图
+    .banner-position{
+        position: relative;
+        width: 100%;
+        height: 230px; 
+        .detailcursor{
+            width: 100%;
+            height: 100%;
+            .box {
+                width: 100%;
+                height: 100%;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .slider-pager{
+                position: absolute;
+                bottom: 5px;
+                .slider-pager-page{
+                    font-size: 12px;
+                }
+            }
+        }
+        .slide-page-num{
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            bottom: 5px;
+            padding: 0 5px 0 0;
+            .flex-item{
+                display: inline-block;
+                margin: 0 4px 0 0;
+                width: 8px;
+                height: 4px;
+                border-radius: 2px;
+                background-color: rgba(255,255,255,0.3);
+                &.active{
+                    background-color: white;
+                }
+            }
+        }
+    }
+    .main-detail{
+        padding: 10px $view-padding 0;
+        .price-eval-wrap{
+            width: 100%;
+            height: 25px;
+            line-height: 25px;
+            display: flex;
+            justify-content: flex-start;
+            .price-housetype{
+                width: calc(100% - 80px);
+                color: $font-price-red;
+                .price{
+                    font-size: 18px;
+                }
+                .housetype{
+                    font-size: 16px;
+                }
+            }
+            .eval{
+                width: 80px;
+                height: 25px;
+                text-align: center;
+                border-radius: 12px;
+                color: white;
+                background-color: $font-price-red;
+            }
+        }
+        h5{
+            margin: 15px 0 5px;
+            font-size: 18px;
+            color: rgb(51, 51, 51);
+        }
+        .address-wrapper{
+            padding: 5px 0;
+            width: 100%;
+            line-height: 20px;
+            font-size: 16px;
+            display: flex;
+            justify-content: flex-start;
+            .left-cell{
+                width: calc(100% - 20px);
+                font-size: 16px;
+            }
+            .right-cell{
+                width: 20px;
+            }
+        }
+        .undertitle{
+            width: 100%;
+            padding: 5px 0 0;
+            margin: 0 0 10px;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            span{
+                display: block;
+                padding: 0 5px;
+                margin: 5px 5px 0 0;
+                height: 25px;
+                line-height: 25px;
+                border: 1px solid $line-deep-color;
+                border-radius: 5px;
+                color: $bg-main-color;
+                background-color: $coffee-color;
+            }
+        }
+    } 
+    // 房源信息
+    .house-info{
+        padding: 0 $view-padding 10px;
+        ul{
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 1px 1px 0 rgba(1,1,0,0.35);
+            li{
+                width: 50%;
+                height: 30px;
+                font-size: 16px;
+                line-height: 30px;
+                color: $font-main-color; 
+                span.leftdesc{
+                    color: rgb(150,150,150);
+                }
+                .right-main-color{
+                    color: $bg-main-color;
+                }
+            }
+            li.allLine{
+                width: 100%;
+            }
+        }
+    }
+    // 商店 租房 配置
+    .fy-peizhi{
+        padding: 0 $view-padding 15px;
+        h5{
+            font-size: 16px;
+            height: 18px;
+            line-height: 18px;
+            margin: 20px 0 015px;
+        }
+        .config-wrapper{
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            .config-item{
+                padding: 0 10px 5px 0;
+                width: 25%;
+                .in-item{
+                    width: 100%;
+                    height: 20px;
+                    text-align: center;
+                    line-height: 20px;
+                    border-radius: 5px;
+                    box-shadow: 0 1px 1px 0 rgba(1,1,0,0.35);
+                }
+            }
+        }
+    }
+    // 详情 服务描述
+    .fy-miaoshu{
+        padding: 0 $view-padding 20px;
+        h5{
+            margin: 0;
+            font-size: 16px;
+            height: 40px;
+            line-height: 40px;
+            color: $font-main-color;
+        }
+        .des-wrapper{
+            .des-item{
+                padding: 0 0 10px;
+                width: 100%;
+                border-top: 2px solid rgb(240,244,247);
+                .left-cell{
+                    padding: 10px 0;
+                    width: 100%;
+                    height: 50px;
+                    display: flex;
+                    justify-content: flex-start;
+                    .icon-item{
+                        padding: 5px;
+                        width: 30px;
+                        height: 30px;
+                        .icon{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .txt-item{
+                        width: calc(100% - 30px);
+                        line-height: 30px;
+                        font-size: 16px;
+                        color: $font-main-color;
+                    }
+                }
+                .right-cell{
+                    width: 100%;
+                    line-height: 20px;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    // 位置 地图
+    .fy-position{
+        padding: 0;
+        h5{
+            padding: 0 $view-padding;
+            margin: 15px 0 15px;
+            font-size: 16px;
+            height: 18px;
+            line-height: 18px;
+        }
+        p{
+            padding: 0 $view-padding;
+        }
+        .anchorBL{
+            display:none;
+        }
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+    // 评论
+    .comment-list{
+        padding: 0 $view-padding;
+        h5{
+            margin: 0;
+            font-size: 16px;
+            height: 40px;
+            line-height: 40px;
+        }
+        .comment-list{
+            &::after{
+                content: ".";
+                clear: both;
+                display: block;
+                overflow: hidden;
+                font-size: 0;
+                height: 0;
+            }
+            width: 100%;
+            .comment-item{
+                &::after{
+                    content: ".";
+                    clear: both;
+                    display: block;
+                    overflow: hidden;
+                    font-size: 0;
+                    height: 0;
+                }
+                width: 100%;
+                height: auto;
+                padding: 10px 0 0;
+                border-bottom: 1px solid $line-main-color;
+                .leftimg{
+                    width: 40px;
+                    float: left;
+                    height: 100%;
+                    img{
+                        display: block;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                    }
+                }
+                .right-txt{
+                    width: calc(100% - 40px);
+                    float: left;
+                    padding: 0 0 0 10px;
+                    .title-like{
+                        width: 100%;
+                        height: 30px;
+                        padding: 10px 0 0;
+                        .title{
+                            width: 80%;
+                            height: 100%;
+                            float: left;
+                            font-size: 14px;
+                            color: $font-main-color;
+                        }
+                        .like{
+                            width: 20%;
+                            height: 100%;
+                            float: left;
+                            text-align: right;
+                            font-size: 14px;
+                            color: $font-minor-color;
+                        }
+                    }
+                    .comment-content{
+                        width: 100%;
+                        height: auto;
+                        padding: 10px 0 10px;
+                    }
+                    .foot-info{
+                        width: 100%;
+                        height: 25px;
+                        margin: 0 0 5px;
+                        .time{
+                            padding: 3px 5px 3px 0;
+                            color: $font-minor-color;
+                        }
+                        .reply{
+                            padding: 3px 5px;
+                            color: $font-minor-color;
+                            border: 1px solid $line-deep-color;
+                            border-radius: 12px;
+                        }
+                    }
+                }
+            }
+        } 
+        .commit{
+            margin: 10px auto;
+            width: 80%;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            background-color: $bg-main-color;
+            color: $font-main-color;
+            border-radius: 3px;
+        } 
+    }
+    // 相似房源
+    .similar-house{
+        padding: 0 0 0 12px;
+        h5{
+            font-size: 16px;
+            height: 40px;
+            line-height: 40px;
+            margin: 0;
+            padding: 0;
+        }
+        .main{
+            width: 100%;
+            padding: 15px $view-padding 10px;
+        }
+    }
+}

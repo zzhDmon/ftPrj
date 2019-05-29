@@ -1,0 +1,55 @@
+<ion-view id="mobile_contact" view-title="手机联系人" hide-nav-bar=true>  
+    <div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			手机联系人
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	<div class="search_client item-input-inset">
+		<div class="item-input-wrapper" ng-class="{true: 'wrappercal', false: 'wrappernocal'}[showCancel]">  
+			<i class="icon ion-ios-search placeholder-icon"></i>  
+			<input type="search" name="" placeholder='输入联系人姓名查询' ng-change="inputChange()" ng-model='searchInfo.name'>  
+			<span class="ion-close-circled" ng-click="searchEmpty()" ng-show="searchInfo.name"></span>
+		</div>  
+	</div>
+		
+  	<!--显示客户列表-->
+	<ion-content delegate-handle="mobileContScroll" class="mobile-contact" >  
+		<!-- 全部 -->
+		<ul class="letterli">   
+			<li class="client-list" ng-if="group.value.length>0" ng-repeat="group in formatContacts | filter:searchInfo.name | orderBy:'key'" id={{"mobilecontindex-"+group.key}}>  
+				<div class="label" id={{"client-"+group.key}}><strong>{{group.key}}</strong></div>  
+				<ul class="clientli">  
+					<li  class="client-name" ng-repeat="item in group.value | filter:searchInfo.name | orderBy:'pinyinName'">                       
+						<div class="avatar">
+							<img ng-src="{{item.ShowImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+						</div>
+						<div class="name">
+							<div class="topname overflow-omit-one">{{item.Name}}({{item.PhoneNumber}})</div>
+							<div ng-show="!item.IsRegist" class="botreason overflow-omit-one">暂未注册</div>
+							<div ng-if="item.FTName" class="botreason overflow-omit-one">ft：{{item.FTName}}</div>
+						</div>  
+						<div class="action">
+							<div ng-click="inviteFriend(item.PhoneNumber)" ng-show="!item.IsRegist" class="pass">邀请</div>
+							<div ng-click="beFriend(item)" ng-show="item.IsRegist&&!item.IsFriend" class="pass">添加</div>
+							<div ng-show="item.IsRegist&&item.IsFriend" class="passed">已添加</div>
+						</div>     
+					</li>  
+				</ul>  
+			</li>  
+		</ul> 
+	</ion-content>  
+
+	<!-- 返回顶部 -->
+	<div ng-click="backTop()" class="back-top">
+		<i class="iconfont icon-jiageshengxu-"></i>
+	</div>
+	<!--右侧导航-->
+	<div ng-show="!searchInfo.name" class="linkman-shortcuts">  
+		<a href="" ng-repeat="letter in letterarr"  ng-touchmove="mTouch($event,letter)" ng-click="mTouch($event,letter)">{{letter}}</a>
+	</div> 
+</ion-view>  

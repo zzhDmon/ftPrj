@@ -1,0 +1,97 @@
+<div ng-click="closePreviewModal()" class="closeicon"><i class="iconfont icon-guanbi1"></i></div>
+<ion-content scrollbar-y="false" ng-click="closePreviewModal()">
+    <ion-slide-box does-continue="false"  class="preview-cursor" on-slide-changed='changeindex()' show-pager="true">
+        <ion-slide ng-repeat="banner in addOtherSubData.IndoorShowImages track by $index">
+            <img ng-src="{{banner}}"/>
+        </ion-slide>
+    </ion-slide-box>
+
+    <div class="detailname">
+        <h4>{{addOtherSubData.Title}}</h4>
+        <div class="undertitle">
+            <span>环境优美</span><span>交通便利</span><span>物业规范</span>
+        </div>
+        <div class="borderline"></div>
+        <div ng-show="behaviour!==1" class="flex-wrapper">
+            <div class="flex-item">
+                <p class="top">租金</p>
+                <p class="bottom">{{addOtherSubData.Price}}元/月</p>
+            </div>
+            <div class="line"></div>
+            <div class="flex-item">
+                <p class="top">付款方式</p>
+                <p class="bottom">
+                    付
+                    <span ng-if="!addOtherSubData.PayMouth">--</span>
+                    <span ng-if="addOtherSubData.PayMouth">{{addOtherSubData.PayMouth}}</span>
+                    押
+                    <span ng-if="!addOtherSubData.MortMonth">--</span>
+                    <span ng-if="addOtherSubData.MortMonth">{{addOtherSubData.MortMonth}}</span>
+                    
+                </p>
+            </div>
+            <div class="line"></div>
+            <div class="flex-item">
+                <p class="top">面积</p>
+                <p class="bottom">{{addOtherSubData.Space}}m²</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="houseinfo">
+        <div class="houseinfo-wrapper">
+            <div ng-show="behaviour==1" class="house-item ovwrflow-omit-one">
+                <span class="leftdesc">售价：<span class="price">{{addOtherSubData.Price}} 万</span>
+            </div>
+            <div ng-show="behaviour==1" class="house-item ovwrflow-omit-one">
+                <span class="leftdesc">面积：</span> <span class="price">{{addOtherSubData.Space}} m²</span> 
+            </div>
+
+            <div class="house-item ovwrflow-omit-one" ng-if="addOtherSubData.With"><span class="leftdesc">面宽：</span>{{addOtherSubData.With}} m²</div>
+            <div class="house-item ovwrflow-omit-one" ng-if="addOtherSubData.Height"><span class="leftdesc">高度：</span>{{addOtherSubData.Height}} m</div>
+            <div class="house-item ovwrflow-omit-one" ng-if="addOtherSubData.Depth"><span class="leftdesc">进深：</span>{{addOtherSubData.Depth}} m</div>
+            <div class="house-item ovwrflow-omit-one" ng-show="behaviour==2">
+                <span class="leftdesc">起租期：</span>
+                <span ng-if="!addOtherSubData.MinMouth">--</span>
+                {{addOtherSubData.MinMouth}} 月
+            </div>
+            <div class="house-item ovwrflow-omit-one" ng-show="behaviour==2">
+                <span class="leftdesc">免租期：</span>
+                <span ng-if="!addOtherSubData.FreeMouth">--</span>
+                {{addOtherSubData.FreeMouth}} 月
+            </div>
+            <div class="house-item ovwrflow-omit-one">
+                <span class="leftdesc">经营状态：</span>
+                <span ng-if="addOtherSubData.BusinessState==0">经营中</span>
+                <span ng-if="addOtherSubData.BusinessState==1">空置中</span>
+            </div>
+            <div class="house-item ovwrflow-omit-one" ng-hide="behaviour==1">
+                <span class="leftdesc">是否转让：</span>
+                <span ng-if="behaviour==3">是</span>
+                <span ng-hide="behaviour==3">否</span>
+            </div>
+            <div class="house-item ovwrflow-omit-one" ng-hide="behaviour==1">
+                <span class="leftdesc">转让费：</span>
+                <span ng-hide="addOtherSubData.TransferFee==0">{{addOtherSubData.TransferFee}}万</span>
+                <span ng-show="addOtherSubData.TransferFee==0">面议</span>
+            </div>
+            <div class="house-item ovwrflow-omit-one">
+                <span class="leftdesc">业主直售</span>
+                <span ng-hide="addOtherSubData.UserType==3">个人房源</span>
+                <span ng-show="addOtherSubData.UserType==3">房东委托</span>
+            </div>
+
+            <div class="house-item ovwrflow-omit-one">
+                <span class="leftdesc">楼层：</span>{{addOtherSubData.Floor}}/{{addOtherSubData.TotalFloor}}
+            </div>
+            <div class="house-item allLine ovwrflow-omit-one"><span class="leftdesc">小区名称：</span>{{addOtherSubData.CommunityName}}<span ng-if="!addOtherSubData.CommunityName">--</span></div>
+        </div>
+    </div>
+
+    <div class="offline"></div>
+    <div class="fymiaoshu">
+        <h5>房源介绍</h5>
+        <p>{{addOtherSubData.Discription}}</p>
+    </div>
+
+</ion-content>

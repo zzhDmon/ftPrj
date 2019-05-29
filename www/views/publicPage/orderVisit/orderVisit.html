@@ -1,0 +1,89 @@
+
+<ion-view id="order_visit" view-title="预约时间" hide-nav-bar=true>
+<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			预约时间
+		</div>
+		<div class="right" >
+			
+		</div>
+	</div>
+	
+	<ion-content class="order-visit">
+		<form novalidate name="formlogin">
+			<div class="text-list">
+				<label class="item item-input">
+					<span class="input-label">姓名</span>
+		          	<input ng-disabled="true" type="text" name="name" ng-model="userinfo.Name" required=""  placeholder="请输入姓名">
+				</label>
+				<label class="item item-input">
+					<span class="input-label">手机</span>
+					<input ng-disabled="true" type="tel" name="tel" ng-model="userinfo.UserName" required="" placeholder="请输入手机" >
+				</label>
+				<label class="item item-input">
+					<span class="input-label">看房时间</span>
+					<input type="text" name="time" ng-model="subData.LookTime" class="sub-order-visit-time" placeholder="看房时间" >
+				</label>
+			</div>
+			
+			<div class="offline"></div>
+			<div ng-click="changeRadioType(0)" class="radio">
+				<div class="left">自己带看</div>
+				<div class="right" ng-class="{true:'active',false:''}[radioChoose==0]"><i class="iconfont icon-danxuan"></i></div>
+			</div>
+			<div class="offline"></div>
+			<div ng-click="changeRadioType(1)" class="radio">
+				<div class="left">经纪人带看</div>
+				<div class="right" ng-class="{true:'active',false:''}[radioChoose==1]"><i class="iconfont icon-webxinshishihuiyitianjialianxirenicon"></i></div>
+			</div>
+
+			<div ng-if="radioChoose==1&&agentInfo" class="agent-info">
+				<div class="left"><img ng-src="{{agentInfo.Image}}" alt=""></div>
+				<div class="right">
+					<div class="top heng">{{agentInfo.Name}} <span>{{agentInfo.Discription | positionFilter}}</span></div>
+					<div class="bot heng">{{agentInfo.Discription | storeFilter}}</div>
+					<div class="mid heng">工作年限：{{agentInfo.WorkYears}}</div>
+				</div>
+			</div>
+
+			
+			<div ng-if="!houseId" class="offline"></div>
+			<div ng-if="!houseId" ui-sref="chooseOrderHouse" class="to-houselist">
+				房源列表
+			</div>
+			<div class="main">
+				<div 
+					ng-if="houseInfo"
+					ui-sref="chooseOrderHouse"
+					class="house-list-item"
+					ripple ripple-hold ripple-dark
+				>
+					<div class="left-img"><img ng-src="{{houseInfo.ShowBuildingImg[0] || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt=""></div>
+					<div class="right-text">
+						<div class="title overflow-omit-one">{{houseInfo.NewHouseName}}</div>
+						<div class="housetype overflow-omit-one"><i class="iconfont icon-dingwei"></i>{{houseInfo.Address}}</div>
+						<div class="tags overflow-omit-one">
+							{{houseInfo.Space}}
+							<!-- <span ng-repeat="tag in newhouse.Tags track by $index">{{tag}}</span> -->
+						</div>
+						<div class="info overflow-omit-one">
+							<span class="spanprice">
+								<span>{{houseInfo.Price}}元/m²</span>
+							</span>
+							<span class="span-gray"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="width:100%;height:15px;"></div>
+		</form>
+		<div style="width:100%;height:50px;"></div>
+	</ion-content>
+	
+	<div ng-click="save()" class="save-btn">
+		确定预约
+	</div>
+</ion-view>

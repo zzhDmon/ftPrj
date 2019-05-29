@@ -1,0 +1,77 @@
+
+<!--对话模板-->
+<ion-view id="shipping_address" view-title="新增收获地址" hide-nav-bar=true>
+        <div class="header">
+            <div class="back" ng-click="back()">
+                <i class=" iconfont icon-xiangzuo1"></i>
+            </div>
+            <div class="title">
+                <span ng-if="paramsId">编辑</span>
+                <span ng-hide="paramsId">新增</span>
+                收货地址
+            </div>
+            <div class="right">
+             
+            </div>
+        </div>
+        <ion-content has-bouncing="false" class="shipping-address">
+            <div class="wrapper-cell">
+                <div class="left-cell">用户名</div>
+                <div class="right-cell">
+                    <input type="text" name="name" ng-model="subData.Name" required="" placeholder="收货人姓名" >
+                </div>
+            </div>
+            <div class="wrapper-cell">
+                <div class="left-cell">手机号码</div>
+                <div class="right-cell">
+                    <input type="tel" name="tel" ng-model="subData.Phone" required="" placeholder="收货人电话" >
+                </div>
+            </div>
+            
+           
+            <ionic-city-picker options='vm.CityPickData1'></ionic-city-picker>
+            
+            <div class="wrapper-cell">
+                <div class="left-cell">街道</div>
+                <div class="right-cell">
+                    <input type="text" name="street" ng-model="subData.Street" required="" placeholder="街道" >
+                </div>
+            </div>
+            <div class="wrapper-cell">
+                <div class="left-cell">详细地址</div>
+                <div class="right-cell">
+                    <textarea name="address" ng-model="subData.Address"  required="" placeholder="小区、楼牌号等"></textarea>
+                </div>
+            </div>
+            <div class="wrapper-cell">
+                <div class="left-cell">标签</div>
+                <div class="right-cell">
+                    <div class="tag-item" 
+                        ng-repeat="item in tagList track by $index"
+                        ng-class="{true:'active',false:''}[subData.Tag==item.id]"
+                        ng-click="subData.Tag=item.id">
+                        
+                        {{item.text}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-main">
+                <div class="row-item">
+                    <div class="left-name">设为默认地址</div>
+                    <label class="toggle toggle-energized">
+                        <input type="checkbox" ng-model="subData.IsDefault" ng-checked="subData.IsDefault">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="btn-wrapper">
+                <div ng-click="saveAddress()" class="save">保存并使用</div>
+            </div>
+        </ion-content>
+        
+    </ion-view>
+    
+    

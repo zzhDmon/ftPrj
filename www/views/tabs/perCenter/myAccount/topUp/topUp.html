@@ -1,0 +1,173 @@
+<!--对话模板-->
+<ion-view id="top_up" view-title="充值" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			充值
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	<ion-content class="top-up">
+		<form novalidate name="subtopup">
+			<div class="data-list">
+				<div class="data-title">充值金额</div>
+				<div class="data-item">
+					<div class="item-left">￥</div>
+					<div class="input-item">
+						<input type="number" name="money" ng-model="subData.money" placeholder="请输入充值金额" required="">
+					</div>
+				</div>
+			</div>
+			<div class="surplus-money">
+				<!-- <span style="padding:0 12px;color:rgb(196,26,22);">(该笔交易将扣除0.6%元手续费)</span> -->
+			</div>
+			<!-- <div class="subbtn">
+				<button ng-disabled="subtopup.$invalid" ng-click="showModal()" class="button">下一步</button>
+			</div> -->
+		</form>
+		
+		<div class="offline"></div>
+		<div class="type-list">
+			<label>
+				<div class="oneOf">
+					<div class="left-icon"><i class="iconfont icon-weixinzhifu"></i></div>
+					<div class="mid-cont">微信支付</div>
+					<div class="right-radio">
+						<input ng-model="payType.type" type="radio" name="paytype" value="1" /><i class="iconfont icon-choosehandle"></i>
+					</div>
+				</div>
+			</label>
+			
+			<label>
+				<div class="oneOf">
+					<div class="left-icon">
+						<i class="iconfont icon-zhifubao"></i>
+					</div>
+					<div class="mid-cont">支付宝支付</div>
+					<div class="right-radio">
+						<input ng-model="payType.type" type="radio" name="paytype" value="2" /><i class="iconfont icon-choosehandle"></i>
+					</div>
+				</div>
+			</label>
+<!-- 路由参数设置 -->
+			<!-- <div ui-sref="posPay({productid:productId,fee:shoulePay*100,year:yearValue})" class="oneOf">
+				<div class="left-icon yinhang">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-POStubiao"></use>
+					</svg>
+				</div>
+				<div class="mid-cont">POS支付</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangyou1"></i>
+				</div>
+			</div> -->
+
+			<label ng-if="choosedBankCard">
+				<div class="oneOf">
+					<div class="left-icon yinhang">
+						<svg ng-if="choosedBankCard.bankName=='工商银行'" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-gongshangyinhang"></use>
+						</svg>
+						<svg ng-if="choosedBankCard.bankName=='农业银行'" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-nongyeyinhang"></use>
+						</svg>
+						<svg ng-if="choosedBankCard.bankName=='中国银行'" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-zhongguoyinhang"></use>
+						</svg>
+						<svg ng-if="choosedBankCard.bankName=='建设银行'" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-jiansheyinhang"></use>
+						</svg>
+						<svg ng-if="choosedBankCard.bankName=='交通银行'" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-jiaotongyinhang"></use>
+						</svg>
+						<svg ng-if="choosedBankCard.bankName=='邮储银行'" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-youchuyinhang"></use>
+						</svg>
+						<svg ng-if="choosedBankCard.bankName=='招商银行'" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-zhaoshangyinhang"></use>
+						</svg>
+						<svg ng-if="choosedBankCard.bankName=='平安银行'" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-pinganyinhang"></use>
+						</svg>
+						<svg ng-if="choosedBankCard.bankName=='华夏银行'" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-huaxiayinhang"></use>
+						</svg>
+						<svg ng-if="choosedBankCard.bankName=='光大银行'" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-guangdayinhang"></use>
+						</svg>
+						<svg ng-if="choosedBankCard.bankName=='浦发银行'" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-pufayinhang"></use>
+						</svg>
+						<svg ng-if="choosedBankCard.bankName=='中信银行'" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-zhongxinyinhang"></use>
+						</svg>
+						<svg ng-if="choosedBankCard.bankName=='民生银行'" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-minshengyinhang"></use>
+						</svg>
+						<svg ng-if="choosedBankCard.bankName=='兴业银行'" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-xingyeyinhang"></use>
+						</svg>
+						<svg ng-if="choosedBankCard.bankName=='广发银行'" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-guangfayinhang"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">
+						<div class="top">{{choosedBankCard.bankName}}</div>
+						<div class="bot">（
+							<span ng-if="choosedBankCard.cardType==1">借记卡</span>
+							<span ng-if="choosedBankCard.cardType==2">信用卡</span>
+							{{choosedBankCard.bankCardNo | cardNoFilter}}
+							）
+						</div>
+					</div>
+					<div class="right-radio">
+						<input ng-model="payType.type" type="radio" name="paytype" value="3" /><i class="iconfont icon-choosehandle"></i>
+					</div>
+				</div>
+			</label>
+			<div ui-sref="tabs.myBankCard({actiontype:'choosebankcard'})" class="other-card">
+				<div class="left-text">选择银行卡</div>
+				<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+			</div>
+		</div>
+		<div class="pay-now">
+			<div ng-disabled="subtopup.$invalid" class="pay button" ng-click="Pay()">
+				确认支付
+			</div>
+		</div>
+	</ion-content>
+	
+
+
+	<script id="topup_auth_code_modal" type="text/ng-template">
+		<ion-modal-view class="pay-auth-code-modalview">
+			<div ng-click="closeAuthCodeModal()" class="header">
+				<div class="back"><i class="iconfont icon-guanbi1"></i></div>
+				<div class="title">请输入验证码</div>
+				<div class="right"></div>
+			</div>
+			<ion-content>
+				<div class="main">
+					<div class="money-item">
+						￥{{subData.money}}
+					</div>
+					<div class="ver-code flex-item">
+						<div class="left-cell">验证码</div>
+						<div class="mid-cell">
+							<input type="text" ng-model="confirmCardData.Code" placeholder="输入验证码">
+						</div>
+					</div>
+					<div class="ft-sub-btn" ng-click="confirmCardPay()">
+						立即付款
+					</div>
+				</div>
+			</ion-content>
+		</ion-modal-view>
+	</script>
+
+	
+</ion-view>
+

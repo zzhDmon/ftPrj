@@ -1,0 +1,49 @@
+<!--发现界面模板-->
+<ion-view id="system_price" view-title="系统估价" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			系统估价
+		</div>
+		<div class="right" >
+			
+		</div>
+	</div>
+	
+	<ion-content class="system-price" has-bouncing="false">
+		<div class="head-info">
+			<div class="address">
+				{{subData.query}}
+			</div>
+			<div class="price">
+				{{price}}<div class="cell">万</div>
+			</div>
+		</div>
+
+		<div class="echat-wrapper">
+			<div class="other-options">
+				<div class="option-item">
+					<div class="left">均价</div>
+					<div class="right overflow-omit-one">{{resData.AvePrice}}万/平</div>
+				</div>
+				<div class="option-item">
+					<div class="left">价格区间</div>
+					<div class="right overflow-omit-one">{{resData.MinPrice}}-{{resData.MaxPrice}}万</div>
+				</div>
+				<div class="option-item">
+					<div class="left">相比上月</div>
+					<div class="right overflow-omit-one">{{resData.Increase}}</div>
+				</div>
+			</div>
+			<div id="system_price_echarts" class="echat-cont">
+			
+			</div>
+		</div>
+
+		<div ng-if="houseId" ui-sref="thirdGuessPrice({houseid:houseId})" class="third-price">第三方估价</div>
+
+	</ion-content>
+	
+</ion-view>

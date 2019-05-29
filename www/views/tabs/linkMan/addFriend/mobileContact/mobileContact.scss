@@ -1,0 +1,202 @@
+#mobile_contact{
+    //搜索框
+    .search_client{
+        background-color: #ddd;
+        position: absolute;
+        z-index: 999;
+        top: $head-height;
+        width: 100%;
+        height: 44px;
+        .item-input-wrapper{
+            background-color: #fff;
+            height: 30px;
+            .ion-ios-search{
+                font-size: 16px;
+            }
+            .ion-close-circled{
+                color: #969696;
+            }
+            input{
+                width: 100%;
+                height: 100%;
+                padding: 0;
+            }
+        }
+        .wrappernocal{
+            width: 100%;
+        }
+        .wrappercal{
+            width: calc(100% - 45px);
+        }
+    }
+
+    .mobile-contact{
+        $margin-top:$head-height + 44px;
+        margin-top: $head-height + 44px;
+        //暂无联系人
+        .nocontacts{
+            padding: 40px 12px 0;
+            .img{
+                width: 100%;
+                padding: 20px 12px 0;
+                img{
+                    display: block;
+                    width: 150px;
+                    height: 150px;
+                    margin: auto;
+                }
+            }
+            p{
+                font-size: 14px;
+                text-align: center;
+                color: #333;                
+            }
+        }
+
+        
+        
+        .client-list{ 
+            width: 100%;
+            border-width: 0px;  
+            background-color: #fff;  
+            color: #444;  
+            position: relative;  
+            z-index: 2;  
+            display: block;  
+            margin: -1px;   
+            font-size: 16px;
+            .label{
+                padding: 0 0 0 12px;
+               height: 25px; 
+               line-height: 25px; 
+               color: #000;
+               background-color: #F2F2F2;  
+            }
+            .clientli{
+                width: 100%;
+                 padding: 0 30px 0 $view-padding; 
+                .client-name{ 
+                    border-bottom: 1px solid #d5d5d5;
+                    width: 100%;
+                    padding: 10px 0; 
+                    display: flex;
+                    justify-content: flex-start;
+                    .name{
+                        margin: 0;
+                        padding: 0 10px;
+                        width: calc(100% - 100px);
+                        height: 40px;
+                        line-height: 40px;
+                        font-size: 16px;
+                        .topname{
+                            width: 100%;
+                            height: 20px;
+                            line-height: 20px;
+                            font-size: 16px;
+                            color: $font-main-color; 
+                        }
+                        .botreason{
+                            width: 100%;
+                            height: 20px;
+                            line-height: 20px;
+                            font-size: 12px;
+                            color: $font-minor-color; 
+                        }
+                    }
+                    .avatar{
+                        width: 40px;
+                        height: 40px;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .action{
+                        width: 60px;
+                        height: 40px;
+                        padding: 5px 0;
+                        .pass{
+                            width: 100%;
+                            height: 30px;
+                            text-align: center;
+                            line-height: 30px;
+                            border-radius: 5px;
+                            color: white;
+                            background-color: $bg-main-color;
+                        }
+                        .passed{
+                            width: 100%;
+                            height: 30px;
+                            text-align: right;
+                            line-height: 30px;
+                            color: $font-minor-color;
+                        }
+                    }
+                }
+                .client-name:last-child{
+                    border: none;
+                } 
+            }
+            
+        } 
+    } 
+    .back-top{
+        position: absolute;  
+        top: $head-height + 10px;  
+        right: 0; 
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        color: $font-sup-color;
+        .iconfont{
+            font-size: 16px;
+        }
+    }
+    .linkman-shortcuts {  
+        position: absolute;  
+        top: $head-height + 44px;  
+        right: 0;  
+        bottom: 10px;  
+        width: 30px; 
+        height: calc(100% - 160px); 
+        min-height: 400px;
+        overflow: scroll;
+        font-size: 11px;  
+        display: -webkit-box;  
+        display: box;  
+        -webkit-box-direction: normal;  
+        -webkit-box-orient: vertical;  
+        -webkit-flex-direction: inherit;  
+        -moz-flex-direction: vertical;  
+        -ms-flex-direction: inherit;  
+        flex-direction: inherit;  
+        -webkit-box-pack: center;  
+        -ms-flex-pack: center;  
+        -webkit-justify-content: center;  
+        -moz-justify-content: center;  
+        justify-content: center;  
+        -webkit-transform: translate3d(0, 0, 0);  
+        transform: translate3d(0, 0, 0); 
+        a{  
+            text-decoration: none;
+            text-align: center;  
+            color: $font-sup-color; 
+            font-weight: 600; 
+            -webkit-box-flex: 1; 
+            font-size: 14px; 
+            box-flex: 1;  
+            display: -webkit-box;  
+            display: -webkit-flex;  
+            display: flex;  
+            -webkit-box-pack: center;  
+            -ms-justify-content: center;  
+            -webkit-justify-content: center;  
+            justify-content: center;  
+            -webkit-box-align: center;  
+            -ms-align-items: center;  
+            -webkit-align-items: center;  
+            align-items: center;  
+        }  
+    }
+}

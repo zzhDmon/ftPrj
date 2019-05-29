@@ -1,0 +1,14 @@
+.call-comment-modalview{
+    .call-comment-main{
+        .scroll-content{
+            margin: $head-height 0 0;
+            padding: 0 $view-padding;
+            textarea{
+                padding: 10px;
+                width: 100%;
+                height: 200px;
+            }
+        }
+    }
+   
+}

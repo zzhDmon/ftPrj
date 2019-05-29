@@ -1,0 +1,39 @@
+
+<ion-view id="mall_search" view-title="搜索" hide-nav-bar="true">	
+	<div class="search-header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			<div class="fake-input">
+				<input ng-model="searchData.data" type="text" placeholder="请输入您要搜索的商品">
+			</div> 
+		</div>
+		<div ng-click="search()" class="right">
+			搜索
+		</div>
+	</div>
+
+	<ion-content class="mall-search" has-bouncing="false">
+		<!--<div class="search-wrapper">
+			<div class="search-title">热搜</div>
+			<div class="search-list">
+				<div ui-sref="goodsList({query:'玻璃杯'})" class="search-item">玻璃杯</div>
+				<div ui-sref="goodsList({query:'保温杯'})" class="search-item">保温杯</div>
+			</div>
+		</div> -->
+		<div class="offline"></div>
+
+		<div ng-if="searchHistory.length>0" class="search-wrapper">
+			<div class="search-title">搜索历史</div>
+			<div class="search-list">
+				<div 
+					ng-repeat="item in searchHistory track by $index"
+					ui-sref="goodsList({query:item})" 
+					class="search-item">{{item}}</div>
+			</div>
+		</div>
+		<div ng-if="searchHistory.length>0" ng-click="clearHistory()" class="clear-history">清除搜索历史</div>
+	</ion-content>
+	
+</ion-view>

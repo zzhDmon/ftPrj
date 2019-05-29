@@ -1,0 +1,161 @@
+<ion-view id="link_man" view-title="联系人" hide-nav-bar=true>  
+	
+	<div class="header house-bg-header">
+		<div class="back">	
+		</div>
+		<div class="title">
+			联系人<span ng-if="friendsNum>0">({{friendsNum}})</span>
+		</div>
+		<div class="right">
+			<div ui-sref="linkManSearch" class="flex-cell"><i class="iconfont icon-sousuo2"></i></div>
+			<div ng-click="openPopover($event)" class="flex-cell"><i class="iconfont icon-tianjia"></i></div>
+		</div>
+	</div>
+	<!--显示客户列表-->
+	<div>
+		<ion-content class="link-man" delegate-handle="clientScroll" has-bouncing="false">  
+			<div ui-sref="newFriends" class="new-friend">
+				<!-- 绝对定位 -->
+				<div ng-if="0<sysMsgCount&&sysMsgCount<99" class="message-count">{{sysMsgCount}}</div>
+				<div ng-if="sysMsgCount>99" class="message-count">99+</div>
+
+				<div class="avatar">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-xiaoxizhongxin-"></use>
+					</svg>
+				</div>
+				<div class="name">消息中心</div> 
+			</div>
+			<div ui-sref="mobileContact" class="new-friend">
+				<div class="avatar">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-tongxunlu-"></use>
+					</svg>
+				</div>
+				<div class="name">手机联系人</div> 
+			</div>
+			<div ui-sref="groupChat" class="new-friend new-friend-noborder">
+				<div class="avatar">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-qunliao-3"></use>
+					</svg>
+				</div>
+				<div class="name">群聊</div> 
+			</div>
+			
+			<ul class="letterli">   
+				<li class="client-list" ng-if="group.value.length>0" ng-repeat="group in formatContacts | orderBy:'key'" id={{"cliindex-"+group.key}}>  
+					<div class="label" id={{"client-"+group.key}}><strong>{{group.key}}</strong></div>  
+					<ul class="clientli">  
+						<li 
+							ui-sref="linkManDetail({account:item.account})" 
+							class="client-name" 
+							ng-repeat="item in group.value | orderBy:'pinyinName'">                       
+							<div class="avatar">
+								<img 
+									ng-src="{{item.avatar || 'http://imgs.wujiuyun.com//Images//logo.png'}}" 
+									onError="src='http://imgs.wujiuyun.com//Images//logo.png'"
+									alt="">
+							</div>
+							<div class="name">{{item.alias || item.nick || '房田用户'}}</div> 
+							<div class="vip-level">
+								<svg ng-if="!item.custom.vip" class="icon" aria-hidden="true">
+									<use xlink:href="#icon-putongyonghu"></use>
+								</svg>
+								<svg ng-if="item.custom.vip=='白银'" class="icon" aria-hidden="true">
+									<use xlink:href="#icon-gerenhuiyuan"></use>
+								</svg>
+								<svg ng-if="item.custom.vip=='黄金'" class="icon" aria-hidden="true">
+									<use xlink:href="#icon-tuanduihuiyuan"></use>
+								</svg>
+								<svg ng-if="item.custom.vip=='铂金'" class="icon" aria-hidden="true">
+									<use xlink:href="#icon-shanghulaobandiaozhuixunzhang"></use>
+								</svg>
+								<svg ng-if="item.custom.vip=='钻石'" class="icon" aria-hidden="true">
+									<use xlink:href="#icon-qiyezhudiaozhuixunzhang"></use>
+								</svg>
+							</div>
+						</li>  
+					</ul>  
+				</li>  
+			</ul> 
+		</ion-content>  			
+	</div>
+	
+	<!-- 返回顶部 -->
+	<div ng-click="backTop()" class="back-top">
+		<i class="iconfont icon-jiageshengxu-"></i>
+	</div>
+	<!--右侧导航-->
+	<div class="linkman-shortcuts">  
+		<a href="" ng-repeat="letter in letterarr"  ng-touchmove="mTouch($event,letter)" ng-click="mTouch($event,letter)">{{letter}}</a>
+	</div>  
+		
+	<!-- tabs导航 -->
+	<div ng-include="'views/includes/customTabs/customTabs.html'"></div>
+	
+
+	<script id="beAgent_nav_modal" type="text/ng-template">
+		<ion-modal-view ng-click="closeModal()" id="home_nav_modalview">
+			<div ng-include="'views/includes/botPublicPublish/botPublicPublish.html'"></div>
+		</ion-modal-view>
+	</script>
+
+	<script id="add_friend_modal" type="text/ng-template">
+		<ion-modal-view id="add_friend_modalview">
+			<div class="header">
+				<div class="back" ng-click="closeSearchModal()">
+					<i class="iconfont icon-xiangzuo1"></i>
+				</div>
+				<div class="title-custom">
+					<div class="wripper">
+						<div class="input">
+							<input type="text" placeholder="手机号/房田号/用户名称" ng-model="search_world.key">
+						</div>
+						<div ng-click="clear_search()" ng-if="search_world.key" class="clear">
+							<i class="icon ion-close-circled placeholder-icon"></i>
+						</div>
+					</div>
+				</div>
+				<div class="right" ng-click="searchContact()">
+					搜索
+				</div>
+			</div>
+
+			<ion-content>
+				<div 
+					ng-repeat="item in searchContactRes track by $index" 
+					ui-sref="linkManDetail({account:item.accid})" 
+					class="search-friend">
+					<div class="avatar">
+						<img ng-src="{{item.Image || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+					</div>
+					<div class="name overflow-omit-one">{{item.NickName || '房田用户'}}</div> 
+				</div>
+				<div ng-if="searchContactRes.length==0" class="no-result">
+					该用户不存在
+				</div>
+			</ion-content>
+		</ion-modal-view>
+	</script>
+
+	<!--  -->
+	<script id="link_man_popover.html" type="text/ng-template">
+		<ion-popover-view class="link-man-popover-view">
+			<ion-list ng-click="closePopover()">
+				<ion-item ng-click="scanCode()">
+					<div class="left-cell"><i class="iconfont icon-saoyisao1"></i></div>
+					<div class="right-cell">扫一扫</div>
+				</ion-item>
+				<ion-item ng-click="showSearchModal()">
+					<div class="left-cell"><i class="iconfont icon-tianjiahaoyou"></i></div>
+					<div class="right-cell">添加朋友</div>
+				</ion-item>
+				<ion-item ng-click="createGroupchat()">
+					<div class="left-cell"><i class="iconfont icon-xiaoxi"></i></div>
+					<div class="right-cell">发起群聊</div>		
+				</ion-item>
+			</ion-list>
+		</ion-popover-view>
+	</script>
+</ion-view>  

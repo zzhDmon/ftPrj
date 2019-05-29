@@ -1,0 +1,116 @@
+<!--联系人界面模板-->
+<ion-view id="client_detail" view-title="客户详情" hide-nav-bar=true>
+	<!--<ion-nav-buttons side="primary">
+		<i menu-toggle class="icon ion-navicon-round" style="font-size: 25px;margin:7px 0 0 5px;"></i>
+	</ion-nav-buttons>-->
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			客户详情
+		</div>
+		<div class="right" ng-click="gochat()">
+			<i class="iconfont icon-xiaoxi"></i>
+		</div>
+	</div>
+	
+	<ion-content class="client-detail">
+		<p class="base">基本资料</p>
+		<div class="baseinfo">
+			<ul>
+				<li>
+					<div class="left">
+						客户姓名
+					</div>
+					<div class="right">
+						张 先生
+					</div>
+				</li>
+				<li>
+					<div class="left">
+						联系电话
+					</div>
+					<div class="right">
+						18850148222
+					</div>
+				</li>
+				<li>
+					<div class="left">
+						需求类型
+					</div>
+					<div class="right">
+						新房
+					</div>
+				</li>
+				<li>
+					<div class="left">
+						客户级别
+					</div>
+					<div class="right">
+						vip
+					</div>
+				</li>
+			</ul>
+		</div>
+		<p class="need">详细需求</p>
+		<div class="needinfo">
+			<!-- <ul>
+				<li ng-show="clientData.Price!==0">
+					<div class="left">
+						心理价位
+					</div>
+					<div class="right">
+					{{clientData.Price|customFilter:'':2}}<span ng-if="clientData.PriceType==0">&#x3000;万</span><span ng-if="clientData.PriceType==1">万</span><span ng-if="clientData.PriceType==2">元/月</span>
+					</div>
+				</li>
+				<li ng-show="clientData.SpaceType!==0">
+					<div class="left">
+						住房面积
+					</div>
+					<div class="right">
+						<span ng-if="clientData.SpaceType==1">小户型 小于70平米</span><span ng-if="clientData.SpaceType==2">中等户型80-105平米</span><span ng-if="clientData.SpaceType==3">大户型 大于120平米</span>
+					</div>
+				</li>
+				<li ng-show="clientData.Fitment!==0">
+					<div class="left">
+						装修要求
+					</div>
+					<div class="right">
+						<span ng-if="clientData.Fitment==1">毛坯房</span><span ng-if="clientData.Fitment==2">简装</span><span ng-if="clientData.Fitment==3">精装修</span><span ng-if="clientData.Fitment==4">豪华</span>
+					</div>
+				</li>
+				<li ng-show="clientData.BuildType!==0">
+					<div class="left">
+						房屋结构
+					</div>
+					<div class="right">
+						<span ng-if="clientData.BuildType==1">单层</span><span ng-if="clientData.BuildType==2">多层</span><span ng-if="clientData.BuildType==3">小高层</span>
+						<span ng-if="clientData.BuildType==4">复式</span><span ng-if="clientData.BuildType==5">独栋</span><span ng-if="clientData.BuildType==6">双拼或联排</span>
+					</div>
+				</li>
+				<li ng-show="clientData.Floor!==0">
+					<div class="left">
+						楼层高度
+					</div>
+					<div class="right">
+						<span ng-if="clientData.Floor==1">低楼层</span><span ng-if="clientData.Floor==2">中间楼层</span><span ng-if="clientData.Floor==3">高楼层</span>
+					</div>
+				</li>
+				<li ng-show="clientData.RoomType!==0||clientData.HallType!==0||clientData.BathType!==0">
+					<div class="left">
+						户型要求
+					</div>
+					<div class="right">
+						<span ng-if="clientData.RoomType!==0">{{clientData.RoomType}}室</span><span ng-if="clientData.HallType!==0">{{clientData.HallType}}厅</span><span ng-if="clientData.BathType!==0">{{clientData.BathType}}卫</span>
+					</div>
+				</li>
+			</ul> -->
+			
+		</div>
+	</ion-content>
+
+	
+
+	
+</ion-view>

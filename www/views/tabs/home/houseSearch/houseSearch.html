@@ -1,0 +1,193 @@
+<!--消息界面模板-->
+<ion-view id="house_search" hide-nav-bar="true" view-title="">
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+		</div>
+		<div class="right">
+		</div>
+	</div>
+	<div class="head-bg"></div>
+	
+	<div ng-click="search()" class="search-start">
+		<p class="up">开始</p>
+		<p class="down">找房</p>
+	</div>
+
+	<ion-content class="house-search" has-bouncing="false">
+		<div class="switch-wrapper">
+			<div ng-click="chooseHouseType(0)" class="switch-item">新房</div>
+			<div ng-click="chooseHouseType(1)" class="switch-item">二手房</div>
+			<div ng-click="chooseHouseType(2)" class="switch-item">租房</div>
+			<div class="under-line"></div>
+		</div>
+		<div class="fake-input">
+			<div ng-click="showModal()" class="fake district">
+				<span ng-if="searchData.district && !searchData.street">{{searchData.district}}</span>
+				<span ng-if="searchData.street">{{searchData.street}}</span>
+				<span ng-hide="searchData.district || searchData.street">区域</span>
+			</div>
+			<div class="fake input">
+				<div class="input-icon">
+					<i class="iconfont icon-sousuo2"></i>
+				</div>
+				<div class="input-input">
+					<input id="house_search_keyword" ng-model="searchData.query" type="search" placeholder="你想在哪买？">
+				</div>
+			</div>
+		</div>
+
+		<div class="special-check">
+			<div class="title">排序</div>
+			<div class="list checkpicker">
+				<label>
+					<input ng-model="searchData.sort" type="radio"  value="2"/>
+					<span class="wrap">面积升序<i class="iconfont icon-up-"></i>
+					</span>	
+				</label>
+				<label>
+					<input ng-model="searchData.sort" type="radio" value="1"/>
+					<span class="wrap">面积降序<i class="iconfont icon-down-"></i>
+					</span>	
+				</label>
+				<label>
+					<input ng-model="searchData.sort" type="radio" value="3"/>
+					<span class="wrap">价格升序<i class="iconfont icon-up-"></i>
+					</span>	
+				</label>
+				<label>
+					<input ng-model="searchData.sort" type="radio" value="4"/>
+					<span class="wrap">价格降序<i class="iconfont icon-down-"></i>
+					</span>	
+				</label>
+				<label>
+					<input ng-model="searchData.sort" type="radio" value=""/>
+					<span class="wrap">
+						不限
+					</span>	
+				</label>
+			</div>
+		</div>
+
+		<div class="price-range">
+			<div class="title">
+				<span ng-if="houseType==0">单价</span>
+				<span ng-if="houseType==1">售价</span>
+				<span ng-if="houseType==2">租金</span>
+				
+			</div>
+			<div ng-show="houseType==0">
+				<input type="text" id="house_price_range_new" name="example_name" value="" />
+			</div>
+			<div ng-show="houseType==1">
+				<input type="text" id="house_price_range_sell" name="example_name" value="" />
+			</div>
+			<div ng-show="houseType==2">
+				<input type="text" id="house_price_range_rent" name="example_name" value="" />
+			</div>
+		
+		</div>
+
+		<div class="special-check">
+			<div class="title">房型</div>
+			<div class="list checkpicker">
+				<label>
+					<input ng-model="searchData.roomtype" type="radio" value="1"/>
+					<span class="wrap">一室</span>	
+				</label>
+				<label>
+					<input ng-model="searchData.roomtype" type="radio" value="2"/>
+					<span class="wrap">二室</span>	
+				</label>
+				<label>
+					<input ng-model="searchData.roomtype" type="radio" value="3"/>
+					<span class="wrap">三室</span>	
+				</label>
+				<label>
+					<input ng-model="searchData.roomtype" type="radio" value="4"/>
+					<span class="wrap">四室</span>	
+				</label>
+				<label>
+					<input ng-model="searchData.roomtype" type="radio" value="5"/>
+					<span class="wrap">五室</span>	
+				</label>
+				<label>
+					<input ng-model="searchData.roomtype" type="radio" value="6"/>
+					<span class="wrap">五室+</span>	
+				</label>
+				<label>
+					<input ng-model="searchData.roomtype" type="radio" value=""/>
+					<span class="wrap">不限</span>	
+				</label>
+			</div>
+		</div>
+
+	</ion-content>
+
+
+	<script id="house_search_modal" type="text/ng-template">
+		<ion-modal-view id="house_search_modalview">
+			<div class="header">
+				<div class="back" ng-click="closeModal()">
+					<i class="iconfont icon-ego-guanbi"></i>
+				</div>
+			</div>
+			<!-- <ion-content class="district-content">
+				<ion-list>
+					<ion-item ng-class="{true:'active',false:''}[districtActive==$index]" ng-click="chooseDistrict($index,district.text)" ng-repeat="district in filterData.districts track by $index">
+						{{district.text}}
+					</ion-item>
+				</ion-list>
+			</ion-content>
+			<div ng-if="isShowStreet" class="child">
+				<div class="child-content">
+					<ion-content class="street-content">
+						<ion-list>
+							<ion-item ng-class="{true:'active',false:''}[streetActive==$index]" ng-click="chooseStreet($index,street.text)" ng-repeat="street in filterData.districts[showStreetIndex].children track by $index">
+								{{street.text}}
+							</ion-item>
+						</ion-list>
+					</ion-content>
+				</div>
+			</div> -->
+			<ion-content class="district-content">
+				<ion-list>
+					<ion-item 
+						ng-class="{true:'active',false:''}[districtActive==$index]" 
+						ng-click="districtChoose($index,key,value)" 
+						ng-repeat="(key,value) in districtList track by $index">
+							{{key}}
+					</ion-item>
+				</ion-list>
+			</ion-content>
+			<div ng-if="isShowStreet" class="child">
+				<div class="child-content">
+					<ion-content delegate-handle="housesearch-street-scroll" class="street-content">
+						<ion-list>
+							<ion-item 
+								ng-class="{true:'active',false:''}[streetActive==$index]" 
+								ng-click="streetChoose($index,street)" 
+								ng-repeat="street in streetList track by $index">
+								{{street}}
+							</ion-item>
+						</ion-list>
+					</ion-content>
+				</div>
+			</div>
+
+			<div class="confirm-btns">
+				<div ng-click="reset()" class="btn-item reset">
+					重置
+				</div>
+				<div ng-click="confirm()" class="btn-item confirm">
+					确定
+				</div>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+
+
+

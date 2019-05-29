@@ -1,0 +1,161 @@
+.add-sell-preview-modal{
+    width: 300px;
+    min-height: calc(100vh - 150px);
+    top: 100px;
+    left: calc(50% - 150px);
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0);
+    .closeicon{
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+        border-radius: 50%;
+        color: $font-sup-color;
+        background-color: white;
+        .iconfont{
+            font-size: 20px;
+        }
+    }
+    .scroll-content{
+        padding: 0;
+        margin: 25px 0 0;
+        background-color: white;
+        .preview-cursor{
+            width: 100%;
+            height: 180px;
+            .slider-slide{
+                width: 100%;
+                height: 100%;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .slider-pager{
+                bottom: 5px;
+                .slider-pager-page{
+                    margin: 0;
+                    font-size: 12px;
+                }
+            }
+        }
+        .detailname {
+            padding: 0 $view-padding;
+            h4 {
+                margin: 15px 0 5px;
+                font-size: 16px;
+                color: $font-main-color;
+            }
+            .undertitle{
+                width: 100%;
+                padding: 5px 0 0;
+                margin: 0 0 10px;
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                span{
+                    display: block;
+                    // float: left;
+                    padding: 0 10px;
+                    margin: 5px 5px 0 0;
+                    height: 30px;
+                    line-height: 30px;
+                    border: 1px solid $line-deep-color;
+                    border-radius: 5px;
+                    color: $font-minor-color;
+                }
+            }
+            // 
+            .flex-wrapper{
+                width: 100%;
+                height: auto;
+                padding: 15px 0 15px;
+                display: flex;
+                justify-content: flex-start;
+                border-top: 1px solid $line-main-color;
+                border-bottom: 1px solid $line-main-color;
+                .flex-item{
+                    width: calc(33.33% - 1px);
+                    height: auto;
+                    line-height: 30px;
+                    text-align: center;
+                    p{
+                        margin: 0;
+                        font-size: 14px;
+                        text-align: center;
+                        height: 25px;
+                        line-height: 25px;
+                    }
+                    p.top{
+                        color: $font-minor-color;
+                    }
+                    p.bottom{
+                        font-size: 16px;
+                        color: $font-price-red;
+                    }
+                }
+                .line{
+                    width: 0;
+                    height: 50px;
+                    border-right: 1px solid $line-main-color;
+                    box-sizing: border-box;
+                }
+            }
+        }
+        // 详情
+        .houseinfo{
+            padding: 0 $view-padding;
+            .houseinfo-wrapper{
+                width: 100%;
+                padding: 10px 0 10px;
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                .house-item{
+                    width: 50%;
+                    height: 30px;
+                    font-size: 16px;
+                    line-height: 30px;
+                    text-align: left;
+                    color: $font-main-color; 
+                    span.leftdesc{
+                        color: rgb(150,150,150);
+                    }
+                }
+                .allLine{
+                    width: 100%;
+                }
+            }
+        }
+        // 描述
+        .fymiaoshu{
+            padding: 0 $view-padding 20px;
+            h5{
+                margin: 0;
+                font-size: 16px;
+                height: 40px;
+                line-height: 40px;
+                color: $font-main-color;
+                border-bottom: 1px solid $line-main-color;
+            }
+            h6{
+                margin: 10px 0 0;
+                font-size: 15px;
+                height: 30px;
+                line-height: 30px;
+                color: $font-main-color;
+            }
+            p{
+              margin: 0;
+              font-size: 15px;
+              line-height: 20px;
+              color: $font-sup-color;  
+            } 
+        }
+    }
+}

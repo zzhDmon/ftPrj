@@ -1,0 +1,255 @@
+
+<!--对话模板-->
+<ion-view id="lottery_page" hide-nav-bar=true view-title="房源资讯">
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class="iconfont icon-xiangzuo1"></i>
+		</div>
+		<!-- ng-click="showModal('recording')"  -->
+		<div class="right-all clearfix">
+			<div class="icon-wrapper"><i class="iconfont icon-iconlingdang"></i></div>
+			<div class="broadcast overflow-omit-one">
+				<div class="lottery-winning-swiper swiper-container">
+					<div class="swiper-wrapper">
+						<div 
+							class="swiper-slide overflow-omit-one" 
+							ng-repeat="item in swiperList track by $index">
+							{{item}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<ion-content class="littery-page" has-bouncing="false">
+		<div class="lottery-title">
+			<svg class="icon" aria-hidden="true">
+				<use xlink:href="#icon-tubiaozhizuomoban-3"></use>
+			</svg>
+		</div>
+		<div ng-class="{true:'active',false:''}[splashStatus]" class="shanDeng">
+			<div id="luck">
+				<table>
+					<tr>
+						<td ng-class="{true:'active',false:''}[activeIndex==0]" class="luck-unit luck-unit-0">
+							<div class="icon-wrapper">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-choujiangditu-"></use>
+								</svg>
+								<div class="txt-wrapper">
+									￥{{allprizeList[0].Money}}
+								</div>
+							</div>
+						</td>
+						<td ng-class="{true:'active',false:''}[activeIndex==1]" class="luck-unit luck-unit-1">
+							<div class="icon-wrapper">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-choujiangditu-"></use>
+								</svg>
+								<div class="txt-wrapper">
+									￥{{allprizeList[1].Money}}
+								</div>
+							</div>
+						</td>
+						<td ng-class="{true:'active',false:''}[activeIndex==2]" class="luck-unit luck-unit-2">
+							<div class="icon-wrapper">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-choujiangditu-"></use>
+								</svg>
+								<div class="txt-wrapper">
+									￥{{allprizeList[2].Money}}
+								</div>
+							</div>
+						</td>
+						<td ng-class="{true:'active',false:''}[activeIndex==3]" class="luck-unit luck-unit-3">
+							<div class="icon-wrapper">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-choujiangditu-"></use>
+								</svg>
+								<div class="txt-wrapper">
+									￥{{allprizeList[3].Money}}
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td ng-class="{true:'active',false:''}[activeIndex==11]" class="luck-unit luck-unit-11">
+							<div class="icon-wrapper">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-choujiangditu-"></use>
+								</svg>
+								<div class="txt-wrapper">
+									￥{{allprizeList[11].Money}}
+								</div>
+							</div>
+						</td>
+<!-- 开始抽奖按钮 -->
+						<td rowspan="2" colspan="2" class="cjBtn">
+							<div ng-click="startLottery()" ng-disabled="rolling || !drawTimes" class="start-btn button">
+								<h5>点击<br>
+									抽奖</h5>
+								<div class="left-count" ng-class="{true:'useless',false:''}[rolling || !drawTimes]">剩余抽奖次数{{drawTimes}}次</div>	
+							</div>
+						</td>
+						<td ng-class="{true:'active',false:''}[activeIndex==4]" class="luck-unit luck-unit-4">
+							<div class="icon-wrapper">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-choujiangditu-"></use>
+								</svg>
+								<div class="txt-wrapper">
+									￥{{allprizeList[4].Money}}
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td ng-class="{true:'active',false:''}[activeIndex==10]" class="luck-unit luck-unit-10">
+							<div class="icon-wrapper">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-choujiangditu-"></use>
+								</svg>
+								<div class="txt-wrapper">
+									￥{{allprizeList[10].Money}}
+								</div>
+							</div>
+						</td>
+						<td ng-class="{true:'active',false:''}[activeIndex==5]" class="luck-unit luck-unit-5">
+							<div class="icon-wrapper">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-choujiangditu-"></use>
+								</svg>
+								<div class="txt-wrapper">
+									￥{{allprizeList[5].Money}}
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td ng-class="{true:'active',false:''}[activeIndex==9]" class="luck-unit luck-unit-9">
+							<div class="icon-wrapper">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-choujiangditu-"></use>
+								</svg>
+								<div class="txt-wrapper">
+									￥{{allprizeList[9].Money}}
+								</div>
+							</div>
+						</td>
+						<td ng-class="{true:'active',false:''}[activeIndex==8]" class="luck-unit luck-unit-8">
+							<div class="icon-wrapper">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-choujiangditu-"></use>
+								</svg>
+								<div class="txt-wrapper">
+									￥{{allprizeList[8].Money}}
+								</div>
+							</div>
+						</td>
+						<td ng-class="{true:'active',false:''}[activeIndex==7]" class="luck-unit luck-unit-7">
+							<div class="icon-wrapper">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-choujiangditu-"></use>
+								</svg>
+								<div class="txt-wrapper">
+									￥{{allprizeList[7].Money}}
+								</div>
+							</div>
+						</td>
+						<td ng-class="{true:'active',false:''}[activeIndex==6]" class="luck-unit luck-unit-6">
+							<div class="icon-wrapper">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-choujiangditu-"></use>
+								</svg>
+								<div class="txt-wrapper">
+									￥{{allprizeList[6].Money}}
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div class="action-list">
+			<div ng-click="showModal('rules')" class="action-item">活动规则</div>
+			<div ng-click="showModal('prize')" class="action-item">我的奖品</div>
+		</div>
+	</ion-content>
+	<!-- 活动规则 中奖纪录 -->
+	<script id="lottery_page_rules_modal" type="text/ng-template">
+		<ion-modal-view class="lottery_page_rules_modalview">
+			<div class="head-title">
+				<div class="left-cell"></div>
+				<div class="mid-cell">
+					<span ng-show="modalType=='rules'">活动规则</span>
+					<span ng-show="modalType=='prize'">我的奖品</span>
+					<span ng-show="modalType=='recording'">领奖纪录</span>
+				</div>
+				<div ng-click="closeModal()" class="right-cell"><i class="iconfont icon-guanbi1"></i></div>
+			</div>
+			<div ng-show="modalType=='rules'" class="rules">
+				<p>1.即日起至2019年3月1日，每成功邀请1位好友注册并实名通过，即可赢得一次抽奖机会。</p>
+				<p>2.抽中奖品，若未领取可在我的奖品中领取。</p>
+				<p>3.同一身份证号，同一手机号，同一终端设备的情形，均被视为同一用户，通过不正当手段获取的活动奖励，房田有权撤销活动奖励。</p>
+				
+				
+				
+				<div class="copy-right">
+					<p>本活动解释权归房田平台所有</p>
+					<p> 截止日期2019年12月31日</p>
+				</div>
+			</div>
+			<!-- 我的奖品 -->
+			<ion-content ng-show="modalType=='prize'" class="prize">
+				<div class="list-wrapper">
+					<div ng-repeat="item in myprizeList track by $index">
+						<div ng-show="item.Status==0" ng-click="getDraw(item)" class="list-item">
+							<div class="left-avatar">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-hongbao1"></use>
+								</svg>
+							</div>
+							<div class="right-info">
+								<div class="top-cell">恭喜您获得{{item.Money}}抵用金红包。</div>
+								<div class="bot-cell clearfix">
+									<div class="status">未领取(点击领取)</div>
+									<div class="time">{{item.CreateTime}}</div>
+								</div>
+							</div>
+						</div>
+						<div ng-show="item.Status==1" class="list-item">
+							<div class="left-avatar">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-huisehongbao-"></use>
+								</svg>
+							</div>
+							<div class="right-info">
+								<div class="top-cell">恭喜您获得{{item.Money}}抵用金红包。</div>
+								<div class="bot-cell gray clearfix">
+									<div class="status">已领取</div>
+									<div class="time">{{item.CreateTime}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</ion-content>
+			<ion-content ng-show="modalType=='recording'" class="recording">
+
+			</ion-content>
+		</ion-modal-view>
+	</script>
+
+	<!-- 中奖 -->
+	<script id="lottery_page_winning_modal" type="text/ng-template">
+		<ion-modal-view ng-click="closeWinningModal()" class="lottery_page_winning_modalview">
+			<div class="content-main">
+				<div class="top-img"></div>
+				<div class="bot-info">恭喜您获得{{drawData.Money}}抵用金大红包</div>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

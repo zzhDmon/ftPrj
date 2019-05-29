@@ -1,0 +1,156 @@
+#register_modalview{
+    width: 250px;
+    min-height: 200px;
+    height: 350px!important;
+    top: calc(50% - 175px);
+    left: calc(50% - 125px);
+    border-radius: 5px;
+    background-color: rgba(255,255,255,0);
+    .img{
+        margin: auto;
+        width: 250px;
+        height: 120px;
+        position: relative;
+        img{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .next-step{
+        width: 100%;
+        height: 180px;
+        background-color: white;
+        .complete{
+            width: 100%;
+            height: 110px;
+            text-align: center;
+            line-height: 110px;
+            font-size: 20px;
+            color: $font-main-color;
+        }
+        .next{
+            display: block;
+            margin: auto;
+            width: 190px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 18px;
+            color: white;
+            background-color: $bg-main-color;
+        }
+    }
+    .close{
+        width: 100%;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        .iconfont{
+            font-size: 30px;
+            color: white;
+        }
+    }
+}
+
+#registerorback{
+    .registerorback{
+        margin: $head-height 0 0;
+        padding: 0 $view-padding 49px;
+        background-color: rgb(255,255,255);
+        height: 100%;
+        .list{
+            position: relative;
+            .button{
+                position: absolute;
+                z-index: 999;
+                padding: 0 15px;
+                height: 35px;
+                font-size: 14px;
+                top: 7px;
+                right: 10px;
+                color: $font-sup-color;
+                border-radius: 3px;
+                overflow: hidden;
+                white-space: nowrap;
+                word-break: keep-all;
+                text-overflow: ellipsis;
+            }
+            .item-input{
+                margin: 0;
+                padding: 8px 0;
+                border: none;
+                border-bottom: 1px solid $line-main-color;
+                .input-label{
+                    padding: 7px 0 7px;
+                    font-size: 14px;
+                    width: 20vw!important;
+                    color: #333;
+                }
+                input{
+                    font-size: 16px;
+                    color: #333;
+                }
+                :-moz-placeholder{
+                    color: rgb(194,194,194);
+                }
+                :-ms-input-placeholder{
+                    color: rgb(194,194,194);
+                }
+                ::-moz-placeholder{
+                    color: rgb(194,194,194);
+                }
+                ::-webkit-input-placeholder{
+                    color: rgb(194,194,194);
+                }
+                
+            }
+        }
+        .loginbtn{
+           .subbtn{
+               width: 100%;
+               margin-top:20px ;
+               padding: 20px 0 10px;
+               .button{
+                   display: block;
+                   margin: auto;
+                   width: 90%;
+                   font-size: 16px;
+                   background-color: $bg-main-color;
+               }
+           }
+        }
+       .expl{
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            text-align: center;
+            color: $font-minor-color;
+            span{
+                color: $bg-main-color;
+            }
+            i{
+                font-size:14px;
+                font-style:normal;
+                text-align:center;
+                line-height:18px;
+                color:$font-minor-color;
+            } 
+            input[type="checkbox"] + i {
+                border-radius:7px;
+            } 
+            input[type="checkbox"] {
+                display:none;
+            } 
+            input[type="checkbox"]:checked + span+i {
+                color: $bg-main-color;
+            } 
+            input[type="checkbox"]:checked + i {
+                color:$bg-main-color;
+            }  
+            input[type="checkbox"]:disabled + i {
+                // border-color:red;
+            }
+       }
+    }
+}

@@ -1,0 +1,78 @@
+#bind_bank_card{
+    .bind-bank-card{
+        margin-top: $head-height;
+        background-color: $bg-gray-color;
+        .data-list{
+            width: 100%;
+            .data-title{
+                padding: 0 $view-padding;
+                width: 100%;
+                height: 40px;
+                line-height: 40px;
+            }
+            .data-item{
+                padding: 0 $view-padding;
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                background-color: white;
+                .item-left{
+                    padding: 0 15px 0 0;
+                    width: 80px;
+                    height: 60px;
+                    text-align:justify;
+                    text-justify:distribute-all-lines;/*ie6-8*/
+                    text-align-last:justify;/* ie9*/
+                    -moz-text-align-last:justify;/*ff*/
+                    -webkit-text-align-last:justify;/*chrome 20+*/
+                    line-height: 60px;
+                    font-size: 16px;
+                    color: $font-main-color;
+                }
+                .input-item{
+                    width: calc(100% - 80px);
+                    height: 60px;
+                    line-height: 60px;
+                    font-size: 16px;
+                    input{
+                        padding: 0;
+                        width: 100%;
+                        height: 100%;
+                        font-size: 16px;
+                        background-color: white;
+                    }    
+                }
+                .item-mid{
+                    width: calc(100% - 200px);
+                }
+                .item-right{
+                    &::after{
+                        display: none;
+                    }
+                    padding: 0;
+                    margin: 10px 0;
+                    width: 120px;
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    font-size: 14px;
+                    border-radius: 3px;
+                    border: 1px solid $line-main-color;
+                    background-color: $bg-gray-color;
+                }
+
+            }
+        }
+        .subbtn{
+            width: 80%;
+            height: 40px;
+            margin: 30px auto;
+            .button{
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                background-color: $bg-main-color;
+            }
+        }
+    }
+}

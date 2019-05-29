@@ -1,0 +1,326 @@
+
+<!--对话模板-->
+<ion-view on-swipe-up="swipeUp()" on-swipe-down="swipeDown()" id="my_business" view-title="我的任务" hide-nav-bar=true>
+	<div ng-style="{'background-color': currentBG}" class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1" style="font-size: 25px!important;"></i>
+		</div>
+		<div class="title">
+			<span ng-show="swiperActiveIndex==0">简介</span>
+			<span ng-show="swiperActiveIndex==1">照片墙</span>
+			<span ng-show="swiperActiveIndex==2">VCR/视频</span>
+			<span ng-show="swiperActiveIndex==3">相册</span>
+			<span ng-show="swiperActiveIndex==4">
+				<span ng-click="showSwitchModal()" ng-hide="switchItem=='article'">动态</span>
+				<span ng-click="showSwitchModal()" ng-show="switchItem=='article'">文章</span>
+				<i class="iconfont icon--pulldown"></i>
+			</span>
+		</div>
+		<!-- <div ng-click="openAddTLPopover($event)" class="right"><i class="iconfont icon-tianjiayinhangqia-"></i></div> -->
+		<div ng-click="showBottomShareModal()" ng-show="swiperActiveIndex==0 || swiperActiveIndex==1 || swiperActiveIndex==2" class="right"><i class="iconfont icon-fenxiang2"></i></div>
+		<div ng-show="swiperActiveIndex==3" class="right">
+			<span ui-sref="myAlbum">更多&nbsp;<i class="iconfont icon-gengduo"></i></span>
+		</div>
+		<div ui-sref="publishDynamic" ng-show="swiperActiveIndex==4 && switchItem=='timeline'" class="right">
+			<i class="iconfont icon-fabu1"></i>
+		</div>
+		<div ui-sref="publishArticle" ng-show="swiperActiveIndex==4 && switchItem=='article'" class="right">
+			<i class="iconfont icon-fabu1"></i>
+		</div>
+	</div>
+	
+	<div class="mybusiness-swiper-container swiper-container">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide stop-swiping">
+				<!-- 简介 -->
+				<div class="my-introduction freedom-wrapper">
+					<div ng-show="posterImageUrl && !myPoster" class="all-image-wrapper">
+						<img 
+							ng-show="posterImageUrl && !myPoster" 
+							ng-src="{{posterImageUrl}}" 
+							class="all-image" alt="">
+					</div>
+					<div ng-show="!posterImageUrl || myPoster" class="free-content" id="myposter_free_content">
+						<img ng-show="myPoster" ng-src="{{myPoster}}" class="all-image" alt="">
+						<div ng-show="!myPoster" ng-click="posterPhotoChoose()" class="add-btn">
+							<i class="iconfont icon-tianjia"></i>添加名片海报
+						</div>
+					</div>
+					
+					<div class="edit-btn honor-edit">	
+						<div ng-show="myPoster" ng-click="savePoster()" class="save">保存</div>	
+						<div ng-show="myPoster" ng-click="cancelPoster()" class="save">取消</div>	
+						<div ng-click="posterPhotoChoose()" class="edit"><i class="iconfont icon-bianji"></i>重新上传</div>	
+					</div>
+				</div>
+				<!-- <ion-content on-scroll="mybusinessHonorListen()" delegate-handle="my-business-honor-Scroll">
+					<div id="mybusiness_honor_bottom_position"></div>
+				</ion-content> -->
+			</div>
+
+			<!-- 拼图 -->
+			<div class="swiper-slide stop-swiping">
+				<div id="my_business_honor" class="my-honor freedom-wrapper">
+					<div ng-show="honorImageUrl && (!imgsList || imgsList==0)" class="all-image-wrapper honor-image-wrapper">
+						<img 
+							ng-show="honorImageUrl && (!imgsList || imgsList==0)" 
+							ng-src="{{honorImageUrl}}" 
+							class="all-image" alt="">
+					</div>
+					<div 
+						style="background-image: radial-gradient(rgb(84,99,104),rgb(8,10,9));" 
+						ng-show="!honorImageUrl || imgsList.length>0" 
+						class="free-content" 
+						id="myhonor_free_content">
+						<img 
+							class="animated"
+							style="
+							position:absolute;
+							z-index:1;
+							width:150px;
+							transform:scale(1) rotate(0);
+							-webkit-transform:scale(1) rotate(0);
+							transform-origin:50% 50%;"
+							ng-repeat="item in imgsList track by $index" 
+							ng-src="{{item}}" 
+							data-index="{{$index}}"
+							id={{"imgid-"+$index}} 
+							alt="">
+						<div class="add-btn" ng-hide="imgsList.length>0" ng-click="honorPhotoChoose()">
+							<i class="iconfont icon-tianjia"></i>点击添加图片
+						</div>
+					</div>
+					<div class="edit-btn honor-edit">
+						<div ng-show="imgsList.length>0" ng-click="startDrag()" class="edit">&nbsp;&nbsp;开始拼图&nbsp;&nbsp;</div>	
+						<div ng-show="imgsList.length>0" ng-click="saveHonor()" class="save">&nbsp;&nbsp;保存&nbsp;&nbsp;</div>	
+						<div ng-show="imgsList.length>0" ng-click="cancelHonor()" class="save">&nbsp;&nbsp;取消&nbsp;&nbsp;</div>	
+						<div ng-click="honorPhotoChoose()" class="reload"><i class="iconfont icon-bianji"></i>&nbsp;&nbsp;重新上传</div>	
+					</div>
+				</div>
+			</div>
+			<!-- 视频 -->
+			<div class="swiper-slide stop-swiping">
+				<div class="my-video">
+					<div ui-sref="vcrVideo({id:vcrData[0].Id})" ng-show="vcrData[0].Content.image" class="mid-content">
+						<img ng-src="{{vcrData[0].Content.image}}" alt="">
+						<div class="fake-video"><i class="iconfont icon-shipin11"></i></div>
+					</div>
+					<div ng-hide="vcrData[0].Content.image" class="mid-content">
+						<p class="cur-no">还没上传VCR~</p>
+					</div>
+					
+					<div class="bot-actions">
+						<div class="action-item">
+							<span ui-sref="myPhotosAndVideos">更多&nbsp;<i class="iconfont icon-gengduo"></i></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 相册 -->
+			<div class="swiper-slide stop-swiping">
+				<div class="album-list">
+					<div ng-click="showModal()" class="album-item">
+						<div class="top-img">
+							<div class="icon-cell">
+								<i class="iconfont icon-tianjia"></i>
+							</div>
+							<div class="txt-cell">
+								新建相册
+							</div>
+						</div>
+					</div>
+					<p ng-if="!albumList||albumList.length==0" class="cur-no">还没上传相册~</p>
+					<div 
+						ui-sref="myPhotos({id:album.Id})"
+						ng-repeat="album in albumList track by $index" 
+						ng-show="$index<6"
+						class="album-item"
+					>
+						<div ng-show="showAction" ng-click="removeImg($index,album,$event)" class="del-btn"><i class="iconfont icon-guanbi1"></i></div>
+						<div ng-class="{true:'headShake',false:''}[showAction]" class="top-img animated infinite">
+							<div ng-style="{'background-image': 'url('+(album.ShowInList || 'imgs/percenter/album/default.jpg')+')'}" class="in-top-img"></div>
+						</div>
+						<div class="bot-txt">{{album.Title}}</div>
+						<div class="sup-txt">{{album.Content.length}}张</div>
+					</div>
+				</div>
+			</div>
+			<!-- 说说 -->
+			<div class="swiper-slide stop-swiping">
+				<ion-content class="my-business" scrollbar-y="false" on-scroll="myBusinessListen()" delegate-handle="my-business-Scroll">
+					<div>
+						<div class="time-line">
+							<p ng-if="!dynamicData.length && (switchItem=='timeline')" class="no-result">暂时还没有动态…</p>
+							<p ng-if="!articleData.length && (switchItem=='article')" class="no-result">暂时还没有文章…</p>
+							<div ng-show="switchItem=='timeline'" ng-repeat="item in dynamicData track by $index" class="time-line-item">
+								<div class="top-wrapper">
+									<div class="img">
+										<img ng-src="{{item.UserImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+									</div>
+									<div class="txt-info">
+										<div class="top-cell overflow-omit-one">{{item.UserName || '房田用户'}}</div>
+										<div class="bot-cell">{{item.CreateTime}}</div>
+									</div>
+									<div ng-click="openDelTLPopover($event,item,$index)" class="action"><i class="iconfont icon-lajitong"></i></div>
+								</div>
+								<p class="content-wrapper">
+									{{item.Content.text}}
+								</p>
+								<div ng-show="item.Content.imgs.length>0" class="imgs-wrapper">
+									<div ng-repeat="img in item.Content.imgs track by $index" class="img-item">
+										<div ng-click="showBigImg(item.Content.imgs,$index)" class="in-img-item" ng-style="{'background-image': 'url('+img+')'}"></div>
+									</div>
+								</div>
+								<div class="actions-wrapper">
+									<div 
+										ng-show="!item.agreed"
+										ng-click="agreeTl(item)" 
+										class="action-item like">
+										<i class="iconfont icon-dianzan-"></i>
+										{{item.AgressUsers.length}}
+									</div>
+									<div
+										ng-show="item.agreed" 
+										class="action-item like active">
+										<i class="iconfont icon-dianzan-"></i>
+										{{item.AgressUsers.length}}
+									</div>
+									<div ng-click="clickComment(item)" class="action-item comment">
+										<i class="iconfont icon-pinglun1"></i>
+										{{item.ChildrenCount}}
+									</div>
+								</div>
+								<div class="comment-list">
+									<div ng-repeat="com in item.Children" class="comment-item">
+										<div class="img-cell"><img ng-src="{{com.UserImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt=""></div>
+										<div class="txt-cell">
+											<h5 class="overflow-omit-one">{{com.UserName || '房田用户'}}</h5>
+											<p class="com-content">{{com.Content}}</p>
+											<p class="com-time">{{com.CreateTime}}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 文章 -->
+							<div ng-show="switchItem=='article'" ng-repeat="item in articleData track by $index" class="time-line-item">
+								<div class="top-wrapper">
+									<div class="img">
+										<img ng-src="{{item.UserImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+									</div>
+									<div class="txt-info">
+										<div class="top-cell overflow-omit-one">{{item.UserName || '房田用户'}}</div>
+										<div class="bot-cell">{{item.CreateTime}}</div>
+									</div>
+									<div ng-click="openDelTLPopover($event,item,$index)" class="action"><i class="iconfont icon-lajitong"></i></div>
+								</div>
+								<p class="content-wrapper">
+									{{item.ShowInList.title}}
+								</p>
+								<div class="actions-wrapper">
+									<div 
+										ng-show="!item.agreed"
+										ng-click="agreeTl(item)" 
+										class="action-item like">
+										<i class="iconfont icon-dianzan-"></i>
+										{{item.AgressUsers.length}}
+									</div>
+									<div
+										ng-show="item.agreed" 
+										class="action-item like active">
+										<i class="iconfont icon-dianzan-"></i>
+										{{item.AgressUsers.length}}
+									</div>
+									<div ng-click="clickComment(item)" class="action-item comment">
+										<i class="iconfont icon-pinglun1"></i>
+										{{item.ChildrenCount}}
+									</div>
+								</div>
+								<div class="comment-list">
+									<div ng-repeat="com in item.Children" class="comment-item">
+										<div class="img-cell"><img ng-src="{{com.UserImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt=""></div>
+										<div class="txt-cell">
+											<h5 class="overflow-omit-one">{{com.UserName || '房田用户'}}</h5>
+											<p class="com-content">{{com.Content}}</p>
+											<p class="com-time">{{com.CreateTime}}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</ion-content>
+			</div>
+		</div>
+	</div>
+
+	<!-- 评论 -->
+	<div ng-if="showBotReply" class="bot-input">
+		<div class="input-wrapper">
+			<div class="textarea">
+				<textarea msd-elastic autofocus ng-model="replyData.data" placeholder="回复"></textarea>
+			</div>
+			<div ng-click="replyComment()" class="send">
+				<div class="send-btn">发送</div>
+				
+			</div>
+		</div>
+		<div ng-if="keyboardShow" ng-style="{'height': keyboardHeight + 'px'}"></div>
+	</div>
+	
+	<script id="del_time_line_popover.html" type="text/ng-template">
+		<ion-popover-view class="del-time-line-popoverview">
+			<div class="del-content">
+				<div class="del-title">确认删除吗？</div>
+				<div class="del-actions">
+					<div ng-click="closeDelTLPopover()" class="del-action cancel">取消</div>
+					<div ng-click="deleteTL()" class="del-action">确认</div>
+				</div>
+			</div>
+		</ion-popover-view>
+	</script>
+
+	<script id="businesscard_add_content_popover.html" type="text/ng-template">
+		<ion-popover-view class="businesscard-add-content-popoverview">
+			<div ng-click="closeAddTLPopover()" class="add-content">
+				<div ui-sref="publishDynamic" class="add-item">心情</div>
+				<div ui-sref="myAlbum" class="add-item">相册</div>
+				<div ui-sref="myPhotosAndVideos" class="add-item">视频</div>
+				<div ui-sref="publishArticle" class="add-item">文章</div>
+			</div>
+		</ion-popover-view>
+	</script>
+	<!-- 文章 说说切换 -->
+	<script id="mybusiness_switch_modal" type="text/ng-template">
+		<ion-modal-view ng-click="closeSwitchModal()" class="mybusiness-switch-modalview">
+			<div class="header">
+				<div class="back"></div>
+				<div class="title"></div>
+				<div class="right"><i class="iconfont icon-guanbi1"></i></div>
+			</div>
+			<div ng-click="switchItemTo('article')" class="switch-item articel">文章</div>
+			<div ng-click="switchItemTo('timeline')" class="switch-item dynamic">动态</div>
+		</ion-modal-view>
+	</script>
+	<!-- 分享 -->
+	<script id="my_business_card_share_modal" type="text/ng-template">
+		<ion-modal-view ng-click="closeBottomShareModal()" class="bottom-share-modal">
+			<div ng-include="'views/includes/bottomShareModal/bottomShareModal.html'"></div>
+		</ion-modal-view>
+	</script>
+	<!-- 新建相册 -->
+	<script id="mybusiness_addalbum_modal" type="text/ng-template">
+		<ion-modal-view class="mybusiness-addalbum-modalview">
+			<div class="header header-black">
+				<div class="back" ng-click="closeModal()">取消</div>
+				<div class="title">新建相册</div>
+				<div class="right" >
+				</div>
+			</div>
+			<div class="main">
+				<textarea ng-model="addAlbumData.Title" placeholder="请输入相册名称"></textarea>
+				<div ng-click="addAlbum()" class="ft-sub-btn">完成</div>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

@@ -1,0 +1,56 @@
+
+<ion-view id="wait_for_comment" view-title="待评价" hide-nav-bar="true">	
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			待评价
+		</div>
+		<div class="right">
+		</div>
+	</div>
+
+	<ion-content class="wait-for-comment" has-bouncing="false">
+		<div ng-hide="group.OrderStatus==444" ng-repeat="group in orderList track by $index" class="order-item">
+			<div class="store-name">
+				<div class="left-cell">
+					<span ng-if="group.OrderStatus==104">待评价</span>
+					<span ng-if="group.OrderStatus==105">已评价</span>
+					{{group.ShopName}} <i class="iconfont icon-xiangyou1"></i>
+				</div>
+				<!-- 删除 -->
+				<div ng-if="group.OrderStatus==105" ng-click="deleteOrder(group)" class="right-cell">
+					&#x3000;<i class="iconfont icon-lajitong"></i>
+				</div>
+			</div>
+			<div ng-repeat="item in group.Items track by $index" class="order-info">
+				<div class="info-main">
+					<div class="img-cell">
+						<img 
+							ng-src="{{item.Image}}" 
+							onError="src='http://imgs.wujiuyun.com//Images//logo.png'"
+							alt="">
+					</div>
+					<div class="name-cell">
+						<div class="name overflow-omit-two">
+							{{item.Name}}
+						</div>
+						<div class="count-price overflow-omit-one">
+							x{{item.Quantity}}件 &nbsp;￥{{item.SubTotal | priceFilter}}
+						</div>
+					</div>
+				</div>
+				<!-- orderPerformance -->
+				<div ng-click="goPublishComment(group,item)" ng-if="group.OrderStatus==104" class="bot-actions">
+					<div class="action-item">去评价</div>
+				</div>
+				<div class="borderline"></div>
+			</div>
+					
+
+			<div class="total-info">共{{group.groupTotalNum}}件商品 &nbsp; 合计￥{{group.groupTotalMoney | priceFilter}}元</div>
+		</div>
+	</ion-content>
+	
+</ion-view>

@@ -1,0 +1,69 @@
+
+<ion-view id="my_mall_attentions" view-title="我的关注" hide-nav-bar="true">	
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			我的关注
+		</div>
+		<div class="right">
+			<!-- 搜索 -->
+		</div>
+	</div>
+	<div class="switch-list">
+		<div ng-click="switchTo(0)" class="switch-item">
+			<div class="in-item" ng-class="{true:'active',false:''}[switchActive==0]">
+				商品
+			</div>
+		</div>
+		<div ng-click="switchTo(1)" class="switch-item">
+			<div class="in-item" ng-class="{true:'active',false:''}[switchActive==1]">
+				店铺
+			</div>
+		</div>
+	</div>
+
+	<ion-content class="my-mall-attentions" has-bouncing="false">
+		<div ng-if="switchActive==0">
+			<div ng-repeat="item in housetimesList track by $index" class="goods-item">
+				<div class="goods-info">
+					<div class="img-cell"><img ng-src="{{item.Image}}" alt=""></div>
+					<div class="right-cell">
+						<div class="top-cell overflow-omit-two">{{item.Title}}</div>
+						<div class="mid-cell">￥599.00</div>
+						<div class="bot-cell">
+							<div class="bot-actions">
+								<div class="action-item">取消订单</div>
+								<div class="action-item">去付款</div>
+							</div>
+							<div class="cart-item">
+								<i class="iconfont icon-gouwuche1"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div ng-if="switchActive==1">
+			<div ng-repeat="item in housetimesList track by $index" class="store-item">
+				<div class="store-info">
+					<div class="img-cell"><img ng-src="{{item.Image}}" alt=""></div>
+					<div class="right-cell">
+						<div class="top-cell overflow-omit-one">{{item.Title}}</div>
+						<div class="mid-cell">
+							<div class="text-cell">59.59w关注</div>
+							<div class="icon-cell"><i class="iconfont icon-xiangyou1"></i></div>
+						</div>
+						
+						<div class="bot-cell">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</ion-content>
+	
+</ion-view>

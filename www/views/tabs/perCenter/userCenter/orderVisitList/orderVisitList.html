@@ -1,0 +1,92 @@
+<!--界面模板-->
+<ion-view id="order_visit_list" view-title="预约列表" hide-nav-bar=true>
+    
+    <div class="header">
+        <div ng-click="back()" class="back">
+            <i class=" iconfont icon-xiangzuo1"></i>
+        </div>
+        <div class="title">
+            预约列表
+        </div>
+        <div class="right" >
+            
+        </div>
+    </div>
+
+    <div class="flex-wrapper">
+        <div ng-click="switchSlide(0)" class="flex-item">我的预约</div>
+        <div ng-click="switchSlide(1)" class="flex-item">我的交易</div>
+        <div ng-click="switchSlide(2)" class="flex-item">交易完成</div>
+        <div class="under-line"></div>
+    </div>
+
+    <div>
+        <ion-content class="order-visit-list" >
+
+            <div ng-show="wantlookList.length>0&&showType==0" class="main">
+                <!-- <h5>我的预约</h5> -->
+                <div class="up-ul">
+                    <div class="left">带看人姓名</div>
+                    <div class="mid">楼盘名称</div>
+                    <div class="right">带看时间</div>
+                </div>
+                <ul class="info-list">
+                    <li ng-repeat="info in wantlookList track by $index">
+                        <div class="left equal">{{info.ProxerName || '房田用户'}}</div>
+                        <div class="mid equal">{{info.NewHouseName}}</div>
+                        <div class="right equal">{{info.LookTime | limitTo:10}} </div>
+                        <div style="clear:both;"></div>
+                        <div class="info-foot">
+                            <div ui-sref="visitDone({proxerid:info.ProxerId,buyerid:info.BuyerId,houseid:info.NewHouseId})" class="foot">完成带看</div>
+                            <div ng-click="cancelLook($event,info)" class="foot">取消带看</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+<!--交易-->
+            <div ng-show="willtradeList.length>0&&showType==1" class="main">
+                <!-- <h5>我的交易</h5> -->
+                <div class="up-ul">
+                    <div class="left">带看人姓名</div>
+                    <div class="mid">楼盘名称</div>
+                    <div class="right">带看时间</div>
+                </div>
+                <ul class="info-list">
+                    <li ng-repeat="info in willtradeList track by $index">
+                        <div class="left equal">{{info.ProxerName || '房田用户'}}</div>
+                        <div class="mid equal">{{info.NewHouseName}}</div>
+                        <div class="right equal">{{info.LookTime | limitTo:10}} </div>
+                        <div style="clear:both;"></div>
+                        <div class="info-foot">
+                            <div ui-sref="tradeDone({proxerid:info.ProxerId,buyerid:info.BuyerId,houseid:info.NewHouseId})" class="foot">完成交易</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+<!--交易完成-->
+            <div ng-show="tradedList.length>0&&showType==2" class="main">
+                <!-- <h5>已完成交易</h5> -->
+                <div class="up-ul">
+                    <div class="left">带看人姓名</div>
+                    <div class="mid">楼盘名称</div>
+                    <div class="right">带看时间</div>
+                </div>
+                <ul class="info-list">
+                    <li ng-repeat="info in tradedList track by $index">
+                        <div class="left equal">{{info.ProxerName || '房田用户'}}</div>
+                        <div class="mid equal">{{info.NewHouseName}}</div>
+                        <div class="right equal">{{info.LookTime | limitTo:10}} </div>
+                    </li>
+                </ul>
+            </div>
+            
+        </ion-content>
+    </div>
+
+</ion-view>
+
+    
+    
+    
+    
+    

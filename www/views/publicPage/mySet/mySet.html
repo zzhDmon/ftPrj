@@ -1,0 +1,110 @@
+
+<!--模板-->
+<ion-view id="my_set" view-title="设置" hide-nav-bar=true  class='dark'>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			设置
+		</div>
+		<div class="right" >
+			
+		</div>
+	</div>
+	
+	<ion-content on-swipe-right="onSwipeRight()" class="my-set" has-bouncing="false">
+		
+		<div class="card samelist" ui-sref="changePassword">
+			修改密码
+			<i class="icon ion-chevron-right"></i>
+		</div>
+		<div class="borderline"></div>
+		<div class="card samelist" ui-sref="aboutUs">
+			关于我们
+			<i class="icon ion-chevron-right"></i>
+		</div>
+		<div class="borderline"></div>
+		<div ng-click="realName()" class="card samelist">
+			实名认证
+			<i class="icon ion-chevron-right"></i>
+		</div>
+		<div class="borderline"></div>
+		<div class="card samelist" ng-click="notNow()">
+			申诉
+			<i class="icon ion-chevron-right"></i>
+		</div>
+		<div class="borderline"></div>
+		<div ui-sref="myPrivacy" class="card samelist">
+			隐私
+			<i class="icon ion-chevron-right"></i>
+		</div>
+		<div class="borderline"></div>
+		<div class="card samelist" ng-click="notNow()">
+			修改账号
+			<i class="icon ion-chevron-right"></i>
+		</div>
+		<div class="borderline"></div>
+		<div class="item-wrapper">
+			<div class="left-cell">
+				微信
+			</div>
+			<div ng-click="bindWeixin()" ng-if="!bindWeixinStatus" class="right-cell active">
+				<i class="iconfont icon-bangding-"></i>&nbsp;绑定微信
+			</div>
+			<div ng-click="removeBind(weixinBindInfo)" ng-if="bindWeixinStatus" class="right-cell">
+				<i class="iconfont icon-bangdingjiechu-"></i>&nbsp;解绑微信
+			</div>
+		</div>
+		<div class="borderline"></div>
+		<div class="item-wrapper">
+			<div class="left-cell">
+				QQ
+			</div>
+			<div ng-click="bindQQ()" ng-if="!bindQQStatus" class="right-cell active">
+				<i class="iconfont icon-bangding-"></i>&nbsp;绑定QQ
+			</div>
+			<div ng-click="removeBind(qqBindInfo)" ng-if="bindQQStatus" class="right-cell">
+				<i class="iconfont icon-bangdingjiechu-"></i>&nbsp;解绑QQ
+			</div>
+		</div>
+		<div class="borderline"></div>
+		<!-- <div class="card samelist" ui-sref="feedBack({'title':'问题反馈'})">
+			问题反馈
+			<i class="icon ion-chevron-right"></i>
+		</div>
+		<div class="borderline"></div> -->
+
+		<div class="offline"></div>
+		<div class="borderline"></div>
+		<div ripple ripple-hold ripple-dark class="card check"  ng-click="checkVersion()">
+			检查更新
+			<div ng-show="hasNewVersion" class="icon-wrapper">
+				<svg class="icon" aria-hidden="true">
+					<use xlink:href="#icon-new"></use>
+				</svg>
+			</div>
+		</div>
+		<div class="borderline"></div>
+		
+		<div class="offline"></div>	
+		<div ripple ripple-hold ripple-dark class="logout"  ng-click="logout()">
+			退出登录
+		</div>
+	</ion-content>
+
+	<!-- 跳转 -->
+	<script id="myset_real_name_modal" type="text/ng-template">
+		<ion-modal-view ng-click="closeRealNameModal()" class="myset_rean_name_modalview">
+			<div class="go-real-name-main">
+				<div class="choose-title">请选择实名方式</div>
+				<div class="borderline"></div>
+				<div class="choose-wrapper">
+					<div ui-sref="realName" class="choose-item active">上传身份证</div>
+					<div ui-sref="bindBankCard" class="choose-item">绑定银行卡</div>
+				</div>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

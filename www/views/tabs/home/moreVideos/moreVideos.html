@@ -1,0 +1,58 @@
+<ion-view id="more_videos" view-title="视频列表" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div ng-click="add()" class="title">
+			视频列表
+		</div>
+		<div class="right">		
+			
+		</div>
+	</div>
+
+	<ion-content delegate-handle="more-videos-Scroll" class="more-videos">
+		<ion-refresher 
+			pulling-icon="" 
+			pulling-text="" 
+			spinner="lines"  
+			refreshing-text="正在刷新…"
+			on-refresh="loadeRefresh()" 
+			>
+		</ion-refresher>
+		<p class="no-result" ng-if="!videoList||videoList.length<1">暂无视频~</p>
+		
+		<div class="video-list">
+			<div 
+				ui-sref="noCtrVideo({pagenum:$index,followed:false})"
+				ng-repeat="item in videoList track by $index"
+				class="video-item">
+				<div class="top-img">
+					<div class="in-top-img" ng-style="{'background-image': 'url('+item.Content.image+')'}"></div>
+					<div class="fake-video"><i class="iconfont icon-shipin11"></i></div>
+				</div>
+				<div class="bot-info">
+					<div class="avatar">
+						<img ng-src="{{item.UserImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+					</div>
+					<div class="user-info">
+						<div class="top-cell overflow-omit-one">{{item.UserName || '房田用户'}}</div>
+						<div class="bot-cell">{{item.CreateTime}}</div>
+					</div>
+					<div class="icon-item">
+						<div class="top-cell"><i class="iconfont icon-dianzan-"></i></div>
+						<div class="bot-cell">{{item.AgressUsers.length}}</div>
+					</div>
+					<div class="icon-item">
+						<div class="top-cell"><i class="iconfont icon-pinglun2"></i></div>
+						<div class="bot-cell">{{item.ChildrenCount}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<ion-infinite-scroll on-infinite="loadMore(true)" distance="15%" ng-if="haveMore" > </ion-infinite-scroll>
+	</ion-content>
+
+</ion-view>
+

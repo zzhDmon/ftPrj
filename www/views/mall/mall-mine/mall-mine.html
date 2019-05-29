@@ -1,0 +1,510 @@
+
+<ion-view id="mall_mine" view-title="商城我的" hide-nav-bar="true">	
+	
+	<ion-content class="mall-mine" scrollbar-y="false" has-bouncing="false">
+		<div class="head-info">
+			<div class="head">
+				<div class="back">
+					<div ng-show="childPageName" ng-click="hideChildPage()" class="in-back">
+						<i class="iconfont icon-fanhui3"></i>
+					</div>
+				</div>
+				<div ng-click="drawCanvas()" class="title">
+				</div>
+				<div ng-show="childPageName" class="right">
+					<i class="iconfont icon-qiehuanxiaoqu"></i>
+				</div>
+			</div>
+
+			<div ng-if="Logined" class="user-info">
+				<div ui-sref="editMyHomePage" class="left-cell">
+					<img class="headimg" ng-if="myInfo.ShowImage" ng-src="{{myInfo.ShowImage}}"/>
+					<div ng-if="!myInfo.ShowImage" class="no-headimg">
+						<i class="iconfont icon-weidenglu"></i>
+					</div>
+				</div>
+				<div class="mid-cell">
+					<div class="top-cell">
+						<div class="left-item overflow-omit-one">{{myInfo.NickName || '房田用户'}}</div>
+						<div class="mid-item">
+							<svg ng-if="!myInfo.Role" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-putongyonghu"></use>
+							</svg>
+							<svg ng-if="myInfo.Role=='白银'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-gerenhuiyuan"></use>
+							</svg>
+							<svg ng-if="myInfo.Role=='黄金'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-tuanduihuiyuan"></use>
+							</svg>
+							<svg ng-if="myInfo.Role=='铂金'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-shanghulaobandiaozhuixunzhang"></use>
+							</svg>
+							<svg ng-if="myInfo.Role=='钻石'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-qiyezhudiaozhuixunzhang"></use>
+							</svg>
+						</div>
+						<div ui-sref="editMyHomePage" class="right-item"><i class="iconfont icon-bianji"></i></div>
+					</div>
+					<div class="center-cell overflow-omit-one">{{myInfo.Discription || '签名'}}</div>
+					<div class="bot-cell overflow-omit-one">
+						{{myInfo.UserName | phoneStarFilter}}
+						<span ng-show="childPageName=='myMall' && !statusData.iosInReview">
+							<span ui-sref="applyForStore" ng-show="!myShopInfo" class="apply-shop">
+								申请开店
+								<span class="icon-wrapper">
+									<svg class="icon clearfix" aria-hidden="true">
+										<use xlink:href="#icon-shangdian1"></use>
+									</svg>
+								</span>
+							</span>
+							<span ui-sref="hisShop({id:myShopInfo.Id,ismyself:true})" ng-show="myShopInfo" class="apply-shop">
+								管理店铺
+								<span class="icon-wrapper">
+									<svg class="icon clearfix" aria-hidden="true">
+										<use xlink:href="#icon-shangdian1"></use>
+									</svg>
+								</span>
+							</span>
+						</span>
+					</div>
+				</div>
+				<div class="right-cell">
+					<div class="real-name">
+						<div ng-show="myInfo.VStatus==2" class="icon-cell">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-shimingrenzheng-"></use>
+							</svg>
+						</div>
+						<div ng-show="myInfo.VStatus==2" class="txt-cell">已实名</div>
+						<div ng-click="showRealNameModal()" ng-hide="myInfo.VStatus==2" class="icon-cell">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-weishiming"></use>
+							</svg>
+						</div>
+						<div ng-click="showRealNameModal()" ng-hide="myInfo.VStatus==2" class="txt-cell">未实名</div>
+					</div>
+					<div ui-sref="myInfoQrcode" class="qrcode">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-erweima"></use>
+						</svg>
+					</div>
+					<div class="follow-num small-font-size overflow-omit-one">{{myInfo.FollowNum | overTenThousandFilter}}人已关注</div>
+				</div>
+			</div>
+			<!-- 未登录 -->
+			<div ng-if="!Logined" ui-sref="login" class="user-info no-login">
+				<div class="left-cell">
+					<div class="no-headimg">
+						<i class="iconfont icon-weidenglu"></i>
+					</div>
+				</div>
+				<div class="mid-cell">
+					<div class="top-big">点击登录/注册</div>
+					<div class="bot-big">更多精彩等着你</div>
+				</div>
+			</div>
+			<div ng-if="Logined" class="video-photo">
+				<div ng-click="goMyBusiness('intro')" class="item-cell">
+					<div class="top-cell">
+						<i ng-hide="posterImageUrl" class="iconfont icon-tianjia"></i>
+						<div ng-show="posterImageUrl" class="in-top-cell" ng-style="{'background-image': 'url('+posterImageUrl+')'}"></div>
+					</div>
+					<div class="bot-cell">简介</div>
+				</div>
+				<div ui-sref="myAlbum" class="item-cell">
+					<div class="top-cell">
+						<i ng-hide="photoBgImg" class="iconfont icon-tianjia"></i>
+						<div ng-show="photoBgImg" class="in-top-cell" ng-style="{'background-image': 'url('+photoBgImg+')'}"></div>
+					</div>
+					<div class="bot-cell">相册</div>
+				</div>
+				<div ui-sref="myPhotosAndVideos({type:'video'})" class="item-cell">
+					<div class="top-cell">
+						<i ng-hide="videoBgImg" class="iconfont icon-tianjia"></i>
+						<div ng-show="videoBgImg" class="in-top-cell" ng-style="{'background-image': 'url('+videoBgImg+')'}"></div>
+					</div>
+					<div class="bot-cell">VCR/视频</div>
+				</div>
+			</div>
+			<!-- 动态 -->
+			<div ng-if="Logined" class="diary-wrapper">
+				<div class="left-cell">动态</div>
+				<div class="mid-cell minerool">
+					<div ng-click="goMyBusiness('dynamic')" class="personal-tl-swiper swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide overflow-omit-one" ng-repeat="item in newsList track by $index">{{item}}</div>
+						</div>
+					</div>
+				</div>
+				<div ui-sref="publishDynamic" class="right-cell">
+					<div class="top-cell"><i class="iconfont icon-bianji"></i></div>
+					<div class="bot-cell">发表</div>
+				</div>
+			</div>
+		</div>
+		<div class="borderline"></div>
+		
+		<div ng-show="childPageName=='myFT'" class="ft-enters">
+			<div class="enter-wrapper">
+				<div ui-sref="myHouses({type:1})" class="enter-item">
+					<div class="top-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-wodefangyuan-"></use>
+						</svg>
+					</div>
+					<div class="bot-text">我的房源</div>
+				</div>
+				<div ui-sref="myNeeds({needtype:'buy',housetype:1})" class="enter-item">
+					<div class="top-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-wodexuqiu-"></use>
+						</svg>
+					</div>
+					<div class="bot-text">我的需求</div>
+				</div>
+
+				<div ui-sref="realHouseList" class="enter-item">
+					<div class="top-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-fangyuanrenzheng-1"></use>
+						</svg>
+					</div>
+					<div class="bot-text">房源认证</div>
+				</div>
+				<div ui-sref="agentVisitList" class="enter-item">
+					<div class="top-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-fangyuanzhuangtai-"></use>
+						</svg>
+					</div>
+					<div class="bot-text">房源状态</div>
+				</div>
+				<div ui-sref="orderVisitList" class="enter-item">
+					<div class="top-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-yuyueliebiao--"></use>
+						</svg>
+					</div>
+					<div class="bot-text">预约列表</div>
+				</div>
+				<div ui-sref="myCommission" class="enter-item">
+					<div class="top-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-wodeyongjin-"></use>
+						</svg>
+					</div>
+					<div class="bot-text">我的佣金</div>
+				</div>
+			</div>
+		</div>
+		<!-- 我的商城子页面 -->
+		<div ng-show="childPageName=='myMall'">
+			<div class="six-enter">
+				<div class="six-enter-wrapper">
+					<div ui-sref="myMallOrders({type:100})" class="enter-item">
+						<div class="top-cell">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-daifukuan-"></use>
+							</svg>
+						</div>
+						<div class="bot-cell">待付款</div>
+					</div>
+					<div ui-sref="myMallOrders({type:101})" class="enter-item">
+						<div class="top-cell">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-daishouhuo-"></use>
+							</svg>
+						</div>
+						<div class="bot-cell">待收货</div>
+					</div>
+					<div ui-sref="waitForComment" class="enter-item">
+						<div class="top-cell">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-daipingjia-"></use>
+							</svg>
+						</div>
+						<div class="bot-cell">待评价</div>
+					</div>
+					<div ui-sref="myMallOrders({type:0})" class="enter-item">
+						<div class="top-cell">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-wodedingdan-"></use>
+							</svg>
+						</div>
+						<div class="bot-cell">我的订单</div>
+					</div>
+					<div ui-sref="addressList" class="enter-item">
+						<div class="top-cell">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-shouhuodizhi-"></use>
+							</svg>
+						</div>
+						<div class="bot-cell">收货地址</div>
+					</div>
+					<div class="enter-item">
+						<div class="top-cell">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-tuihuanshouhou-"></use>
+							</svg>
+						</div>
+						<div class="bot-cell">退换/售后</div>
+					</div>
+				</div>
+			</div>
+			<div class="main-enter">
+				<div class="offline"></div>
+				<div class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-wodeguanzhu"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">我的关注</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-guanfangkefu"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">官方客服</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+			</div>
+		</div>
+		<!-- 我的猎聘 -->
+		<div ng-show="childPageName=='myHunting'" class="my-hunt-wrapper">
+			<div class="hunt-item">
+				<div class="top-cell small-font-size overflow-omit-one">75%待完善</div>
+				<div class="bot-cell">我的简历</div>
+			</div>
+			<div class="hunt-item">
+				<div class="top-cell small-font-size overflow-omit-one">求职状态</div>
+				<div class="bot-cell">职位管理</div>
+			</div>
+			<div class="hunt-item">
+				<div class="top-cell small-font-size overflow-omit-one">3次应聘</div>
+				<div class="bot-cell">应聘记录</div>
+			</div>
+			<div class="hunt-item">
+				<div class="top-cell small-font-size overflow-omit-one">2条最新发布</div>
+				<div class="bot-cell">我的关注</div>
+			</div>
+			<div class="hunt-item">
+				<div class="top-cell small-font-size overflow-omit-one">2条隐私</div>
+				<div class="bot-cell">我的隐私</div>
+			</div>
+		</div>
+		<!-- 地产商子页面 -->
+		<div ng-show="childPageName=='myLG'" class="ft-enters">
+			<div class="enter-wrapper">
+				<div ui-sref="newHouses" class="enter-item">
+					<div class="top-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-yishouloupan-"></use>
+						</svg>
+					</div>
+					<div class="bot-text">一手楼盘</div>
+				</div>
+				<div class="enter-item">
+					<div class="top-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-dailishouquan-"></use>
+						</svg>
+					</div>
+					<div class="bot-text">代理授权</div>
+				</div>
+				<div ui-sref="visitReview" class="enter-item">
+					<div class="top-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-daikanshenhe1"></use>
+						</svg>
+					</div>
+					<div class="bot-text">带看审核</div>
+				</div>
+				<div ui-sref="tradeReview" class="enter-item">
+					<div class="top-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-jiaoyishenhe-"></use>
+						</svg>
+					</div>
+					<div class="bot-text">交易审核</div>
+				</div>
+			</div>
+		</div>
+
+<!-- public -->
+		<div ng-hide="childPageName" class="func-entry-wrapper">
+			<div ng-click="showChildPage('myFT')" class="func-entry">
+				<div class="circle-item housesource">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-fangyuan-"></use>
+					</svg>
+				</div>
+				<div class="name-item">房产</div>
+			</div>
+			<div ng-click="showChildPage('myMall')" class="func-entry">
+				<div ripple ripple-hold ripple-dark class="circle-item store">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-shangcheng-"></use>
+					</svg>
+				</div>
+				<div class="name-item">商城</div>
+			</div>
+			<div class="func-entry">
+				<div ripple ripple-hold ripple-dark class="circle-item college">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-shangxueyuan-"></use>
+					</svg>
+				</div>
+				<div class="name-item">商学院</div>
+			</div>
+			<div ng-click="showChildPage('myHunting')" class="func-entry">
+				<div ripple ripple-hold ripple-dark class="circle-item location">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-bendifuwu-"></use>
+					</svg>
+				</div>
+				<div class="name-item">本地服务</div>
+			</div>
+			<div class="func-entry">
+				<div ripple ripple-hold ripple-dark class="circle-item pinpai">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-pinpai-"></use>
+					</svg>
+				</div>
+				<div class="name-item">品牌</div>
+			</div>
+		</div>
+
+		<!-- 人脉图谱 -->
+		<div ng-hide="childPageName" class="offline"></div>
+		<div ng-hide="childPageName" class="human-map-wrapper">
+			<div class="map-title">
+				<div class="left-cell">人脉图谱</div>
+				<div ng-click="toggleMapType()" class="right-cell">
+					朋友
+					<div ng-class="{true:'active',false:''}[showMapType]" class="right-cell-abs">
+						<div class="abs-item">票友</div>
+						<div class="abs-item">同学</div>
+						<div class="abs-item">同事</div>
+					</div>
+				</div>
+			</div>
+			<div class="human-map-img">
+				<div class="in-img" ng-style="{'background-image': 'url(imgs/percenter/humanmap.png)'}"></div>
+				<div class="up-img">
+					可能认识的人<i class="iconfont icon-xiangyou1"></i>
+				</div>
+			</div>
+		</div>
+
+
+		<div ng-hide="childPageName" class="main-enter">
+			<div class="offline"></div>
+			<div ui-sref="myAccount" class="wrapper">
+				<div class="left-icon">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-wodezhanghu-"></use>
+					</svg>
+				</div>
+				<div class="mid-cont">我的账户</div>
+				<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+			</div>
+			<div ng-hide="statusData.iosInReview" class="offline"></div>
+			<div ng-hide="statusData.iosInReview" ui-sref="openVip" class="wrapper">
+				<div class="left-icon">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-huiyuanzhongxin-"></use>
+					</svg>
+				</div>
+				<div class="mid-cont">会员中心</div>
+				<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+			</div>
+			<div class="offline"></div>
+			<div ui-sref="myRecommend" class="wrapper">
+				<div class="left-icon">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-yaoqinghaoyou-"></use>
+					</svg>
+				</div>
+				<div class="mid-cont">邀请好友</div>
+				<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+			</div>
+			<!-- <div class="offline"></div>
+			<div ui-sref="realHouseList" class="wrapper">
+				<div class="left-icon">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-fangyuanrenzheng-"></use>
+					</svg>
+				</div>
+				<div class="mid-cont">房源认证</div>
+				<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+			</div> -->
+			
+			<div class="offline"></div>
+			<div class="wrapper">
+				<div class="left-icon">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-huichang-"></use>
+					</svg>
+				</div>
+				<div class="mid-cont">会场申请</div>
+				<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+			</div>
+			<div class="offline"></div>
+			<div ui-sref="myTask" class="wrapper">
+				<div class="left-icon">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-woderenwu-"></use>
+					</svg>
+				</div>
+				<div class="mid-cont">我的任务</div>
+				<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+			</div>
+			<div class="offline"></div>
+			<div class="wrapper">
+				<div class="left-icon">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-kefu-"></use>
+					</svg>
+				</div>
+				<div class="mid-cont">客服</div>
+				<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+			</div>
+			<div class="offline"></div>
+			<div ui-sref="mySet" class="wrapper">
+				<div class="left-icon">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon--22"></use>
+					</svg>
+				</div>
+				<div class="mid-cont">
+					设置
+					<div ng-show="statusData.hasNewVersion" class="new-version"></div>
+				</div>
+				<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+			</div>
+		</div>
+
+	</ion-content>
+	
+	<!-- tab导航 -->
+	<div ng-include="'views/mall/mall-includes/mallTabs/mallTabs.html'"></div>
+
+	<!-- 跳转 -->
+	<script id="mallmine_real_name_modal" type="text/ng-template">
+		<ion-modal-view ng-click="closeRealNameModal()" class="mallmine_real_name_modalview">
+			<div class="go-real-name-main">
+				<div class="choose-title">请选择实名方式</div>
+				<div class="borderline"></div>
+				<div class="choose-wrapper">
+					<div ui-sref="realName" class="choose-item active">上传身份证</div>
+					<div ui-sref="bindBankCard" class="choose-item">绑定银行卡</div>
+				</div>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>

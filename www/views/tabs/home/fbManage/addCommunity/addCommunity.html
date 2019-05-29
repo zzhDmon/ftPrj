@@ -1,0 +1,96 @@
+<!--对话模板-->
+<ion-view id="add_community" view-title="" hide-nav-bar=true >
+	
+		<div class="header">
+			<div class="back" ng-click="back()">
+				<i class=" iconfont icon-xiangzuo1"></i>
+			</div>
+			<div class="title">
+				小区新增
+			</div>
+			<div class="right">
+			</div>
+		</div>
+			
+		<ion-content  class="add-community">
+			<div class="main">
+				<div class="row-item">
+					<div class="left-name">小区名称</div>
+					<div class="mid-input">
+						<input type="text" ng-model="subData.Name" placeholder="请填写小区名称">
+					</div>
+					<div class="right-icon"></div>
+				</div>
+				<div class="row-item">
+					<div class="left-name">物业类型</div>
+					<div class="mid-input">
+						<input ng-model="showData.PropType" class="addcom-wuye" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+				<div class="row-item">
+					<div class="left-name">区域</div>
+					<div class="mid-input">
+						<input ng-model="subData.District" class="addcom-quyu" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+				<div class="row-item">
+					<div class="left-name">街道</div>
+					<div class="mid-input">
+						<input ng-model="subData.Street" class="addcom-jiedao" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			
+				<div class="textarea-item">
+					<div class="textarea-name">小区地址</div>
+					<textarea ng-model="subData.Address" placeholder="请输入小区详细地址！">
+
+					</textarea>
+				</div>
+			</div>
+			<div class="offline"></div>
+			<div class="up-image">
+				<div class="title">上传照片</div>
+				<div class="placeholder">
+					请上传小区正门入口照或房产证/不动产登记证书/产调登记簿照片
+				</div>
+				
+				<ul>
+					<li ng-repeat="img in subData.ShowPics track by $index">
+						<div class="img">
+							<img ng-src="{{img}}" alt="室内图"/>
+							<span ng-click="remove($index)"><i class="iconfont icon-guanbi1"></i></span>
+						</div>
+					</li>
+					<li ng-click="photoChoose()" class="community-choose-img">
+						<div class="in-choose">
+							<div class="img">
+								<div class="top"><i class="iconfont icon-tianjia"></i></div>
+								<div class="bot">选择图片</div>
+							</div>
+						</div>
+					</li>
+					<li ng-click="cameraBase()" class="community-choose-img">
+						<div class="in-choose">
+							<div class="img">
+								<div class="top"><i class="iconfont icon-xiangji"></i></div>
+								<div class="bot">拍照上传</div>
+							</div>	
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<div ng-click="save()" class="save">保存</div>
+		</ion-content>
+	</ion-view>
+	
+	

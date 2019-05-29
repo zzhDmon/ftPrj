@@ -1,0 +1,126 @@
+#evaluation_detail{
+    .bot-action{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 40px;
+        display: flex;
+        justify-content: flex-start;
+        border-top: 1px solid $line-main-color;
+        .action-item{
+            width: 25%;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            color: $font-main-color;
+        }
+    }
+    .evaluation-detail{
+        margin: $head-height 0 40px;
+        padding: 0;
+        .head-img{
+            padding: 5px $view-padding;
+            width: 100%;
+            height: 230px;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .main{
+            padding: 10px $view-padding 0;
+            width: 100%;
+            .title{
+                width: 100%;
+                height: 40px;
+                text-align: center;
+                line-height: 40px;
+                font-size: 18px;
+                color: $font-main-color;
+            }
+            .time{
+                width: 100%;
+                height: 25px;
+                line-height: 25px;
+                color: $font-sup-color;
+                font-size: 16px;
+            }
+            .cont{
+                width: 100%;
+                line-height: 20px;
+                font-size: 16px;
+                color: $font-main-color;
+            }
+        }
+        .comment-arr{
+            padding: 10px $view-padding;
+            width: 100%;
+            .title{
+                width: 100%;
+                height: 40px;
+                display: flex;
+                justify-content: flex-start;
+                .left{
+                    width: calc(100% - 90px);
+                    height: 40px;
+                    line-height: 40px;
+                    font-size: 16px;
+                    color: $font-main-color;
+                }
+                .right{
+                    margin: 5px;
+                    width: 80px;
+                    height: 30px;
+                    text-align: center;
+                    line-height: 30px;
+                    font-size: 14px;
+                    border-radius: 5px;
+                    color: $font-main-color;
+                    background-color: $bg-main-color;
+                }
+            }
+            .comment-list{
+                width: 100%;
+                .comment-item{
+                    padding: 15px 0 0;
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-start; 
+                    .left-img{
+                        width: 50px;
+                        height: 50px;
+                        img{
+                            display: block;
+                            width: 50px;
+                            height: 50px;
+                            border-radius: 50%;
+                        }
+                    }
+                    .time{
+                        width: 80px;
+                        height: 30px;
+                        text-align: right;
+                        color: $font-sup-color;
+                    }
+                    .name-comment{
+                        padding: 0 10px;
+                        width: calc(100% - 130px);
+                        .name{
+                            width: 100%;
+                            height: 30px;
+                            line-height: 30px;
+                            font-size: 16px;
+                            color: $font-main-color;
+                        }
+                        .comment{
+                            line-height: 20px;
+                            font-size: 14px;
+                            color: $font-sup-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

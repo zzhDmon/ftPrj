@@ -1,0 +1,31 @@
+
+<!--对话模板-->
+<ion-view id="add_sell_address" view-title="楼盘地址" hide-nav-bar=true  class='dark'>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			楼盘地址
+		</div>
+		<div class="right" ng-click="save()">
+			保存
+		</div>
+	</div>
+	
+	<ion-content on-swipe-right="onSwipeRight()" class="add-sell-address" has-bouncing=false>
+		<div class="offline">
+			
+		</div>
+		<!-- <div class="card">	
+			<textarea name="cont" rows="10" cols="" ng-model="newtd.content" placeholder="请输入房源信息"></textarea>
+		</div> -->
+		<div class="input-address">
+			<input type="text" ng-model="newaddress.location" placeholder="请输入房源地址">
+			<div ng-click="getAddr()" class="get-btn">获取</div>
+		</div>
+		<div id="add_new_address_map" style="width:100vw;height:250px;"></div>
+	</ion-content>
+	
+</ion-view>
+

@@ -1,0 +1,30 @@
+<!--模板-->
+<ion-view id="group_avatar_cut" view-title="头像裁剪" hide-nav-bar=true class='dark'>
+	<ion-nav-buttons side="secondary">
+		<a ng-click="save()" style="color: gray;font-size: 1.4rem;" class="button button-small button-icon " >保存</a>	
+	</ion-nav-buttons>
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			头像裁剪
+		</div>
+		<div ng-click="save()" class="right" >
+			使用
+		</div>
+	</div>
+
+	<ion-content class="group-avatar-cut" has-bouncing=false>
+		<div class="card">
+			<div class="img">
+				<img class="square" ng-src="{{view}}"/>
+			</div>
+			<div class="img">
+				<img class="cir" ng-src="{{view}}"/>
+			</div>
+		</div>
+	</ion-content>
+
+</ion-view>

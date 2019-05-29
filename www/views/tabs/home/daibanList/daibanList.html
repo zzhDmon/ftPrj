@@ -1,0 +1,84 @@
+<!--联系人界面模板-->
+<ion-view id="daiban_list" view-title="代办" hide-nav-bar="true">
+	
+	<div class="header">
+			<div class="back" ng-click="back()">
+				<i class="iconfont icon-xiangzuo1"></i>
+			</div>
+			<div class="title">
+				{{headTitle}}
+			</div>
+			<div class="right">
+			</div>
+		</div>
+	
+	<ion-content class="daiban-list" >
+		<ion-slide-box does-continue="true"  class="bigbox" on-slide-changed='changeindex()'  delegate-handle='daibanList-handle'>
+			
+			<ion-slide>
+				<div class="box">
+					<div class="traininfo">
+						<img src="imgs/housesource/headimg.jpg" alt="">
+						
+						<div class="info">
+							<label class="item item-input">
+								<span class="input-label">真实姓名</span>
+								<input ng-model="sudData.name" type="text" name="name" placeholder="输入真实姓名" required>
+							</label>
+							<label class="item item-input">
+								<span class="input-label">手机号码</span>
+								<input ng-model="sudData.phone" type="tel" name="phone" placeholder="输入身份证号码" required>
+							</label>
+	
+							<div class="button">报名</div>
+						</div>
+					</div>
+				</div>
+			</ion-slide>
+			<ion-slide>
+				<div class="box">
+					<div class="traininfo">
+						<img src="imgs/housesource/headimg.jpg" alt="">
+						
+						<div class="info">
+							<label class="item item-input">
+								<span class="input-label">真实姓名</span>
+								<input ng-model="sudData.name" type="text" name="name" placeholder="输入真实姓名" required>
+							</label>
+							<label class="item item-input">
+								<span class="input-label">手机号码</span>
+								<input ng-model="sudData.phone" type="tel" name="phone" placeholder="输入身份证号码" required>
+							</label>
+	
+							<div class="button">报名</div>
+						</div>
+					</div>
+				</div>
+			</ion-slide>
+			<ion-slide>
+				<div class="box">
+					<div class="traininfo">
+						<img src="imgs/housesource/headimg.jpg" alt="">
+						
+						<div class="info">
+							<label class="item item-input">
+								<span class="input-label">真实姓名</span>
+								<input ng-model="sudData.name" type="text" name="name" placeholder="输入真实姓名" required>
+							</label>
+							<label class="item item-input">
+								<span class="input-label">手机号码</span>
+								<input ng-model="sudData.phone" type="tel" name="phone" placeholder="输入身份证号码" required>
+							</label>
+	
+							<div class="button">报名</div>
+						</div>
+					</div>
+				</div>
+			</ion-slide>
+		</ion-slide-box>
+	</ion-content>
+
+
+
+	
+</ion-view>

@@ -1,0 +1,50 @@
+
+<!--对话模板-->
+<ion-view id="commission_income" view-title="佣金收入" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			佣金收入
+		</div>
+		<div class="right">
+			
+		</div>
+	</div>
+	<ion-content class="commission-income" has-bouncing="false">
+		<div class="total-num">
+			￥<span>{{myInvitation.total}}</span>
+		</div>
+		<div class="offline"></div>
+		<div class="members-list">
+			<div ng-repeat="member in myInvitation.children track by $index" class="member-item">
+				<div ng-click="showSubList($index)" class="member-info">
+					<div class="left-cell">
+						<img ng-src="{{member.Image || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+					</div>
+					<div class="mid-cell">
+						<div class="name overflow-omit-one">{{member.Name}}</div>
+						<div class="money overflow-omit-one">收益{{member.Fee | feeNumFilter}}元</div>
+					</div>
+					<div class="right-cell">
+						<i ng-hide="subListActive==$index" class="iconfont icon-gengduo"></i>
+						<i ng-if="subListActive==$index" class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+				<div class="sub-members-list" ng-class="{true:'active',false:''}[subListActive==$index]">
+					<div ng-repeat="subItem in member.Children track by $index" class="sub-member-item">
+						<div class="img-cell">
+							<img ng-src="{{subItem.Image || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+						</div>
+						<div class="name-cell">
+							<div class="name">{{subItem.Name}}</div>
+							<div class="money">收益{{subItem.Fee | feeNumFilter}}元</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
+

@@ -1,0 +1,162 @@
+
+<!--对话模板-->
+<ion-view id="fb_type_choose" hide-nav-bar=true view-title="选择发布">
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			<span ng-show="pageType==0">出售</span><span ng-hide="pageType==0">出租</span>发布
+		</div>
+		<div class="right">
+			
+		</div>
+	</div>
+
+	<ion-content class="fb-type-choose">
+		<div class="main">
+			<!-- 出售 -->
+			<div ng-show="pageType==0" class="flex-wrapper">
+				<div ui-sref="addSell({id:-1})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-housesource-ershou"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">二手房</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addShop({id:-1,type:1,behaviour:1})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-shangpu-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">商铺</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addOther({id:-1,type:2,behaviour:1})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-xiezilou-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">写字楼</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addOther({id:-1,type:3,behaviour:1})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-gongchang-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">厂房</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addOther({id:-1,type:4,behaviour:1})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-cangku-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">仓库</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addOther({id:-1,type:5,behaviour:1})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-cheku-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">车位</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				
+			</div>
+			<!-- 出租 -->
+			<div  ng-hide="pageType==0" class="flex-wrapper">
+				<div ui-sref="addRent({id:-1,type:2})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-housesource-chuzu"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">整租</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addRent({id:-1,type:2,attach:4})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-chuzu-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">合租</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addShop({id:-1,type:1,behaviour:2})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-shangpu-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">商铺</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addOther({id:-1,type:2,behaviour:2})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-xiezilou-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">写字楼</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addOther({id:-1,type:3,behaviour:2})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-gongchang-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">厂房</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addOther({id:-1,type:4,behaviour:2})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-cangku-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">仓库</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addOther({id:-1,type:5,behaviour:2})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-cheku-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">车位</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+
+				
+			</div>
+		</div>
+	</ion-content>
+	
+</ion-view>
+

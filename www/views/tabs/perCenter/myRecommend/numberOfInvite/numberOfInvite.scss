@@ -1,0 +1,189 @@
+#number_of_invite{
+    .header{
+        background-color: transparent;
+    }
+    .head-bgimg{
+        width: 100vw;
+        height: 50vw;
+        min-width: 180px;
+        background-image: url('../imgs/recommend/invitenum/bg.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    .number-of-invite{
+        margin: $head-height 0 0;
+        padding: 0;
+        .head-info{
+            padding: 0 0 10px;
+            width: 100%;
+            .total-num{
+                width: 100%;
+                text-align: center;
+                color: white;
+                .num{
+                    font-size: 20px;
+                    height: 40px;
+                    line-height: 40px;
+                    span{
+                        font-size: 30px;
+                    }
+                }
+                .count-info{
+                    width: 100%;
+                    height: 20px;
+                    text-align: center;
+                    line-height: 20px;
+                    font-size: 16px;
+                }
+            }
+            .child-wrapper{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                .child-item{
+                    width: 40%;
+                    color: white;
+                    .count-info{
+                        width: 100%;
+                        height: 20px;
+                        text-align: center;
+                        line-height: 20px;
+                        font-size: 16px;
+                    }
+                    .num{
+                        font-size: 16px;
+                        height: 25px;
+                        line-height: 25px;
+                        text-align: center;
+                        span{
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+        }
+        .white-content{
+            background-color: white;
+            padding: 10px $view-padding;
+        }
+        .members-list{
+            width: 100%;
+            .member-item{
+                width: 100%;
+                margin: 0 0 5px;
+                .member-info{
+                    width: 100%;
+                    height: 60px;
+                    border-radius: 5px 5px 0 0;
+                    border: 1px solid rgb(240,244,247);
+                    box-sizing: content-box;
+                    display: flex;
+                    justify-content: flex-start;
+                    .left-cell{
+                        padding: 10px;
+                        width: 60px;
+                        height: 60px;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .mid-cell{
+                        padding: 0 0 0 5px;
+                        width: calc(100% - 130px);
+                        line-height: 50px;
+                    }
+                    .right-cell{
+                        width: 80px;
+                        height: 60px;
+                        background-color: rgb(240,244,247);
+                        .top-cell{
+                            margin: 5px 0 0;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 30px;
+                            .txt-item{
+                                width: 40px;
+                                height: 25px;
+                                text-align: center;
+                                line-height: 25px;
+                                font-size: 14px;
+                                color: $font-sup-color;
+                            }
+                            .icon-item{
+                                width: 25px;
+                                height: 25px;
+                                text-align: center;
+                                line-height: 25px;
+                                color: $font-sup-color;
+                                transition: all 0.3s ease-in;
+                                .iconfont{
+                                    font-weight: bold;
+                                    font-size: 14px;
+                                }
+                                &.active{
+                                    transform: rotate(90deg);
+                                }
+                            }
+                        }
+                        .bot-cell{
+                            text-align: center;
+                            line-height: 20px;
+                            font-size: 14px;
+                            color: $font-sup-color;
+                            .iconfont{
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+                
+                .sub-members-list{
+                    width: 100%;
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: max-height 0.2s ease-in;
+                    &.active{
+                        max-height: 1000px;
+                    }
+                    .sub-members-title{
+                        padding: 0 $view-padding;
+                        width: 100%;
+                        height: 25px;
+                        text-align: center;
+                        line-height: 25px;
+                        font-size: 14px;
+                        color: $font-minor-color;
+                        background-color: $bg-gray-color;
+                    }
+                    .list-wrapper{
+                        .sub-member-item{
+                            margin: 1px 0 0;
+                            padding: 0 $view-padding;
+                            width: 100%;
+                            height: 50px;
+                            line-height: 50px;
+                            border-bottom: 1px solid $line-main-color;
+                            display: flex;
+                            justify-content: flex-start;
+                            background-color: rgb(240,244,247);
+                            .img-cell{
+                                padding: 5px;
+                                width: 50px;
+                                height: 50px;
+                                img{
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                            }
+                            .name-cell{
+                                width: calc(100% - 40px);
+                            }
+                        }
+                    }
+                }
+            }
+        }   
+    }
+}

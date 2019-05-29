@@ -1,0 +1,44 @@
+<!--发现界面模板-->
+<ion-view id="publish_evaluation" view-title="发布评测" hide-nav-bar=true>
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			发布评测
+		</div>
+		<div class="right" >
+			
+		</div>
+	</div>
+	
+	<ion-content class="publish-evaluation">
+		<div class="head-img">
+			<div class="img">
+				<img ng-src="{{userInfo.ShowImage}}" alt="">
+			</div>
+			<div class="name overflow-omit-one">
+				{{userInfo.Name}}
+			</div>		
+		</div>
+
+		<div class="input-wrapper">
+			<div class="price-input">
+				<div class="title">评测标题</div>
+				<div class="input">
+					<input ng-model="subData.Title" placeholder="请输入评测标题" type="text">
+				</div>
+			</div>
+			<div class="reason-input">
+				<div class="title">评测内容</div>
+				<div class="input">
+					<textarea ng-model="subData.Content" placeholder="请输入评测内容" name="" id="" ></textarea>
+				</div>
+			</div>
+		</div>
+		
+		<div ng-click="saveData()" class="sub-btn">提交</div>
+	</ion-content>
+	
+</ion-view>

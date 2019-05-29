@@ -1,0 +1,25 @@
+#aisle_page{
+    .aisle-page{
+        margin: $head-height 0 0;
+        .flex-wrapper{
+            padding: 0 $view-padding;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            .flex-item{
+                margin: 10px;
+                line-height: 20px;
+                font-size: 14px;
+                font-weight: bold;
+                color: $font-main-color;
+                &.active{
+                    border-bottom: 1px solid $bg-main-color;
+                }
+            }
+        }
+        img{
+            margin: 100px 0 0;
+            width: 100%;
+        }
+     }
+}

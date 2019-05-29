@@ -1,0 +1,204 @@
+#mall_cart{
+    .total-action-info{
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        position: fixed;
+        bottom: $tabs-height;
+        color: $font-main-color;
+        background-color: white;
+        display: flex;
+        justify-content: flex-start;
+        .left-cell{
+            width: 80px;
+            text-align: center;
+            .icon-wrap{
+                display: inline-block;
+                vertical-align: middle;
+                margin: 10px 0;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                border: 1px solid $bg-main-color;
+            }
+            .icon{
+                display: inline-block;
+                vertical-align: middle;
+                width: 20px;
+                height: 20px;
+            }
+            .text-wrap{
+                display: inline-block;
+                vertical-align: middle;
+                height: 40px;
+            }
+        }
+        .mid-cell{
+            width: calc(100% - 200px);
+            text-align: center;
+            font-size: 16px;
+        }
+        .right-cell{
+            width: 120px;
+            font-size: 16px;
+            text-align: center;
+            color: white;
+            background-color: $bg-main-color;
+            &.delete{
+                background-color: $font-price-red;
+            }
+        }
+    }
+    .mall-cart{
+        margin-top: $head-height;
+        $margin-bottom:90px + $safe-bottom;
+        margin-bottom: $margin-bottom;
+        padding: 0;
+        background-color: $bg-gray-color;
+        .goods-all{
+            width: 100%;
+            .group-item{
+                width: 100%;
+                .group-title{
+                    padding: 0 10px;
+                    width: 100%;
+                    height: 30px;
+                    display: flex;
+                    justify-content: flex-start;
+                    background-color: rgb(237,241,242);
+                    .left-cell{
+                        width: 30px;
+                        text-align: center;
+                        line-height: 30px;
+                        color: $bg-main-color;
+                        .iconfont{
+                            font-size: 16px;
+                        }
+                    }
+                    .right-cell{
+                        width: calc(100% - 30px);
+                        height: 30px;
+                        line-height: 30px;
+                        font-size: 14px;
+                        font-weight: 500;
+                        color: $font-main-color;
+                    }
+                }
+                .list{
+                    .item{
+                        padding: 0;
+                        .item-content{
+                            padding: 0;
+                            .goods-item{
+                                padding: 10px;
+                                width: 100%;
+                                height: 110px;
+                                display: flex;
+                                justify-content: flex-start;
+                                background-color: white;
+                                .left-cell{
+                                    width: 30px;
+                                    .icon{
+                                        margin: 35px 0;
+                                        width: 20px;
+                                        height: 20px;
+                                    }
+                                    .fake-icon{
+                                        margin: 35px 0;
+                                        width: 20px;
+                                        height: 20px;
+                                        border-radius: 50%;
+                                        border: 1px solid $bg-main-color; 
+                                    }
+                                }
+                                .right-cell{
+                                    padding: 0 0 0 10px;
+                                    width: calc(100% - 30px);
+                                    height: 30px;
+                                    line-height: 30px;
+                                    font-size: 14px;
+                                    color: $font-main-color;
+                                    display: flex;
+                                    justify-content: flex-start;
+                                    .img-cell{
+                                        width: 90px;
+                                        height: 90px;
+                                        img{
+                                            width: 100%;
+                                            height: 100%;
+                                        }
+                                    }
+                                    .info-cell{
+                                        padding: 0 0 0 10px;
+                                        width: calc(100% - 100px);
+                                        height: 100px;
+                                        .top-cell{
+                                            width: 100%;
+                                            height: 40px;
+                                            line-height: 20px;
+                                            font-size: 14px;
+                                            color: $font-main-color;
+                                        }
+                                        .mid-cell{
+                                            width: 100%;
+                                            height: 20px;
+                                            line-height: 20px;
+                                            font-size: 12px;
+                                            color: $font-price-red-mall;
+                                        }
+                                        .bot-cell{
+                                            width: 100%;
+                                            height: 30px;
+                                            display: flex;
+                                            justify-content: flex-start;
+                                            .price{
+                                                width: calc(100% - 80px);
+                                                height: 30px;
+                                                line-height: 30px;
+                                                color: $font-price-red-mall;
+                                                font-size: 16px;
+                                                font-weight: 500;
+                                                span{
+                                                    font-size: 20px;
+                                                }
+                                            }
+                                            .count-action{
+                                                padding: 5px 0;
+                                                width: 80px;
+                                                height: 30px;
+                                                display: flex;
+                                                justify-content: flex-start;
+                                                .action-item{
+                                                    width: 20px;
+                                                    height: 20px;
+                                                    text-align: center;
+                                                    line-height: 20px;
+                                                    &.add{
+                                                        color: $font-main-color;
+                                                    }
+                                                    &.reduce{
+                                                        color: $font-sup-color;
+                                                    }
+                                                }
+                                                .count{
+                                                    width: 40px;
+                                                    height: 20px;
+                                                    text-align: center;
+                                                    line-height: 20px;
+                                                    color: $font-main-color;
+                                                    background-color: rgb(222,222,222);
+                                                }
+                                            }
+                                        }
+                                    }
+                                } 
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+   
+}

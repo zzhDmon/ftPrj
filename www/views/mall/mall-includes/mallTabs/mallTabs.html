@@ -1,0 +1,38 @@
+<div id="mall_tabs">
+    <ul>
+        <li ng-class="{true:'active',false:''}[activeTabName=='mall-home']" ui-sref="mallHome">
+            <div class="top-icon">
+                <i class="iconfont icon-shouye1"></i>
+            </div>
+            <p>首页</p>
+        </li>
+        <li ng-class="{true:'active',false:''}[activeTabName=='mall-classify']"  ui-sref="mallClassify">
+            <div class="top-icon">
+                <i class="iconfont icon-fenlei-"></i>
+            </div>
+            <p>分类</p>
+            <div ng-if="0<addfriendCount&&addfriendCount<99" class="unread-count">{{addfriendCount}}</div>
+            <div ng-if="addfriendCount>99" class="unread-count">99+</div>
+        </li>
+        <li ng-class="{true:'active',false:''}[activeTabName=='mall-cart']"  ui-sref="mallCart">
+            <div class="top-icon">
+                <i class="iconfont icon-gouwuche-"></i>
+            </div>
+            <p>购物车</p>
+        </li>
+        <li ng-class="{true:'active',false:''}[activeTabName=='mall-message']" ui-sref="mallMessage">
+            <div class="top-icon">
+                <i class="iconfont icon-xiaoxi-"></i>
+            </div>
+            <p>消息</p>
+            <div ng-if="0<totalUnread&&totalUnread<99" class="unread-count">{{totalUnread}}</div>
+            <div ng-if="totalUnread>99" class="unread-count">99+</div>
+        </li>
+        <li ng-class="{true:'active',false:''}[activeTabName=='mall-mine']" ui-sref="mallMine">
+            <div class="top-icon">
+                <i class="iconfont icon-wode-1"></i>
+            </div>
+            <p>我的</p>
+        </li>
+    </ul>
+</div>

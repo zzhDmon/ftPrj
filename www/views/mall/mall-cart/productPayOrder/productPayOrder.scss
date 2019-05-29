@@ -1,0 +1,146 @@
+// 验证码
+.mall-cardpay-code-modalview{
+    width: 90%;
+    min-height: 240px;
+    left: 5%;
+    top: 100px;
+    border-radius: 10px 10px 0 0;
+    .header{
+        padding: 0;
+        height: 36px;
+        border-bottom: 1px solid $line-main-color;
+        background-color: white;
+        .back{
+            color: $font-main-color;
+            .iconfont{
+                font-size: 20px;
+            }
+        }
+        .title{
+            background-color: white;
+            color: $font-main-color;
+            font-size: 18px;
+        }
+    }
+    .scroll-content{
+        margin: 36px 0 0;
+        .main{
+            padding: 0 $view-padding;
+            width: 100%;
+            .money-item{
+                width: 100%;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                font-size: 20px;
+                color: $font-main-color;
+                border-bottom: 1px solid $line-main-color;
+            }
+            .flex-item{
+                padding: 5px;
+                width: 100%;
+                height: 50px;
+                display: flex;
+                justify-content: flex-start;
+                border-bottom: 1px solid $line-main-color;
+            }
+            .ver-code{
+                line-height: 40px;
+                font-size: 16px;
+                .left-cell{
+                    width: 60px;
+                    height: 40px;
+                } 
+                .mid-cell{
+                    width: calc(100% - 140px);
+                    height: 40px;
+                    input{
+                        padding: 0;
+                        width: 100%;
+                        height: 100%;
+                        line-height: 40px;
+                        font-size: 16px;
+                        background-color: white;
+                    }
+                }
+            }
+        }
+    }
+}
+#product_pay_order{
+    .product-pay-order{
+        margin: $head-height 0 0;
+        padding: 0;
+        background-color: $bg-gray-color;
+        .all-title{
+            padding: 0 $view-padding;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            color: $font-main-color;
+        }
+        .half-offline{
+            width: 100%;
+            height: 5px;
+            background-color: $bg-gray-color;
+        }
+        .type-item-wrapper{
+            padding: 5px $view-padding;
+            width:100%;
+            height: 50px;
+            display: flex;
+            justify-content: flex-start;
+            background-color: white;
+            .left-cell{
+                width: 40px;
+                height: 40px;
+                .icon{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .mid-cell{
+                width: calc(100% - 70px);
+                padding: 0 10px;
+                height: 100%;
+                font-size: 16px;
+                line-height: 40px;
+                .top{
+                    width: 100%;
+                    height: 20px;
+                    line-height: 20px;
+                }
+                .bot{
+                    width: 100%;
+                    height: 20px;
+                    line-height: 20px;
+                    font-size: 14px;
+                    text-align: right;
+                }
+            }
+            .right-cell{
+                width: 30px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                color: $font-sup-color;
+                .fake-icon{
+                    margin: 10px 5px;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    border: 1px solid $bg-main-color;
+                }
+                .icon{
+                    margin: 10px 5px;
+                    width: 20px;
+                    height: 20px; 
+                }
+            }
+        }
+        .choose-card{
+
+        }
+    }
+}

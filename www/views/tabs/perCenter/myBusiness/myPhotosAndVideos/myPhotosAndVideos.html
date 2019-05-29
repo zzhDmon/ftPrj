@@ -1,0 +1,91 @@
+<ion-view id="my_photos_and_videos" view-title="{{headTitle}}" hide-nav-bar=true>
+	<div class="header header-black">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			{{headTitle}}
+		</div>
+		<div ng-show="paramsData.uid==0" ng-click="switchShowAction()" class="right">		
+			<span ng-show="!showAction">操作</span>	
+			<span ng-show="showAction">取消</span>	
+		</div>
+	</div>
+
+	<ion-content ng-click="cancelShowAction()" class="my-photos-and-videos" has-bouncing="false">
+		<div class="head-bg-img">
+			<div ng-click="uploadBgImg()" ng-show="!bgImage" ng-hide="paramsData.uid" class="no-bg-img">点击添加背景</div>
+			<!-- <div ng-click="showActionSheet()" ng-show="bgImage" class="bg-img" ng-style="{'background-image': 'url('+bgImage+')'}"></div> -->
+			<img ng-click="showActionSheet()" ng-show="bgImage" ng-src="{{bgImage}}" alt="">
+		</div>
+		
+		<!-- 视频预览上传 -->
+		<div ng-show="videoFileObj" class="video-wait">
+			<p>视频预览</p>
+			<div class="content-wrapper">
+				<div>
+					<video
+						onloadeddata="angular.element(this).scope().onLoadedData()" 
+						id="preview_my_video" 
+						ng-attr-poster="{{subVideoData.image}}"
+						style="width: 100px;">
+					</video>
+				</div>
+				<div ng-show="subVideoData.video && !subVideoData.image" ng-click="uploadShoot()" class="action-btn publish">上传截图</div>
+				<div ng-show="subVideoData.video && subVideoData.image" ng-click="publishVideo()" class="action-btn publish">发布</div>
+				<div ng-show="videoFileObj || subVideoData.video" ng-click="cancelVideo()" class="action-btn cancel">取消</div>
+			</div>
+			<input
+				id="my_videos_add_input" 
+				type="file" 
+				accept="video/mp4,video/*" 
+				style="display: none;"
+				onchange="angular.element(this).scope().onFileChange(this.files)" >		
+		</div>
+
+		<!-- VCR -->
+		<div class="offline"></div>
+		<div class="type-title">
+			<span ng-show="paramsData.uid==0">我的</span><span ng-hide="paramsData.uid==0">他的</span>VCR
+		</div>
+		<div class="flex-wrapper">
+			<div 
+				ng-show="paramsData.uid==0&&(vcrList.length==0)" 
+				ng-click="videoChoose(31)" 
+				class="flex-item add-item"
+			>
+				<i class="iconfont icon-tianjia"></i>
+			</div>
+			<div 
+				ui-sref="vcrVideo({id:item.Id})"
+				ng-repeat="item in vcrList track by $index" 
+				class="flex-item"
+			>
+				<div ng-class="{true:'headShake',false:''}[showAction]" class="animated infinite">
+					<div class="in-flex-item" ng-style="{'background-image': 'url('+item.Content.image+')'}"></div>
+					<div class="fake-video"><i class="iconfont icon-shipin11"></i></div>
+				</div>
+				<div ng-show="showAction" ng-click="removeVideo($index,item,$event,31)" class="del-btn"><i class="iconfont icon-guanbi1"></i></div>
+			</div>
+		</div>
+		<p class="no-result" ng-if="paramsData.uid==0&&(!vcrList||vcrList.length<1)">暂无VCR~</p>
+		<!-- 视频 -->
+		<div class="offline"></div>
+		<div class="type-title">{{headTitle}}</div>
+		<div class="flex-wrapper">
+			<div ng-show="paramsData.uid==0" ui-sref="uploadVideo" class="flex-item add-item">
+				<i class="iconfont icon-tianjia"></i>
+			</div>
+			<div ui-sref="dialogVideoPlayer({url:item.Content.video,image:item.Content.image})" ng-repeat="item in showVideoList track by $index" class="flex-item">
+				<div ng-class="{true:'headShake',false:''}[showAction]" class="animated infinite">
+					<div class="in-flex-item" ng-style="{'background-image': 'url('+item.Content.image+')'}"></div>
+					<div class="fake-video"><i class="iconfont icon-shipin11"></i></div>
+				</div>
+				<div ng-show="showAction" ng-click="removeVideo($index,item,$event,30)" class="del-btn"><i class="iconfont icon-guanbi1"></i></div>
+			</div>
+		</div>
+		<p class="no-result" ng-if="!showVideoList||showVideoList.length<1">暂无视频~</p>
+	</ion-content>
+
+</ion-view>
+

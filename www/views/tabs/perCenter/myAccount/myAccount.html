@@ -1,0 +1,108 @@
+
+<!--对话模板-->
+<ion-view id="my_account" view-title="我的账户" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">余额</div>
+		<div ui-sref="setPayPassword" class="right">
+            <div class="top-cell">
+                <i class="iconfont icon-mima-"></i>
+            </div>
+            <div class="small-font-size bot-cell">
+                支付密码
+            </div>
+        </div>
+	</div>
+	<ion-content class="my-account" has-bouncing="false">
+		<div class="main">
+			<h6>账户余额</h6>
+			<h5 class="overflow-omit-one">￥{{myBalance || 0.00}}</h5>	
+			<p ng-show="disCount>0" class="small-font-size">其中￥{{disCount}}暂不可提现（24小时后才可提现）</p>	
+			<div ui-sref="bonusList" class="to-be-get">
+				待领取
+			</div>
+			<div class="score-card">
+				<div class="top-item clearfix">
+					<div class="left-cell">积分</div>
+					<div ng-click="showModal('score')" class="right-cell">积分规则</div>
+				</div>
+				<div class="bot-item">{{pageData.Scores}}</div>
+			</div>
+			<div class="score-card">
+				<div class="top-item clearfix">
+					<div class="left-cell">抵用金</div>
+					<div ng-click="showModal('vocher')" class="right-cell">抵用金规则</div>
+				</div>
+				<div class="bot-item">{{pageData.Vochers }}</div>
+			</div>
+		</div>
+
+		<div class="enter-list">
+			<div ui-sref="tabs.topUp" class="wrapper">
+				<div class="left-icon">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-chongzhi-"></use>
+					</svg>
+				</div>
+				<div class="mid-cont">充值</div>
+				<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+			</div>
+			<div ui-sref="tabs.withDraw" class="wrapper">
+				<div class="left-icon">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-tixian-"></use>
+					</svg>
+				</div>
+				<div class="mid-cont">提现</div>
+				<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+			</div>
+			 <div ui-sref="transactionRecord" class="wrapper">
+				<div class="left-icon">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-jiaoyimingxi-"></use>
+					</svg>
+				</div>
+				<div class="mid-cont">交易记录</div>
+				<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+			</div> 
+			<div ui-sref="tabs.myBankCard({actiontype:'action'})" class="wrapper">
+				<div class="left-icon">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-yinhang-"></use>
+					</svg>
+				</div>
+				<div class="mid-cont">我的银行卡</div>
+				<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+			</div>
+			
+		</div>
+	</ion-content>
+
+	<script id="my_account_rule_modal" type="text/ng-template">
+		<ion-modal-view class="my-account-rule-modalview">
+			<div class="heade">
+				<div class="side"></div>
+				<div ng-show="ruleType=='score'" class="title">积分规则</div>
+				<div ng-hide="ruleType=='score'" class="title">抵用金规则</div>
+				<div class="side" ng-click="closeModal()"><i class="iconfont icon-guanbi1"></i></div>	
+			</div>
+			<ion-content class="rules">
+				<div ng-show="ruleType=='score'" class="rules-main">
+					<p>消费送积分：app内任意消费金额获赠10%积分</p>
+					<p>佣金赠积分：app内任意任务佣金奖励获赠10%积分</p>
+					<p>1积分=1元</p>
+					<p>积分可在商城积分专区使用</p>
+				</div>
+				<div ng-hide="ruleType=='score'" class="rules-main">
+					<p>升级身份送抵用券：升级任意身份获赠相应会员费抵用券（如999元/年个人身份获赠999元抵用券）</p>
+					<p>商企推广送抵用券：所推下级（商/企）营业额一级3%二级2%抵用券</p>
+					<p>1抵用金=1元</p>
+					<p>抵用券仅限app非自营商品消费抵用</p>
+				</div>
+			</ion-content>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

@@ -1,0 +1,36 @@
+<ion-view id="space_permissions" view-title="黑名单" hide-nav-bar=true>  
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			空间屏蔽名单
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	<div>
+		<ion-content class="space-permissions"> 
+			<div ng-show="blackList.length==0" class="nocontacts">
+				<p>暂无屏蔽空间联系人</p>
+			</div>
+			<ul class="clientli">  
+				<li class="client-name" ng-repeat="item in blackList track by $index">                       
+					<div class="avatar">
+						<img 
+							ng-src="{{item.avatar || 'http://imgs.wujiuyun.com//Images//logo.png'}}" 
+							onError="src='http://imgs.wujiuyun.com//Images//logo.png'"
+							alt=""/>
+					</div>
+					<div class="name">
+						{{item.nick || '房田用户'}}
+					</div>  
+					<!--邀请进群  -->
+					<div class="action">
+						<div ng-click="removeBlack(item,$index)" class="pass">移除</div>
+					</div> 
+				</li>  
+			</ul>  
+		</ion-content>  
+	</div>	
+</ion-view>  

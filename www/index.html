@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<!-- img-src * 去除script-src * 'unsafe-eval';-->
+		<meta http-equiv="Content-Security-Policy" content=" connect-src * 'unsafe-eval';object-src 'self'; style-src * 'unsafe-inline';">
+		<title>房田网</title>
+		
+		<link rel="manifest" href="manifest.json">
+
+		<!-- un-comment this code to enable service worker
+		<script>
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker.register('service-worker.js')
+				.then(() => console.log('service worker installed'))
+				.catch(err => console.log('Error', err));
+			}
+		</script>-->
+
+
+		<link href="lib/ionic/css/ionic.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+
+		<link href="css/animate/animate.min.css" rel="stylesheet">
+		
+		<!--IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above-->
+   		<!-- <link href="css/ionic.app.css" rel="stylesheet"> -->
+   		<link href="css/ionic.app.min.css" rel="stylesheet">
+		<link href="lib/iconfont/iconfont.css" rel="stylesheet">
+		<script src="lib/iconfont/iconfont.js"></script>
+    
+		<!-- img-enable -->
+		<link href="lib/js/img-enable-show/img-enable-show.css" rel="stylesheet">
+		<!-- ion-rangeSlider-->
+		<link rel="stylesheet" href="lib/js/ionrangeslider/normalize.css">
+		<link rel="stylesheet" href="lib/js/ionrangeslider/ion.rangeSlider.css">
+		<link rel="stylesheet" href="lib/js/ionrangeslider/ion.rangeSlider.skinFlat.css">
+		<link rel="stylesheet" href="lib/js/quill/quill.snow.css">
+		
+		
+	</head>
+	<style>
+		
+	</style>
+
+	<body ng-app="App">
+		<canvas style="display: none;" id="wechat_link_canvas" width="100px" height="100px"></canvas>
+		
+		<!--带侧边栏应用-->
+		<ion-side-menus>
+			<!--页面主要内容-->
+			<ion-side-menu-content>			
+				<!--导航条-->
+				<ion-nav-bar navcss class="bar-light">
+					<!--返回按钮-->
+					<ion-nav-back-button ></ion-nav-back-button>
+				</ion-nav-bar>			
+				<!--导航视图-->
+				<ion-nav-view></ion-nav-view>
+				
+			</ion-side-menu-content>
+		</ion-side-menus>
+	</body>
+	<!-- ionic/angularjs js -->
+	<!-- <script src="lib/ionic/js/ionic.bundle.js"></script> -->
+	<script src="lib/ionic/js/ionic.bundle.min.js"></script>
+	<script src="lib/ionic/js/angular/angular.min.js"></script>
+	<script src="lib/ionic/js/angular/angular-cookies.min.js"></script>
+	<script src="lib/ocLazyLoad/ocLazyLoad.min.js"></script>
+	
+
+
+	<!-- cordova script (this will be a 404 during development) -->
+	<script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+	<script src="cordova.js"></script>
+
+	<!--百度map-->
+	<script src="https://api.map.baidu.com/api?v=2.0&ak=lGwGxdct4g4V4LdFUu38YIOH" type="text/javascript"></script>
+	
+	<!--native-transitions-->
+	<script src="lib/ionic-native-transtitions/dist/ionic-native-transitions.min.js" type="text/javascript"></script>
+	<!--city-picker-->
+	<script src="lib/ionic-citypicker/dist/ionic-citypicker.min.js"></script>	
+	<!-- <script src="lib/ionic-citypicker/ionic-citypicker.min.js"></script>	 -->
+
+	<!-- minify lib/js -->
+	<script src="dist/js/libs.min.js"></script>
+	
+	<script src="lib/NIM/NIM_Web_SDK_v5.5.0.js"></script>
+	<script src="lib/js/hammer/hammer.min.js"></script>
+	
+	<script src="lib/js/ionic-image-lazy-load.js"></script>
+	
+	
+	<!-- main build result -->
+	<script src="dist/js/app.min.js"></script>
+
+	<!-- start build -->
+	<!-- <script src="js/app.js"></script>
+	<script src="js/services/appUtils.js"></script>
+	<script src="js/services/dataServices.js"></script>
+	<script src="js/services/NimUtils.js"></script>
+	<script src="js/services/JpushUtils.js"></script>
+	<script src="js/services/factory.js"></script>
+	<script src="js/directives/directive.js"></script>
+	<script src="js/directives/filters.js"></script> -->
+	<!-- end build -->
+
+	<!-- controller build result -->
+	<script src="dist/js/controlls.min.js"></script>
+	<!-- <script src="dist/js/routes.min.js"></script> -->
+
+	<!-- start build -->
+	<!-- <script src="views/publicPage/mySet/mySet.js"></script>
+	<script src="views/publicPage/mySet/mySet.route.js"></script>
+	<script src="views/publicPage/mySet/aboutUs/aboutUs.js"></script>
+	<script src="views/publicPage/mySet/aboutUs/aboutUs.route.js"></script>
+	<script src="views/publicPage/mySet/myPrivacy/myPrivacy.js"></script>
+	<script src="views/publicPage/mySet/myPrivacy/myPrivacy.route.js"></script>
+	<script src="views/publicPage/mySet/changePwd/changePwd.js"></script>
+	<script src="views/publicPage/mySet/changePwd/changePwd.route.js"></script>
+	<script src="views/publicPage/articleDetail/articleDetail.js"></script>
+	<script src="views/publicPage/articleDetail/articleDetail.route.js"></script>
+	<script src="views/publicPage/agencyAgreement/agencyAgreement.js"></script>
+	<script src="views/publicPage/agencyAgreement/agencyAgreement.route.js"></script>
+	<script src="views/publicPage/agencyAgreement/agencyAgreementDetail/agencyAgreementDetail.js"></script>
+	<script src="views/publicPage/agencyAgreement/agencyAgreementDetail/agencyAgreementDetail.route.js"></script>
+	<script src="views/publicPage/agencyAgreementCheck/agencyAgreementCheck.js"></script>
+	<script src="views/publicPage/agencyAgreementCheck/agencyAgreementCheck.route.js"></script>
+	<script src="views/publicPage/bindLogin/bindLogin.js"></script>
+	<script src="views/publicPage/bindLogin/bindLogin.route.js"></script>
+	<script src="views/publicPage/bindRegister/bindRegister.js"></script>
+	<script src="views/publicPage/bindRegister/bindRegister.route.js"></script>
+	<script src="views/publicPage/dialogVideoPlayer/dialogVideoPlayer.js"></script>
+	<script src="views/publicPage/dialogVideoPlayer/dialogVideoPlayer.route.js"></script>
+	<script src="views/publicPage/downloadPage/downloadPage.js"></script>
+	<script src="views/publicPage/downloadPage/downloadPage.route.js"></script>
+	<script src="views/publicPage/login/login.js"></script>
+	<script src="views/publicPage/login/login.route.js"></script>
+	<script src="views/publicPage/realName/realName.js"></script>
+	<script src="views/publicPage/realName/realName.route.js"></script>
+	<script src="views/publicPage/registerShare/registerShare.js"></script>
+	<script src="views/publicPage/registerShare/registerShare.route.js"></script>
+	<script src="views/publicPage/registerSharePoster/registerSharePoster.js"></script>
+	<script src="views/publicPage/registerSharePoster/registerSharePoster.route.js"></script>
+	<script src="views/publicPage/registerorback/registerorback.js"></script>
+	<script src="views/publicPage/registerorback/registerorback.route.js"></script>
+	<script src="views/publicPage/registerorback/agreement/agreement.js"></script>
+	<script src="views/publicPage/registerorback/agreement/agreement.route.js"></script>
+	<script src="views/publicPage/registerorback/completeInfo/completeInfo.js"></script>
+	<script src="views/publicPage/registerorback/completeInfo/completeInfo.route.js"></script>
+	<script src="views/publicPage/realHouse/realHouse.js"></script>
+	<script src="views/publicPage/realHouse/realHouse.route.js"></script>
+	<script src="views/publicPage/personalHomePage/personalHomePage.js"></script>
+	<script src="views/publicPage/personalHomePage/personalHomePage.route.js"></script>
+	<script src="views/publicPage/personalHouse/personalHouse.js"></script>
+	<script src="views/publicPage/personalHouse/personalHouse.route.js"></script>
+	<script src="views/publicPage/personalNeed/personalNeed.js"></script>
+	<script src="views/publicPage/personalNeed/personalNeed.route.js"></script>
+	<script src="views/publicPage/newHouseDetail/newHouseDetail.js"></script>
+	<script src="views/publicPage/newHouseDetail/newHouseDetail.route.js"></script>
+	<script src="views/publicPage/newHouseDetail/usageRules/usageRules.js"></script>
+	<script src="views/publicPage/newHouseDetail/usageRules/usageRules.route.js"></script>
+	<script src="views/publicPage/sellHouseDetail/sellHouseDetail.js"></script>
+	<script src="views/publicPage/sellHouseDetail/sellHouseDetail.route.js"></script>
+	<script src="views/publicPage/otherHouseDetail/otherHouseDetail.js"></script>
+	<script src="views/publicPage/otherHouseDetail/otherHouseDetail.route.js"></script>
+	<script src="views/publicPage/rentHouseDetail/rentHouseDetail.js"></script>
+	<script src="views/publicPage/rentHouseDetail/rentHouseDetail.route.js"></script>
+	<script src="views/publicPage/orderVisit/orderVisit.js"></script>
+	<script src="views/publicPage/orderVisit/orderVisit.route.js"></script>
+	<script src="views/publicPage/orderVisit/orderAgentList/orderAgentList.js"></script>
+	<script src="views/publicPage/orderVisit/orderAgentList/orderAgentList.route.js"></script>
+	<script src="views/publicPage/orderVisit/chooseOrderHouse/chooseOrderHouse.js"></script>
+	<script src="views/publicPage/orderVisit/chooseOrderHouse/chooseOrderHouse.route.js"></script>
+	<script src="views/publicPage/visitReport/visitReport.js"></script>
+	<script src="views/publicPage/visitReport/visitReport.route.js"></script>
+	<script src="views/publicPage/needDetail/needDetail.js"></script>	
+	<script src="views/publicPage/needDetail/needDetail.route.js"></script>	
+	<script src="views/publicPage/videoDirective/noCtrVideo/noCtrVideo.directive.js"></script>
+	<script src="views/publicPage/videoPlayer/videoPlayer.js"></script>	
+	<script src="views/publicPage/videoPlayer/videoPlayer.route.js"></script>	
+	<script src="views/publicPage/videoPlayer/videoPlayer.directive.js"></script>	
+	<script src="views/publicPage/videoUpload/videoUpload.js"></script>	
+	<script src="views/publicPage/videoUpload/videoUpload.route.js"></script>	
+	
+	<script src="views/tabs/home/home.js"></script>
+	<script src="views/tabs/home/home.route.js"></script>
+	<script src="views/tabs/home/realHome.js"></script>
+	<script src="views/tabs/home/realHome.route.js"></script>
+	<script src="views/tabs/home/houseTimes/houseTimes.js"></script>
+	<script src="views/tabs/home/houseTimes/houseTimes.route.js"></script>
+	<script src="views/tabs/home/lotteryPage/lotteryPage.js"></script>
+	<script src="views/tabs/home/lotteryPage/lotteryPage.route.js"></script>
+	<script src="views/tabs/home/moreVideos/moreVideos.js"></script>
+	<script src="views/tabs/home/moreVideos/moreVideos.route.js"></script>
+	<script src="views/tabs/home/redEnvelope/redEnvelope.js"></script>
+	<script src="views/tabs/home/redEnvelope/redEnvelope.route.js"></script>
+	<script src="views/tabs/home/redEnvelope/receiveRedEnvelope/receiveRedEnvelope.js"></script>
+	<script src="views/tabs/home/redEnvelope/receiveRedEnvelope/receiveRedEnvelope.route.js"></script>
+	<script src="views/tabs/home/videoList/videoList.js"></script>
+	<script src="views/tabs/home/videoList/videoList.route.js"></script>
+	<script src="views/tabs/home/welcomePage/welcomePage.js"></script>
+	<script src="views/tabs/home/welcomePage/welcomePage.route.js"></script>
+	<script src="views/tabs/home/houseSource/houseSource.js"></script>
+	<script src="views/tabs/home/houseSource/houseSource.route.js"></script>
+	<script src="views/tabs/home/houseSource/newHousePage/newHousePage.js"></script>
+	<script src="views/tabs/home/houseSource/newHousePage/newHousePage.route.js"></script>
+	<script src="views/tabs/home/houseSource/newHouseArr/newHouseArr.js"></script>
+	<script src="views/tabs/home/houseSource/newHouseArr/newHouseArr.route.js"></script>
+	<script src="views/tabs/home/houseSource/ershouPage/ershouPage.js"></script>
+	<script src="views/tabs/home/houseSource/ershouPage/ershouPage.route.js"></script>
+	<script src="views/tabs/home/houseSource/ershouHouseList/ershouHouseList.js"></script>
+	<script src="views/tabs/home/houseSource/ershouHouseList/ershouHouseList.route.js"></script>
+	<script src="views/tabs/home/houseSource/rentPage/rentPage.js"></script>
+	<script src="views/tabs/home/houseSource/rentPage/rentPage.route.js"></script>
+	<script src="views/tabs/home/houseSource/rentHouseList/rentHouseList.js"></script>
+	<script src="views/tabs/home/houseSource/rentHouseList/rentHouseList.route.js"></script>
+	<script src="views/tabs/home/ownerColumn/ownerColumn.js"></script>
+	<script src="views/tabs/home/ownerColumn/ownerColumn.route.js"></script>
+	<script src="views/tabs/home/agentEntrance/agentEntrance.js"></script>
+	<script src="views/tabs/home/agentEntrance/agentEntrance.route.js"></script>
+	<script src="views/tabs/home/aislePage/aislePage.js"></script>
+	<script src="views/tabs/home/aislePage/aislePage.route.js"></script>
+	<script src="views/tabs/home/bannerDetailPage/bannerDetailPage.js"></script>
+	<script src="views/tabs/home/bannerDetailPage/bannerDetailPage.route.js"></script>
+	<script src="views/tabs/home/buyrentChannel/buyrentChannel.js"></script>
+	<script src="views/tabs/home/buyrentChannel/buyrentChannel.route.js"></script>
+	<script src="views/tabs/home/daibanList/daibanList.js"></script>
+	<script src="views/tabs/home/daibanList/daibanList.route.js"></script>
+	<script src="views/tabs/home/cityChoose/cityChoose.js"></script>
+	<script src="views/tabs/home/cityChoose/cityChoose.route.js"></script>
+	<script src="views/tabs/home/clientDetail/clientDetail.js"></script>
+	<script src="views/tabs/home/clientDetail/clientDetail.route.js"></script>
+	<script src="views/tabs/home/houseOnMap/TextIconOverlay.js"></script>
+	<script src="views/tabs/home/houseOnMap/MarkerClusterer.js"></script>
+	<script src="views/tabs/home/houseOnMap/houseOnMap.js"></script>
+	<script src="views/tabs/home/houseOnMap/houseOnMap.route.js"></script>
+	<script src="views/tabs/home/houseSearch/houseSearch.js"></script>
+	<script src="views/tabs/home/houseSearch/houseSearch.route.js"></script>
+	<script src="views/tabs/home/fbTypeChoose/fbTypeChoose.js"></script>
+	<script src="views/tabs/home/fbTypeChoose/fbTypeChoose.route.js"></script>
+	<script src="views/tabs/home/goldBroker/goldBroker.js"></script>
+	<script src="views/tabs/home/goldBroker/goldBroker.route.js"></script>
+	<script src="views/tabs/home/evaluationList/evaluationList.js"></script>
+	<script src="views/tabs/home/evaluationList/evaluationList.route.js"></script>
+	<script src="views/tabs/home/evaluationList/publishEvaluation/publishEvaluation.js"></script>
+	<script src="views/tabs/home/evaluationList/publishEvaluation/publishEvaluation.route.js"></script>
+	<script src="views/tabs/home/evaluationList/evaluationDetail/evaluationDetail.js"></script>
+	<script src="views/tabs/home/evaluationList/evaluationDetail/evaluationDetail.route.js"></script>
+	<script src="views/tabs/home/evaluationValuation/evaluationValuation.js"></script>
+	<script src="views/tabs/home/evaluationValuation/evaluationValuation.route.js"></script>
+	<script src="views/tabs/home/guessPrice/guessPrice.js"></script>
+	<script src="views/tabs/home/guessPrice/guessPrice.route.js"></script>
+	<script src="views/tabs/home/guessPrice/systemPrice/systemPrice.js"></script>
+	<script src="views/tabs/home/guessPrice/systemPrice/systemPrice.route.js"></script>
+	<script src="views/tabs/home/guessPrice/systemPrice/thirdGuessPrice/thirdGuessPrice.js"></script>
+	<script src="views/tabs/home/guessPrice/systemPrice/thirdGuessPrice/thirdGuessPrice.route.js"></script>
+	<script src="views/tabs/home/guessPrice/systemPrice/thirdGuessPrice/publishGuessPrice/publishGuessPrice.js"></script>
+	<script src="views/tabs/home/guessPrice/systemPrice/thirdGuessPrice/publishGuessPrice/publishGuessPrice.route.js"></script>
+	<script src="views/tabs/home/guessPrice/guessPriceCommunity/guessPriceCommunity.js"></script>
+	<script src="views/tabs/home/guessPrice/guessPriceCommunity/guessPriceCommunity.route.js"></script>
+	<script src="views/tabs/home/homeClassify/homeClassify.js"></script>
+	<script src="views/tabs/home/homeClassify/homeClassify.route.js"></script>
+	<script src="views/tabs/home/fbManage/addCommunity/addCommunity.js"></script>
+	<script src="views/tabs/home/fbManage/addCommunity/addCommunity.route.js"></script>
+	<script src="views/tabs/home/fbManage/addNew/addNew.js"></script>
+	<script src="views/tabs/home/fbManage/addNew/addNew.route.js"></script>
+	<script src="views/tabs/home/fbManage/addNew/addNewCommunity/addNewCommunity.js"></script>
+	<script src="views/tabs/home/fbManage/addNew/addNewCommunity/addNewCommunity.route.js"></script>
+	<script src="views/tabs/home/fbManage/addNew/addNewTD/addNewTD.js"></script>
+	<script src="views/tabs/home/fbManage/addNew/addNewTD/addNewTD.route.js"></script>
+	<script src="views/tabs/home/fbManage/addNew/addNewAddress/addNewAddress.js"></script>
+	<script src="views/tabs/home/fbManage/addNew/addNewAddress/addNewAddress.route.js"></script>
+	<script src="views/tabs/home/fbManage/addSell/addSell.js"></script>
+	<script src="views/tabs/home/fbManage/addSell/addSell.route.js"></script>
+	<script src="views/tabs/home/fbManage/addSell/addSellAddress/addSellAddress.js"></script>
+	<script src="views/tabs/home/fbManage/addSell/addSellAddress/addSellAddress.route.js"></script>
+	<script src="views/tabs/home/fbManage/addSell/addSellCommunity/addSellCommunity.js"></script>
+	<script src="views/tabs/home/fbManage/addSell/addSellCommunity/addSellCommunity.route.js"></script>
+	<script src="views/tabs/home/fbManage/addSell/addSellRoom/addSellRoom.js"></script>
+	<script src="views/tabs/home/fbManage/addSell/addSellRoom/addSellRoom.route.js"></script>
+	<script src="views/tabs/home/fbManage/addSell/addSellTD/addSellTD.js"></script>
+	<script src="views/tabs/home/fbManage/addSell/addSellTD/addSellTD.route.js"></script>
+	<script src="views/tabs/home/fbManage/addShop/addShop.js"></script>
+	<script src="views/tabs/home/fbManage/addShop/addShop.route.js"></script>
+	<script src="views/tabs/home/fbManage/addShop/addShopAddress/addShopAddress.js"></script>
+	<script src="views/tabs/home/fbManage/addShop/addShopAddress/addShopAddress.route.js"></script>
+	<script src="views/tabs/home/fbManage/addShop/addShopCommunity/addShopCommunity.js"></script>
+	<script src="views/tabs/home/fbManage/addShop/addShopCommunity/addShopCommunity.route.js"></script>
+	<script src="views/tabs/home/fbManage/addShop/addShopTD/addShopTD.js"></script>
+	<script src="views/tabs/home/fbManage/addShop/addShopTD/addShopTD.route.js"></script>
+	<script src="views/tabs/home/fbManage/chooseHouseTags/chooseHouseTags.js"></script>
+	<script src="views/tabs/home/fbManage/chooseHouseTags/chooseHouseTags.route.js"></script>
+	<script src="views/tabs/home/fbManage/addOther/addOther.js"></script>
+	<script src="views/tabs/home/fbManage/addOther/addOther.route.js"></script>
+	<script src="views/tabs/home/fbManage/addOther/addOtherCommunity/addOtherCommunity.js"></script>
+	<script src="views/tabs/home/fbManage/addOther/addOtherCommunity/addOtherCommunity.route.js"></script>
+	<script src="views/tabs/home/fbManage/addOther/addOtherTD/addOtherTD.js"></script>
+	<script src="views/tabs/home/fbManage/addOther/addOtherTD/addOtherTD.route.js"></script>
+	<script src="views/tabs/home/fbManage/addRent/addRent.js"></script>
+	<script src="views/tabs/home/fbManage/addRent/addRent.route.js"></script>
+	<script src="views/tabs/home/fbManage/addRent/addRentCommunity/addRentCommunity.js"></script>
+	<script src="views/tabs/home/fbManage/addRent/addRentCommunity/addRentCommunity.route.js"></script>
+	<script src="views/tabs/home/fbManage/addRent/addRentTD/addRentTD.js"></script>
+	<script src="views/tabs/home/fbManage/addRent/addRentTD/addRentTD.route.js"></script>
+	<script src="views/tabs/home/needTypeChoose/needTypeChoose.js"></script>
+	<script src="views/tabs/home/needTypeChoose/needTypeChoose.route.js"></script>
+
+	<script src="views/tabs/home/noCtrVideo/noCtrVideo.js"></script>
+	<script src="views/tabs/home/noCtrVideo/noCtrVideo.route.js"></script>
+	<script src="views/tabs/home/needManage/addBuyNeed/addBuyNeed.js"></script>
+	<script src="views/tabs/home/needManage/addBuyNeed/addBuyNeed.route.js"></script>
+	<script src="views/tabs/home/needManage/addBuyNeed/buyNeedBC/buyNeedBC.js"></script>
+	<script src="views/tabs/home/needManage/addBuyNeed/buyNeedBC/buyNeedBC.route.js"></script>
+	<script src="views/tabs/home/needManage/addRentNeed/addRentNeed.js"></script>
+	<script src="views/tabs/home/needManage/addRentNeed/addRentNeed.route.js"></script>
+	<script src="views/tabs/home/needManage/addRentNeed/rentNeedBC/rentNeedBC.js"></script>
+	<script src="views/tabs/home/needManage/addRentNeed/rentNeedBC/rentNeedBC.route.js"></script>
+	<script src="views/tabs/home/needSource/needBuyList/needBuyList.js"></script>
+	<script src="views/tabs/home/needSource/needBuyList/needBuyList.route.js"></script>
+	<script src="views/tabs/home/needSource/needBuyPage/needBuyPage.js"></script>
+	<script src="views/tabs/home/needSource/needBuyPage/needBuyPage.route.js"></script>
+	<script src="views/tabs/home/needSource/needRentList/needRentList.js"></script>
+	<script src="views/tabs/home/needSource/needRentList/needRentList.route.js"></script>
+	<script src="views/tabs/home/needSource/needRentPage/needRentPage.js"></script>
+	<script src="views/tabs/home/needSource/needRentPage/needRentPage.route.js"></script>
+	<script src="views/tabs/perCenter/perCenter.js"></script>
+	<script src="views/tabs/perCenter/perCenter.route.js"></script>
+	<script src="views/tabs/perCenter/myPoints/myPoints.js"></script>
+	<script src="views/tabs/perCenter/myPoints/myPoints.route.js"></script>
+	<script src="views/tabs/perCenter/productDetail/productDetail.js"></script>
+	<script src="views/tabs/perCenter/productDetail/productDetail.route.js"></script>
+	<script src="views/tabs/perCenter/realHouseList/realHouseList.js"></script>
+	<script src="views/tabs/perCenter/realHouseList/realHouseList.route.js"></script>
+	<script src="views/tabs/perCenter/infoDetail/infoDetail.js"></script>
+	<script src="views/tabs/perCenter/infoDetail/infoDetail.route.js"></script>
+	<script src="views/tabs/perCenter/infoDetail/changeInfo/changeInfo.js"></script>
+	<script src="views/tabs/perCenter/infoDetail/changeInfo/changeInfo.route.js"></script>
+	<script src="views/tabs/perCenter/infoDetail/headimgPreview/headimgPreview.js"></script>
+	<script src="views/tabs/perCenter/infoDetail/headimgPreview/headimgPreview.route.js"></script>
+	<script src="views/tabs/perCenter/infoDetail/headimgPreview/headimgCut/headimgCut.js"></script>
+	<script src="views/tabs/perCenter/infoDetail/headimgPreview/headimgCut/headimgCut.route.js"></script>
+	<script src="views/tabs/perCenter/myHomePage/myHomePage.js"></script>
+	<script src="views/tabs/perCenter/myHomePage/myHomePage.route.js"></script>
+	<script src="views/tabs/perCenter/myHomePage/editMyHomePage/editMyHomePage.js"></script>
+	<script src="views/tabs/perCenter/myHomePage/editMyHomePage/editMyHomePage.route.js"></script>
+	<script src="views/tabs/perCenter/myHouses/myHouses.js"></script>
+	<script src="views/tabs/perCenter/myHouses/myHouses.route.js"></script>
+	<script src="views/tabs/perCenter/myInfoQrcode/myInfoQrcode.js"></script>
+	<script src="views/tabs/perCenter/myInfoQrcode/myInfoQrcode.route.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/myBusiness.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/myBusiness.route.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/bgImgCut/bgImgCut.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/bgImgCut/bgImgCut.route.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/busintroImgCut/busintroImgCut.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/busintroImgCut/busintroImgCut.route.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/myAlbum/myAlbum.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/myAlbum/myAlbum.route.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/myPhotos/myPhotos.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/myPhotos/myPhotos.route.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/publishArticle/publishArticle.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/publishArticle/publishArticle.route.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/publishDynamic/publishDynamic.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/publishDynamic/publishDynamic.route.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/myPhotosAndVideos/myPhotosAndVideos.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/myPhotosAndVideos/myPhotosAndVideos.route.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/myPhotosAndVideos/uploadVideo/uploadVideo.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/myPhotosAndVideos/uploadVideo/uploadVideo.route.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/vcrVideo/vcrVideo.js"></script>
+	<script src="views/tabs/perCenter/myBusiness/vcrVideo/vcrVideo.route.js"></script>
+	<script src="views/tabs/perCenter/myCommission/myCommission.js"></script>
+	<script src="views/tabs/perCenter/myCommission/myCommission.route.js"></script>
+	<script src="views/tabs/perCenter/myRecommend/myRecommend.js"></script>
+	<script src="views/tabs/perCenter/myRecommend/myRecommend.route.js"></script>
+	<script src="views/tabs/perCenter/myRecommend/clickShare/clickShare.js"></script>
+	<script src="views/tabs/perCenter/myRecommend/clickShare/clickShare.route.js"></script>
+	<script src="views/tabs/perCenter/myRecommend/numberOfInvite/numberOfInvite.js"></script>
+	<script src="views/tabs/perCenter/myRecommend/numberOfInvite/numberOfInvite.route.js"></script>
+	<script src="views/tabs/perCenter/myRecommend/commissionIncome/commissionIncome.js"></script>
+	<script src="views/tabs/perCenter/myRecommend/commissionIncome/commissionIncome.route.js"></script>
+	<script src="views/tabs/perCenter/myNeeds/myNeeds.js"></script>
+	<script src="views/tabs/perCenter/myNeeds/myNeeds.route.js"></script>
+	<script src="views/tabs/perCenter/mySafe/mySafe.js"></script>
+	<script src="views/tabs/perCenter/mySafe/mySafe.route.js"></script>
+	<script src="views/tabs/perCenter/myTask/myTask.js"></script>
+	<script src="views/tabs/perCenter/myTask/myTask.route.js"></script>
+	<script src="views/tabs/perCenter/myAccount/myAccount.js"></script>
+	<script src="views/tabs/perCenter/myAccount/myAccount.route.js"></script>
+	<script src="views/tabs/perCenter/myAccount/bonusList/bonusList.js"></script>
+	<script src="views/tabs/perCenter/myAccount/bonusList/bonusList.route.js"></script>
+	<script src="views/tabs/perCenter/myAccount/bonusList/getBonus/getBonus.js"></script>
+	<script src="views/tabs/perCenter/myAccount/bonusList/getBonus/getBonus.route.js"></script>
+	<script src="views/tabs/perCenter/myAccount/transactionRecord/transactionRecord.js"></script>
+	<script src="views/tabs/perCenter/myAccount/transactionRecord/transactionRecord.route.js"></script>
+	<script src="views/tabs/perCenter/myAccount/transactionRecord/dealDetail/dealDetail.js"></script>
+	<script src="views/tabs/perCenter/myAccount/transactionRecord/dealDetail/dealDetail.route.js"></script>
+	<script src="views/tabs/perCenter/myAccount/forgetPayPassword/forgetPayPassword.js"></script>
+	<script src="views/tabs/perCenter/myAccount/forgetPayPassword/forgetPayPassword.route.js"></script>
+	<script src="views/tabs/perCenter/myAccount/topUp/topUp.js"></script>
+	<script src="views/tabs/perCenter/myAccount/topUp/topUp.route.js"></script>
+	<script src="views/tabs/perCenter/myAccount/setPayPassword/setPayPassword.js"></script>
+	<script src="views/tabs/perCenter/myAccount/setPayPassword/setPayPassword.route.js"></script>
+	<script src="views/tabs/perCenter/myAccount/withDraw/withDraw.js"></script>
+	<script src="views/tabs/perCenter/myAccount/withDraw/withDraw.route.js"></script>
+	<script src="views/tabs/perCenter/myAccount/myBankCard/myBankCard.js"></script>
+	<script src="views/tabs/perCenter/myAccount/myBankCard/myBankCard.route.js"></script>
+	<script src="views/tabs/perCenter/myAccount/myBankCard/manageBankCard/manageBankCard.js"></script>
+	<script src="views/tabs/perCenter/myAccount/myBankCard/manageBankCard/manageBankCard.route.js"></script>
+	<script src="views/tabs/perCenter/myAccount/myBankCard/bindBankCard/bindBankCard.js"></script>
+	<script src="views/tabs/perCenter/myAccount/myBankCard/bindBankCard/bindBankCard.route.js"></script>
+	<script src="views/tabs/perCenter/openVip/openVip.js"></script>
+	<script src="views/tabs/perCenter/openVip/openVip.route.js"></script>
+	<script src="views/tabs/perCenter/openVip/payVip/payVip.js"></script>
+	<script src="views/tabs/perCenter/openVip/payVip/payVip.route.js"></script>
+	<script src="views/tabs/perCenter/openVip/payVip/payDone/payDone.js"></script>
+	<script src="views/tabs/perCenter/openVip/payVip/payDone/payDone.route.js"></script>
+	<script src="views/tabs/perCenter/openVip/payVip/posPay/posPay.js"></script>
+	<script src="views/tabs/perCenter/openVip/payVip/posPay/posPay.route.js"></script>
+	<script src="views/tabs/perCenter/openVip/payVip/vipProtocol/vipProtocol.js"></script>
+	<script src="views/tabs/perCenter/openVip/payVip/vipProtocol/vipProtocol.route.js"></script>
+	<script src="views/tabs/perCenter/landAgent/newHouses/newHouses.js"></script>
+	<script src="views/tabs/perCenter/landAgent/newHouses/newHouses.route.js"></script>
+	<script src="views/tabs/perCenter/landAgent/newHouses/tradeData/tradeData.js"></script>
+	<script src="views/tabs/perCenter/landAgent/newHouses/tradeData/tradeData.route.js"></script>
+	<script src="views/tabs/perCenter/landAgent/newHouses/visitData/visitData.js"></script>
+	<script src="views/tabs/perCenter/landAgent/newHouses/visitData/visitData.route.js"></script>
+	<script src="views/tabs/perCenter/landAgent/visitReview/visitReview.js"></script>
+	<script src="views/tabs/perCenter/landAgent/visitReview/visitReview.route.js"></script>
+	<script src="views/tabs/perCenter/landAgent/tradeReview/tradeReview.js"></script>
+	<script src="views/tabs/perCenter/landAgent/tradeReview/tradeReview.route.js"></script>
+	<script src="views/tabs/perCenter/landAgent/checkPage/checkPage.js"></script>
+	<script src="views/tabs/perCenter/landAgent/checkPage/checkPage.route.js"></script>
+	<script src="views/tabs/perCenter/agentCenter/agentVisitList/agentVisitList.js"></script>
+	<script src="views/tabs/perCenter/agentCenter/agentVisitList/agentVisitList.route.js"></script>
+	<script src="views/tabs/perCenter/hisBusinessCard/hisBusinessCard.js"></script>
+	<script src="views/tabs/perCenter/hisBusinessCard/hisBusinessCard.route.js"></script>
+	<script src="views/tabs/perCenter/humanMap/humanMap.js"></script>
+	<script src="views/tabs/perCenter/humanMap/humanMap.route.js"></script>
+	<script src="views/tabs/perCenter/userCenter/orderVisitList/orderVisitList.js"></script>
+	<script src="views/tabs/perCenter/userCenter/orderVisitList/orderVisitList.route.js"></script>
+	<script src="views/tabs/perCenter/visitDone/visitDone.js"></script>
+	<script src="views/tabs/perCenter/visitDone/visitDone.route.js"></script>
+	<script src="views/tabs/perCenter/tradeDone/tradeDone.js"></script>
+	<script src="views/tabs/perCenter/tradeDone/tradeDone.route.js"></script>
+	<script src="views/tabs/chatList/chatList.js"></script>
+	<script src="views/tabs/chatList/chatList.route.js"></script>
+	<script src="views/tabs/chatList/dialogBox/dialogBox.js"></script>
+	<script src="views/tabs/chatList/dialogBox/dialogBox.route.js"></script>
+	<script src="views/tabs/chatList/dialogLocation/dialogLocation.js"></script>
+	<script src="views/tabs/chatList/dialogLocation/dialogLocation.route.js"></script>
+	<script src="views/tabs/chatList/forwardMsg/forwardMsg.js"></script>
+	<script src="views/tabs/chatList/forwardMsg/forwardMsg.route.js"></script>
+	<script src="views/tabs/chatList/groupDialogBox/groupDialogBox.js"></script>
+	<script src="views/tabs/chatList/groupDialogBox/groupDialogBox.route.js"></script>
+	<script src="views/tabs/chatList/groupDialogBox/groupDetail/groupDetail.js"></script>
+	<script src="views/tabs/chatList/groupDialogBox/groupDetail/groupDetail.route.js"></script>
+	<script src="views/tabs/chatList/groupDialogBox/openGroupRedpacket/openGroupRedpacket.js"></script>
+	<script src="views/tabs/chatList/groupDialogBox/openGroupRedpacket/openGroupRedpacket.route.js"></script>
+	<script src="views/tabs/chatList/groupDialogBox/groupAvatar/groupAvatar.js"></script>
+	<script src="views/tabs/chatList/groupDialogBox/groupAvatar/groupAvatar.route.js"></script>
+	<script src="views/tabs/chatList/groupDialogBox/groupAvatar/groupAvatarCut/groupAvatarCut.js"></script>
+	<script src="views/tabs/chatList/groupDialogBox/groupAvatar/groupAvatarCut/groupAvatarCut.route.js"></script>
+	<script src="views/tabs/chatList/groupInvite/groupInvite.js"></script>
+	<script src="views/tabs/chatList/groupInvite/groupInvite.route.js"></script>
+	<script src="views/tabs/chatList/locationToSend/locationToSend.js"></script>
+	<script src="views/tabs/chatList/locationToSend/locationToSend.route.js"></script>
+	<script src="views/tabs/chatList/makeCollections/makeCollections.js"></script>
+	<script src="views/tabs/chatList/makeCollections/makeCollections.route.js"></script>
+	<script src="views/tabs/chatList/groupRedPacket/groupRedPacket.js"></script>
+	<script src="views/tabs/chatList/groupRedPacket/groupRedPacket.route.js"></script>
+	<script src="views/tabs/chatList/redPacket/redPacket.js"></script>
+	<script src="views/tabs/chatList/redPacket/redPacket.route.js"></script>
+	<script src="views/tabs/chatList/transferAccounts/transferAccounts.js"></script>
+	<script src="views/tabs/chatList/transferAccounts/transferAccounts.route.js"></script>
+	<script src="views/tabs/chatList/transferTeam/transferTeam.js"></script>
+	<script src="views/tabs/chatList/transferTeam/transferTeam.route.js"></script>
+	<script src="views/tabs/linkMan/linkMan.js"></script>
+	<script src="views/tabs/linkMan/linkMan.route.js"></script>
+	<script src="views/tabs/linkMan/newFriends/newFriends.js"></script>
+	<script src="views/tabs/linkMan/newFriends/newFriends.route.js"></script>
+	<script src="views/tabs/linkMan/scanResult/scanResult.js"></script>
+	<script src="views/tabs/linkMan/scanResult/scanResult.route.js"></script>
+	<script src="views/tabs/linkMan/spacePermissions/spacePermissions.js"></script>
+	<script src="views/tabs/linkMan/spacePermissions/spacePermissions.route.js"></script>
+	<script src="views/tabs/linkMan/addFriend/mobileContact/mobileContact.js"></script>
+	<script src="views/tabs/linkMan/addFriend/mobileContact/mobileContact.route.js"></script>
+	<script src="views/tabs/linkMan/blackList/blackList.js"></script>
+	<script src="views/tabs/linkMan/blackList/blackList.route.js"></script>
+	<script src="views/tabs/linkMan/groupChat/groupChat.js"></script>
+	<script src="views/tabs/linkMan/groupChat/groupChat.route.js"></script>
+	<script src="views/tabs/linkMan/groupChat/createGroup/createGroup.js"></script>
+	<script src="views/tabs/linkMan/groupChat/createGroup/createGroup.route.js"></script>
+	<script src="views/tabs/linkMan/linkManDetail/linkManDetail.js"></script>
+	<script src="views/tabs/linkMan/linkManDetail/linkManDetail.route.js"></script>
+	<script src="views/tabs/linkMan/linkManDetail/setAliasName/setAliasName.js"></script>
+	<script src="views/tabs/linkMan/linkManDetail/setAliasName/setAliasName.route.js"></script>
+	<script src="views/tabs/linkMan/linkManSearch/linkManSearch.js"></script>
+	<script src="views/tabs/linkMan/linkManSearch/linkManSearch.route.js"></script>
+
+	<script src="views/tabs/quanzi/quanzi.js"></script>
+	<script src="views/tabs/quanzi/quanzi.route.js"></script>
+
+	<script src="views/mall/mall-home/mall-home.js"></script>
+	<script src="views/mall/mall-home/mall-home.route.js"></script>
+	<script src="views/mall/mall-home/mall-search/mall-search.js"></script>
+	<script src="views/mall/mall-home/mall-search/mall-search.route.js"></script>
+	<script src="views/mall/mall-classify/mall-classify.js"></script>
+	<script src="views/mall/mall-classify/mall-classify.route.js"></script>
+	<script src="views/mall/mall-classify/goods-list/goods-list.js"></script>
+	<script src="views/mall/mall-classify/goods-list/goods-list.route.js"></script>
+	<script src="views/mall/mall-classify/goods-detail/goods-detail.js"></script>
+	<script src="views/mall/mall-classify/goods-detail/goods-detail.route.js"></script>
+	<script src="views/mall/mall-classify/goods-detail/comment-list/comment-list.js"></script>
+	<script src="views/mall/mall-classify/goods-detail/comment-list/comment-list.route.js"></script>
+	<script src="views/mall/mall-classify/goods-detail-prize/goods-detail-prize.js"></script>
+	<script src="views/mall/mall-classify/goods-detail-prize/goods-detail-prize.route.js"></script>
+	<script src="views/mall/mall-classify/his-shop/his-shop.js"></script>
+	<script src="views/mall/mall-classify/his-shop/his-shop.route.js"></script>
+	<script src="views/mall/mall-classify/his-shop/his-shopDetail/his-shopDetail.js"></script>
+	<script src="views/mall/mall-classify/his-shop/his-shopDetail/his-shopDetail.route.js"></script>
+	<script src="views/mall/mall-classify/preview-his-shop/preview-his-shop.js"></script>
+	<script src="views/mall/mall-classify/preview-his-shop/preview-his-shop.route.js"></script>
+	<script src="views/mall/mall-cart/mall-cart.js"></script>
+	<script src="views/mall/mall-cart/mall-cart.route.js"></script>
+	<script src="views/mall/mall-cart/confirmOrder/confirmOrder.js"></script>
+	<script src="views/mall/mall-cart/confirmOrder/confirmOrder.route.js"></script>
+	<script src="views/mall/mall-cart/confirmPrizeOrder/confirmPrizeOrder.js"></script>
+	<script src="views/mall/mall-cart/confirmPrizeOrder/confirmPrizeOrder.route.js"></script>
+	<script src="views/mall/mall-cart/mallPayDone/mallPayDone.js"></script>
+	<script src="views/mall/mall-cart/mallPayDone/mallPayDone.route.js"></script>
+	<script src="views/mall/mall-cart/productPayOrder/productPayOrder.js"></script>
+	<script src="views/mall/mall-cart/productPayOrder/productPayOrder.route.js"></script>
+	<script src="views/mall/mall-message/mall-message.js"></script>
+	<script src="views/mall/mall-message/mall-message.route.js"></script>
+	<script src="views/mall/mall-mine/mall-mine.js"></script>
+	<script src="views/mall/mall-mine/mall-mine.route.js"></script>
+	<script src="views/mall/mall-mine/my-mallAttentions/my-mallAttentions.js"></script>
+	<script src="views/mall/mall-mine/my-mallAttentions/my-mallAttentions.route.js"></script>
+	<script src="views/mall/mall-mine/my-mallOrders/my-mallOrders.js"></script>
+	<script src="views/mall/mall-mine/my-mallOrders/my-mallOrders.route.js"></script>
+	<script src="views/mall/mall-mine/my-mallOrders/logistics-details/logistics-details.js"></script>
+	<script src="views/mall/mall-mine/my-mallOrders/logistics-details/logistics-details.route.js"></script>
+	<script src="views/mall/mall-mine/my-mallOrders/waitForPaying/waitForPaying.js"></script>
+	<script src="views/mall/mall-mine/my-mallOrders/waitForPaying/waitForPaying.route.js"></script>
+	<script src="views/mall/mall-mine/return-afterSale/return-afterSale.js"></script>
+	<script src="views/mall/mall-mine/return-afterSale/return-afterSale.route.js"></script>
+	<script src="views/mall/mall-mine/return-afterSale/afterSaleService/afterSaleService.js"></script>
+	<script src="views/mall/mall-mine/return-afterSale/afterSaleService/afterSaleService.route.js"></script>
+	<script src="views/mall/mall-mine/return-afterSale/refund-detail/refund-detail.js"></script>
+	<script src="views/mall/mall-mine/return-afterSale/refund-detail/refund-detail.route.js"></script>
+	<script src="views/mall/mall-mine/waitForComment/waitForComment.js"></script>
+	<script src="views/mall/mall-mine/waitForComment/waitForComment.route.js"></script>
+	<script src="views/mall/mall-mine/waitForComment/publishComment/publishComment.js"></script>
+	<script src="views/mall/mall-mine/waitForComment/publishComment/publishComment.route.js"></script>
+	<script src="views/mall/mall-mine/addressList/addressList.js"></script>
+	<script src="views/mall/mall-mine/addressList/addressList.route.js"></script>
+	<script src="views/mall/mall-mine/addressList/shippingAddress/shippingAddress.js"></script>
+	<script src="views/mall/mall-mine/addressList/shippingAddress/shippingAddress.route.js"></script>
+	<script src="views/mall/mall-mine/applyForStore/applyForStore.js"></script>
+	<script src="views/mall/mall-mine/applyForStore/applyForStore.route.js"></script> -->
+	<!-- end build -->
+</html>

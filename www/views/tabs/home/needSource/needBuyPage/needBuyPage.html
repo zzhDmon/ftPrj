@@ -1,0 +1,143 @@
+
+<ion-view id="need_buy_page" view-title="房客求购" hide-nav-bar="true">
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			房客求购
+		</div>
+	</div>
+	<div class="head-bg-houseimg"></div>
+
+	<ion-content delegate-handle="need-buy-page-Scroll" class="need-buy-page">
+		<ion-refresher 
+            pulling-icon="" 
+            pulling-text="" 
+            spinner="lines"  
+            on-refresh="initData()" 
+		>
+		</ion-refresher>
+		<div class="white-content">
+			<div class="under-head">
+				<ion-slide-box 
+					on-slide-changed="changeAdSlide($index)" 
+					show-pager="false" 
+					delegate-handle='rentpage-svg-slide'
+				>
+					<ion-slide>
+						<div class="fix-wrapper">
+							<div ui-sref="needBuyList({type:0})"  class="fix-item">
+								<div class="img zhuzhai">
+									<svg class="icon" aria-hidden="true">
+										<use xlink:href="#icon-xinfang-21"></use>
+									</svg>
+								</div>
+								<p>新房</p>
+							</div>
+							<div ui-sref="needBuyList({type:1})" class="fix-item">
+								<div class="img shangpu">
+									<svg class="icon" aria-hidden="true">
+										<use xlink:href="#icon-zhuzhai-"></use>
+									</svg>
+								</div>
+								<p>二手房</p>
+							</div>
+							<div ui-sref="needBuyList({type:5})" class="fix-item">
+								<div class="img xiezilou">
+									<svg class="icon" aria-hidden="true">
+										<use xlink:href="#icon-shangpu-"></use>
+									</svg>
+								</div>
+								<p>商铺</p>
+							</div>
+							<div ui-sref="needBuyList({type:17})" class="fix-item">
+								<div class="img changfang">
+									<svg class="icon" aria-hidden="true">
+										<use xlink:href="#icon-xiezilou-"></use>
+									</svg>
+								</div>
+								<p>写字楼</p>
+							</div>
+							<div ui-sref="needBuyList({type:7})" class="fix-item">
+								<div class="img cangku">
+									<svg class="icon" aria-hidden="true">
+										<use xlink:href="#icon-gongchang-"></use>
+									</svg>
+								</div>
+								<p>厂房</p>
+							</div>
+						</div>
+					</ion-slide>
+					<ion-slide >
+						<div class="fix-wrapper">
+							<div class="fix-item">
+								<div ui-sref="needBuyList({type:9})" class="img changfang">
+									<svg class="icon" aria-hidden="true">
+										<use xlink:href="#icon-cangku-"></use>
+									</svg>
+								</div>
+								<p>仓库</p>
+							</div>
+							<div ui-sref="needBuyList({type:11})" class="fix-item">
+								<div class="img cangku">
+									<svg class="icon" aria-hidden="true">
+										<use xlink:href="#icon-cheku-"></use>
+									</svg>
+								</div>
+								<p>车位</p>
+							</div>
+						</div>
+					</ion-slide>
+				</ion-slide-box>  
+				<div class="svg-slide-page-num">
+					<div class="flex-item" ng-class="{true:'active',false:''}[currentAdSlideIndex==0]"></div>
+					<div class="flex-item" ng-class="{true:'active',false:''}[currentAdSlideIndex==1]"></div>
+				</div>  
+			</div>
+			
+			<div class="offline"></div>
+			<div class="house-need-main">
+				<h5>最新求购客户</h5>
+				<div 
+					ui-sref="needDetail({id:needBuy.Id})" 
+					ng-repeat="needBuy in needBuyArr track by $index" 
+					class="arr-item"
+					ripple-hold ripple-dark
+				>
+					<div class="left-img"><img ng-src="{{needBuy.UserInfo.ShowImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt=""></div>
+					<div class="right-text">
+						<div class="title">
+							<span ng-if="needBuy.UserInfo.Name">{{needBuy.UserInfo.Name}}</span>
+							<span ng-if="!needBuy.UserInfo.Name">房田用户</span>
+						</div>
+						
+						<div class="br-price-type">
+							<span class="spanprice">
+								<span ng-if="needBuy.MinPrize&&!needBuy.MaxPrize"><span class="large">{{needBuy.MinPrize}}</span>万以上</span>
+								<span ng-if="needBuy.MinPrize&&needBuy.MaxPrize"><span class="large">{{needBuy.MinPrize}}~{{needBuy.MaxPrize}}</span>万</span>
+								<span ng-if="!needBuy.MinPrize&&needBuy.MaxPrize"><span class="large">{{needBuy.MaxPrize}}</span>万以下</span>
+								<span ng-if="!needBuy.MinPrize&&!needBuy.MaxPrize">价格不限</span>
+							</span>
+							<span class="span-gray" ng-if="needBuy.Type==0">&nbsp;|&nbsp;新房</span>
+							<span class="span-gray" ng-if="needBuy.Type==1">&nbsp;|&nbsp;二手房</span>
+							<span class="span-gray" ng-show="needBuy.Type==5">&nbsp;|&nbsp;商铺</span>
+							<span class="span-gray" ng-show="needBuy.Type==17">&nbsp;|&nbsp;写字楼</span>
+							<span class="span-gray" ng-show="needBuy.Type==7">&nbsp;|&nbsp;厂房</span>
+							<span class="span-gray" ng-show="needBuy.Type==9">&nbsp;|&nbsp;仓库</span>
+							<span class="span-gray" ng-show="needBuy.Type==11">&nbsp;|&nbsp;车位</span>
+						</div>
+						<div class="info">
+							<span class="span-gray"><i class="iconfont icon-dingwei"></i>{{needBuy.District}}</span>
+						</div>
+						<div class="by-tags overflow-omit-one">
+							<span class="tag-item" ng-show="needBuy.Type==0||needBuy.Type==1">{{needBuy.RoomType}}室{{needBuy.HallType}}厅{{needBuy.BathType}}卫</span>
+						</div>
+					</div>
+				</div>
+				
+				<div ui-sref="needBuyList({type:1})" class="look-more">查看全部</div>
+			</div>  
+		</div>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,188 @@
+
+<ion-view id="ershou_house_list" view-title="二手房" hide-nav-bar="true">
+	<div class="search-header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div ui-sref="houseSearch({type:1})" class="title">
+			<div class="fake-input">
+				<div class="fake-search">
+					<span ng-if="showQueryText">{{showQueryText}}</span>
+					<span ng-hide="showQueryText"><i class="iconfont icon-sousuo2"></i>请输入小区/商圈</span>
+				</div>
+			</div> 
+		</div>
+		<div ui-sref="fbTypeChoose({type:0})" class="right">
+			<div class="top-cell">
+				<i class="iconfont icon-zhuangtailan-fabu-"></i>
+			</div>
+			<div class="small-font-size bot-cell">
+				发布
+			</div>
+		</div>
+	</div>
+	
+	<!-- 下拉筛选 -->
+	<div class="top-filter-flex" >
+		<div 
+			ng-click="openFilter(4)" 
+			ng-class="{true:'active',false:''}[filterActiveIndex==4]" 
+			class="flex-item">
+			<div>
+				<span class="text">
+					<span ng-if="classify">{{classify}}</span>
+					<span ng-hide="classify">分类</span>
+				</span>
+				<span class="pullicon"><i class="iconfont icon--pulldown"></i></span>
+				
+			</div>
+		</div>
+		<div 
+			ng-click="openFilter(0)" 
+			ng-class="{true:'active',false:''}[filterActiveIndex==0]" 
+			class="flex-item">
+			<div>
+				<span class="text">
+					<span ng-if="showStreetText">{{showStreetText}}</span>
+					<span ng-hide="showStreetText">区域</span>
+				</span>
+				<span class="pullicon"><i class="iconfont icon--pulldown"></i></span>
+				
+			</div>
+		</div>
+		<div 
+			ng-click="openFilter(1)"
+			ng-class="{true:'active',false:''}[filterActiveIndex==1]"
+			class="flex-item">
+			<div>
+				<span class="text">
+					<span ng-if="showPriceText">{{showPriceText}}</span>
+					<span ng-hide="showPriceText">价格</span>
+				</span>
+				<span class="pullicon"><i class="iconfont icon--pulldown"></i></span>
+				
+			</div>
+		</div>
+		<div 
+			ng-click="openFilter(2)"
+			ng-class="{true:'active',false:''}[filterActiveIndex==2]"
+			class="flex-item" >
+			<div>
+				<span class="text">
+					<span ng-if="showroomType">{{showroomType}}</span>
+					<span ng-hide="showroomType">户型</span>
+				</span>
+				<span class="pullicon"><i class="iconfont icon--pulldown"></i></span>
+			</div>
+		</div>
+		<div 
+			ng-click="openFilter(3)"
+			ng-class="{true:'active',false:''}[filterActiveIndex==3]"
+			class="flex-item">
+			<div>
+				<span class="text">
+					更多
+				</span>
+				<span class="pullicon"><i class="iconfont icon--pulldown"></i></span>
+			</div>
+		</div>
+	</div>
+	<div ng-include="'views/includes/houseSort/houseSort-old.html'"></div>
+	
+	
+	<ion-content delegate-handle="ershouhouse-list-scroll" class="ershou-house-list">
+		<div ng-if="classify=='住宅'" class="main">
+			<div 
+                ui-sref="sellHouseDetail({id:sellhouse.Id})" 
+                ng-repeat="sellhouse in oldhousearr track by $index" 
+                class="house-list-item"
+                ripple-hold ripple-dark
+            >
+                <div class="left-img"><img ng-src="{{sellhouse.Thumb}}" alt=""></div>
+                <div class="right-text">
+                    <div class="title overflow-omit-one">{{sellhouse.Title}}</div>
+                    <div class="br-price-type overflow-omit-one">
+                        <span class="spanprice">
+                            <span class="large">{{sellhouse.Price}}</span>万
+                        </span>
+                        <span class="span-gray">&nbsp;|&nbsp;{{sellhouse.HouseType}}</span>
+                        <span class="span-gray">&nbsp;|&nbsp;{{sellhouse.Space}}m²</span>
+                    </div>
+                    <div class="info overflow-omit-one">
+                        <span class="span-gray"><i class="iconfont icon-dingwei"></i>{{sellhouse.CommunityName}}</span>
+                    </div>
+                    <div class="by-tags overflow-omit-one">
+                        <span class="tag-item" ng-repeat="tag in sellhouse.Tags track by $index">{{tag}}</span>
+                    </div>
+                </div>
+            </div>
+			
+			<p ng-show="!oldHaveMore" class="baseLine"><span>暂无更多</span></p>
+		</div>
+		<ion-infinite-scroll on-infinite="oldLoadMore(true)" distance="15%" ng-if="oldHaveMore&&classify=='住宅'" > </ion-infinite-scroll>
+		
+		<div ng-if="classify!=='住宅'" class="main">
+			<!-- 商铺 -->
+			<div 
+				ng-if="classify=='商铺'"
+				ui-sref="otherHouseDetail({id:sellhouse.Id,isshop:true})" 
+                ng-repeat="sellhouse in simplehousearr track by $index" 
+                ripple-hold ripple-dark
+                class="house-list-item"
+            >
+                <div class="left-img"><img ng-src="{{sellhouse.Thumb}}" alt=""></div>
+                <div class="right-text">
+                    <div class="title overflow-omit-one">{{sellhouse.Title}}</div>
+                    <div class="br-price-type overflow-omit-one">
+                        <span class="spanprice">
+							<span class="large">{{sellhouse.Price}}</span>
+							<span ng-if="sellhouse.Behaviour==1">万</span><span ng-if="sellhouse.Behaviour==2">元/月</span>
+                        </span>
+                        <span class="span-gray">&nbsp;|&nbsp;{{sellhouse.HouseType}}</span>
+                        <span class="span-gray">&nbsp;|&nbsp;{{sellhouse.Space}}m²</span>
+                    </div>
+                    <div class="info overflow-omit-one">
+                        <span class="span-gray"><i class="iconfont icon-dingwei"></i>{{sellhouse.CommunityName}}</span>
+                    </div>
+                    <div class="by-tags overflow-omit-one">
+                        <span class="tag-item" ng-repeat="tag in sellhouse.Tags track by $index">{{tag}}</span>
+                    </div>
+                </div>
+            </div>
+			<!-- 其他 -->
+			<div 
+				ng-if="classify!=='商铺'"
+				ui-sref="otherHouseDetail({id:sellhouse.Id,isshop:false})"
+				ng-repeat="sellhouse in simplehousearr track by $index" 
+                ripple-hold ripple-dark
+                class="house-list-item"
+            >
+                <div class="left-img"><img ng-src="{{sellhouse.Thumb}}" alt=""></div>
+                <div class="right-text">
+                    <div class="title overflow-omit-one">{{sellhouse.Title}}</div>
+                    <div class="br-price-type overflow-omit-one">
+                        <span class="spanprice">
+							<span class="large">{{sellhouse.Price}}</span>
+							<span ng-if="sellhouse.Behaviour==1">万</span><span ng-if="sellhouse.Behaviour==2">元/月</span>
+                        </span>
+                        <span class="span-gray">&nbsp;|&nbsp;{{sellhouse.HouseType}}</span>
+                        <span class="span-gray">&nbsp;|&nbsp;{{sellhouse.Space}}m²</span>
+                    </div>
+                    <div class="info overflow-omit-one">
+                        <span class="span-gray"><i class="iconfont icon-dingwei"></i>{{sellhouse.CommunityName}}</span>
+                    </div>
+                    <div class="by-tags overflow-omit-one">
+                        <span class="tag-item" ng-repeat="tag in sellhouse.Tags track by $index">{{tag}}</span>
+                    </div>
+                </div>
+            </div>
+			
+			<p ng-show="!simpleHaveMore" class="baseLine"><span>暂无更多</span></p>
+		</div>
+		<ion-infinite-scroll on-infinite="simpleLoadMore(true)" distance="15%" ng-if="simpleHaveMore&&classify!=='住宅'" > </ion-infinite-scroll>
+		
+	</ion-content>
+	
+	
+
+</ion-view>

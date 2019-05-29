@@ -1,0 +1,227 @@
+
+<ion-view id="his_shop" view-title="他的店铺" hide-nav-bar="true">	
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			<span ng-hide="paramsData.ismyself">他的店铺</span>
+			<span ng-show="paramsData.ismyself">我的店铺</span>
+		</div>
+		<div class="right">
+			
+		</div>
+	</div>
+
+	<!-- <div class="to-detail">
+		<div class="img"><img ng-src="{{housetimesList[0].Image}}" alt=""></div>
+		<div ui-sref="hisShopDetail" class="name overflow-omit-one">{{housetimesList[0].Title}} <i class="iconfont icon-xiangyou1"></i></div>
+		<div class="action">
+			<i class="iconfont icon-tianjia"></i>关注
+		</div>
+	</div> -->
+	<div class="switch-wrapper">
+		<div ng-click="switchPageIndex(0)" ng-class="{true:'active',false:''}[pageIndex==0]" class="switch-item">
+			首页
+		</div>
+		<div ng-click="switchPageIndex(1)" ng-class="{true:'active',false:''}[pageIndex==1]" class="switch-item">
+			商品
+		</div>
+	</div>
+	<div ng-show="pageIndex==1" class="filter-wrapper">
+		<div ng-click="changeSale()" class="filter-item">
+			<span ng-class="{true:'active',false:''}[sale==1 || sale==2]">销量</span>
+			<span>
+				<svg ng-if="!sale" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-shangxia"></use>
+				</svg>
+				<svg ng-if="sale==1" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-xia"></use>
+				</svg>
+				<svg ng-if="sale==2" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-shang"></use>
+				</svg>
+			</span>
+		</div>
+		<div ng-click="changeDiscount()" class="filter-item">
+			<span ng-class="{true:'active',false:''}[discount==1 || discount==2]">价格</span>
+			<span>
+				<svg ng-if="!discount" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-shangxia"></use>
+				</svg>
+				<svg ng-if="discount==1" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-xia"></use>
+				</svg>
+				<svg ng-if="discount==2" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-shang"></use>
+				</svg>
+			</span>
+		</div>
+	</div>
+
+	<ion-content ng-show="pageIndex==0" class="his-shop-index">
+		<div ng-show="shopIndex.bannerList.length>0" class="ad-slide-wrapper">
+			<ion-slide-box on-slide-changed="changeSliderIndex($index)" show-pager="false" delegate-handle='his-shop-index-slide'>
+				<ion-slide ng-repeat="item in shopIndex.bannerList track by $index">
+					<img ng-src="{{item.url}}" alt="">
+				</ion-slide>
+			</ion-slide-box> 
+			<div class="ad-slide-page-num">
+				<div ng-repeat="img in shopIndex.bannerList track by $index" class="flex-item" ng-class="{true:'active',false:''}[currentIndex==$index]"></div>
+			</div> 
+		</div>
+
+		<div class="offline"></div>
+		<div class="sale-wrapper">
+			<div class="head-img">
+				<img ng-src="{{shopIndex.slaeOne.headImg}}" alt="">
+			</div>
+			<!-- <div class="product-list">
+				<div ui-sref="goodsDetail({id:item.Id})" ng-repeat="item in shopIndex.slaeOne.productList track by $index" class="product-item">
+					<div class="info-content">
+						<div class="img">
+							<img ng-src="{{item.Image}}" alt="">
+						</div>
+						<div class="name overflow-omit-two">{{item.Name}}</div>
+						<div class="price overflow-omit-one">
+							￥{{item.PromotionPrice | priceFilter}}元
+							<span>￥{{item.MarketPrice | priceFilter}}元</span>
+						</div>
+					</div>
+				</div>
+			</div> -->
+			<div class="recommend-list">
+				<div
+					ui-sref="goodsDetail({id:item.Id})" 
+					ng-repeat="item in shopIndex.slaeOne.productList track by $index" 
+					class="recommend-item">
+					<div class="top-img">
+						<div class="bg-original-image" ng-style="{'background-image':'url('+item.Image+')'}"></div>
+					</div>
+					<div class="bot-info">
+						<div class="rate">好评率90%</div>
+						<div class="product-name overflow-omit-two">
+							{{item.Name}}
+						</div>
+						<div class="prcie">￥{{item.PromotionPrice | priceFilter}}元</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="offline"></div>
+		<div class="sale-wrapper">
+			<div class="head-img">
+				<img ng-src="{{shopIndex.slaeTwo.headImg}}" alt="">
+			</div>
+			<!-- <div class="product-list">
+				<div ui-sref="goodsDetail({id:item.Id})" ng-repeat="item in shopIndex.slaeTwo.productList track by $index" class="product-item">
+					<div class="info-content">
+						<div class="img">
+							<img ng-src="{{item.Image}}" alt="">
+						</div>
+						<div class="name overflow-omit-two">{{item.Name}}</div>
+						<div class="price overflow-omit-one">
+							￥{{item.PromotionPrice | priceFilter}}元
+							<span>￥{{item.MarketPrice | priceFilter}}元</span>
+						</div>
+					</div>
+				</div>
+			</div> -->
+			<div class="recommend-list">
+				<div
+					ui-sref="goodsDetail({id:item.Id})" 
+					ng-repeat="item in shopIndex.slaeTwo.productList track by $index" 
+					class="recommend-item">
+					<div class="top-img">
+						<div class="bg-original-image" ng-style="{'background-image':'url('+item.Image+')'}"></div>
+					</div>
+					<div class="bot-info">
+						<div class="rate">好评率90%</div>
+						<div class="product-name overflow-omit-two">
+							{{item.Name}}
+						</div>
+						<div class="prcie">￥{{item.PromotionPrice | priceFilter}}元</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="offline"></div>
+		<div class="sale-wrapper">
+			<div class="head-img">
+				<img ng-src="{{shopIndex.slaeThree.headImg}}" alt="">
+			</div>
+			<!-- <div class="product-list">
+				<div ui-sref="goodsDetail({id:item.Id})" ng-repeat="item in shopIndex.slaeThree.productList track by $index" class="product-item">
+					<div class="info-content">
+						<div class="img">
+							<img ng-src="{{item.Image}}" alt="">
+						</div>
+						<div class="name overflow-omit-two">{{item.Name}}</div>
+						<div class="price overflow-omit-one">
+							￥{{item.PromotionPrice | priceFilter}}元
+							<span>￥{{item.MarketPrice | priceFilter}}元</span>
+						</div>
+					</div>
+				</div>
+			</div> -->
+			<div class="recommend-list">
+				<div
+					ui-sref="goodsDetail({id:item.Id})" 
+					ng-repeat="item in shopIndex.slaeThree.productList track by $index" 
+					class="recommend-item">
+					<div class="top-img">
+						<div class="bg-original-image" ng-style="{'background-image':'url('+item.Image+')'}"></div>
+					</div>
+					<div class="bot-info">
+						<div class="rate">好评率90%</div>
+						<div class="product-name overflow-omit-two">
+							{{item.Name}}
+						</div>
+						<div class="prcie">￥{{item.PromotionPrice | priceFilter}}元</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+
+	<ion-content ng-show="pageIndex==1" class="his-shop" delegate-handle="his-shop-productlist">
+		<div class="goods-wrapper">
+			<div ui-sref="goodsDetail({id:item.Id})" ng-repeat="item in productList track by $index" class="goods-item">
+				<div class="left-cell">
+					<img 
+						ng-src="{{item.Image}}" 
+						onError="src='http://imgs.wujiuyun.com//Images//logo.png'"
+						alt="">
+				</div>
+				<div class="right-cell">
+					<div class="top-cell overflow-omit-two">{{item.Name}}</div>
+					<div class="mid-cell"></div>
+					<div class="bot-cell">
+						<div class="price-comment">
+							<div class="price overflow-omit-one">
+								￥{{item.PromotionPrice | priceFilter}}元
+								<span>￥{{item.MarketPrice | priceFilter}}元</span>
+							</div>
+							<div class="comment">{{item.ComCount | overTenThousandFilter}}条评论&#x3000; {{item.ComRate}}好评</div>
+							
+						</div>
+						<!-- <div class="icon-cell">
+							<div ng-click="addToCart($event,item)" class="icon-wrapper">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-gouwuche1"></use>
+								</svg>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<p ng-show="!haveMore" class="baseLine"><span>暂无更多</span></p>
+		<ion-infinite-scroll on-infinite="loadMore(true)" distance="15%" ng-if="haveMore"> </ion-infinite-scroll>
+	</ion-content>
+	
+	<!-- <div class="fix-right-cart">
+		<i class="iconfont icon-gouwuche"></i>
+	</div> -->
+</ion-view>

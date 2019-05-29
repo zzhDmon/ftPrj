@@ -1,0 +1,28 @@
+
+<!--对话模板-->
+<ion-view id="add_sell_address" view-title="房地坐落" hide-nav-bar=true  class='dark'>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			房地坐落
+		</div>
+		<div class="right">
+		</div>
+	</div>
+	
+	<ion-content class="add-sell-address" has-bouncing=false>
+		<div class="offline"></div>
+
+		<div ng-click="closeTemplete()" class="text">	
+			<textarea name="cont" rows="10" cols="" ng-model="ershoutd.content" placeholder="{{placeholder}}"></textarea>
+		</div>
+		
+		
+		<div ng-click="save()" class="ft-sub-btn">
+			保存
+		</div>
+	</ion-content>
+</ion-view>
+

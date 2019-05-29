@@ -1,0 +1,374 @@
+<ion-view id="home" view-title="首页" hide-nav-bar="true">
+	<div class="header">
+        <div ui-sref="tabs.realHome" class="back">
+            <i class="iconfont icon-xiangzuo1"></i>
+        </div>
+        <div class="title">
+            <div class="fake-input">
+                <div ui-sref="cityChoose" class="fake-adr overflow-omit-one">
+                    {{currentCity.name}} <i class="iconfont icon-Fill"></i>    
+                </div>
+                <div ui-sref="houseSearch" class="fake-search">
+                    <i class="iconfont icon-sousuo2"></i>你想住哪？
+                </div>
+            </div> 
+        </div>
+        <div ui-sref="houseOnMap" class="right">
+            <div class="top-cell">
+                <i class="iconfont icon-B"></i>
+            </div>
+            <div class="small-font-size bot-cell">地图找房</div>
+        </div>
+    </div>
+    
+    <div class="head-bg"></div>
+    <ion-content 
+        on-scroll="logoScroll()" 
+        scrollbar-y="false" 
+        delegate-handle="home-main-Scroll" 
+        on-swipe-down="swipDown()" 
+        on-swipe-up="swipUp()" 
+        class="home" 
+        has-bouncing="true">
+        <ion-refresher 
+            pulling-icon="" 
+            pulling-text="" 
+            spinner="lines"  
+            refreshing-text=""
+            on-refresh="initBanner()" 
+        >
+        </ion-refresher>
+      
+        <div class="ad-slide-wrapper">
+            <ion-slide-box 
+                auto-play="true"
+                slide-interval="5000"
+                on-slide-changed="changeAdSlide($index)" 
+                show-pager="false" 
+                delegate-handle='home-banner-slide'>
+                <ion-slide ng-repeat-finished ng-repeat="img in adImgList track by $index">
+                    <img ng-src="{{img.ShowImage}}" alt="">
+                </ion-slide>
+            </ion-slide-box>  
+            <div class="ad-slide-page-num">
+                <div ng-repeat="img in adImgList track by $index" class="flex-item" ng-class="{true:'active',false:''}[currentAdSlideIndex==$index]"></div>
+            </div>  
+        </div>
+        
+        <!-- 轮播图外白色底 -->
+        <div class="white-scroll">
+            <div class="func-entry-wrapper">
+                <div ui-sref="newHousePage" class="func-entry">
+                    <div class="circle-item housesource">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-xinfang-1"></use>
+                        </svg>
+                    </div>
+                    <div class="name-item">新房</div>
+                </div>
+                <!-- ui-sref="tabs.ershouPage({date:2})" -->
+                <div ui-sref="ershouHouseList({classify:'住宅',date:2})" class="func-entry">
+                    <div class="circle-item store">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-fangdongzhishou-"></use>
+                        </svg>
+                    </div>
+                    <div class="name-item">房东直售</div>
+                </div>
+                 <!-- ui-sref="tabs.rentPage({date:2})" -->
+                <div ui-sref="rentHouseList({classify:'住宅',date:2})" class="func-entry">
+                    <div class="circle-item college">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-fangdongzhizuvg-"></use>
+                        </svg>
+                    </div>
+                    <div class="name-item">房东直租</div>
+                </div>
+                <!-- ui-sref="tabs.ershouPage({date:3})" -->
+                <div ui-sref="ershouHouseList({classify:'住宅',date:3})" class="func-entry">
+                    <div class="circle-item location">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-fangdongzhishou-"></use>
+                        </svg>
+                    </div>
+                    <div class="name-item">中介直售</div>
+                </div>
+                 <!-- tabs.rentPage({date:3}) -->
+                <div ui-sref="rentHouseList({classify:'住宅',date:3})" class="func-entry">
+                    <div class="circle-item location">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-fangdongzhizu-"></use>
+                        </svg>
+                    </div>
+                    <div class="name-item">中介直租</div>
+                </div>
+                <div class="func-entry">
+                    <div ripple ripple-hold ripple-dark class="circle-item housesource">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-haiwai-1"></use>
+                        </svg>
+                    </div>
+                    <div class="name-item">海外</div>
+                </div>
+                <div ui-sref="needBuyPage" class="func-entry">
+                    <div class="circle-item store">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-fangkeqiugou-"></use>
+                        </svg>
+                    </div>
+                    <div class="name-item">房客求购</div>
+                </div>
+                <div ui-sref="needRentPage" class="func-entry">
+                    <div class="circle-item college">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-fangkeqiuzu-"></use>
+                        </svg>
+                    </div>
+                    <div class="name-item">房客求租</div>
+                </div>
+                <div class="func-entry">
+                    <div class="circle-item location">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-youxuanfangyuan-"></use>
+                        </svg>
+                    </div>
+                    <div class="name-item">优选房源</div>
+                </div>
+                <div ui-sref="goldBroker" class="func-entry">
+                    <div class="circle-item location">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-jinpaijinjiren-"></use>
+                        </svg>
+                    </div>
+                    <div class="name-item">金牌经纪人</div>
+                </div>
+            </div>
+
+            <div class="three-aisle-wrapper">
+                <div class="three-entry">
+                    <div ui-sref="evaluationValuation({type:1})" class="item-cell">
+                        <img ng-src="imgs/home/a.png" alt="">
+                    </div>
+                    <div ui-sref="guessPrice" class="item-cell">
+                        <img ng-src="imgs/home/b.png" alt="">
+                    </div>
+                    <div ui-sref="orderVisit" class="item-cell">
+                        <img ng-src="imgs/home/c.png" alt="">
+                    </div>
+                    <div class="item-cell">
+                        <img ng-src="imgs/home/d.png" alt="">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="svg-title-wrapper">
+                <div class="left-cell">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-fangchanzoushi-"></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="echart-wrapper">
+                <div class="echart-cont">
+                        <div class="location"><i class="iconfont icon-Fill"></i>{{currentCity.name}}</div>
+                    <div id="home_house_trend_echarts" class="echart">
+                    </div>
+                </div>
+            </div>
+           
+            <div class="svg-title-wrapper">
+                <div class="left-cell">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-fangchanshibaoo-"></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="news-list">
+                <div class="news-item" ui-sref="aislePage({type:1,index:1})">
+                    <div class="left-cell">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-travelholidayvacat4"></use>
+                        </svg>
+                    </div>
+                    <div class="right-cell overflow-omit-one">楼市动态</div>
+                </div>
+                <div class="news-item" ui-sref="aislePage({type:1,index:2})">
+                    <div class="left-cell">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-fangchanrewen-"></use>
+                        </svg>
+                    </div>
+                    <div class="right-cell overflow-omit-one">房产热文</div>
+                </div>
+                <div class="news-item" ui-sref="aislePage({type:1,index:3})">
+                    <div class="left-cell">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-travelholidayvacat2"></use>
+                        </svg>
+                    </div>
+                    <div class="right-cell overflow-omit-one">房产点评</div>
+                </div>
+            </div>
+            
+            <div class="svg-title-wrapper">
+                <div class="left-cell">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-fangchangushi-"></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="news-list">
+                <div class="news-item" ui-sref="aislePage({type:2,index:1})">
+                    <div class="left-cell">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-travelholidayvacat1"></use>
+                        </svg>
+                    </div>
+                    <div class="right-cell overflow-omit-one">使用手册</div>
+                </div>
+                <div class="news-item" ui-sref="aislePage({type:2,index:2})">
+                    <div class="left-cell">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-travelholidayvacat"></use>
+                        </svg>
+                    </div>
+                    <div class="right-cell overflow-omit-one">发展历程</div>
+                </div>
+                <div class="news-item" ui-sref="aislePage({type:2,index:3})">
+                    <div class="left-cell">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-travelholidayvacat3"></use>
+                        </svg>
+                    </div>
+                    <div class="right-cell overflow-omit-one">房田点滴</div>
+                </div>
+            </div>
+            <!-- <div class="news-wrapper">
+                <div class="home-news-swiper-container swiper-container">
+                    <div class="swiper-wrapper">
+                        <div 
+                            class="swiper-slide"
+                            ui-sref="houseTimes({id:item.Id})" 
+                            on-finish-render-filters
+                            ng-repeat="item in housetimesList track by $index">
+                            <img ng-src="{{item.Image}}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="svg-title-wrapper">
+                <div class="left-cell">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-weinituijian-"></use>
+                    </svg>
+                </div>
+                <div class="right-cell">
+                    <div ng-click="switchHouseType('old')" ng-class="{true:'active',false:''}[houseType=='old']" class="cell-item">二手房</div>
+                    <div ng-click="switchHouseType('new')" ng-class="{true:'active',false:''}[houseType=='new']" class="cell-item">新房</div>
+                    <div ng-click="switchHouseType('rent')" ng-class="{true:'active',false:''}[houseType=='rent']" class="cell-item">租房</div>
+                </div>
+            </div>
+
+            <!-- 新房 -->
+            <div ng-show="houseType=='new'" class="main">
+                <div 
+                    ui-sref="newHouseDetail({id:newhouse.Id})"
+                    ng-repeat="newhouse in newhousearr track by $index"
+                    class="house-list-item"
+                    ripple-hold ripple-dark
+                >
+                    <div class="left-img"><img ng-src="{{newhouse.Images}}" alt=""></div>
+                    <div class="right-text">
+                        <div class="title overflow-omit-one">{{newhouse.Title}}</div>
+                        <div class="housetype overflow-omit-one"><i class="iconfont icon-dingwei"></i>{{newhouse.Address}}</div>
+                        <div class="info overflow-omit-one">
+                            {{newhouse.Space}}
+                        </div>
+                        <div class="price-commission">
+                            <div class="left-cell">
+                                {{newhouse.Prize}}元/m²
+                            </div>
+                            <div class="right-cell">
+                                <span class="commission">
+                                    {{newhouse.Bound}}
+                                </span>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-commission"></use>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p ui-sref="tabs.newHouseArr" class="look-more">查看更多<i class="iconfont icon-gengduo2"></i></p>
+            </div>
+            <!-- 二手房 -->
+            <div ng-show="houseType=='old'" class="main">
+                <div 
+                    ui-sref="sellHouseDetail({id:sellhouse.Id})" 
+                    ng-repeat="sellhouse in oldhousearr track by $index" 
+                    class="house-list-item"
+                    ripple-hold ripple-dark
+                >
+                    <div class="left-img"><img ng-src="{{sellhouse.Thumb}}" alt=""></div>
+                    <div class="right-text">
+                        <div class="title overflow-omit-one">{{sellhouse.Title}}</div>
+                        <div class="br-price-type overflow-omit-one">
+                            <span class="spanprice">
+                                <span class="large">{{sellhouse.Price}}</span>万
+                            </span>
+                            <span class="span-gray">&nbsp;|&nbsp;{{sellhouse.HouseType}}</span>
+                            <span class="span-gray">&nbsp;|&nbsp;{{sellhouse.Space}}m²</span>
+                        </div>
+                        <div class="info overflow-omit-one">
+                            <span class="span-gray"><i class="iconfont icon-dingwei"></i>{{sellhouse.CommunityName}}</span>
+                        </div>
+                        <div class="by-tags overflow-omit-one">
+                            <span class="tag-item" ng-repeat="tag in sellhouse.Tags track by $index">{{tag}}</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <p ui-sref="ershouHouseList({classify:'住宅',date:3})" class="look-more">查看更多<i class="iconfont icon-gengduo2"></i></p>
+            </div>
+            <!-- 租房 -->
+            <div ng-show="houseType=='rent'" class="main">
+                <div 
+                    ui-sref="rentHouseDetail({id:sellhouse.Id})" 
+                    ng-repeat="sellhouse in renthousearr track by $index" 
+                    ripple-hold ripple-dark
+                    class="house-list-item"
+                >
+                    <div class="left-img"><img ng-src="{{sellhouse.Thumb}}" alt=""></div>
+                    <div class="right-text">
+                        <div class="title overflow-omit-one">{{sellhouse.Title}}</div>
+                        <div class="br-price-type overflow-omit-one">
+                            <span class="spanprice">
+                                <span class="large">{{sellhouse.Price}}</span>元/月
+                            </span>
+                            <span class="span-gray">&nbsp;|&nbsp;{{sellhouse.HouseType}}</span>
+                            <span class="span-gray">&nbsp;|&nbsp;{{sellhouse.Space}}m²</span>
+                        </div>
+                        <div class="info overflow-omit-one">
+                            <span class="span-gray"><i class="iconfont icon-dingwei"></i>{{sellhouse.CommunityName}}</span>
+                        </div>
+                        <div class="by-tags overflow-omit-one">
+                            <span class="tag-item" ng-repeat="tag in sellhouse.Tags track by $index">{{tag}}</span>
+                        </div>
+                    </div>
+                </div>
+                <p ui-sref="rentHouseList({classify:'住宅',date:3})" class="look-more">查看更多<i class="iconfont icon-gengduo2"></i></p>
+            </div>
+        </div>
+    </ion-content>
+
+    <!-- tab导航 -->
+    <div ng-include="'views/includes/customHouseTabs/customHouseTabs.html'"></div>
+
+    <script id="home_nav_modal" type="text/ng-template">
+        <ion-modal-view ng-click="closeModal()" id="home_nav_modalview">
+            <div ng-include="'views/includes/botPublicPublish/botPublicPublish.html'"></div>
+        </ion-modal-view>
+    </script>
+</ion-view>

@@ -1,0 +1,19 @@
+<div class="video-container">
+    <div ng-show="!videoData.playing" class="play-btn">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-shipin11"></use>
+        </svg>
+    </div>
+    <!-- 视频源 -->
+    <!-- <video ng-click="toggleHidebar()" ng-src="{{source}}" preload="metadata" loop="loop" autoplay="autoplay" muted webkit-playsinline="webkit-playsinline" poster="{{image}}"> -->
+    <video ng-click="play()" ng-src="{{source}}" preload="metadata" loop="loop" webkit-playsinline="webkit-playsinline" ng-attr-poster="{{image}}">
+        <source ng-src="{{source}}" type="video/mp4" />
+    </video>
+    
+    <!-- 进度条 -->
+
+    <!-- 视频缓冲loading -->
+    <!-- <div class="video-loading center-center" ng-if="videoData.isLoading">
+        <ion-spinner icon="dots"></ion-spinner>
+    </div> -->
+</div>

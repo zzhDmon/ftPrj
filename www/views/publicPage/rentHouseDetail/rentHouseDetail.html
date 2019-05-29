@@ -1,0 +1,262 @@
+
+<!--对话模板-->
+<ion-view id='rent_house_detail'  hide-nav-bar="true">
+	<div ng-show="showHeader" class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			{{houseinfo.Title}}
+		</div>
+		<div ng-click="showBottomShareModal()" class="right">
+			<i class="iconfont icon-fenxiang1"></i>
+		</div>
+	</div>
+	
+	<!--底部联系人-->
+	<div class="contacts">
+		<div ng-show="userinfo" class="contact-item his-info">
+			<div class="left-cell">
+				<img ng-src="{{userinfo.avatar || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+			</div>
+			<div class="right-cell overflow-omit-one">
+				{{userinfo.agentName || '房田用户'}}
+			</div>
+		</div>
+		<!-- <div ng-hide="houseinfo.isProxed" ng-click="openPopover($event)" class="contact-item">
+			申请代理
+		</div>
+		<div ng-show="houseinfo.isProxed" class="contact-item">
+			已代理
+		</div> -->
+		<div ng-hide="myselfInfo.Id == userinfo.uid" ng-click="goChat(userinfo.uid)" class="contact-item">
+			微聊
+		</div>
+		<div ng-if="houseinfo.IsShowPhone" class="contact-item">
+			<a href="tel:{{userinfo.phone}}">电话</a>
+		</div>
+	</div>	
+	
+	<ion-content 
+		on-scroll="scrollListen()"
+		delegate-handle="rent-house-detail-Scroll"
+		class="rent-house-detail house-detail" 
+		has-bouncing=false>
+		<div class="backbotton btn" ng-click="back()"><i class="iconfont icon-xiangzuo1"></i></div>
+		<div class="sharebotton btn" ng-click="showBottomShareModal()"><i class="iconfont icon-fenxiang1"></i> </div>
+		
+		<div class="show">
+			<div class="banner-position">
+				<ion-slide-box does-continue="true"  class="detailcursor" on-slide-changed='changeindex()' show-pager="false"  delegate-handle='fydetail-handle'>
+				  <ion-slide ng-repeat="banner in bannerarr track by $index">
+				    <div class="box"><img ng-src="{{banner}}"/></div>
+				  </ion-slide>
+				</ion-slide-box>
+				<div class="slide-page-num">
+                    <div ng-repeat="banner in bannerarr track by $index" class="flex-item" ng-class="{true:'active',false:''}[currentIndex==$index]"></div>
+                </div> 
+			</div>
+			
+			<div class="main-detail">
+				<div class="price-eval-wrap">
+					<div class="price-housetype">
+						<span class="price">￥{{houseinfo.Price}}元/月</span>&nbsp;<span class="housetype">({{houseinfo.RoomType}}室{{houseinfo.HallType}}厅{{houseinfo.BathType}}卫)</span>
+					</div>
+					<div ui-sref="tabs.evaluationList({houseid:houseinfo.Id})" class="eval">
+						评测详情
+					</div>
+				</div>
+				<h5>{{houseinfo.Title}}</h5>
+				<div class="address-wrapper">
+					<div class="left-cell">
+						<i class="iconfont icon-dingwei"></i>{{houseinfo.CommunityAddress}}
+					</div>
+					<!-- <div class="right-cell"><i class="iconfont icon-xiangyou1"></i></div> -->
+				</div>
+				<div class="undertitle">
+					<span ng-repeat="tag in houseinfo.Tags track by $index">{{tag}}</span>
+				</div>
+			</div>
+			<div class="house-info">
+				<ul>
+					<li class="overflow-omit-one"><span class="leftdesc">面积：</span>{{houseinfo.Space}}m²</li>
+					<li class="overflow-omit-one"><span class="leftdesc">类型：</span>{{houseinfo.BuildType}} <span ng-if="!houseinfo.BuildType">--</span></li>
+					<li class="overflow-omit-one"><span class="leftdesc">年代：</span><span ng-if="houseinfo.Year>1">{{houseinfo.Year}}</span><span ng-if="houseinfo.Year<=1">--</span>年</li>
+					<li class="overflow-omit-one"><span class="leftdesc">朝向：</span>{{houseinfo.Orientation}}<span ng-if="!houseinfo.Orientation">--</span></li>
+					<li class="overflow-omit-one">
+						<span class="leftdesc">楼层：</span>
+						<span ng-if="houseinfo.Floor<=7">小高层</span>
+						<span ng-if="houseinfo.Floor>7 && houseinfo.Floor<=14">中高层</span>
+						<span ng-if="houseinfo.Floor>14">高层</span>
+					</li>
+					<li class="overflow-omit-one"><span class="leftdesc">装修：</span>{{houseinfo.Fitment}}<span ng-if="!houseinfo.Fitment">--</span></li>
+					<li class="overflow-omit-one">
+						<span class="leftdesc">房源类型：</span>
+						<span ng-if="houseinfo.UserType==1">品牌公寓</span>
+						<span ng-if="houseinfo.UserType==2">个人房源</span>
+						<span ng-if="houseinfo.UserType==3">房东委托</span>
+						<span ng-if="!houseinfo.UserType">--</span>
+					</li>
+					<li class="overflow-omit-one">
+						<span class="leftdesc">付款方式：</span>
+						<span ng-if="houseinfo.PayType==1">付1押1</span>
+						<span ng-if="houseinfo.PayType==2">付1押2</span>
+						<span ng-if="houseinfo.PayType==3">付2押1</span>
+						<span ng-if="houseinfo.PayType==4">付2押2</span>
+						<span ng-if="houseinfo.PayType==5">付3押1</span>
+						<span ng-if="houseinfo.PayType==6">付3押2</span>
+						<span ng-if="houseinfo.PayType==7">面议</span>
+						<span ng-if="houseinfo.PayType==8">半年付</span>
+						<span ng-if="houseinfo.PayType==9">年付</span>
+						<span ng-if="houseinfo.PayType==10">半年付押1</span>
+						<span ng-if="houseinfo.PayType==11">半年付不押</span>
+						<span ng-if="houseinfo.PayType==12">年付不押</span>
+						<span ng-if="houseinfo.PayType==13">年付押1</span>
+						<span ng-if="!houseinfo.PayType">--</span>
+					</li>
+					<li class="overflow-omit-one"><span class="leftdesc">租房方式：</span>{{houseinfo.RentType}}<span ng-if="!houseinfo.RentType">--</span></li>
+					<li class="overflow-omit-one" ng-hide="houseinfo.RentType=='整租'">
+						<span class="leftdesc">出租间：</span>
+						<span ng-if="houseinfo.RentRoom==1">主卧</span>
+						<span ng-if="houseinfo.RentRoom==2">次卧</span>
+						<span ng-if="!houseinfo.RentRoom">--</span>
+					</li>
+					<li class="overflow-omit-one" ng-hide="houseinfo.RentType=='整租'">
+						<span class="leftdesc">合租要求：</span>
+						{{houseinfo.OwnerPsy}}
+						<span ng-if="!houseinfo.OwnerPsy">--</span>
+					</li>
+					<li class="overflow-omit-one" class="allLine"><span class="leftdesc">小区名称：</span>
+						<span class="right-main-color">
+							{{houseinfo.CommunityName}}
+						</span>
+						<span ng-if="!houseinfo.CommunityName">--</span>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="offline"></div>
+			<div class="fy-miaoshu">
+				<h5>房源介绍</h5>
+				<div class="des-wrapper">
+					<div class="des-item">
+						<div class="left-cell">
+							<div class="icon-item">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-huiyuan2"></use>
+								</svg>
+							</div>
+							<div class="txt-item">房源详情</div>
+						</div>
+						<div class="right-cell">{{houseinfo.Discription}}</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="offline"></div>
+			<div class="fy-peizhi">
+				<h5>房屋配套</h5>
+				<div class="config-wrapper">
+					<div ng-show="config.isChecked" ng-repeat="config in houseinfo.ExProp track by $index" class="config-item">
+						<div class="in-item overflow-omit-one">
+							{{config.text}}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="offline"></div>
+			<div class="fy-position">
+				<h5>位置</h5>
+				<p>{{houseinfo.CommunityAddress}}</p>
+				<div id="renthousedetail_map" style="width:100vw;height:200px;"></div>
+			</div>
+			
+			<div class="offline"></div>
+			<div class="comment-list">
+				<h5>用户点评</h5>
+				<div class="comment-list">
+					<div ng-repeat="item in commentArr track by $index" class="comment-item">
+						<div class="leftimg">
+							<img ng-src="{{item.comment.userinfo.ShowImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}"/>
+						</div>
+						<div class="right-txt">
+							<div class="title-like">
+								<div class="title">{{item.comment.userinfo.Name}}</div>
+								<div ng-click="clickLike($index)" class="like"><i class="iconfont icon-zan"></i>{{item.comment.likeNum}}</div>
+							</div>
+							<div class="comment-content">
+									{{item.comment.content}}
+							</div>
+							<div class="foot-info">
+								<span ng-if="item.comment.createTime" class="time">{{item.comment.createTime}}</span>
+								<span ng-hide="item.comment.createTime" class="time">2018-05-20</span>
+								<!-- <span ng-click="" class="reply">250回复</span> -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div ng-click="showCommentModal()" class="commit">
+					我要点评
+				</div>
+			</div>
+
+			<div ng-if="otherArr.length>0" class="offline"></div>
+			<div ng-if="otherArr.length>0" class="similar-house" >
+				<h5>相似房源</h5>
+				<div class="main">
+					<div 
+						ui-sref="rentHouseDetail({id:sellhouse.Id})" 
+						ng-repeat="sellhouse in otherArr track by $index" 
+						ripple-hold ripple-dark
+						class="house-list-item"
+					>
+						<div class="left-img"><img ng-src="{{sellhouse.Thumb}}" alt=""></div>
+						<div class="right-text">
+							<div class="title overflow-omit-one">{{sellhouse.Title}}</div>
+							<div class="br-price-type overflow-omit-one">
+								<span class="spanprice">
+									<span class="large">{{sellhouse.Price}}</span>元/月
+								</span>
+								<span class="span-gray">&nbsp;|&nbsp;{{sellhouse.HouseType}}</span>
+								<span class="span-gray">&nbsp;|&nbsp;{{sellhouse.Space}}m²</span>
+							</div>
+							<div class="info overflow-omit-one">
+								<span class="span-gray"><i class="iconfont icon-dingwei"></i>{{sellhouse.CommunityName}}</span>
+							</div>
+							<div class="by-tags overflow-omit-one">
+								<span class="tag-item" ng-repeat="tag in sellhouse.Tags track by $index">{{tag}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div style="width: 100%;height: 50px;"></div>
+		
+		
+		<!-- 分享 -->
+		<script id="rent_house_detail_share_modal" type="text/ng-template">
+			<ion-modal-view ng-click="closeBottomShareModal()" class="bottom-share-modal">
+				<div ng-include="'views/includes/bottomShareModal/bottomShareModal.html'"></div>
+			</ion-modal-view>
+		</script>
+		<!-- 代理 -->
+		<script id="rent_house_detail_popover" type="text/ng-template">
+			<ion-popover-view class="choose-agency-type-popover">
+				<div ng-include="'views/includes/chooseAgencyTypePopover/chooseAgencyTypePopover.html'"></div>
+			</ion-popover-view>
+		</script>
+		<!-- 分享 -->
+		<script id="rent_house_detail_comment_modal" type="text/ng-template">
+			<ion-modal-view class="call-comment-modalview">
+				<div ng-include="'views/includes/callCommentModal/callCommentModal.html'"></div>
+			</ion-modal-view>
+		</script>
+		
+	</ion-content>
+	
+</ion-view>
+

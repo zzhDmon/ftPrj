@@ -1,0 +1,63 @@
+<!--发现界面模板-->
+<ion-view id="real_house" view-title="房产认证" hide-nav-bar=true>
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			房产认证
+		</div>
+		<div class="right" >
+			
+		</div>
+	</div>
+	
+	<ion-content class="real-house">
+		<form novalidate name="formlogin">
+			<div class="card list">
+				<label class="item item-input">
+					<span class="input-label">权利人</span>
+						<input ng-disabled="true" type="text" name="name" ng-model="subData.HolderName" required=""  placeholder="权利人 (上传房产证识别)">
+				</label>
+				<label class="item item-input">
+					<span class="input-label">房产证号</span>
+						<input ng-disabled="true" type="text" name="idnumber" ng-model="subData.HouseNumber" required="" placeholder="房产证号 (上传房产证识别)">
+				</label>
+				<label class="item item-input">
+					<span class="input-label">房地坐落</span>
+						<input ng-disabled="true" type="text" name="idnumber" ng-model="subData.Address" required="" placeholder="房地坐落 (上传房产证识别)">
+				</label>
+			</div>
+			
+			<div class="up-idcard">点击上传房产证</div>
+			<div class="id-img">
+				<p class="vcard-title">房产证第一页</p>
+				<img ng-show="!showHouseCard.showFrontVCard" class="img" src="imgs/realhouse/房产证1.jpg"></img>
+				<img ng-show="showHouseCard.showFrontVCard" class="img" src="{{showHouseCard.showFrontVCard}}"></img>
+				<input style="display:none;" type="file" name="photo"  accept="image/*" autocomplete="off" />
+			</div>
+
+			<div class="borderline"></div>
+			<div class="offline"></div>
+			<div class="borderline"></div>
+
+			<div class="id-img-reverse">
+				<p class="vcard-title">房产证第二页</p>
+				<img ng-show="!showHouseCard.showReverseVCard" class="img" src="imgs/realhouse/房产证2.jpg"></img>
+				<img ng-show="showHouseCard.showReverseVCard" class="img" src="{{showHouseCard.showReverseVCard}}"></img>
+				<input style="display:none;" type="file" name="photo"  accept="image/*" autocomplete="off" />
+			</div>
+			<div style="width:100%;height:15px;"></div>
+		</form>
+		
+		<div ng-click="save()" class="save-btn">
+			提交
+		</div>
+		<div style="width:100%;height:50px;"></div>
+
+
+	
+	</ion-content>
+	
+</ion-view>

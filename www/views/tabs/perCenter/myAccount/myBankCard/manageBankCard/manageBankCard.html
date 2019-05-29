@@ -1,0 +1,78 @@
+
+<!--对话模板-->
+<ion-view id="manage_bank_card" view-title="管理银行卡" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			管理银行卡
+		</div>
+		<div class="right">
+		</div>
+	</div>
+	<ion-content class="manage-bank-card">
+		<div class="bank-card-list">
+			<div ng-click="showAction(item)" ng-repeat="item in cardList track by $index" class="bank-item">
+				<div class="left-icon">
+					<svg ng-if="item.bankName=='工商银行'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-gongshangyinhang"></use>
+					</svg>
+					<svg ng-if="item.bankName=='农业银行'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-nongyeyinhang"></use>
+					</svg>
+					<svg ng-if="item.bankName=='中国银行'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-zhongguoyinhang"></use>
+					</svg>
+					<svg ng-if="item.bankName=='建设银行'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-jiansheyinhang"></use>
+					</svg>
+					<svg ng-if="item.bankName=='交通银行'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-jiaotongyinhang"></use>
+					</svg>
+					<svg ng-if="item.bankName=='邮储银行'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-youchuyinhang"></use>
+					</svg>
+					<svg ng-if="item.bankName=='招商银行'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-zhaoshangyinhang"></use>
+					</svg>
+					<svg ng-if="item.bankName=='平安银行'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-pinganyinhang"></use>
+					</svg>
+					<svg ng-if="item.bankName=='华夏银行'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-huaxiayinhang"></use>
+					</svg>
+					<svg ng-if="item.bankName=='光大银行'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-guangdayinhang"></use>
+					</svg>
+					<svg ng-if="item.bankName=='浦发银行'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-pufayinhang"></use>
+					</svg>
+					<svg ng-if="item.bankName=='中信银行'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-zhongxinyinhang"></use>
+					</svg>
+					<svg ng-if="item.bankName=='民生银行'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-minshengyinhang"></use>
+					</svg>
+					<svg ng-if="item.bankName=='兴业银行'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-xingyeyinhang"></use>
+					</svg>
+					<svg ng-if="item.bankName=='广发银行'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-guangfayinhang"></use>
+					</svg>
+				</div>
+				<div class="right-text">
+					<div class="top">{{item.bankName}}</div>
+					<div class="bot">（
+						<span ng-if="item.cardType==1">借记卡</span>
+						<span ng-if="item.cardType==2">信用卡</span>
+						{{item.bankCardNo | cardNoFilter}}
+						）
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+	
+</ion-view>
+

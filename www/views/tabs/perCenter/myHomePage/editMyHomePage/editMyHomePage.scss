@@ -1,0 +1,136 @@
+#edit_my_home_page {
+    .edit-my-home-page {
+        margin: $head-height 0 10px;
+        .main{
+            .half-offline{
+                width: 100%;
+                height: 5px;
+                background-color: $bg-gray-color;
+            }
+            .img-row-item{
+                padding: 5px $view-padding;
+                width: 100%;
+                height: 60px;
+                display: flex;
+                justify-content: space-between;
+                background-color: white;
+                .text-cell{
+                    width: calc(100% - 50px);
+                    height: 100%;
+                    line-height: 50px;
+                    font-size: 16px;
+                    color: $font-main-color; 
+                }
+                .img-cell{
+                    width: 50px;
+                    height: 50px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                    }
+                }
+            }
+            .row-item{
+                padding: 5px $view-padding;    
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                background-color: white;
+                // 行内输入框
+                input{
+                    width: 100%;
+                    height: 100%;
+                    padding: 0 5px;
+                    background-color: white;
+                    text-align: right;
+                }
+                .left-cell{
+                    width: 110px;
+                    height: 40px;
+                    line-height: 40px;
+                    font-size: 16px;
+                    color: $font-main-color; 
+                }
+                .mid-cell{
+                    width: calc(100% - 150px);
+                    height:40px;
+                    text-align: right; 
+                    line-height: 40px;
+                    word-break:keep-all;
+                    white-space:nowrap;
+                    overflow:hidden; 
+                    text-overflow:ellipsis;
+                }
+                .mid-radio{
+                    display: flex;
+                    justify-content: space-around;
+                    .label{
+                        width: 60px;
+                        height: 40px;
+                        text-align: center;
+                        line-height: 40px;
+                        label{
+                            i{
+                                font-size:16px;
+                                font-style:normal;
+                                display:inline-block;
+                                width:16px;
+                                height:16px;
+                                text-align:center;
+                                line-height:18px;
+                                color:$font-sup-color;
+                                vertical-align:middle;
+                                margin:-2px 2px 1px 0px;
+                            } 
+                            input[type="radio"] + i {
+                                border-radius:7px;
+                                } 
+                            input[type="radio"] {
+                                display:none;
+                                } 
+                            input[type="radio"]:checked + i + span {
+                                color: $bg-main-color;
+                            } 
+                            input[type="radio"]:checked + i {
+                                color:$bg-main-color;
+                            }  
+                            input[type="radio"]:disabled + i {border-color:#ccc;}  
+                        }
+                    }
+                }
+                .right-cell{
+                    width: 30px;
+                    height:40px;
+                    text-align: center; 
+                    line-height: 40px;
+                    font-weight: 500;
+                    color: $font-main-color;
+                    .iconfont{
+                        font-size: 20px;
+                    }
+                }
+                .right-big-cell{
+                    width: calc(100% - 100px);
+                    height:40px;
+                    text-align: right; 
+                    line-height: 40px;
+                }
+                &.row-item-toggle{
+                    position: relative;
+                    justify-content: flex-start;
+                    .mid-cell{
+                        width: calc(100% - 170px);
+                    }
+                    .toggle{
+                        position: absolute;
+                        right: $view-padding;
+                        top: 10px;
+                        width: 60px;
+                        height: 40px;
+                    }
+                }
+            }
+        }
+    }
+}

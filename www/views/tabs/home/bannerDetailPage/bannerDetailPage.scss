@@ -1,0 +1,11 @@
+#banner_detail_page{
+    .banner-detail-page{
+        margin: $head-height 0 0;
+        .img-wrapper{
+            width: 100%;
+            img{
+                width: 100%;
+            }
+        }
+     }
+}

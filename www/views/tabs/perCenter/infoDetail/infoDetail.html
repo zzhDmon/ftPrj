@@ -1,0 +1,55 @@
+<!--模板-->
+<ion-view id="info_detail" hide-nav-bar=true view-title="我的信息" class='dark'>
+		<div class="header">
+			<div class="back" ng-click="back()">
+				<i class=" iconfont icon-xiangzuo1"></i>
+			</div>
+			<div class="title">
+				我的信息
+			</div>
+			<div class="right" >
+				
+			</div>
+		</div>
+		
+		<ion-content class="info-detail" has-bouncing="false">
+			<div ui-sref="headimgPreview" class="card headimg">
+				<div class="classify">
+					头像
+				</div>
+				<div class="floatr">
+					<img ng-if="myinfo.ShowImage!=='/app/images/broker_logo.png'" ng-src="{{myinfo.ShowImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" />
+					<!-- <i class="icon ion-chevron-right"></i> -->
+				</div>
+			</div>
+			
+			<!-- <div class="offline"></div> -->
+			<div ui-sref="changeInfo({name:'修改姓名'})" class="card">
+				<div class="tex">姓名</div>
+				<div class="right"><i class="icon ion-chevron-right"></i></div>
+				<div class="cont"><span ng-if="myinfo.Name">{{myinfo.Name}}</span></div>
+			</div>
+			<div class="borderline"></div>
+			<div ui-sref="changeInfo({name:'修改性别'})" class="card">
+				<div class="tex">性别</div>
+				<div class="right"><i class="icon ion-chevron-right"></i></div>
+				<div class="cont"><span ng-if="myinfo.Sex">{{myinfo.Sex}}</span></div>
+			</div>
+
+			<div class="borderline"></div>
+			<div ui-sref="changeInfo({name:'个性签名'})" class="card">
+				<div class="tex">个性签名</div>
+				<div class="right"><i class="icon ion-chevron-right"></i></div>
+				<div class="cont"><span ng-if="myinfo.Discription">{{myinfo.Discription}}</span></div>
+			</div>
+			<div class="borderline"></div>
+			<div ui-sref="changeInfo({name:'工作年限'})" class="card">
+				<div class="tex">工作年限</div>
+				<div class="right"><i class="icon ion-chevron-right"></i></div>
+				<div class="cont">{{myinfo.WorkYears}}年</div>
+			</div>
+			
+			<div class="borderline"></div>
+		</ion-content>
+	
+	</ion-view>

@@ -1,0 +1,123 @@
+<ion-view id="get_bonus" view-title="领取奖励金" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			领取奖励金
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	<ion-content class="get-bonus">
+		<div class="main-content">
+			<div ng-show="pageData.DataStaus==0" ng-repeat="item in pageData.Attach track by $index">
+				<div ng-hide="item.Role=='user' || item.Role=='null'" class="bonus-item">
+					<div class="left-cell">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-jianglijin1"></use>
+						</svg>
+						<div class="up-icon">
+							<div class="txt-wrapper">
+								<div class="top">￥<span>{{item.Fee/100}}</span></div>
+								<div class="bot">（奖励金）</div>
+							</div>
+						</div>
+					</div>
+					<div class="right-cell">
+						<div class="top-txt overflow-omit-three">
+							{{item.RoleName}}
+						</div>
+						<div class="bot-info">
+							<div class="left-txt small-font-size overflow-omit-one">
+								<div class="top-cell">
+									<span ng-show="item.IsRoled">
+										距可领取时间还有  <span class="main-color">{{pageData.StartSec | seconds_to_hhmmss}}</span>
+									</span>
+								</div>
+								<div class="bot-cell">
+									<span ng-show="item.EndedSec<=0">长期有效</span>
+									<span ng-hide="item.EndedSec<=0">距有效期结束还有{{item.EndedSec | seconds_to_hhmmss}}</span>
+								</div>
+							</div>
+							<div ng-show="item.IsRoled" ng-disabled="!item.IsVaild" ng-click="getBonus(item)" class="right-btn button">领取</div>
+							<div ng-hide="item.IsRoled" ng-disabled="item.EndedSec<0" ng-click="goOpenvip()" class="right-btn button levelup">升级</div>
+						</div>
+					</div>
+				</div>
+<!-- 累积用户 -->
+				<div ng-show="item.Role=='user' || item.Role=='null'" class="bonus-item">
+					<div class="left-cell">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-jianglijin1"></use>
+						</svg>
+						<div class="up-icon">
+							<div class="txt-wrapper">
+								累计邀请3个用户注册房田“个人”会员可免费升级“个人”会员一年
+							</div>
+						</div>
+					</div>
+					<div class="right-cell">
+						<div ng-show="item.Role=='user'" class="top-txt overflow-omit-three">
+							<div class="users">
+								<div ng-repeat="user in item.Users track by $index" class="user-item">
+									<div class="top-index">{{$index + 1}}</div>
+									<img ng-src="{{user.Image}}" alt="">
+									<div class="bot-name overflow-omit-one">{{user.Name}}</div>
+								</div>
+							</div>
+						</div>
+						<div ng-show="item.Role=='null'" class="top-txt overflow-omit-three">
+							<div class="users">
+								{{item.RoleName}}
+							</div>
+						</div>
+						<div class="bot-info">
+							<div class="left-txt small-font-size overflow-omit-one">
+							
+							</div>
+							<div ng-hide="item.Users.length>=3 || item.Role=='null'" ng-click="getUser()" class="right-btn button">累积</div>
+							<div ng-show="item.Users.length>=3 || item.Role=='null'" ng-click="getVip()" class="right-btn button">领取</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+				
+				
+			<!-- <div class="bonus-item">
+				<div class="left-cell">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-jianglijin1"></use>
+					</svg>
+					<div class="up-icon">
+						<div class="txt-wrapper">
+							累计邀请3个用户注册房田“个人”会员可免费升级“个人”会员一年
+						</div>
+					</div>
+				</div>
+				<div class="right-cell">
+					<div class="top-txt overflow-omit-three">
+						<div class="users">
+							<div class="user-item">
+								<div class="top-index">{{$index || 1}}</div>
+								<img ng-src="{{item.Image || 'http://imgs.wujiuyun.com//Images//18/userHeadImg//E657127B564B4C7EB78E81FB933E37AC.png'}}" alt="">
+								<div class="bot-name">aa{{item.Name}}</div>
+							</div>
+						</div>
+					</div>
+					<div class="bot-info">
+						<div class="left-txt small-font-size overflow-omit-one">
+						
+						</div>
+						<div ng-hide="item.Users.length>=3 || item.Role=='null'" ng-click="getBonus()" class="right-btn button">累积</div>
+						<div ng-show="item.Users.length>=3 || item.Role=='null'" ng-click="getVip()" class="right-btn button">领取</div>
+					</div>
+				</div>
+			</div> -->
+
+			<p class="remarks">备注：<span>以上选项只能选择一项</span>，确认选择后，其他未选项将自动失效。</p>
+		</div>
+	</ion-content>
+</ion-view>
+

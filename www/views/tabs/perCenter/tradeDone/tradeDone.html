@@ -1,0 +1,68 @@
+<!--发现界面模板-->
+<ion-view id="trade_done" view-title="完成交易" hide-nav-bar=true>
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			完成交易
+		</div>
+		<div class="right" >
+			
+		</div>
+	</div>
+	
+	<ion-content class="trade-done" has-bouncing=false>
+		
+			<div class="txt-info">
+				<div class="the-row">
+					<div class="left">带看人</div>
+					<div class="right">{{detailData.ProxerName}}</div>
+				</div>
+				<div class="the-row">
+					<div class="left">看房人</div>
+					<div class="right">{{detailData.BuyerName}}</div>
+				</div>
+				<div class="the-row">
+					<div class="left">楼&#x3000;盘</div>
+					<div class="right">{{detailData.NewHouseName}}</div>
+				</div>
+				<div class="the-row">
+					<div class="left">时&#x3000;间</div>
+					<div class="right">{{detailData.LookTime | limitTo:10}}</div>
+				</div>
+			</div>
+			<div class="id-image">
+				<p>上传凭证：</p>
+				<ul>
+					<li ng-repeat="img in detailData.ShowDoneImage">
+						<div class="img">
+							<img ng-src="{{img}}" alt="房源图"/>
+							<span ng-click="remove($index)"><i class="iconfont icon-guanbi1"></i></span>
+						</div>
+					</li>
+					<li class="choose-img-click">
+						<div class="in-choose">
+							<div class="img">
+								<div class="top"><i class="iconfont icon-xiangji"></i></div>
+								<div class="bot">上传图片</div>
+							</div>
+							<input  type="file" name="photo"  accept="image/*" autocomplete="off" />	
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="loginbtn">
+				
+				<div class="subbtn">
+					<button ng-disabled="formlogin.$invalid" ng-click="save()" class="button button-balanced">提交</button>
+				</div>
+			</div>
+
+			
+
+	
+	</ion-content>
+	
+</ion-view>

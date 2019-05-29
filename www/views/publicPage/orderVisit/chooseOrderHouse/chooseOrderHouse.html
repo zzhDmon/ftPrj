@@ -1,0 +1,44 @@
+<ion-view id="choose_order_house" view-title="新房列表" hide-nav-bar="true">
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			新房列表
+		</div>
+		<div class="right">			
+		</div>
+	</div>
+
+	<ion-content class="choose-order-house">
+		<div class="main">
+			<div 
+				ng-click="chooseHouse(newhouse)"
+				ng-repeat="newhouse in newhousearr track by $index"
+				class="house-list-item"
+				ripple-hold ripple-dark
+			>
+				<div class="left-img"><img ng-src="{{newhouse.Images}}" alt=""></div>
+				<div class="right-text">
+					<div class="title overflow-omit-one">{{newhouse.Title}}</div>
+					<div class="housetype overflow-omit-one"><i class="iconfont icon-dingwei"></i>{{newhouse.Address}}</div>
+					<div class="tags overflow-omit-one">
+						{{newhouse.Space}}
+						<!-- <span ng-repeat="tag in newhouse.Tags track by $index">{{tag}}</span> -->
+					</div>
+					<div class="info overflow-omit-one">
+						<span class="spanprice">
+							<span>{{newhouse.Prize}}元/m²</span>
+						</span>
+						<span class="span-gray"></span>
+					</div>
+				</div>
+			</div>
+
+			<p class="baseLine"><span>到底线了</span></p>
+
+			<p ng-show="oldhousearr.length<1" class="baseLine"><span>暂无房源</span></p>
+			<p ng-show="!oldHaveMore&&oldhousearr.length>0" class="baseLine"><span>暂无更多</span></p>
+		</div>
+	</ion-content>
+</ion-view>

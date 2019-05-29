@@ -1,0 +1,61 @@
+<ion-view id="my_photos" view-title="{{headTitle}}" hide-nav-bar=true>
+	<div class="header header-black">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			{{pageData.Title}}
+		</div>
+		<div ng-hide="paramsData.uid" ng-click="switchShowAction()" class="right">		
+			<span ng-show="!showAction">操作</span>	
+			<span ng-show="showAction">取消</span>	
+		</div>
+	</div>
+
+	<ion-content ng-click="cancelShowAction()" class="my-photos" has-bouncing="false">
+		<div class="head-bg-img">
+			<div ng-click="uploadBgImg()" ng-show="!pageData.ShowInList" ng-hide="paramsData.uid" class="no-bg-img">点击添加背景</div>
+			<img ng-click="showActionSheet()" ng-show="pageData.ShowInList" ng-src="{{pageData.ShowInList}}" alt="">
+			<!-- <div ng-click="showActionSheet()" ng-show="pageData.ShowInList" class="bg-img" ng-style="{'background-image': 'url('+pageData.ShowInList+')'}"></div> -->
+		</div>
+
+		<p class="no-result" ng-if="!pageData.Content||pageData.Content.length<1">还没有上传照片~</p>
+		
+		
+		<div ng-hide="paramsData.uid" class="flex-wrapper">
+			<div  ng-click="showModal()" class="flex-item add-item">
+				<i class="iconfont icon-tianjia"></i>
+			</div>
+
+			<div ng-repeat="item in pageData.Content track by $index" class="flex-item">
+				<div 
+					ng-style="{'background-image': 'url('+item+')'}" 
+					ng-class="{true:'headShake',false:''}[showAction]"
+					class="in-flex-item animated infinite"></div>
+				<div ng-show="showAction" ng-click="removeImg($index,item,$event)" class="del-btn"><i class="iconfont icon-guanbi1"></i></div>
+			</div>
+		</div>
+		
+		<!-- 流式相册 -->
+		<!-- <div class="videoCards">
+			<div class="cardd" ng-repeat="item in pageData.Content track by $index">
+				<img 
+					class="animated infinite"
+					ng-class="{true:'headShake',false:''}[showAction]"
+				 	ng-click="preBigImg($index)" 
+				 	ng-src="{{item}}" alt="">
+				<div ng-show="showAction" ng-click="removeImg($index,item,$event)" class="del-btn"><i class="iconfont icon-guanbi1"></i></div>
+			</div>
+		</div>	 -->
+	</ion-content>
+
+	<script id="photos_videos_modal" type="text/ng-template">
+		<ion-modal-view class="photos-videos-modalview">
+			<div class="choose-type">
+				<div ng-click="cameraChoose()" class="type-item">拍摄</div>
+				<div ng-click="photoChoose()" class="type-item">从相册获取</div>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

@@ -1,0 +1,70 @@
+<ion-view id="need_rent_list" view-title="求租" hide-nav-bar="true">
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			求租
+			<span ng-show="paramsData.type==2">整租 </span>
+			<span ng-show="paramsData.type==12">合租</span>
+			<span ng-show="paramsData.type==13">短租</span>
+			<span ng-show="paramsData.type==14">品牌公寓</span>
+			<span ng-show="paramsData.type==15">个人房源</span>
+			<span ng-show="paramsData.type==16">房东委托</span>
+			<span ng-show="paramsData.type==4">写字楼</span>
+			<span ng-show="paramsData.type==6">厂房</span>
+			<span ng-show="paramsData.type==3">商铺</span>
+			<span ng-show="paramsData.type==8">仓库</span>
+			<span ng-show="paramsData.type==10">车位</span>
+		</div>
+	</div>
+
+	<ion-content delegate-handle="needrent-list-scroll" class="need-rent-list">
+		<div class="house-need-main">
+			<p ng-show="needRentArr.length==0" class="baseLine"><span>暂无数据</span></p>
+			<div 
+				ui-sref="needDetail({id:needRent.Id})" 
+				ripple-hold ripple-dark
+				ng-repeat="needRent in needRentArr track by $index" 
+				class="arr-item"
+			>
+				<div class="left-img"><img ng-src="{{needRent.UserInfo.ShowImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt=""></div>
+				<div class="right-text">
+					<div class="title overflow-omit-one">
+						<span ng-if="needRent.UserInfo.Name">{{needRent.UserInfo.Name}}</span>
+						<span ng-if="!needRent.UserInfo.Name">房田用户</span>
+					</div>
+					<div class="br-price-type">
+						<span class="spanprice">
+							<span ng-if="needRent.MinPrize&&!needRent.MaxPrize"><span class="large">{{needRent.MinPrize}}</span>元/月以上</span>
+							<span ng-if="needRent.MinPrize&&needRent.MaxPrize"><span class="large">{{needRent.MinPrize}}~{{needRent.MaxPrize}}</span>元/月</span>
+							<span ng-if="!needRent.MinPrize&&needRent.MaxPrize"><span class="large">{{needRent.MaxPrize}}</span>元/月以下</span>
+							<span ng-if="!needRent.MinPrize&&!needRent.MaxPrize">价格不限</span>
+						</span>
+						<span class="span-gray" ng-if="needRent.Type==2">&nbsp;|&nbsp;整租</span>
+						<span class="span-gray" ng-if="needRent.Type==12">&nbsp;|&nbsp;合租</span>
+						<span class="span-gray" ng-if="needRent.Type==3">&nbsp;|&nbsp;商铺</span>
+						<span class="span-gray" ng-if="needRent.Type==4">&nbsp;|&nbsp;写字楼</span>
+						<span class="span-gray" ng-if="needRent.Type==6">&nbsp;|&nbsp;厂房</span>
+						<span class="span-gray" ng-if="needRent.Type==5">&nbsp;|&nbsp;仓库</span>
+						<span class="span-gray" ng-if="needRent.Type==10">&nbsp;|&nbsp;车位</span>
+					</div>
+				
+					<div class="info">
+						<span class="span-gray"><i class="iconfont icon-dingwei"></i>{{needRent.District}}</span>
+					</div>
+					<div class="by-tags overflow-omit-one">
+						<span ng-if="needRent.RoomType||needRent.HallType||needRent.BathType" class="tag-item">
+							<span ng-if="needRent.RoomType">{{needRent.RoomType}}室</span><span ng-if="needRent.HallType">{{needRent.HallType}}厅</span><span ng-if="needRent.BathType">{{needRent.BathType}}卫</span>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<ion-infinite-scroll on-infinite="needLoadMore(true)" distance="15%" ng-if="needHaveMore" > </ion-infinite-scroll>
+	</ion-content>
+	
+	
+
+</ion-view>

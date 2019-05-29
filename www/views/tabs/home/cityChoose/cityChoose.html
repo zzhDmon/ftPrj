@@ -1,0 +1,57 @@
+
+<ion-view id="city_choose" hide-nav-bar=true view-title="选择城市">
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class="iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			选择城市
+		</div>
+		<div class="right"></div>
+	</div>
+	<div class="head-bg"></div>
+
+	<ion-content class="city-choose" delegate-handle="citychoose-Scroll">
+		<div class="main">
+			<div class="gps-loc">
+				<div ng-click="chooseCity(currentCity)" class="left-cell">
+					{{currentCity}}
+					<span>gps定位</span>
+				</div>
+				<div ng-click="getLocation()" class="right-cell">重新定位</div>
+			</div>
+			<div class="hot-citys">
+				<div class="hot-title">热门城市</div>
+				<div class="citys-wrapper">
+					<div ng-click="chooseCity(item.name)" class="city-item" ng-repeat="item in hotCitys track by $index">
+						{{item.name}}
+					</div>
+				</div>
+			</div>
+			<ul class="letterli">   
+				<li class="city-list" ng-if="group.value.length>0" ng-repeat="group in formatCitys | orderBy:'key'" id={{"city_choose_index-"+group.key}}>  
+					<div class="label" id={{"client-"+group.key}}><strong>{{group.key}}</strong></div>  
+					<ul class="clientli">  
+						<li 
+							ng-click="chooseCity(item)"
+							class="client-name" 
+							ng-repeat="item in group.value"> 
+							<div class="name">{{item}}</div> 
+						</li>  
+					</ul>  
+				</li>  
+			</ul> 
+		</div>
+	</ion-content>
+
+	<!-- 返回顶部 -->
+	<div ng-click="backTop()" class="back-top">
+		<i class="iconfont icon-jiageshengxu-"></i>
+	</div>
+	<!--右侧导航-->
+	<div class="citychoose-shortcuts">  
+		<a href="" ng-repeat="letter in letterarr"  ng-touchmove="mTouch($event,letter)" ng-click="mTouch($event,letter)">{{letter}}</a>
+	</div>
+</ion-view>
+

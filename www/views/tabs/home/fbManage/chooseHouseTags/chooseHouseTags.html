@@ -1,0 +1,88 @@
+<!--对话模板-->
+<ion-view id="choose_house_tags" view-title="房源标签" hide-nav-bar=true  class='dark'>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			房源标签
+		</div>
+		<div class="right"></div>
+	</div>
+	
+	<ion-content class="choose-house-tags" has-bouncing=false>
+		<div id="choose_house_tags_map"></div>
+
+		<div class="form-main">
+			<div class="offline"></div>
+			<div class="special-check">
+				<div class="title">brt</div>
+				<div class="checkpicker">
+					<label ng-repeat="item in brtArr track by $index">
+						<input ng-model="item.isChecked" ng-checked="item.isChecked" type="checkbox" name="brtCheck" />
+						<span>{{item.title}}</span>	
+					</label>
+				</div>
+				<div ng-hide="brtArr&&brtArr.length>0" class="no-result">暂无</div>
+			</div>
+			<div class="offline"></div>
+			<div class="special-check">
+				<div class="title">公交</div>
+				<div class="checkpicker">
+					<label ng-repeat="item in busArr track by $index">
+						<input ng-model="item.isChecked" ng-checked="item.isChecked" type="checkbox" name="busCheck" />
+						<span>{{item.title}}</span>	
+					</label>
+				</div>
+				<div ng-hide="busArr&&busArr.length>0" class="no-result">暂无</div>
+			</div>
+			<div class="offline"></div>
+			<div class="special-check">
+				<div class="title">地铁</div>
+				<div class="checkpicker">
+					<label ng-repeat="item in subwayArr track by $index">
+						<input ng-model="item.isChecked" ng-checked="item.isChecked" type="checkbox" name="subwayCheck" />
+						<span>{{item.title}}</span>	
+					</label>
+				</div>
+				<div ng-hide="subwayArr&&subwayArr.length>0" class="no-result">暂无</div>
+			</div>
+			<div class="offline"></div>
+			<div class="special-check">
+				<div class="title">商圈</div>
+				<div class="checkpicker">
+					<label ng-repeat="item in businessArr track by $index">
+						<input ng-model="item.isChecked" ng-checked="item.isChecked" type="checkbox" name="businessCheck" />
+						<span>{{item.title}}</span>	
+					</label>
+				</div>
+				<div ng-hide="businessArr&&businessArr.length>0" class="no-result">暂无</div>
+			</div>
+			<div class="offline"></div>
+			<div class="special-check">
+				<div class="title">学校</div>
+				<div class="checkpicker">
+					<label ng-repeat="item in schoolArr track by $index">
+						<input ng-model="item.isChecked" ng-checked="item.isChecked" type="checkbox" name="schoolCheck" />
+						<span>{{item.title}}</span>	
+					</label>
+				</div>
+				<div ng-hide="schoolArr&&schoolArr.length>0" class="no-result">暂无</div>
+			</div>
+			<div class="offline"></div>
+			<div class="special-check">
+				<div class="title">景区</div>
+				<div class="checkpicker">
+					<label ng-repeat="item in scenicArr track by $index">
+						<input ng-model="item.isChecked" ng-checked="item.isChecked" type="checkbox" name="scenicCheck" />
+						<span>{{item.title}}</span>	
+					</label>
+				</div>
+				<div ng-hide="scenicArr&&scenicArr.length>0" class="no-result">暂无</div>
+			</div>
+			
+		</div>
+	</ion-content>
+</ion-view>
+
+

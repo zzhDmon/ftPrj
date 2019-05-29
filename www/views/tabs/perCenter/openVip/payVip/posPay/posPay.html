@@ -1,0 +1,26 @@
+
+<!--对话模板-->
+<ion-view id="pos_pay" view-title="POS支付" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			POS支付
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	<ion-content class="pos-pay">
+
+		<div class="qrcode-wrap">
+			<div id="pospay_qrcode"></div>
+			<div class="qrcode-name">订单二维码</div>
+		</div>
+		<div class="order-number">
+			订单号 {{orderNumber}}
+		</div>
+
+	</ion-content>
+</ion-view>
+

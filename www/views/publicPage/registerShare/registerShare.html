@@ -1,0 +1,55 @@
+<!--发现界面模板-->
+<ion-view id="register_share" view-title="注册" hide-nav-bar=true>
+	
+	
+	<ion-content scrollbar-y="false" class="register-share">
+		<div class="head-img">
+			<img src="http://imgs.wujiuyun.com//Images//logo.png" alt="">
+		</div>
+		<form novalidate name="formregister">
+			<div class="card list">
+				<button ng-if="!showCountDown" ng-click="yzcode($event,submitData.Phone)" class="button button-small">获取验证码</button>
+				<button ng-if="showCountDown" ng-disabled="true" class="button button-small">{{countDownNum}}s后重新获取</button>
+			
+				<label class="item item-input">
+		          <input class="backphone" ng-model="submitData.Phone" type="tel" name="phone" required="" placeholder="请输入手机号" pattern="^1[0-9]{10}$">
+		        </label>
+				<label class="item item-input">
+		          <input ng-model="submitData.Code" type="number" name="yz" required="" placeholder="请输入验证码">
+		        </label>
+				<label class="item item-input">
+		          <input ng-model="submitData.Password" type="password" name="psw" required="" placeholder="请输入密码(6-16位)" pattern="^.{6,16}$">
+				</label>
+				<label class="item item-input">
+					<input ng-model="submitData.ConfirmPassword" type="password" name="confirmpsw" required="" placeholder="请确认您的密码">
+				</label>				 
+			</div>
+
+			<div class="card loginbtn">
+				<div class="subbtn">
+					<button ng-disabled="formregister.$invalid" ng-click="Done()" class="button button-calm">完成</button>
+				</div>
+			</div>
+			<div class="expl">
+				<label>
+					<input ng-model="registerAgree.agree" type="checkbox" name="ischeckbox" value="true" />
+					<i class="iconfont icon-fuxuansel"></i>
+					确认接受 
+				</label>
+				<span ui-sref="agreement">《房田用户试用协议》</span>
+			</div>
+		</form>
+		<div class="offline"></div>
+		<div class="public-wrapper">
+			<p>长按识别二维码</p>
+			<div class="img-wrapper">
+				<img data-tap-disabled="true" src="imgs/shareregister/qrcode.png" alt="">
+			</div>
+			<p>关注微信公众号 </p>
+			<p>了解更多房田福利</p>
+		</div>
+		<div ng-click="downLoad()" class="download">
+			<i class="iconfont icon-xiazai"></i>立即下载房田App
+		</div>
+	</ion-content>
+</ion-view>

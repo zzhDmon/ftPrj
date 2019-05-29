@@ -1,0 +1,12 @@
+<div class="header searchcommunity-header">
+    <div class="search-wrapper">
+        <div class="title-search">
+            <span class="left"><i class="iconfont icon-sousuo2"></i></span>
+            <input type="search" placeholder="请输入小区名" ng-model="searchName.key" ng-change="search(searchName.key)">
+            <span class="right" ng-click="clear()" ng-if="searchName.key.length"><i class="icon ion-close-circled placeholder-icon"></i></span>
+        </div>
+    </div>
+    <div ng-click="cancel()" class="right-cancel" >
+        取消
+    </div>
+</div>

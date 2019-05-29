@@ -1,0 +1,202 @@
+
+<!--对话模板-->
+<ion-view id="need_type_choose" hide-nav-bar=true view-title="选择需求">
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			<span ng-show="pageType==0">求购</span><span ng-hide="pageType==0">求租</span>需求
+		</div>
+		<div class="right">
+			
+		</div>
+	</div>
+
+	<ion-content class="need-type-choose">
+		<div class="main">
+			<!-- 求购 -->
+			<div  ng-show="pageType==0" class="flex-wrapper">
+				<div ui-sref="addNeedBuy({type:0})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-zuixinkaipan-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">新房</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addNeedBuy({type:1})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-housesource-ershou"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">二手房</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addNeedBuy({type:5})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-shangpu-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">商铺</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addNeedBuy({type:17})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-xiezilou-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">写字楼</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addNeedBuy({type:7})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-gongchang-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">厂房</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addNeedBuy({type:9})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-cangku-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">仓库</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addNeedBuy({type:11})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-cheku-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">车位</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				
+			</div>
+			<!-- 求租 -->
+			<div  ng-hide="pageType==0" class="flex-wrapper">
+				<div ui-sref="addNeedRent({type:2})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-housesource-chuzu"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">整租</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addNeedRent({type:12})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-chuzu-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">合租</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addNeedRent({type:16})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-weituo-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">房东委托</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addNeedRent({type:15})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-gerenfangyuan-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">个人房源</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addNeedRent({type:14})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-pinpaigongyu-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">品牌公寓</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				
+				<div class="offline"></div>
+				<div ui-sref="addNeedRent({type:3})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-shangpu-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">商铺</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addNeedRent({type:4})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-xiezilou-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">写字楼</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addNeedRent({type:6})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-gongchang-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">厂房</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addNeedRent({type:8})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-cangku-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">仓库</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				<div ui-sref="addNeedRent({type:10})" class="wrapper">
+					<div class="left-icon">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-cheku-"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">车位</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+				<div class="offline"></div>
+				
+			</div>
+		</div>
+	</ion-content>
+	
+</ion-view>
+

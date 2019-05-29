@@ -1,0 +1,49 @@
+
+<ion-view id="his_shop_detail" view-title="店铺详情" hide-nav-bar="true">	
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			店铺详情
+		</div>
+		<div class="right">
+			
+		</div>
+	</div>
+
+	
+
+	<ion-content class="his-shop-detail">
+		<div class="main">
+			<div class="head-info">
+				<div class="img"><img ng-src="{{housetimesList[0].Image}}" alt=""></div>
+				<div class="name overflow-omit-one">{{housetimesList[0].Title}}</div>	
+				<div class="action">
+					<i class="iconfont icon-tianjia"></i>关注
+				</div>
+			</div>
+			<div class="cell-item">
+				<div class="left-cell">店铺简介</div>
+				<div class="right-cell">陶瓷工艺</div>
+			</div>
+			<div class="cell-item">
+				<div class="left-cell">开店时间</div>
+				<div class="right-cell">2018-09-26</div>
+			</div>
+			<div class="cell-item">
+				<div class="left-cell">所在地区</div>
+				<div class="right-cell">福建省厦门市湖里区</div>
+			</div>
+			<div class="cell-item">
+				<div class="left-cell">销售品牌</div>
+				<div class="right-cell">景德镇工艺陶瓷</div>
+			</div>
+			<div class="cell-item">
+				<div class="left-cell">商家电话</div>
+				<div class="right-cell">400-5757-2285</div>
+			</div>
+		</div>
+	</ion-content>
+	
+</ion-view>

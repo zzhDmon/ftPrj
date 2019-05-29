@@ -1,0 +1,38 @@
+
+<ion-view id="video_list" hide-nav-bar=true view-title="视频">
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class="iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			视频
+		</div>
+		<div class="right">
+			
+		</div>
+	</div>
+	<ion-content class="video-list">
+		<br><br>
+		<div class="item item-divider">
+			<i class="ion-images"></i>
+			图片库
+		</div>
+		<a class="item item-list-detail">
+			<ion-scroll direction="x">
+				<img ng-repeat="image in allImages" ng-src="{{image}}" ng-click="showImages($index)" class="image-list-thumb"/>
+			</ion-scroll>
+		</a>
+		<br/>
+		<div class="item item-divider">
+		<i class="ion-images"></i>
+		图片库
+		</div>
+		<a class="item item-list-detail">
+			<div class="col-24" ng-repeat="image in allImages">
+			<img  ng-src="{{image.src}}"  zoom-src="{{image.src}}" zoom-view class="image-list-thumb2"   />
+			</div>
+		</a>
+	</ion-content>
+</ion-view>
+

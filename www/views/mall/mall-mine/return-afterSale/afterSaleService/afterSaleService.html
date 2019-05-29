@@ -1,0 +1,79 @@
+<ion-view id="after_sale_service" view-title="售后申请服务" hide-nav-bar="true">	
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			售后申请服务
+		</div>
+		<div class="right">
+		</div>
+	</div>
+	
+	<ion-content class="after-sale-service">
+		<div class="flex-title">
+			服务类型
+		</div>
+		<div class="flex-auto-wrapper">
+			<div class="flex-item active">
+				维修
+			</div>
+		</div>
+		<div class="flex-sub-info">
+			本次上门取件将会向您收取相应的费用
+		</div>
+
+		<div class="offline"></div>
+		<div class="goods-item">
+			<div class="goods-info">
+				<div class="img-cell"><img ng-src="{{housetimesList[0].Image}}" alt=""></div>
+				<div class="right-cell">
+					<div class="top-cell overflow-omit-two">{{housetimesList[0].Title}}</div>
+					<div class="mid-cell">￥599.00</div>
+					<div class="bot-cell">
+						数量3
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="flex-title">
+			问题描述
+		</div>
+		<div class="textarea">
+			<textarea name="" placeholder="请在此描述问题"></textarea>
+		</div>
+
+		<div class="offline"></div>
+		<div class="flex-title">
+			商品退回方式
+		</div>
+		<div class="flex-auto-wrapper">
+			<div class="flex-item">
+				送货至自提点
+			</div>
+			<div class="flex-item active">
+				快递
+			</div>
+		</div>
+
+		<div class="cell-item">
+			<div class="left-cell">收货人：</div>
+			<div class="right-cell overflow-omit-one">张卫健</div>
+		</div>
+		<div class="cell-item">
+			<div class="left-cell">商铺及号码：</div>
+			<div class="right-cell overflow-omit-one">12345678910</div>
+		</div>
+		<div class="adr-item">
+			<div class="left-cell"><i class="iconfont icon-wodedizhi"></i></div>
+			<div class="mid-cell overflow-omit-two">福建省厦门市思明区前埔东路506号国际广场A栋1505</div>
+			<div class="right-cell"><i class="iconfont icon-xiangyou1"></i></div>
+		</div>
+
+		<div class="sub-btn">
+			提交
+		</div>
+	</ion-content>
+	
+</ion-view>

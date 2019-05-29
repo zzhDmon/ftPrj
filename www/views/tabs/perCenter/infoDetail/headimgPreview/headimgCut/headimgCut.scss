@@ -1,0 +1,23 @@
+#headimg_cut{
+    .headimg-cut{
+        .card{
+            box-shadow: none;
+            padding-top: 150px;
+            .img{
+                width: 50%;
+                height: 100px;
+                float: left;
+                img{
+                    width: 100px;
+                    height: 100px;
+                    display: block;
+                    margin: auto;
+                }
+                .cir{
+                    margin: auto;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}

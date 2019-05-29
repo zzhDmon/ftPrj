@@ -1,0 +1,78 @@
+
+<!--对话模板-->
+<ion-view id="deal_detail" view-title="交易明细" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			交易明细
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	<ion-content class="deal-detail">
+		<div class="main">
+			<div class="info-card">
+				<div class="main-info">
+					<div class="icon-wrap">
+							<svg ng-if="RecordType==1" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-tuijianjiangli"></use>
+							</svg>
+							<svg ng-if="RecordType==2||RecordType==3" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-commission"></use>
+							</svg>
+							<svg ng-if="RecordType==4" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-tixian-"></use>
+							</svg>
+							<svg ng-if="RecordType==5" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-chongzhi-"></use>
+							</svg>
+							<svg ng-if="RecordType==6" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-ruzhang"></use>
+							</svg>
+							<svg ng-if="RecordType==7" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-chuzhang"></use>
+							</svg>
+							<svg ng-if="RecordType==99" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-qita"></use>
+							</svg>
+					</div>
+
+					<div ng-if="RecordType==1" class="name">推荐奖励</div>
+					<div ng-if="RecordType==2" class="name">佣金奖励</div>
+					<div ng-if="RecordType==3" class="name">佣金结算</div>
+					<div ng-if="RecordType==4" class="name">提现</div>
+					<div ng-if="RecordType==5" class="name">充值</div>
+					<div ng-if="RecordType==6" class="name">入账</div>
+					<div ng-if="RecordType==7" class="name">出账</div>
+					<div ng-if="RecordType==99" class="name">其他</div>
+					
+					<div class="fee">+150</div>
+				</div>
+
+
+				<div class="sub-info">
+					<div class="sub-wrap">
+						<div class="left-cell">交易详情</div>
+						<div class="right-cell">给xx转账</div>
+					</div>
+					<div class="sub-wrap">
+						<div class="left-cell">交易时间</div>
+						<div class="right-cell">2018-09-20 12:02:38</div>
+					</div>
+					<div class="sub-wrap">
+						<div class="left-cell">交易单号</div>
+						<div class="right-cell">0985366545201809250368595</div>
+					</div>
+					<div class="sub-wrap">
+						<div class="left-cell">银行卡号</div>
+						<div class="right-cell">0985366545201809250368595</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+	
+</ion-view>
+

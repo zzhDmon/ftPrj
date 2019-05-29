@@ -1,0 +1,100 @@
+
+#mall_message{
+    .mall-message{
+        margin-top: $head-height;
+        margin-bottom: $tabs-height;
+        padding: 0;
+        .list{
+            .item-avatar{
+                // padding: 0 0 0 20px;
+                margin: 0;
+                border: none;
+                border-bottom: 1px solid $line-main-color;
+                .item-content{
+                    padding: 16px 12px 16px 80px;
+                    position: relative;
+                    img{
+                        min-width: 50px;
+                        min-height: 50px;
+                        left: 20px;
+                        border-radius: 5px;
+                    }
+                    .top-name{
+                        width: 100%;
+                        height: 25px;
+                        .name{
+                            width: calc(100% - 80px);
+                            float: left;
+                            height: 25px;
+                            text-align: left;
+                            font-size: 16px;
+                            color: $font-main-color;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            word-break: keep-all;
+                        }
+                        .time{
+                            width: 80px;
+                            float: left;
+                            height: 25px;
+                            text-align: right;
+                            font-size: 12px;
+                            color: $font-minor-color;
+                        }
+                    }
+                    .bot-message{
+                        width: 100%;
+                        height: 25px;
+                        .message{
+                            width: calc(100% - 50px);
+                            height: 25px;
+                            float: left;
+                            text-align: left;
+                            line-height: 25px;
+                            font-size: 14px;
+                            color: $font-sup-color;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            word-break: keep-all;
+                        }
+                        .message-count{
+                            position: absolute;
+                            top: 10px;
+                            left: 55px;
+                            min-width: 18px;
+                            max-width: 50px;
+                            height: 18px;
+                            padding: 0 5px;
+                            text-align: center;
+                            line-height: 18px;
+                            font-size: 12px;
+                            border-radius: 10px;
+                            color: white;
+                            background-color: rgb(247,76,49);
+                        }
+                        .vip-level{
+                            position: absolute;
+                            bottom: 31px;
+                            left: 0;
+                            width: 20px;
+                            height: 20px;
+                            border-radius: 50%;
+                            .icon{
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+                }
+                .item-content.activated{
+                    background-color: white;
+                }
+            }
+        }
+        
+    }
+   
+}

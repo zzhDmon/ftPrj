@@ -1,0 +1,39 @@
+.group-name-desc-modalview{
+    .group-name-desc{
+        .scroll-content{
+            margin: $head-height 0 0;
+            padding: 0 $view-padding;
+            .main{
+                padding: 0 20px 0 0;
+                width: 100%;
+                height: 40px;
+                position: relative;
+                input{
+                    padding: 0;
+                    margin: 0;
+                    width: 100%;
+                    height: 40px;
+                    line-height: 40px;
+                }
+                .clear{
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    width: 20px;
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    .iconfont{
+                        color: $font-sup-color;
+                        font-size: 16px;
+                    }
+                }
+            }
+            .ft-sub-btn{
+                margin: 40px auto 20px;
+            }
+
+        }
+    }
+   
+}

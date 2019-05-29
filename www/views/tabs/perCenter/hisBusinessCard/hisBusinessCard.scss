@@ -1,0 +1,430 @@
+.hisbusiness-switch-modalview{
+    width: 100%;
+    min-height: 150px;
+    top: 0;
+    border-radius: 0!important;
+    .header{
+        background-color: white;
+        .right{
+            color: $font-main-color;
+            .iconfont{
+                font-size: 18px;
+                font-weight: 500;
+            }
+        }
+    }
+    .switch-item{
+        width: 140px;
+        height: 35px;
+        text-align: center;
+        line-height: 35px;
+        font-size: 16px;
+        font-weight: 500;
+        color: white;
+        border-radius: 5px;
+        &.articel{
+            margin: 66px auto 10px;
+            background-color: rgb(255,179,85);
+        }
+        &.dynamic{
+            margin: auto;
+            background-color: rgb(247,114,115);
+        }
+    }
+}
+#his_business_card{
+    $bg-color:#1e2125;
+    .header{
+        background-color: transparent;
+        .right{
+            text-align: right;
+            .iconfont{
+                font-size: 20px;
+            }
+            span{
+                font-size: 14px;
+                .iconfont{
+                    font-size: 14px;
+                } 
+            }
+        }
+    }
+    .bot-input{
+        position: fixed;
+        z-index: 30;
+        bottom: 0;
+        width: 100%;
+        border-top: 1px solid $line-main-color;
+        background-color: white;
+        .input-wrapper{
+            width: 100%;
+            padding: 5px $view-padding;
+            display: flex;
+            justify-content: flex-start;
+            .textarea{
+                width: calc(100% - 60px);
+                textarea{
+                    padding: 5px;
+                    width: 100%;
+                    height: 30px;
+                    min-height: 30px;
+                    max-height:70px; 
+                    line-height: 20px;
+                    border-radius: 5px;
+                    background-color: $bg-gray-color;
+                }
+            }
+            .send{
+                margin: 0 0 0 10px;
+                width: 40px;
+                min-height: 30px;
+                position: relative;
+                .send-btn{
+                    position: absolute;
+                    bottom: 0;
+                    z-index: 1;
+                    width: 40px;
+                    height: 30px;  
+                    text-align: center;
+                    line-height: 30px;
+                    border-radius: 5px;
+                    color: white;
+                    background-color: rgb(27,187,55);
+                }
+            }
+        }
+    }
+    // swiper 外框
+    .swiper-wrapper{
+        width: 100%;
+        height: 100%;
+        .swiper-slide{
+            background-color: $bg-color;
+            padding: $head-height 0 0;
+            &:nth-child(1){
+                padding: 0;
+            }
+            // 暂无结果
+            .cur-no{
+                text-align: center;
+                padding: 100px 0 0;
+                font-size: 16px;
+                color: $font-sup-color;
+            }
+            .his-business-card{
+                margin: $head-height 0 0;
+                padding: 0;
+            }
+            .freedom-wrapper{
+                position: relative;
+                padding: 1px 0 0;
+                width: 100%;
+                margin: 0 auto;
+                overflow: hidden;
+                background-color: $bg-color;
+                color: white;
+                .all-image-wrapper{
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    overflow: hidden;
+                    .all-image{
+                        width: 100%;
+                    }
+                }
+                &.my-introduction{
+                    // 拖拽区域
+                    height: 100vh;
+                }
+                &.my-honor{
+                    height: 100%;
+                }
+            }
+            .my-video{
+                padding: 10px $view-padding 0;
+                width: 100%;
+                height: 100%;
+                background-color: $bg-color;
+                .mid-content{
+                    height: calc(100% - 50px);
+                    position: relative;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .fake-video{
+                        position: absolute;
+                        z-index: 1;
+                        left: calc(50% - 25px);
+                        top: calc(50% - 25px);
+                        width: 50px;
+                        height: 50px;
+                        line-height: 50px;
+                        text-align: center;
+                        color: white;
+                        .iconfont{
+                            font-size: 25px;
+                        }
+                    }
+                }
+                .bot-actions{
+                    padding: 5px 0;
+                    width: 100%;
+                    height: 50px;
+                    display: flex;
+                    justify-content: flex-end;
+                    .action-item{
+                        width: 50px;
+                        text-align: center;
+                        color: white;
+                        &.action-item-big{
+                            width: calc(100% - 100px);
+                        }
+                        .top-cell{
+                            line-height: 22px;
+                            .iconfont{
+                                font-size: 20px;
+                            }
+                        }
+                        .bot-cell{
+                            line-height: 18px;
+                            font-size: 14px;
+                        }
+                        span{
+                            font-size: 14px;
+                            line-height: 40px;
+                            .iconfont{
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+            }
+            .album-list{
+                padding: $view-padding;
+                display: flex;
+                height: 100%;
+                width: 100%;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                overflow: hidden;
+                .album-item{
+                    width: calc(50% - 6px);
+                    height: calc(33.33% - 4px);
+                    margin: 0 0 6px;
+                    &:nth-child(2n+1){
+                        margin: 0 12px 6px 0;
+                    }
+                    .top-img{
+                        width: 100%;
+                        height: calc(100% - 36px);
+                        text-align: center;
+                        color: $font-blue-color;
+                        background-color: $bg-whitel-color;
+                        overflow: hidden;
+                        .in-top-img{
+                            width: 100%;
+                            height: 0;
+                            overflow: hidden;
+                            margin: 0;
+                            padding-bottom: 100%; /* 原图显示关键 */
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: cover; 
+                        }
+                    }
+                    .bot-txt{
+                        line-height: 20px;
+                        font-size: 14px;
+                        color: white;
+                    }
+                    .sup-txt{
+                        line-height: 16px;
+                        font-size: 12px;
+                        color: $font-sup-color;
+                    }
+                }
+            }
+
+            
+            .time-line{
+                padding: 10px $view-padding;
+                width: 100%;
+                background-color: $bg-color;
+                box-shadow: 0 1px 4px 1px rgba(114,114,114,0.35);
+                color: white;
+                .switch-wrapper{
+                    padding: 0 0 10px;
+                    display: flex;
+                    justify-content: flex-start;
+                    color: white;
+                    font-size: 16px;
+                    line-height: 30px;
+                    border-bottom: 1px solid $line-main-color;
+                    .left-cell{
+                        width: 40px;
+                        &.active{
+                            color: $bg-main-color;
+                        }
+                    } 
+                    .mid-cell{
+                        width: calc(100% - 80px);
+                        &.active{
+                            color: $bg-main-color;
+                        }
+                    }
+                    .right-cell{
+                        width: 40px;
+                        text-align: right;
+                        .iconfont{
+                            font-size: 20px;
+                        }
+                    }
+                }
+                .no-result{
+                    text-align: center;
+                    font-size: 16px;
+                }
+                .time-line-item{
+                    width: 100%;
+                    padding: $view-padding 0 $view-padding $view-padding;
+                    border-bottom: 1px solid $line-main-color;
+                    &:last-child{
+                        border:none; 
+                    }
+                    .top-wrapper{
+                        width: 100%;
+                        height: 40px;
+                        display: flex;
+                        justify-content: flex-start;
+                        .img{
+                            width: 40px;
+                            height: 40px;
+                            img{
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                        .txt-info{
+                            padding: 0 0 0 10px;
+                            width: calc(100% - 80px);
+                            line-height: 20px;
+                            .top-cell{
+                                font-size: 16px;
+                            }
+                            .bot-cell{
+                                font-size: 14px;
+                                color: $font-sup-color;
+                            }  
+                        }
+                        .action{
+                            width: 40px;
+                            height: 40px;
+                            text-align: right;
+                            line-height: 40px;
+                            .iconfont{
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                    .content-wrapper{
+                        margin: 10px 0;
+                        line-height: 20px;
+                        font-size: 16px;
+                    }
+                    .imgs-wrapper{
+                        width: 100%;
+                        display: flex;
+                        justify-content: flex-start;
+                        flex-wrap: wrap;
+                        .img-item{
+                            margin: 0 0 6px;
+                            width: calc(33.33vw - 16px);
+                            height: 110px;
+                            background-color: rgba(255,210,2,0.5);
+                            &:nth-child(3n - 1){
+                                margin: 0 6px 6px;
+                            }
+                            .in-img-item{
+                                margin: 0;
+                                width: 100%;
+                                height: 0;
+                                overflow: hidden;
+                                padding-bottom: 100%; /* 原图显示关键 */
+                                background-position: center;
+                                background-repeat: no-repeat;
+                                background-size: cover; 
+                            }
+                        } 
+                    }
+                    .actions-wrapper{
+                        width: 100%;
+                        height: 30px;
+                        line-height: 30px;
+                        display: flex;
+                        justify-content: flex-end;
+                        .action-item{
+                            padding: 0 5px;
+                            font-size: 16px;
+                            &.like{
+                                margin-right: 20px;
+                                &.active{
+                                    .iconfont{
+                                        color: $font-price-red;
+                                    }
+                                }
+                            }
+                            .iconfont{
+                                font-size: 22px;
+                            }
+                        }
+                    }
+                    .comment-list{
+                        padding: 0 0 0 10px;
+                        .comment-item{
+                            display: flex;
+                            justify-content: flex-start;
+                            .img-cell{
+                                width: 30px;
+                                height: 30px;
+                                img{
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                            }
+                            .txt-cell{
+                                width: calc(100% - 30px);
+                                padding: 0 0 0 10px;
+                                h5{
+                                    margin: 0;
+                                    padding: 0;
+                                    height: 20px;
+                                    line-height: 20px;
+                                    font-size: 16px;
+                                    border: none;
+                                    color: $font-sup-color;
+                                }
+                                p{
+                                    margin: 0 0 5px;
+                                    color: white;
+                                    &.com-content{
+                                        font-size: 16px;
+                                    }
+                                    &.com-time{
+                                        font-size: 12px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    
+}

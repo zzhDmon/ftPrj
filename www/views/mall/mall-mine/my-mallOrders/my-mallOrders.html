@@ -1,0 +1,88 @@
+
+<ion-view id="my_mall_orders" view-title="我的订单" hide-nav-bar="true">	
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			我的订单
+		</div>
+		<div class="right">
+			<!-- 搜索 -->
+		</div>
+	</div>
+	<div class="switch-list">
+		<div ng-click="switchTo(0)" class="switch-item">
+			<div class="in-item" ng-class="{true:'active',false:''}[orderStatus==0]">
+				全部
+			</div>
+		</div>
+		<div ng-click="switchTo(100)" class="switch-item">
+			<div class="in-item" ng-class="{true:'active',false:''}[orderStatus==100]">
+				待付款
+			</div>
+		</div>
+		<div ng-click="switchTo(101)" class="switch-item">
+			<div class="in-item" ng-class="{true:'active',false:''}[orderStatus==101]">
+				待收货
+			</div>
+		</div>
+		<div ng-click="switchTo(104)" class="switch-item">
+			<div class="in-item" ng-class="{true:'active',false:''}[orderStatus==104]">
+				已完成
+			</div>
+		</div>
+		<div ng-click="switchTo(400)" class="switch-item">
+			<div class="in-item" ng-class="{true:'active',false:''}[orderStatus==400]">
+				已取消
+			</div>
+		</div>
+	</div>
+
+	<ion-content class="my-mall-orders" has-bouncing="false">
+		
+		<div ng-hide="group.OrderStatus==444" ng-repeat="group in orderList track by $index" class="order-item">
+			<div class="store-name">
+				<div class="left-cell">
+					<span ng-if="group.OrderStatus==100">待付款</span>
+					<span ng-if="group.OrderStatus==101">待出库</span>
+					<span ng-if="group.OrderStatus==102">待发货</span>
+					<span ng-if="group.OrderStatus==103">待收货</span>
+					<span ng-if="group.OrderStatus==104">待评价</span>
+					<span ng-if="group.OrderStatus==105">已评价</span>
+					<span ng-if="group.OrderStatus==400">订单关闭</span>
+					<span ng-if="group.OrderStatus==500">退款</span>
+					{{group.ShopName}} <i class="iconfont icon-xiangyou1"></i>
+				</div>
+				<!-- 删除 -->
+				<div ng-if="group.OrderStatus==105 || group.OrderStatus==100" ng-click="deleteOrder(group)" class="right-cell">
+					 &#x3000;<i class="iconfont icon-lajitong"></i>
+				</div>
+			</div>
+			<div ng-repeat="item in group.Items track by $index" class="order-info">
+				<div class="img-cell">
+					<img 
+						ng-src="{{item.Image}}" 
+						onError="src='http://imgs.wujiuyun.com//Images//logo.png'"
+						alt="">
+				</div>
+				<div class="name-cell">
+					<div class="name overflow-omit-two">
+						{{item.Name}}
+					</div>
+					<div class="count-price overflow-omit-one">
+						x{{item.Quantity}}件 &nbsp;￥{{item.SubTotal | priceFilter}}
+					</div>
+				</div>
+			</div>
+			<div class="total-info">共{{group.groupTotalNum}}件商品 &nbsp; 合计￥{{group.groupTotalMoney | priceFilter}}元</div>
+			<div class="borderline"></div>
+			<div class="bot-actions">
+				<div ng-if="group.OrderStatus==103" ng-click="confirmReceipt(group)" class="action-item">确认收货</div>
+				<div ng-if="group.OrderStatus==101||group.OrderStatus==102||group.OrderStatus==103" ui-sref="logisticsDetails({id:group.TradeNo})" class="action-item">查看物流</div>
+				<div ng-if="group.OrderStatus==100" ui-sref="productPayOrder({tradeno:group.TradeNo,total:group.groupTotalMoney,ismuilt:false})" class="action-item">去付款</div>
+			</div>
+		</div>
+	</ion-content>
+	
+</ion-view>

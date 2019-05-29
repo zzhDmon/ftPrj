@@ -1,0 +1,44 @@
+
+<ion-view id="red_envelope" hide-nav-bar=true view-title="红包">
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class="iconfont icon-xiangzuo1"></i>
+		</div>
+	</div>
+	<div class="bg-img">
+		<div class="redenvelope">
+			<img src="imgs/redenvelope/redenvelope.png" alt="">
+			<div class="up-img">
+				<div 
+					ng-click="openAlert()" 
+					class="num-null animated" 
+					ng-class="{true:'active zoomIn',false:'zoomOut'}[showNull]">
+					<img src="imgs/redenvelope/null.png" alt="">
+				</div>
+				<div ng-click="openRed()" class="open-click"></div>
+				<div class="txt-info">
+					<p>点开红包吧</p>
+					<p>剩余机会</p>
+					<h5>{{redTimes}}</h5>
+				</div>
+				<div class="receive-record clearfix">
+					<div ng-click="showModal()" class="item-cell left-cell">规则说明</div>
+					<div ui-sref="receiveRedEnvelope" class="item-cell right-cell">领取记录</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script id="redenvelope_rule_modal" type="text/ng-template">
+		<ion-modal-view class="redenvelope-rule-modalview">
+			<div class="close">
+				<div class="clickclose" ng-click="closeModal()"><i class="iconfont icon-guanbi1"></i></div>	
+			</div>
+			<div class="tit">领取红包规则</div>
+			<div class="main-cont">
+				<p>每人每天有一次拆红包机会，先到先得。</p>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

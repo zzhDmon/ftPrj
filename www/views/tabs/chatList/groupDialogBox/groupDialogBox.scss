@@ -1,0 +1,122 @@
+.dialog-center-small-modalview{
+    &.max-height{
+        min-height: 122px;
+    }
+}
+// 拆红包
+.groupdialogbox-openredpacket-modalview{
+    padding: 0 0 50px;
+    width: 80vw;
+    min-height: calc(124vw + 50px);
+    top: calc(50% - 62vw);
+    left: 10vw;
+    background-color: transparent;
+    .close-btn{
+        position: absolute;
+        bottom: 0px;
+        left: calc(50% - 20px);
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        color: rgb(215,81,53);
+        .iconfont{
+            font-size: 30px;
+        }
+    }
+    .main-cont{
+        position: relative;
+        width: 100%;
+        height: 124vw;
+        border-radius: 10px;
+        background-color: rgb(244,85,64);
+        overflow: hidden;
+        .top{
+            position: relative;
+            margin-left: -40vw;
+            padding: 0 40vw;
+            width: 160vw;
+            height: 100vw;
+            border-radius: 0 0 80vw 80vw;
+            border-bottom: 1px solid rgba(255,210,2,0.6);
+            background-color: rgb(250,81,81);
+            .info-content{
+                padding: 50px 10px 0;
+                color: rgba(255,210,2,0.6);
+                .avatar{
+                    margin: auto;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 5px;
+                }
+                .nick-name{
+                    margin: 10px 0 0;
+                    text-align: center;
+                    line-height: 20px;
+                    font-size: 14px;
+                }
+                .packet-info{
+                    margin: 15px 0 0;
+                    text-align: center;
+                    line-height: 20px;
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+            }
+            .open-img{
+                position: absolute;
+                bottom: -35px;
+                left: calc(50% - 35px);
+                width: 70px;
+                height: 70px;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        .bot-info{
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 14px;
+            color: rgba(255,210,2,0.6);
+        }
+    }
+    
+}
+.ft-groupdialog-message-action{
+    margin: 0;
+    width: 60px;
+    height: 40px;
+    border-radius: 0!important;
+    .action-item{
+        width: 100%;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        font-size: 16px;
+        color: $font-main-color;
+    }
+    .popover-arrow{
+        display: none;
+    }
+}
+#group_dialog_box{
+    .header{
+        .title{
+            display: flex;
+            justify-content: center;
+            .name{
+               max-width: calc(100% - 50px); 
+            }
+        }
+    }
+    .group-dialog-box{
+        margin: $head-height 0 0;
+    }
+}

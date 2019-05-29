@@ -1,0 +1,450 @@
+<ion-view id='goods_detail'  hide-nav-bar="true">
+	<div ng-show="showHeader" class="header">
+		<div ng-click="headerBack()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			<div ng-class="{true:'active',false:''}[pageIndex==0]" ng-click="switchPageIndex(0)" class="title-item">商品</div>
+			<div ng-class="{true:'active',false:''}[pageIndex==1]" ng-click="switchPageIndex(1)" class="title-item">详情</div>
+			<div ng-class="{true:'active',false:''}[pageIndex==2]" ng-click="switchPageIndex(2)" class="title-item">评价</div>
+			<!-- <div ng-class="{true:'active',false:''}[pageIndex==3]" ng-click="switchPageIndex(3)" class="title-item">推荐</div> -->
+		</div>
+		<div ng-click="showBottomShareModal()" class="right">
+			<i class="iconfont icon-fenxiang1"></i>
+		</div>
+	</div>
+
+
+	<div class="bot-actions">
+		<div ng-click="goChat(productDetail.ShopId)" class="icon-item">
+			<div class="top-cell"><i class="iconfont icon-duihuaxinxi"></i></div>
+			<div class="bot-cell small-font-size">客服</div>
+		</div>
+		<div ui-sref="hisShop({id:productDetail.ShopId})" class="icon-item">
+			<div class="top-cell"><i class="iconfont icon-yingyeting"></i></div>
+			<div class="bot-cell small-font-sizel">店铺</div>
+		</div>
+		<div ui-sref="mallCart" class="icon-item shopping-cart">
+			<div ng-if="shoppingCartCount>0&&shoppingCartCount<=99" class="product-cart-count">
+				{{shoppingCartCount}}
+			</div>
+			<div ng-if="shoppingCartCount>0&&shoppingCartCount>99" class="product-cart-count">
+				{{shoppingCartCount}}
+			</div>
+			<div class="top-cell"><i class="iconfont icon-gouwuche11"></i></div>
+			<div class="bot-cell small-font-size">购物车</div>
+		</div>		
+		<div ng-click="showTagsModal()" class="cart-item">
+			加入购物车
+		</div>
+		<div ng-click="showTagsModal()" class="cart-item buy-now">
+			立即购买
+		</div>
+	</div>
+
+	<div ng-show="pageIndex==0">
+		<ion-content
+			on-scroll="goodsDetailListen()"
+			delegate-handle="goods-detail-Scroll" 
+			class="goods-detail house-detail"  
+			has-bouncing="false"
+			scrollbar-y="false"
+		>
+			<div class="backbotton btn" ng-click="back()"><i class="iconfont icon-xiangzuo1"></i></div>
+			<div class="sharebotton btn" ng-click="showBottomShareModal()"><i class="iconfont icon-fenxiang1"></i> </div>
+			
+			<div class="banner-position">
+				<ion-slide-box does-continue="true"  class="detailcursor" on-slide-changed='changeindex()' show-pager="false"  delegate-handle='goods-detail-slider-handle'>
+					<ion-slide ng-repeat="banner in productDetail.ShowHeadImages track by $index">
+					<div class="box">
+						<img 
+							ng-src="{{banner}}"
+							onError="src='http://imgs.wujiuyun.com//Images//logo.png'"/>
+					</div>
+					</ion-slide>
+				</ion-slide-box>
+				<div class="slide-page-num">
+					<div ng-repeat="banner in bannerarr track by $index" class="flex-item" ng-class="{true:'active',false:''}[currentIndex==$index]"></div>
+				</div> 
+			</div>
+				
+			<div class="price-wrapper">
+				<div class="goods-price">
+					￥{{productDetail.PromotionPrice | priceFilter}}元
+					<span ng-show="productDetail.PromotionPrice<productDetail.MarketPrice">原价￥{{productDetail.MarketPrice | priceFilter}}元</span>
+					
+					<div ng-show="productDetail.Commission>0" class="comment-right">
+						<div class="icon-wrap">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-shangchengyongjin"></use>
+							</svg>
+						</div>
+						￥{{productDetail.Commission}}元
+					</div>
+				</div>
+				<div ng-show="productDetail.MemberReducePrice>0" class="vip-price">
+					会员价￥{{(productDetail.PromotionPrice - productDetail.MemberReducePrice) | priceFilter}}元
+				</div>
+				<div ng-show="productDetail.Score" class="score-about">
+					<span ng-show="productDetail.ProductSaleType==100">积分最高可抵{{productDetail.Score}}元</span>
+					<span ng-show="productDetail.ProductSaleType==500">抵用金最高可抵{{productDetail.Score}}元</span>
+					<span ng-show="productDetail.ProductSaleType==59">抵用金最高可抵{{productDetail.Score}}元</span>
+				</div>
+			</div>
+			<div class="goods-name">
+				{{productDetail.Name}}
+			</div>	
+			<div class="flex-three">
+				<div class="flex-item left-item">快递：免邮</div>
+				<div class="flex-item mid-item">销量：暂未统计</div>
+				<div class="flex-item right-item">发货地：厦门</div>
+			</div>
+	
+			<div class="offline"></div>
+			<div class="send-to flex-wrap">
+				<div class="left-cell">积分</div>
+				<div class="right-cell overflow-omit-one">
+					购买可获得约{{productDetail.PromotionPrice / 10 - (productDetail.PromotionPrice % 10 /10)}} 
+					积分
+				</div>
+			</div>
+			<div class="send-to flex-wrap">
+				<div class="left-cell">服务</div>
+				<div class="right-cell overflow-omit-one">{{productDetail.Details}}</div>
+			</div>
+	
+			<div class="offline"></div>
+			<div ng-click="showTagsModal()" class="send-to flex-wrap">
+				<div class="left-cell">选择</div>
+				<div class="mid-txt overflow-omit-one">选择颜色大小分类...</div>
+				<div class="right-icon"><i class="iconfont icon-xiangyou2"></i></div>
+			</div>
+			<div ng-click="showParameterModal()" class="send-to flex-wrap">
+				<div class="left-cell">参数</div>
+				<div class="mid-txt overflow-omit-one">品牌型号参数...</div>
+				<div class="right-icon"><i class="iconfont icon-xiangyou2"></i></div>
+			</div>
+			<div class="offline"></div>
+			<div ui-sref="addressList" class="send-to flex-wrap">
+				<div class="left-cell">地址</div>
+				<div class="right-cell overflow-omit-one">{{receiptAddress.Province}}{{receiptAddress.City}}{{receiptAddress.District}}{{receiptAddress.Street}}{{receiptAddress.Address}}</div>
+			</div>
+			
+			<div class="send-to flex-wrap">
+				<div class="left-cell">提示</div>
+				<div class="right-cell overflow-omit-one">18:00前下单，预计后天送达</div>
+			</div>
+			
+			<div class="offline"></div>
+			<div class="comment-wrapper">
+				<h5 class="comment-title">
+					商品评价
+					<span>（{{productDetail.Comments.length | overTenThousandFilter}}）</span>
+				</h5>
+				<!-- <div class="type-list">
+					<div class="type-item">好评(55)</div>
+					<div class="type-item">中评(3)</div>
+					<div class="type-item">差评(1)</div>
+				</div> -->
+				<div ng-if="$index<5" ng-repeat="item in productDetail.Comments track by $index" class="comment-item">
+					<div class="user-info">
+						<div class="img"><img ng-src="{{item.UserImage}}" alt=""></div>
+						<div class="name overflow-omit-one">{{item.UserName}}</div>
+						<div class="stars">
+							<div class="star-item" ng-class="{true:'active',false:''}[item.ProductStar>=1]"><i class="iconfont icon-xing_f"></i></div>
+							<div class="star-item" ng-class="{true:'active',false:''}[item.ProductStar>=2]"><i class="iconfont icon-xing_f"></i></div>
+							<div class="star-item" ng-class="{true:'active',false:''}[item.ProductStar>=3]"><i class="iconfont icon-xing_f"></i></div>
+							<div class="star-item" ng-class="{true:'active',false:''}[item.ProductStar>=4]"><i class="iconfont icon-xing_f"></i></div>
+							<div class="star-item" ng-class="{true:'active',false:''}[item.ProductStar>=5]"><i class="iconfont icon-xing_f"></i></div>
+						</div>
+					</div>
+					<div class="comment-content">
+						{{item.Content}}
+					</div>
+					<div class="img-list">
+						<div ng-repeat="img in item.Images track by $index" class="img-item">
+							<img ng-src="{{img}}" alt="">
+						</div>
+					</div>
+					<div class="action-list">
+						<div ng-click="showCommentsModal(item)" class="action-item">
+							<i class="iconfont icon-pinglun1"></i>
+							{{item.ChildrenCount | overTenThousandFilter}}
+						</div>
+						<div ng-click="agreeComment(item)" class="action-item">
+							<i class="iconfont icon-zan"></i>
+							{{item.AgressUsers.length}}
+						</div>
+					</div>
+				</div>
+				<div ui-sref="commentList({id:productDetail.Id})" class="more-content">查看全部评价</div>
+			</div>
+	
+			<div class="offline"></div>
+			<div class="shop-wrapper">
+				<div class="info-wrapper">
+					<div class="left-cell">
+						<img src="http://imgs.wujiuyun.com//Images//logo.png" alt="">
+					</div>
+					<div class="mid-cell">
+						<div class="top-cell">{{productDetail.ShopName}}</div>
+						<div class="bot-cell">100.8万关注</div>
+					</div>
+					<div ui-sref="hisShop({id:productDetail.ShopId})" class="right-cell">进店逛逛</div>
+				</div>
+				<div class="score-wrapper">
+					<div class="score-item left-cell">商品评分 4.8</div>
+					<div class="score-item mid-cell">店铺评分 4.9</div>
+					<div class="score-item right-cell">综合评分 4.9</div>
+				</div>
+			</div>
+			
+			
+			<!-- 详情 -->
+			<!-- <div class="offline"></div> -->
+			<div class="detail-wrapper">
+				<div class="offline"></div>
+				<p class="baseLine"><span>详情图片</span></p>
+				<div class="detail-imgs">
+					<div 
+						ng-repeat="item in productDetail.ShowDetailImages track by $index" class="img-item">
+						<img ng-src="{{item}}" alt="">
+					</div>
+				</div>
+			</div>
+			
+			<div class="fake-safe-bottom"></div>
+		</ion-content>
+	</div>
+	<!-- 详情 -->
+	<div ng-show="pageIndex==1">
+		<div class="detail-switch">
+			<div ng-click="switchDetailIndex(0)" ng-class="{true:'active',false:''}[detailIndex==0]" class="switch-item">商品介绍</div>
+			<div ng-click="switchDetailIndex(1)" ng-class="{true:'active',false:''}[detailIndex==1]" class="switch-item">规格参数</div>
+			<div ng-click="switchDetailIndex(2)" ng-class="{true:'active',false:''}[detailIndex==2]" class="switch-item">包装售后</div>
+		</div>
+		<ion-content delegate-handle="goods-detail-detail-Scroll" class="goods-detail-detail">
+			<!-- 详情 -->
+			<div ng-show="detailIndex==0" class="detail-wrapper">
+				<p class="baseLine"><span>商品详情</span></p>
+				<div class="content">{{productDetail.Details}}</div>
+				<div class="offline"></div>
+				<p class="baseLine"><span>详情图片</span></p>
+				<div class="detail-imgs">
+					<div 
+						ng-repeat="item in productDetail.ShowDetailImages track by $index" class="img-item">
+						<img ng-src="{{item}}" alt="">
+					</div>
+				</div>
+			</div>
+			<!-- 规格 -->
+			<div ng-show="detailIndex==1" class="sku-table">
+				<div ng-repeat="item in productDetail.Specifics track by $index" class="sku-item">
+					<div class="left-cell">{{item.key}}</div>
+					<div class="right-cell">
+						{{item.value}}
+					</div>
+				</div>
+			</div>
+			<!-- 详情 -->
+			<div ng-show="detailIndex==2" class="detail-wrapper">
+				<p class="baseLine"><span>售后服务</span></p>
+				<div class="content">{{productDetail.PostSales}}</div>
+			</div>
+		</ion-content>
+	</div>
+	<!-- 评论 -->
+	<div ng-show="pageIndex==2">
+		<div class="comment-fixed">
+			<p>好评度100%</p>
+			<div class="switch-list">
+				<div class="switch-item">全部&nbsp;{{productDetail.Comments.length}}</div>
+				<div class="switch-item">好评&nbsp;{{productDetail.Comments.length}}</div>
+				<div class="switch-item">中评</div>
+				<div class="switch-item">差评</div>
+			</div>
+		</div>
+		<ion-content class="goods-detail-comments" delegate-handle="goods-detail-comments-Scroll">
+			<div class="comment-list">
+				<div ng-repeat="item in productDetail.Comments track by $index" class="comment-item">
+					<div class="user-info">
+						<div class="img"><img ng-src="{{item.UserImage}}" alt=""></div>
+						<div class="name overflow-omit-one">{{item.UserName}}</div>
+						<div class="stars">
+							<div class="star-item" ng-class="{true:'active',false:''}[item.ProductStar>=1]"><i class="iconfont icon-xing_f"></i></div>
+							<div class="star-item" ng-class="{true:'active',false:''}[item.ProductStar>=2]"><i class="iconfont icon-xing_f"></i></div>
+							<div class="star-item" ng-class="{true:'active',false:''}[item.ProductStar>=3]"><i class="iconfont icon-xing_f"></i></div>
+							<div class="star-item" ng-class="{true:'active',false:''}[item.ProductStar>=4]"><i class="iconfont icon-xing_f"></i></div>
+							<div class="star-item" ng-class="{true:'active',false:''}[item.ProductStar>=5]"><i class="iconfont icon-xing_f"></i></div>
+						</div>
+					</div>
+					<div class="comment-content">
+						{{item.Content}}
+					</div>
+					<div class="img-list">
+						<div ng-repeat="img in item.Images track by $index" class="img-item">
+							<img ng-src="{{img}}" alt="">
+						</div>
+					</div>
+					<div class="action-list">
+						<div ng-click="showCommentsModal(item)" class="action-item">
+							<i class="iconfont icon-pinglun1"></i>
+							{{item.ChildrenCount | overTenThousandFilter}}
+						</div>
+						<div ng-click="agreeComment(item)" class="action-item">
+							<i class="iconfont icon-zan"></i>
+							{{item.AgressUsers.length}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</ion-content>
+	</div>
+	<!-- 推荐 -->
+	<div ng-show="pageIndex==3">
+		<div class="fix-recommend">
+			<div class="fix-content"><i class="iconfont icon-yingyeting"></i>店内优选</div>
+		</div>
+		<ion-content delegate-handle="goods-detail-recommend-Scroll" class="goods-detail-recommend">
+			<div class="recommend-list">
+				<div ng-repeat="banner in productDetail.ShowHeadImages track by $index" class="recommend-item">
+					<div class="top-img">
+						<div class="bg-original-image" ng-style="{'background-image':'url('+banner+')'}"></div>
+					</div>
+					<div class="bot-info">
+						<div class="rate">好评率80%</div>
+						<div class="product-name overflow-omit-two">
+							卡是圣诞节今年初的机会聚爱与时尚尊贵气质
+						</div>
+						<div class="prcie">¥ 1398.00</div>
+					</div>
+				</div>
+			</div>
+		</ion-content>
+	</div>
+	
+	<!-- 商品参数 -->
+	<script id="product_parameter_modalview" type="text/ng-template">
+		<ion-modal-view class="product-parameter-modalview">
+			<div ng-click="closeParameterModal()" class="don-btn">完成</div>
+			<ion-content class="product-parameter">
+				<h5>产品参数</h5>
+				<div class="sku-table">
+					<div ng-repeat="item in productDetail.Specifics track by $index" class="sku-item">
+						<div class="left-cell">{{item.key}}</div>
+						<div class="right-cell">{{item.value}}</div>
+					</div>
+				</div>
+				
+				<div class="fake-safe-bottom"></div>
+			</ion-content>
+		</ion-modal-view>
+	</script>
+	<!-- SKU选择 -->
+	<script id="product_tags_modalview" type="text/ng-template">
+		<ion-modal-view class="product-tags-modalview">
+			<div class="product-tags-modal">
+				<div ng-click="closeTagsModal()" class="close-btn">
+					<i class="iconfont icon-guanbi1"></i>
+				</div>
+				<ion-content class="product-tags-content">
+					<div class="info-wrap">
+						<div class="left-cell">
+							<img 
+								ng-src="{{productDetail.ShowHeadImages[0]}}" 
+								onError="src='http://imgs.wujiuyun.com//Images//logo.png'"
+								alt="">
+						</div>
+						<div class="right-cell">
+							<div class="top-cell overflow-omit-one">{{productDetail.Name}}</div>
+							<div class="mid-cell overflow-omit-one">￥{{currentSku.Price | priceFilter}}</div>
+							<div class="bot-cell overflow-omit-one">库存：{{currentSku.Inventory}}</div>
+						</div>
+					</div>
+					<div ng-repeat="tagList in productDetail.Specifications track by $index" class="tags-block">
+						<div class="tag-title">{{tagList.name}}</div>
+						<div class="tags-list">
+							<!-- ng-click="skuChoosedIndexs[$parent.$index] = $index" -->
+							<div 
+								ng-click="changeSkuChoosedIndexs($parent.$index,$index)"
+								ng-class="{true:'active',false:''}[skuChoosedIndexs[$parent.$index]==$index]"
+								ng-repeat="tag in tagList.value track by $index" 
+								class="tag-item">
+								{{tag}}
+							</div>
+						</div>
+					</div>
+					
+					<div class="fake-safe-bottom"></div>
+				</ion-content>
+				<div class="action-btns">
+					<div ng-click="addToShoppingCart()" class="btn-item confirm">加入购物车</div>
+					<div ng-click="addToShoppingCart(true)" class="btn-item buy">立即购买</div>
+				</div>
+			</div>
+		</ion-modal-view>
+	</script>
+	<!-- 评论回复 -->
+	<script id="product_comments_modalview" type="text/ng-template">
+		<ion-modal-view class="product-comments-modalview">
+			<div class="product-tags-modal">
+				<div ng-click="closeCommentsModal()" class="close-btn">
+					<i class="iconfont icon-guanbi1"></i>
+				</div>
+				<ion-content class="product-comments-content">
+					<div class="comment-item">
+						<div class="user-info">
+							<div class="img"><img ng-src="{{parentComment.UserImage}}" alt=""></div>
+							<div class="name overflow-omit-one">{{parentComment.UserName}}</div>
+							<div class="stars">
+								<div class="star-item" ng-class="{true:'active',false:''}[parentComment.ProductStar>=1]"><i class="iconfont icon-xing_f"></i></div>
+								<div class="star-item" ng-class="{true:'active',false:''}[parentComment.ProductStar>=2]"><i class="iconfont icon-xing_f"></i></div>
+								<div class="star-item" ng-class="{true:'active',false:''}[parentComment.ProductStar>=3]"><i class="iconfont icon-xing_f"></i></div>
+								<div class="star-item" ng-class="{true:'active',false:''}[parentComment.ProductStar>=4]"><i class="iconfont icon-xing_f"></i></div>
+								<div class="star-item" ng-class="{true:'active',false:''}[parentComment.ProductStar>=5]"><i class="iconfont icon-xing_f"></i></div>
+							</div>
+						</div>
+						<div class="comment-content">
+							{{parentComment.Content}}
+						</div>
+						<div class="img-list">
+							<div ng-repeat="img in parentComment.Images track by $index" class="img-item">
+								<img ng-src="{{img}}" alt="">
+							</div>
+						</div>
+					</div>
+					<div class="child-comments">
+						<div ng-repeat="item in childComments track by $index" class="child-item">
+							<div class="user-info">
+								<div class="img"><img ng-src="{{item.Image}}" alt=""></div>
+								<div class="name overflow-omit-one">{{item.Name}}</div>				
+							</div>
+							<div class="content overflow-omit-two">
+								{{item.Content}}
+							</div>
+						</div>
+					</div>
+					
+					<div class="fake-safe-bottom"></div>
+				</ion-content>
+
+				<div class="bot-input">
+					<div class="input-wrapper">
+						<div class="textarea">
+							<textarea ng-model="replayData.data" placeholder="回复"></textarea>
+						</div>
+						<div ng-click="replyComment()" class="send">发布</div>
+					</div>
+					<div ng-if="keyboardShow" ng-style="{'height': keyboardHeight + 'px'}"></div>
+				</div>
+			</div>
+		</ion-modal-view>
+	</script>
+	<!-- 分享 -->
+	<script id="goods_detail_share_modal" type="text/ng-template">
+		<ion-modal-view ng-click="closeBottomShareModal()" class="bottom-share-modal">
+			<div ng-include="'views/includes/bottomShareModal/bottomShareModal.html'"></div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

@@ -1,0 +1,21 @@
+<div class="searchcommunity-main main">
+    <div class="lasted">
+        搜到的小区
+    </div>
+    <div class="list">
+        <ul>
+            <li ng-repeat="xiaoqu in xiaoquarr track by $index" ng-click="choosexiaoqu($event,$index)">
+                <p class="name">{{xiaoqu.Name}}</p>
+                <p class="adr">{{xiaoqu.Address}}</p>
+            </li>
+        </ul>
+
+        <div ng-show="xiaoquarr.length<1&&searchName.key.length" class="no-result">
+            <div class="icon">
+                <i class="iconfont icon-jingbao"></i>
+            </div>
+            <p class="result">查无搜索</p>
+            <p ui-sref="addCommunity" class="add">添加小区</p>
+        </div>
+    </div>
+</div>

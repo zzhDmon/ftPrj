@@ -1,0 +1,14 @@
+﻿{
+    "android": {
+        "version": "2.7.8",
+        "versionDescription": "1.首页添加城市选择，开放更多城市服务<br/>2.实名以及房源认证使用AI只能认证，认证更加便捷<br/>3.优化用户体验",
+        "updateUrl": "http://app.fang-tian.com/apk/fangtian.apk",
+        "inreview": true
+    },
+    "ios": {
+        "version": "2.8.6",
+        "versionDescription": "1.首页添加城市选择，开放更多城市服务<br/>2.实名以及房源认证使用AI只能认证，认证更加便捷<br/>3.优化用户体验",
+        "updateUrl": "itms-apps://itunes.apple.com/cn/app/linkmore/id1288448623?mt=8",
+        "inreview": false
+    }
+}

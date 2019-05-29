@@ -1,0 +1,130 @@
+#my_points{
+    .header{
+        background-color: $bg-main-color;
+        border: none;
+        color: white;
+        .back{
+            color: white;
+        }
+        .title{
+            color: white;
+            
+        }
+        .right{
+            color: white;
+            padding: 0 12px 0 0;
+        }
+    }
+    .my-points{
+        margin-top: $head-height;
+        padding: 0;
+        .main-head{
+            padding: 20px 0 10px;
+            width: 100%;
+            background-color: $bg-main-color;
+            h5{
+                margin: 0 0 5px;
+                width: 100%;
+                height: 35px;
+                text-align: center;
+                line-height: 35px;
+                font-size: 30px;
+                color: white;
+            }
+            .under-count{
+                width: 100%;
+                height: 20px;
+                text-align: center;
+                line-height: 20px;
+                font-size: 16px;
+                color: white;
+            }
+            .foot{
+                margin: 25px 0 0;
+                width: 100%;
+                height: 30px;
+                .float{
+                    float: left;
+                    width: 50%;
+                    height: 30px;
+                    text-align: center;
+                    line-height: 30px;
+                    color: white;
+                    font-size: 16px;
+                    .iconfont::before{
+                        line-height: 1px;
+                    }
+                    .iconfont{
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+        .goods-list{
+            width: 100%;
+            ul{
+                width: 100%;
+                padding: 0 0 0 $view-padding;
+                li{
+                    padding: 10px $view-padding 10px 0;
+                    width: 100%;
+                    border-bottom:1px solid $line-main-color;
+                    .left-img{
+                        float: left;
+                        width: 100px;
+                        height: 100px;
+                        img{
+                            display: block;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .right-text{
+                        float: left;
+                        width: calc(100% - 100px);
+                        padding: 0 0 0 10px;
+                        .name{
+                            margin: 0;
+                            width: 100%;
+                            height: 40px;
+                            line-height: 20px;
+                            color: $font-main-color;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                        }
+                        .current-price{
+                            margin: 10px 0 0;
+                            width: 100%;
+                            height: 25px;
+                            line-height: 25px;
+                            font-size: 16px;
+                            color: $bg-main-color;
+                        }
+                        .foot{
+                            width: 100%;
+                            height: 25px;
+                            .original-price{
+                                float: left;
+                                width: 50%;
+                                line-height: 25px;
+                                color: $font-minor-color;
+                                text-decoration: line-through;
+                            }
+                            .surplus{
+                                float: left;
+                                width: 50%;
+                                height: 25px;
+                                text-align: right;
+                                line-height: 25px;
+                                color: $font-minor-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

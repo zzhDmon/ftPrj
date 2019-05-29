@@ -1,0 +1,22 @@
+angular.module('App')
+    .config(function($stateProvider) {
+        $stateProvider
+        .state('videoPlayer',{
+            url:'/videoplayer/params/:id',
+            cache:false,
+            templateUrl:'views/publicPage/videoPlayer/videoPlayer.html',
+            controller:'videoPlayerCtl',
+            data:{isPublic:true}
+        })
+        .state('tabs.videoPlayer',{
+            url:'/videoplayer/params/:id',
+            cache:false,
+            views:{
+                home:{
+                    templateUrl:'views/publicPage/videoPlayer/videoPlayer.html',
+                    controller:'videoPlayerCtl',
+                }
+            },
+            data:{isPublic:true}
+        })
+    });

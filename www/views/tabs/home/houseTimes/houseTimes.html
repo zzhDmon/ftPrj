@@ -1,0 +1,52 @@
+
+<!--对话模板-->
+<ion-view id="house_times" hide-nav-bar=true view-title="房产时报">
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class="iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			房产时报
+		</div>
+		<div class="right">
+			
+		</div>
+	</div>
+	<div class="fix-bot">
+		<div ng-if="!hasLike" ng-click="clickLike()" class="fix-item fix-left">
+			<i class="iconfont icon-dianzan-"></i>
+		</div>
+		<div ng-if="hasLike" class="fix-item fix-left active">
+			<i class="iconfont icon-dianzan-"></i>
+		</div>
+		<div ng-click="showBottomShareModal()" class="fix-item">
+			<i class="iconfont icon-shangchuan-"></i>
+		</div>
+	</div>
+
+	<ion-content scroll="true" overflow-scroll="true" class="house-times">
+		<div class="main" ng-bind-html="dataDetail.Article">
+		</div>	
+		
+		<div class="sub-info">
+			<div class="info-item">
+				阅读量: 
+				<span ng-if="!dataDetail.ReadNum">0</span>	
+				<span ng-if="dataDetail.ReadNum">{{dataDetail.ReadNum | overTenThousandFilter}}</span>	
+			</div>
+			<div class="info-item">
+				点赞数: 
+				<span ng-if="!dataDetail.ReadNum">0</span>	
+				<span ng-if="dataDetail.ReadNum">{{likeNum | overTenThousandFilter}}</span>	
+			</div>
+		</div>
+	</ion-content>
+	
+	<script id="house_times_share_modal" type="text/ng-template">
+		<ion-modal-view ng-click="closeBottomShareModal()" class="bottom-share-modal">
+			<div ng-include="'views/includes/bottomShareModal/bottomShareModal.html'"></div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

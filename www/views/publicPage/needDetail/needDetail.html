@@ -1,0 +1,151 @@
+<ion-view id="need_detail" view-title="需求详情" hide-nav-bar=true>
+	<ion-content class="need-detail">
+		<div class="backbotton btn" ng-click="back()"><i class="iconfont icon-xiangzuo1"></i></div>
+		<div class="sharebotton btn" ng-click="showBottomShareModal()"><i class="iconfont icon-fenxiang1" style="font-size: 20px!important;"></i> </div>
+		
+		<div class="head-img">
+			<img ng-src="http://imgs.wujiuyun.com//staticImage//housesource//房源_banner.jpg" alt="">
+		</div>
+		<div class="customer-info">
+			<div class="customer-img">
+				<img class="img" ng-if="needUserInfo.ShowImage" class="headimg" ng-src="{{needUserInfo.ShowImage}}"/>
+				<div ng-if="!needUserInfo.ShowImage" class="noneimg">
+					<i class="iconfont icon-weidenglu"></i>
+				</div>
+				<div class="level-img">
+					<svg ng-if="!needInfo.UserInfo.Level" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-putongyonghu"></use>
+					</svg>
+					<svg ng-if="needInfo.UserInfo.Level=='白银'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-gerenhuiyuan"></use>
+					</svg>
+					<svg ng-if="needInfo.UserInfo.Level=='黄金'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-tuanduihuiyuan"></use>
+					</svg>
+					<svg ng-if="needInfo.UserInfo.Level=='铂金'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-shanghulaobandiaozhuixunzhang"></use>
+					</svg>
+					<svg ng-if="needInfo.UserInfo.Level=='钻石'" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-qiyezhudiaozhuixunzhang"></use>
+					</svg>
+				</div>
+			</div>
+			
+			<div class="customer-name-chat">
+				<div class="customer-name overflow-omit-one">
+					{{needUserInfo.Name}}
+				</div>
+				<div ng-hide="myselfInfo.Id == needInfo.UserInfo.Id" ng-click="goChat(needUserInfo.Id)" class="customer-chat">
+					微聊
+				</div>
+			</div>
+		</div>
+
+		<div class="need-detail">
+			<div class="need-title">
+				需求（
+				<span ng-if="needInfo.Type==0">求购新房</span>
+				<span ng-if="needInfo.Type==1">求购二手房</span>
+				<span ng-if="needInfo.Type==2">求租房</span>
+				<span ng-if="needInfo.Type==3">求租商铺</span>
+				<span ng-if="needInfo.Type==4">求租写字楼</span>
+				<span ng-if="needInfo.Type==5">求购商铺</span>
+				<span ng-if="needInfo.Type==6">求租工厂</span>
+				<span ng-if="needInfo.Type==7">求购工厂</span>
+				<span ng-if="needInfo.Type==8">求租仓库</span>
+				<span ng-if="needInfo.Type==9">求购仓库</span>
+				<span ng-if="needInfo.Type==10">求租车位</span>
+				<span ng-if="needInfo.Type==11">求购车位</span>
+				<span ng-if="needInfo.Type==12">求租合租</span>
+				<span ng-if="needInfo.Type==13">求租短租</span>
+				<span ng-if="needInfo.Type==14">求租品牌公寓</span>
+				<span ng-if="needInfo.Type==15">个人房源</span>
+				<span ng-if="needInfo.Type==16">房东委托</span>
+				<span ng-if="needInfo.Type==17">求购写字楼</span>
+				）
+			</div>
+
+			<div class="need-items">
+				<div class="need-item">
+					<div class="left-cell">意向小区</div>
+					<div class="right-cell overflow-omit-one"></div>
+				</div>
+				<div class="need-item">
+					<div class="left-cell">意向户型</div>
+					<div class="right-cell overflow-omit-one">
+						<span ng-if="needInfo.RoomType">{{needInfo.RoomType}}室</span>
+						<span ng-if="needInfo.HallType">{{needInfo.HallType}}厅</span>
+						<span ng-if="needInfo.BathType">{{needInfo.BathType}}卫</span>
+					</div>
+				</div>
+				<div class="need-item">
+					<div class="left-cell">面积要求</div>
+					<div class="right-cell overflow-omit-one">
+						<span ng-if="needInfo.MinSpace&&!needInfo.MaxSpace">{{needInfo.MinSpace}}m²以上</span>
+						<span ng-if="needInfo.MinSpace&&needInfo.MaxSpace">{{needInfo.MinSpace}}~{{needInfo.MaxSpace}}m²</span>
+						<span ng-if="!needInfo.MinSpace&&needInfo.MaxSpace">{{needInfo.MaxSpace}}m²以下</span>
+						<span ng-if="!needInfo.MinSpace&&!needInfo.MaxSpace">面积不限</span>
+					</div>
+				</div>
+				<div class="need-item">
+					<div class="left-cell">物业类型</div>
+					<div class="right-cell overflow-omit-one">--</div>
+				</div>
+				<div class="need-item">
+					<div class="left-cell">装修标准</div>
+					<div class="right-cell overflow-omit-one">
+						<span ng-if="needInfo.Fitment">{{needInfo.Fitment}}</span>
+						<span ng-hide="needInfo.Fitment">--</span>
+					</div>
+				</div>
+				<div class="need-item">
+					<div class="left-cell">联系方式</div>
+					<div class="right-cell overflow-omit-one">--</div>
+				</div>
+				<div class="need-item all-line">
+					<div class="left-cell">价格预算</div>
+					<div class="right-cell overflow-omit-one">
+						<span ng-if="needInfo.MinPrize&&!needInfo.MaxPrize">
+							{{needInfo.MinPrize}} 
+							<span ng-show="needInfo.Type==0||needInfo.Type==1||needInfo.Type==5||needInfo.Type==7||needInfo.Type==9||needInfo.Type==11||needInfo.Type==17">万</span>
+							<span ng-hide="needInfo.Type==0||needInfo.Type==1||needInfo.Type==5||needInfo.Type==7||needInfo.Type==9||needInfo.Type==11||needInfo.Type==17">元/月</span>
+							以上
+						</span>
+						<span ng-if="needInfo.MinPrize&&needInfo.MaxPrize">
+							{{needInfo.MinPrize}}~{{needInfo.MaxPrize}}
+							<span ng-show="needInfo.Type==0||needInfo.Type==1||needInfo.Type==5||needInfo.Type==7||needInfo.Type==9||needInfo.Type==11||needInfo.Type==17">万</span>
+							<span ng-hide="needInfo.Type==0||needInfo.Type==1||needInfo.Type==5||needInfo.Type==7||needInfo.Type==9||needInfo.Type==11||needInfo.Type==17">元/月</span>
+						</span>
+						<span ng-if="!needInfo.MinPrize&&needInfo.MaxPrize">
+							{{needInfo.MaxPrize}}
+							<span ng-show="needInfo.Type==0||needInfo.Type==1||needInfo.Type==5||needInfo.Type==7||needInfo.Type==9||needInfo.Type==11||needInfo.Type==17">万</span>
+							<span ng-hide="needInfo.Type==0||needInfo.Type==1||needInfo.Type==5||needInfo.Type==7||needInfo.Type==9||needInfo.Type==11||needInfo.Type==17">元/月</span>
+							以下
+						</span>
+						<span ng-if="!needInfo.MinPrize&&!needInfo.MaxPrize">价格不限</span>
+					</div>
+				</div>
+				<div class="need-item all-line">
+					<div class="left-cell">详细地址</div>
+					<div class="right-cell">{{needInfo.Address}}</div>
+				</div>
+			</div>
+		</div>
+
+		<div ng-if="needInfo.Attach" class="need-attach">
+			<div class="attach-title">具体需求</div>
+			<div class="attach-detail">
+				{{needInfo.Attach}}
+			</div>
+		</div>
+		<div ng-if="!needInfo.Attach" class="no-attach">
+			没有更多了……
+		</div>
+	</ion-content>
+	<!-- 分享 -->
+	<script id="need_detail_share_modal" type="text/ng-template">
+		<ion-modal-view ng-click="closeBottomShareModal()" class="bottom-share-modal">
+			<div ng-include="'views/includes/bottomShareModal/bottomShareModal.html'"></div>
+		</ion-modal-view>
+	</script>
+</ion-view>

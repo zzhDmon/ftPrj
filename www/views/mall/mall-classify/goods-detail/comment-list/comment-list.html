@@ -1,0 +1,115 @@
+
+<ion-view id="comment_list" view-title="评论列表" hide-nav-bar="true">	
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			评论列表
+		</div>
+		<div class="right">
+			<!-- 搜索 -->
+		</div>
+	</div>
+
+	
+
+	<ion-content class="comment-list">
+		<div class="comment-wrapper">
+			<div class="comment-title">
+				评论（{{productDetail.Comments.length | overTenThousandFilter}}）
+			</div>
+			<!-- <div class="type-list">
+				<div class="type-item">好评(55)</div>
+				<div class="type-item">中评(3)</div>
+				<div class="type-item">差评(1)</div>
+			</div> -->
+			<div ng-if="$index<5" ng-repeat="item in productDetail.Comments track by $index" class="comment-item">
+				<div class="user-info">
+					<div class="img"><img ng-src="{{item.UserImage}}" alt=""></div>
+					<div class="name overflow-omit-one">{{item.UserName}}</div>
+					<div class="stars">
+						<div class="star-item" ng-class="{true:'active',false:''}[item.ProductStar>=1]"><i class="iconfont icon-xing_f"></i></div>
+						<div class="star-item" ng-class="{true:'active',false:''}[item.ProductStar>=2]"><i class="iconfont icon-xing_f"></i></div>
+						<div class="star-item" ng-class="{true:'active',false:''}[item.ProductStar>=3]"><i class="iconfont icon-xing_f"></i></div>
+						<div class="star-item" ng-class="{true:'active',false:''}[item.ProductStar>=4]"><i class="iconfont icon-xing_f"></i></div>
+						<div class="star-item" ng-class="{true:'active',false:''}[item.ProductStar>=5]"><i class="iconfont icon-xing_f"></i></div>
+					</div>
+				</div>
+				<div class="comment-content">
+					{{item.Content}}
+				</div>
+				<div class="img-list">
+					<div ng-repeat="img in item.Images track by $index" class="img-item">
+						<img ng-src="{{img}}" alt="">
+					</div>
+				</div>
+				<div class="action-list">
+					<div ng-click="showCommentsModal(item)" class="action-item">
+						<i class="iconfont icon-pinglun1"></i>
+						{{item.ChildrenCount | overTenThousandFilter}}
+					</div>
+					<div ng-click="agreeComment(item)" class="action-item">
+						<i class="iconfont icon-zan"></i>
+						{{item.AgressUsers.length}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+
+	<!-- 评论回复 -->
+	<script id="product_commentlist_modalview" type="text/ng-template">
+		<ion-modal-view class="product-commentlist-modalview">
+			<div class="product-tags-modal">
+				<div ng-click="closeCommentsModal()" class="close-btn">
+					<i class="iconfont icon-guanbi1"></i>
+				</div>
+				<ion-content class="product-commentlist-content">
+					<div class="comment-item">
+						<div class="user-info">
+							<div class="img"><img ng-src="{{parentComment.UserImage}}" alt=""></div>
+							<div class="name overflow-omit-one">{{parentComment.UserName}}</div>
+							<div class="stars">
+								<div class="star-item" ng-class="{true:'active',false:''}[parentComment.ProductStar>=1]"><i class="iconfont icon-xing_f"></i></div>
+								<div class="star-item" ng-class="{true:'active',false:''}[parentComment.ProductStar>=2]"><i class="iconfont icon-xing_f"></i></div>
+								<div class="star-item" ng-class="{true:'active',false:''}[parentComment.ProductStar>=3]"><i class="iconfont icon-xing_f"></i></div>
+								<div class="star-item" ng-class="{true:'active',false:''}[parentComment.ProductStar>=4]"><i class="iconfont icon-xing_f"></i></div>
+								<div class="star-item" ng-class="{true:'active',false:''}[parentComment.ProductStar>=5]"><i class="iconfont icon-xing_f"></i></div>
+							</div>
+						</div>
+						<div class="comment-content">
+							{{parentComment.Content}}
+						</div>
+						<div class="img-list">
+							<div ng-repeat="img in parentComment.Images track by $index" class="img-item">
+								<img ng-src="{{img}}" alt="">
+							</div>
+						</div>
+					</div>
+					<div class="child-comments">
+						<div ng-repeat="item in childComments track by $index" class="child-item">
+							<div class="user-info">
+								<div class="img"><img ng-src="{{item.Image}}" alt=""></div>
+								<div class="name overflow-omit-one">{{item.Name}}</div>				
+							</div>
+							<div class="content overflow-omit-two">
+								{{item.Content}}
+							</div>
+						</div>
+					</div>
+				</ion-content>
+
+				<div class="bot-input">
+					<div class="input-wrapper">
+						<div class="textarea">
+							<textarea ng-model="replayData.data" placeholder="回复"></textarea>
+						</div>
+						<div ng-click="replyComment()" class="send">发布</div>
+					</div>
+					<div ng-if="keyboardShow" ng-style="{'height': keyboardHeight + 'px'}"></div>
+				</div>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>

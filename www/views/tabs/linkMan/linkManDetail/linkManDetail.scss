@@ -1,0 +1,263 @@
+#link_man_detail{
+    .link-man-detail{
+        padding: 0;
+        margin: $head-height 0 0;
+        .main{
+            padding:0;
+            .head-info{
+                padding: 20px $view-padding 20px;
+                background-color:rgb(14,14,14);
+                .user-info{
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    .left-cell{
+                        width: 70px;
+                        height: 70px;
+                        border-radius: 5px;
+                        overflow: hidden;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                        .no-headimg{
+                            width: 70px;
+                            height: 70px;
+                            line-height: 70px;
+                            background-color: #dee2ed;
+                            text-align: center;
+                            color: #FFFFFF;
+                            .iconfont{
+                                font-size: 40px;
+                            }
+                        }
+                    }
+                    .mid-cell{
+                        padding: 10px 0 0 10px;
+                        width: calc(100% - 130px);
+                        color: white;
+                        .top-cell{
+                            font-size: 16px;
+                            line-height: 22px;
+                            display: flex;
+                            justify-content: flex-start;
+                            .left-item{
+                                max-width: calc(100% - 80px);
+                            }
+                            .follow-item{
+                                width: 50px;
+                                height: 26px;
+                                line-height: 26px;
+                                text-align: center;
+                                font-size: 10px;
+                                color: white;
+                                border-radius: 3px;
+                                background-color: rgb(247,114,115);
+                                .iconfont{
+                                    font-size: 10px;
+                                }
+                                &.active{
+                                    background-color: rgb(90,90,90);
+                                }
+                            }
+                            .mid-item{
+                                width: 30px;
+                                text-align: center;
+                                .icon{
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                            }
+                        }
+                        .center-cell{
+                            font-size: 12px;
+                            line-height: 18px;
+                        }
+                        .bot-cell{
+                            font-size: 14px;
+                            line-height: 20px;
+                        }
+                    }
+                    .right-cell{
+                        width: 60px;
+                        height: 70px;
+                        padding: 0 0 2px;
+                        position: relative;
+                        .real-name{
+                            color: white;
+                            width: 100;
+                            height: 20px;
+                            text-align: center;
+                            line-height: 20px;
+                            font-size: 12px;
+                            display: flex;
+                            justify-content: center;
+                            .icon-cell{
+                                padding: 1px 2px 0 0;
+                                .icon{
+                                    display: inline-block;
+                                    width: 16px;
+                                    height: 16px;
+                                }
+                            }
+                        }
+                        .qrcode{
+                            margin: auto;
+                            padding: 2px;
+                            width: 32px;
+                            height: 32px;
+                            background-color: white;
+                            .icon{
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                        .follow-num{
+                            position: absolute;
+                            bottom: 0;
+                            right: -10px;
+                            width: 80px;
+                            height: 18px;
+                            text-align: center;
+                            line-height: 18px;
+                            color: white;
+                            font-size: 10px;
+                        }
+                    }
+                }
+                .video-photo{
+                    padding: 10px 0 0;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    .item-cell{
+                        width: 100px;
+                        .top-cell{
+                            width: 100px;
+                            height: 80px; 
+                            line-height: 80px;
+                            text-align: center;
+                            color: white;
+                            background-color: rgb(156,156,156);
+                            overflow: hidden;
+                            .iconfont{
+                                font-size: 20px;
+                            }
+                            .in-top-cell{
+                                width: 100%;
+                                height: 0;
+                                overflow: hidden;
+                                margin: 0;
+                                padding-bottom: 100%; /* 原图显示关键 */
+                                background-position: center;
+                                background-repeat: no-repeat;
+                                background-size: cover; 
+                            }
+                        }
+                        .bot-cell{
+                            width: 100px;
+                            text-align: center;
+                            line-height: 25px;
+                            font-size: 14px;
+                            color: white;
+                        }
+                    }
+                }
+                .diary-wrapper{
+                    padding: 20px 0 0;
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    line-height: 40px;
+                    .left-cell{
+                        width: 60px;
+                        text-align: center;
+                        font-size: 16px;
+                        color: $font-main-color;
+                        border-radius: 5px 0 0 5px;
+                        border-right: 1px solid rgb(97,97,97);
+                        background-color: white;
+                    }
+                    .mid-cell{
+                        padding: 0 10px;
+                        width: calc(100% - 60px);
+                        font-size: 16px;
+                        color: $font-sup-color;
+                        border-radius: 0 5px 5px 0;
+                        background-color: white;
+                        overflow: hidden;
+                        ul{
+                            width: 100%;
+                            height: 40px;
+                            overflow: hidden;
+                            li{
+                                width: 100%;
+                            }
+                        }
+                        .personal-tl-swiper{
+                            width: 100%;
+                            overflow: hidden;
+                            .swiper-wrapper{
+                                .swiper-slide {
+                                    width: 100%;
+                                    height: 40px;
+                                    line-height: 40px;
+                                    font-size: 16px;
+                                    color: $font-sup-color;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .func-entry-wrapper{
+                padding: 15px 0;
+                display: flex;
+                justify-content: flex-start;
+                box-shadow: 0 0 1px 0 rgba(0,0,0,0.1);
+                .func-entry{
+                    width: 20%;
+                    .circle-item{
+                        margin: auto;
+                        width: 33px;
+                        height: 34px;
+                        text-align: center;
+                        .icon{
+                            width: 33px;
+                            height: 34px;
+                        }
+                    }
+                    
+                    .name-item{
+                        margin: 5px 0 0;
+                        width: 100%;
+                        height: 20px;
+                        text-align: center;
+                        line-height: 20px;
+                        font-size: 12px;
+                        color: $font-main-color;
+                    }
+                }
+            }
+            
+            .action-wrapper{
+                padding: 20px 0 20px;
+                .action-btn{
+                    margin: 20px auto 0;
+                    width: 80%;
+                    height: 40px;
+                    border-radius: 5px;
+                    text-align: center;
+                    line-height: 40px;
+                    font-size: 16px;
+                    color: $font-main-color;
+                    background-color: $bg-main-color;
+                }
+                .delete-btn{
+                    background-color: $bg-whitel-color;
+                }
+            }
+        }
+    }
+}

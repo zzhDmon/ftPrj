@@ -1,0 +1,58 @@
+
+<!--对话模板-->
+<ion-view id="add_sell_room" view-title="户号室" hide-nav-bar=true  class='dark'>
+	<!--<ion-nav-buttons side="secondary">
+		<a ng-click="save()" style="color: gray;font-size: 1.4rem;" class="button button-small button-icon " >保存</a>	
+	</ion-nav-buttons>-->
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			户号室
+		</div>
+		<div class="right">
+		</div>
+	</div>
+	
+	<ion-content class="add-sell-room">
+		<div class="main">
+			<div class="offline"></div>
+			
+			<div class="row-item">
+				<div class="left-name">楼号</div>
+				<div class="mid-input">
+					<input class="choose-unit" ng-model="addSellSubData.ExProp.HouseNum1" type="text">
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangxia2"></i>
+				</div>
+			</div>
+			<div class="row-item">
+				<div class="left-name">单元</div>
+				<div class="mid-input">
+					<input class="choose-room" ng-model="addSellSubData.ExProp.HouseNum2" type="text">
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangxia2"></i>
+				</div>
+			</div>
+			<div class="row-item">
+				<div class="left-name">室号</div>
+				<div class="mid-input">
+					<input ng-model="addSellSubData.ExProp.HouseNum3" type="text">
+				</div>
+				<div class="right-icon">
+					室 
+				</div>
+			</div>
+
+			<div ng-click="save()" class="save">
+				保存
+			</div>
+		</div>
+		
+	</ion-content>
+	
+</ion-view>
+

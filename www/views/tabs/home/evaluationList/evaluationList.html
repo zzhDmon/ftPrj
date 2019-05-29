@@ -1,0 +1,80 @@
+<!--发现界面模板-->
+<ion-view id="evaluation_list" view-title="评测页面" hide-nav-bar=true>
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			评测页面
+		</div>
+		<div ui-sref="publishEvaluation({houseid:houseId})" class="right" >
+			<i class="iconfont icon-tianjia"></i>
+		</div>
+	</div>
+	
+	<ion-content class="evaluation-list">
+		<div class="head-img">	
+			<img ng-src="{{houseInfo.house.IndoorShowImages[0]}}" alt="">	
+		</div>
+
+		<div class="echat-options">
+			<div class="echart-wrapper">
+				<div id="evaluation_list_echarts"></div>
+			</div>
+			<div class="options">
+				<div class="option-title">数据参考</div>
+				<div class="option-item overflow-omit-one">
+					<span class="left">前月均价</span>
+					<span class="right">55880元/平</span>
+				</div>
+				<div class="option-item overflow-omit-one">
+					<span class="left">价格区间</span>
+					<span class="right">200-240万</span>
+				</div>
+				<div class="option-item overflow-omit-one">
+					<span class="left">相比上月</span>
+					<span class="right">上涨0.87%</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="guess-title">评测列表</div>
+		<div class="card-wrapper">
+			<div ng-repeat="item in evaluationList track by $index" class="card">
+				<div ui-sref="evaluationDetail({houseid:item.HouseId,userid:item.UserId})">
+					<div class="top-info">
+						<div class="title-time">
+							<div class="title">{{item.Title}}</div>
+							<div class="time">{{item.CreateTime}}</div>
+						</div>
+					</div>
+					<div class="img-wrapper">
+						<div ng-repeat="img in item.IndoorImages track by $index" class="img-item"><img ng-src="{{img}}" alt=""></div>
+					</div>
+					<div class="bot-action">
+						<div class="action-item">
+							<div class="action">阅读量{{item.ReadNum}}</div>
+						</div>
+						<div class="action-item">
+							<div class="action">点赞{{item.AgreeNum}}</div>
+						</div>
+						<div class="action-item">
+							<div class="action">差评{{item.DisAgreeNum}}</div>
+						</div>
+						<div class="action-item">
+							<div class="action">打赏{{item.Tips}}</div>
+						</div>
+					</div>
+				</div>
+				<div ng-click="deleteEvaluation(item)" ng-if="item.UserId==myselfInfo.Id" class="delete-action">
+					<div class="action-item">
+						<div class="action">删除</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</ion-content>
+	
+</ion-view>

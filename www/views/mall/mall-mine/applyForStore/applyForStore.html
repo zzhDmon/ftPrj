@@ -1,0 +1,95 @@
+<ion-view id="apply_for_store" view-title="申请开店" hide-nav-bar=true>
+<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			申请开店
+		</div>
+		<div ng-click="save()" class="right" >
+			提交
+		</div>
+	</div>	
+	
+	<ion-content class="apply-for-store">
+		<h5>经营范围</h5>
+		<div class="textarea">
+			<textarea ng-model="subData.Details" placeholder="请输入店铺经营范围，店铺属性…"></textarea>
+		</div>
+
+		<h5>选择行业分类</h5>
+		<div class="category-list">
+			<div 
+				ng-click="chooseCategory(item.id)"
+				ng-repeat="item in classifyList track by $index" 
+				ng-class="{true:'active',false:''}[subData.CategoryId==item.id]"
+				class="category-item">
+				{{item.text}}
+			</div>
+		</div>
+
+		<div class="imgs-wrapper">
+			<div class="title-info">营业执照：</div>
+			<ion-list>
+				<ion-item ng-repeat="item in businessImgs track by $index">
+					<div class="img">
+						<img ng-src="{{item}}" alt="">
+					</div>
+					<ion-option-button class="button-assertive"
+						ng-click="deleteBusImg($index)">
+						删除
+					</ion-option-button>
+				</ion-item>
+			</ion-list>
+			<div class="add-imgs-btn add-imgs-btn-business">
+				<div class="in-add-btn in-add-btn-business">
+					<i class="iconfont icon-tianjia"></i>
+				</div>
+				<input style="display:none;" type="file" name="photo"  accept="image/*" autocomplete="off" />
+				<div class="expl-item">
+					左滑删除照片
+				</div>
+			</div>
+		</div>
+
+
+		<div class="imgs-wrapper">
+			<div class="title-info">身份证正反面：</div>
+			<ion-list>
+				<ion-item ng-repeat="item in idcardImgs track by $index">
+					<div class="img">
+						<img ng-src="{{item}}" alt="">
+					</div>
+					<ion-option-button class="button-assertive"
+						ng-click="deleteIdcardImg($index)">
+						删除
+					</ion-option-button>
+				</ion-item>
+			</ion-list>
+
+			<div class="add-imgs-btn add-imgs-btn-idcard">
+				<div class="in-add-btn in-add-btn-idcard">
+					<i class="iconfont icon-tianjia"></i>
+				</div>
+				<input style="display:none;" type="file" name="photo"  accept="image/*" autocomplete="off" />
+				<div class="expl-item">
+					左滑删除照片
+				</div>
+			</div>
+		</div>
+		
+			
+	</ion-content>
+
+	<script id="apply_for_store_suc_modal" type="text/ng-template">
+		<ion-modal-view class="apply-for-store-suc-modalview">
+			<div class="img">
+				<img src="imgs/mall/applyforstore/applystoredone.png" alt="">
+				<div class="text-info">
+					<div class="info">开店成功</div>
+					<div ng-click="closeModal()" class="confirm">好的</div>
+				</div>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>

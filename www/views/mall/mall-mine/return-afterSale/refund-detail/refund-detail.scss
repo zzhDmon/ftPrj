@@ -1,0 +1,100 @@
+#refund_detail{
+    .refund-detail{
+        margin: $head-height 0 0;
+        padding: 0;
+        background-color: $bg-gray-color;
+        .review-progress{
+            width: 100%;
+            .progress-item{
+                padding: 0 $view-padding 0 0;
+                width: 100%;
+                height: 40px;
+                line-height: 40px;
+                display: flex;
+                justify-content: flex-start;
+                background-color: white;
+                .left-cell{
+                    width: 40px;
+                    height: 100%;
+                    position: relative;
+                    .line-wrapper{
+                        width: 4px;
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        left: calc(50% - 2px);
+                        z-index: 9;
+                        .half-line{
+                            width: 100%;
+                            height: 50%;
+                            background-color: $bg-gray-color;
+                            &.white-line{
+                                background-color: white;
+                            }
+                            &.active{
+                                background-color: $bg-main-color;
+                            }
+                        }
+                    }
+                    .icon-wrapper{
+                        position: absolute;
+                        top: calc(50% - 10px);
+                        left: calc(50% - 10px);
+                        z-index: 10;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        border: 1px solid $line-main-color;
+                        background-color: $bg-gray-color;
+                        &.active{
+                            border:none;
+                        }
+                        .icon{
+                            display: block;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+                .right-cell{
+                    padding: 0 0 0 10px;
+                    width: calc(100% - 40px);
+                    display: flex;
+                    justify-content: flex-start;
+                    .info{
+                        width: 50%;
+                        font-size: 16px;
+                        color: $font-main-color;
+                    }
+                    .time{
+                        width: 50%;
+                        font-size: 14px;
+                        color: $font-sup-color;
+                        text-align: right;
+                    }
+                }
+            }
+        }
+        
+        .cell-item{
+            padding: 0 $view-padding;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            font-size: 16px;
+            background-color: white;
+            display: flex;
+            justify-content: flex-start;
+            .left-cell{
+                width: 50%;
+                color: $font-main-color;
+            }
+            .right-cell{
+                width: 50%;
+                text-align: right;
+                color: $font-sup-color;
+            }
+        }
+    }
+   
+}

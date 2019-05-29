@@ -1,0 +1,393 @@
+<ion-view id="dialog_box" class="ft-dialog-box" view-title="{{targetInfo.nick || '房田用户'}}" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			{{targetInfo.nick || '房田用户'}}
+		</div>
+		<div ng-show="targetInfo.isFriend" class="right" ui-sref="linkManDetail({account:targetInfo.account})">
+			<i class="iconfont icon-yonghu"></i>
+		</div>
+		<div ng-hide="targetInfo.isFriend" class="right" ng-click="addFriend(targetInfo.account)">
+			<i class="iconfont icon-zhucetianjiahaoyou"></i>
+		</div>
+	</div>
+
+	<ion-content 
+		fullscreen 
+		has-bouncing="true" 
+		class="has-footer dialog-box ft-dialog-box-content" 
+		id="message-detail-content" 
+		delegate-handle="dialog-message-scroll" 
+		scrollbar-y="false">
+		<div 
+			ng-repeat="message in messageList track by $index" 
+			class="message-wrapper"
+			on-finish-render-filters
+		>
+			<!-- 时间 -->
+			<div 
+				ng-if="$index==0"
+				class="rj-message-time-wrapper">
+				<span class="rj-message-time">
+					{{message.time | dialogTimeStamp}}
+				</span>
+			</div>
+			<div 
+				ng-if="$index>0 && (messageList[$index].time - messageList[$index - 1].time - 300000) > 0"
+				class="rj-message-time-wrapper">
+				<span class="rj-message-time">
+					{{message.time | dialogTimeStamp}}
+				</span>
+			</div>
+
+			<!-- 系统消息 -->
+			<div ng-if="message.content.type==102 || message.content.type==104 || message.type=='tip'" class="rj-notice-wrapper" >
+				<span style="text-align:center;" ng-if="message.content.type==102 && message.flow=='in'" class="rj-notice">
+					{{targetInfo.nick || '房田用户'}}领取了你的红包
+				</span>
+				<span style="text-align:center;" ng-if="message.content.type==102 && message.flow=='out'" class="rj-notice">
+					收到{{targetInfo.nick || '房田用户'}}的红包
+				</span>
+				<span style="text-align:center;" ng-if="message.content.type==104 && message.flow=='in'" class="rj-notice">
+					{{targetInfo.nick || '房田用户'}}接收了你的转账
+				</span>
+				<span style="text-align:center;" ng-if="message.content.type==104 && message.flow=='out'" class="rj-notice">
+					收到{{targetInfo.nick || '房田用户'}}的转账
+				</span>
+				<span style="text-align:center;" ng-if="message.type=='tip'" class="rj-notice">
+					<span ng-if="message.flow=='out'">你</span>
+					<span ng-if="message.flow=='in'">{{targetInfo.nick||'房田用户'}}</span>{{message.tip}}
+				</span>
+			</div>
+<!-- 左侧 -->
+			<div class="rj-message-wrap" 
+				ng-hide="message.content.type==102 || message.content.type==104 || message.type=='tip'"
+				ng-if="message.flow=='in'"
+			>
+				<img 
+					ui-sref="linkManDetail({account:targetInfo.account})"
+					ng-src="{{targetInfo.avatar || 'http://imgs.wujiuyun.com//Images//logo.png'}}" 
+					onError="src='http://imgs.wujiuyun.com//Images//logo.png'" 
+					class="rj-head-pic" />
+				<span 
+					ng-hide="message.type=='image'|| message.type=='video'|| message.type=='geo' || message.content.type==101 || message.content.type==103 || message.content.type==105" 
+					class="rj-triangle-left"></span>
+				
+				<div on-hold="showDelmsgModal(message,$index)">
+					<div 
+						ng-if="message.type=='text'" 
+						ng-bind-html="message.text | nl2br | emojiFilter | findphone" 
+						class="rj-message" autolinker>
+					</div>
+					<p ng-click="playAudio(message.file.mp3Url)" ng-if="message.type=='audio'" class="rj-message">
+						{{message.file.dur / 1000}}″点击播放
+					</p>
+					<!-- 代理申请 -->
+					<div 
+						ui-sref="agencyAgreementCheck({account:targetId,houseid:message.content.data.houseId,userid:message.content.data.userId})" 
+						ng-if="message.type=='custom' && message.content.type==105" 
+						class="rj-custom">
+						<div class="house-title overflow-omit-one">{{message.content.data.houseTitle}}</div>
+						<div class="house-img">
+							<img ng-src="{{message.content.data.houseImage||'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+						</div>
+						<div class="house-price">
+							{{message.content.data.housePrice}} 
+							<span ng-hide="message.content.data.houseType=='2'">万</span>	
+							<span ng-show="message.content.data.houseType=='2'">元/月</span>	
+						</div>
+					</div>
+					<!-- 奖励金 message.content.data.id-->
+					<div
+						ui-sref="getBonus({id:message.content.data.id})" 
+						ng-if="message.type=='custom' && message.content.type==110"
+						class="rj-message" style="color:rgb(76,160,255)">
+							待领取奖励金
+					</div>
+
+					<div ng-if="message.type=='image'" class="rj-image">
+						<img 
+							ng-click="showBigImageModal(message.file.url)"
+							ng-src="{{message.file.url || 'http://imgs.wujiuyun.com//Images//logo.png'}}"
+							onError="src='http://imgs.wujiuyun.com//Images//logo.png'" 
+							alt="" />
+					</div>
+					<div ui-sref="dialogLocation({lng:message.geo.lng,lat:message.geo.lat,mark:message.geo.title})" ng-if="message.type=='geo'" class="rj-geo">
+						<div class="geo-title">
+							{{message.geo.title}}
+						</div>
+						
+						<img 
+							ng-src="{{'http://api.map.baidu.com/staticimage?center='+message.geo.lng+','+message.geo.lat+'&markers=&width=400&height=200&zoom=16'}}"
+							onError="src='http://imgs.wujiuyun.com//Images//logo.png'" 
+							alt="" />
+					</div>
+					<div ng-if="message.type=='video'" class="rj-video">
+						<div ui-sref="dialogVideoPlayer({url:message.file.url})" class="video-mask">
+							<div class="top-icon">
+								<i class="iconfont icon-bofang"></i>
+							</div>
+							<div class="bot-time">{{message.file.dur | dialogVideoTimeFilter}}</div>
+						</div>
+						<video width="90" height="160" preload="auto">
+							<source ng-src="{{message.file.url | dialogTrustUrl}}" type="video/mp4"/>
+					 	</video>
+						<!-- <video ng-src="{{message.file.url | dialogTrustUrl}}" width="90" height="160" preload="metadata" >
+
+						</video> -->
+					</div>
+				</div>
+				
+				<!-- 转账红包 跳转收款-->
+				<div 
+					ng-if="message.type=='custom' && message.content.type==103" 
+					class="rj-money"
+					ui-sref="makeCollections({fromid:message.from,type:message.content.type,fee:message.content.data.moneyNum,tradeno:message.content.data.TradeNo,otradno:message.content.data.OTradNo})"
+				>
+					<div class="top-cell">
+						<i class="iconfont icon-zhuanzhang"></i>转账{{message.content.data.moneyNum / 100}}		
+					</div>
+					<div class="bot-cell">房田转账</div>	
+				</div>
+
+				<div 
+					ng-if="message.type=='custom' && message.content.type==101" 
+					class="rj-money"
+					ui-sref="makeCollections({fromid:message.from,type:message.content.type,fee:message.content.data.moneyNum,tradeno:message.content.data.TradeNo,otradno:message.content.data.OTradNo})"
+				>
+					<div class="top-cell">
+						<i class="iconfont icon-hongbao"></i>{{ message.content.data.text ||'恭喜发财,大吉大利'}}		
+					</div>
+					<div class="bot-cell">房田红包</div>	
+				</div>
+			</div>
+<!-- 右侧 -->
+			<div 
+				class="rj-message-wrap" 
+				ng-hide="message.content.type==102 || message.content.type==104 || message.type=='tip'"
+				ng-if="message.flow=='out'"
+			>
+				<img 
+					ng-src="{{myselfInfo.avatar || 'http://imgs.wujiuyun.com//Images//logo.png'}}" 
+					onError="src='http://imgs.wujiuyun.com//Images//logo.png'" 
+					class="rj-head-pic-right" />
+				<span 
+					ng-hide="message.type=='image'|| message.type=='video'|| message.type=='geo' || message.content.type==101 || message.content.type==103 || message.content.type==105" 
+					class="rj-triangle-right"></span>
+				
+				<div on-hold="showDelmsgModal(message,$index)">
+					<div 
+						ng-if="message.type=='text'" 
+						ng-bind-html="message.text | nl2br | emojiFilter | findphone" 
+						class="rj-message-right" autolinker>
+					</div>
+					<p ng-click="playAudio(message.file.mp3Url)" ng-if="message.type=='audio'" class="rj-message-right">
+						{{message.file.dur / 1000}}″点击播放
+					</p>
+					<!-- 代理申请 -->
+					<div ng-if="message.type=='custom' && message.content.type==105"  class="rj-custom-right">
+						<div class="house-title overflow-omit-one">{{message.content.data.houseTitle}}</div>
+						<div class="house-img">
+							<img ng-src="{{message.content.data.houseImage||'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+						</div>
+						<div class="house-price">
+							{{message.content.data.housePrice}} 
+							<span ng-hide="message.content.data.houseType=='2'">万</span>	
+							<span ng-show="message.content.data.houseType=='2'">元/月</span>	
+						</div>
+					</div>
+					<!-- 奖励金 message.content.data.id-->
+					<div 
+						ng-if="message.type=='custom' && message.content.type==110"
+						class="rj-message-right">
+							您有一笔奖励金
+					</div>
+					<div ng-if="message.type=='image'" class="rj-image-right">
+						<img 
+							ng-click="showBigImageModal(message.file.url)"
+							ng-src="{{message.file.url || 'http://imgs.wujiuyun.com//Images//logo.png'}}"
+							onError="src='http://imgs.wujiuyun.com//Images//logo.png'" 
+							alt=""/>
+					</div>
+					<div ui-sref="dialogLocation({lng:message.geo.lng,lat:message.geo.lat,mark:message.geo.title})" ng-if="message.type=='geo'" class="rj-geo-right">
+						<div class="geo-title">
+							{{message.geo.title}}
+						</div>
+						<img 
+							ng-src="{{'http://api.map.baidu.com/staticimage?center='+message.geo.lng+','+message.geo.lat+'&markers=&width=400&height=200&zoom=16'}}"
+							onError="src='http://imgs.wujiuyun.com//Images//logo.png'" 
+							alt="" />
+					</div>
+					<div ng-if="message.type=='video'" class="rj-video-right">
+						<div ui-sref="dialogVideoPlayer({url:message.file.url})" class="video-mask">
+							<div class="top-icon">
+								<i class="iconfont icon-bofang"></i>
+							</div>
+							<div class="bot-time">{{message.file.dur | dialogVideoTimeFilter}}</div>
+						</div>
+						<video width="90" height="160" preload="auto">
+							<source ng-src="{{message.file.url | dialogTrustUrl}}" type="video/mp4"/>
+					 	</video>
+						<!-- <video ng-src="{{message.file.url | dialogTrustUrl}}" width="90" height="160" preload="metadata" >
+						</video> -->
+
+					</div>
+				</div>
+
+				<!-- 转账红包 -->
+				<div ng-if="message.type=='custom' && message.content.type==103" class="rj-money-right">
+					<div class="top-cell">
+						<i class="iconfont icon-zhuanzhang"></i>转账{{message.content.data.moneyNum / 100}}		
+					</div>
+					<div class="bot-cell">房田转账</div>	
+				</div>
+				<div ng-if="message.type=='custom' && message.content.type==101" class="rj-money-right">
+					<div class="top-cell">
+						<i class="iconfont icon-hongbao"></i>{{ message.content.data.text || '恭喜发财,大吉大利'}}		
+					</div>
+					<div class="bot-cell">房田红包</div>	
+				</div>
+			</div>
+		</div>
+
+		<div style="clear:both;"></div>
+		<div ng-if="keyboardShow" class="fake-keyboard" ng-style="{'height': keyboardHeight + 'px'}"></div>
+		<div ng-if="showEmoji || showFuncList" class="fake-emoji" ng-style="{'height': (keyboardHeight || 265) + 'px'}"></div>
+	</ion-content>
+
+	<div class="bottom-wrapper">
+		<ion-footer-bar align-title="left" class="bar-light" resize-foot-bar>
+			<div class="item-input-wrapper">
+				<label ng-click="openKeyboard()" class="rj-footer-input">
+					<textarea msd-elastic ng-model="input.message" id="dialogbox_input"></textarea>
+				</label>
+				<div ng-hide="showEmoji" ng-click="openEmoji()" class="emoji"><i class="iconfont icon-xiaolian-"></i></div>
+				<label for="dialogbox_input">
+					<div ng-show="showEmoji" class="emoji"><i class="iconfont icon-jianpan-"></i></div>
+				</label>
+			</div>			
+			<div class="rj-footer-btn-wrap">
+				<div class="rj-footer-btn-left" ng-click="openFuncList()" ng-show="!input.message || input.message == ''">
+					<i class="iconfont icon-tianjia-4"></i>
+				</div>
+
+				<div ng-click="sendText()" class="rj-send-button" ng-hide="!input.message || input.message === ''">
+					<p>发送</p>
+				</div>
+			</div>
+		</ion-footer-bar>
+		<div ng-if="keyboardShow" class="fake-keyboard" ng-style="{'height': keyboardHeight + 'px'}"></div>
+
+		<div ng-if="showEmoji" class="emoji-list" ng-style="{'height': (keyboardHeight || 265) + 'px'}">
+			<div class="emoji-main">
+				<ion-slide-box on-slide-changed="changeEmojiSlide($index)" show-pager="false" does-continue="false" delegate-handle='dialog-emoji-handle'>
+					<ion-slide ng-repeat="item in emojiPages">
+						<div class="emoji-wrapper">
+							<div 
+								ng-repeat="(emojikey,emojivalue) in emojiList track by $index" 
+								ng-show="$index>(28 * item) && $index<=(28 * item + 28)"
+								ng-click="chooseEmoji(emojikey)" 
+								class="emoji-item">
+								<img ng-src="{{emojivalue.img}}" alt="">
+							</div>
+						</div>
+					</ion-slide>
+				</ion-slide-box> 
+				<div class="slide-page-num">
+					<div ng-repeat="page in emojiPages track by $index" class="flex-item" ng-class="{true:'active',false:''}[currentIndex==$index]">
+					</div>
+				</div>
+			</div>
+		</div>
+					
+		<div ng-show="showFuncList" class="emoji-list" ng-style="{'height': (keyboardHeight || 265) + 'px'}">
+			<div class="func-wrapper">
+				<div class="func-item margin">
+					<div class="icon-wrap send-image">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-xiangce-1"></use>
+						</svg>
+					</div>
+					<p>相册</p>
+					<input style="display:none;" id="dialog_box_imageinput" type="file" name="photo"  accept="image/*" autocomplete="off"/>
+				</div>
+				<div class="func-item margin">
+					<div class="icon-wrap send-video">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-shipin-1"></use>
+						</svg>
+					</div>
+					<p>视频</p>
+					<input style="display:none;"  id="dialog_box_videoinput" type="file" name="photo"  accept="video/*" autocomplete="off"/>
+				</div>
+				<div ui-sref="transferAccounts({id:targetInfo.account})" class="func-item margin">
+					<div class="icon-wrap">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-zhuanzhang-1"></use>
+						</svg>
+					</div>
+					<p>转账</p>
+				</div>
+				<div ui-sref="redPacket({id:targetInfo.account})" class="func-item margin">
+					<div class="icon-wrap">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-hongbao-3"></use>
+						</svg>
+					</div>
+					<p>红包</p>
+				</div>
+				<div ng-click="showLocationModal()" class="func-item">
+					<div class="icon-wrap">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-dingwei-1"></use>
+						</svg>
+					</div>
+					<p>位置</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script id="dialogbox_message_action_popover.html" type="text/ng-template">
+		<ion-popover-view class="ft-dialog-message-action">
+			<div ng-click="retractMessage(actionMessageItem)" ng-if="!showDeleteMsg" class="action-item">撤回</div>
+			<div ng-click="deleteMessageById(actionMessageItem)" ng-if="showDeleteMsg" class="action-item">删除</div>
+		</ion-popover-view>
+	</script>
+	<!-- 发送地图 -->
+	<script id="dialogbox_location_modal" type="text/ng-template">
+		<ion-modal-view ng-click="closeLocationModal()" class="dialog-center-small-modalview">
+			<div class="send-location-wrap	">
+				<div ui-sref="locationToSend({toscene:'p2p',toid:targetId})" class="location-item item-cell">发送我的位置</div>		
+				<div class="borderline"></div>
+				<div class="cancel-item item-cell">取消</div>		
+			</div>	
+		</ion-modal-view>
+	</script>
+	<!-- 撤回消息 -->
+	<script id="dialogbox_delmsg_modal" type="text/ng-template">
+		<ion-modal-view 
+			ng-click="closeDelmsgModal()" 
+			class="dialog-center-small-modalview"
+			ng-class="{true:'max-height',false:''}[chooseMsgItem.flow == 'out']"
+			>
+			<div class="send-location-wrap">
+				<div ng-click="forwardMsg()" class="location-item item-cell">发送给朋友</div>		
+				<div class="borderline"></div>
+				<div ng-show="chooseMsgItem.type == 'text'" ng-click="copyMsg()" class="location-item item-cell">复制</div>		
+				<div ng-show="chooseMsgItem.type == 'text'" class="borderline"></div>
+				<div ng-show="chooseMsgItem.flow == 'out'" ng-click="deleteMsg()" class="location-item item-cell">撤回</div>		
+				<div ng-show="chooseMsgItem.flow == 'out'" class="borderline"></div>
+				<div class="cancel-item item-cell">取消</div>		
+			</div>	
+		</ion-modal-view>
+	</script>
+	<!-- 查看大图 -->
+	<script id="dialogbox_showbig_image_modal" type="text/ng-template">
+		<ion-modal-view ng-click="closeBigImageModal()" class="showbig-image-modalview">
+			<img on-hold="saveImage(showBigImage)" ng-src="{{showBigImage}}" alt="">
+		</ion-modal-view>
+	</script>
+</ion-view>

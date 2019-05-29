@@ -1,0 +1,95 @@
+
+#vip_rule_modalview{
+    padding: $view-padding;
+    width: 310px;
+    min-height: 200px;
+    top: calc(50% - 175px);
+    left: calc(50% - 155px);
+    border-radius: 5px;
+    .close{
+        width: 100%;
+        height: 20px;
+        .clickclose{
+            float: right;
+            width: 40px;
+            height: 20px;
+            font-size: 20px;
+            text-align: right;
+            line-height: 20px;
+            color: $font-minor-color;
+            .iconfont{
+                font-size: 30px;
+            }
+        }
+    } 
+    .tit{
+        width: 100%;
+        height: 35px;
+        line-height: 35px;
+        font-size: 18px;
+        color: rgb(103,46,39);
+    } 
+    .main-cont{
+        p{  
+            font-size: 14px;
+            line-height: 25px;
+            color: $font-main-color;
+            margin: 0 0 5px;
+        }
+    }
+}
+
+#my_recommend{
+    .all-img{
+        position: relative;
+        padding: $head-height 0 0;
+        margin: 0;
+        $all-height: $head-height + 69px;
+        width: 100vw;
+        height: 100%;
+        img{
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .flex-sref{
+            position: fixed;
+            bottom: 70px;
+            left: 0;
+            z-index: 999;
+            width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: flex-start;
+            .cell-one{
+                width:33.33% ;
+            }
+            .cell-two{
+                width: 9.867%;
+            }
+            .cell-three{
+                width: 38.133%;
+            }
+            .cell-four{
+                width: 18.667%;
+            }
+        }
+        .invite-now{
+            position: fixed;
+            bottom: 30px;
+            left: calc(50% - 100px);
+            z-index: 999;
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 16px;
+            color: white;
+            background-color: rgb(251,180,59);
+            border-radius: 5px;
+            box-shadow: 0 2px 1px 0 rgba(0,0,0,0.06);
+        }
+    }
+    .my-recommend{}
+    
+}

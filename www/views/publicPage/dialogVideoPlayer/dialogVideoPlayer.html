@@ -1,0 +1,22 @@
+<ion-view cache-view='false' class='video' id="video_player" hide-nav-bar=true ng-class="{cur:renderData.hideBar}">
+	
+    <ion-content class="video-player" scroll="false" overflow-scroll="true" data-tap-disable="true" scrollbar-y="false" has-bouncing="false">
+		<div class="top-video" ng-class="{'full-screen': renderData.fullScreenStatus}">
+			<!-- 竖屏返回分享 -->
+			<div ng-if="!renderData.fullScreenStatus" class="backbotton btn" ng-click="back()"><i class="iconfont icon-xiangzuo1"></i></div>
+			<!-- <div ng-if="!renderData.fullScreenStatus" class="sharebotton btn" ng-click="showBottomShareModal()"><i class="iconfont icon-fenxiang1" style="font-size: 20px!important;"></i> </div> -->
+			<!-- 全屏=>收缩 -->
+			<!-- ng-click="closeFullscreen()" -->
+			<div ng-click="back()" ng-if="renderData.fullScreenStatus" class="close-fullscreen" ng-class="{cur:renderData.hideBar}">
+				<i class="iconfont icon-xiangzuo1"></i>&nbsp;
+			</div>
+				
+			<!-- 视频缓冲loading -->
+			<div ng-if="videoIsLoading" class="video-loading">
+				<ion-spinner icon="spiral" class="spinner-stable"></ion-spinner>
+			</div>
+			<video-container x-source="renderData.videoSrc" x-image="renderData.videoImage"></video-container>
+		</div>
+	</ion-content>
+</ion-view>
+<!-- overflow-scroll="true" 与 data-tap-disable="true" 在视频播放中起到了关键的作用，这两句话要加上其中一个 -->

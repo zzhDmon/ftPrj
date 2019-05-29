@@ -1,0 +1,592 @@
+<!--对话模板-->
+<ion-view id="open_vip" view-title="会员体系" hide-nav-bar=true>
+	<ion-content has-bouncing="false" class="open-vip" delegate-handle="open-vip-Scroll" scrollbar-y="false" overflow-scroll="true">
+		<div class="slider-wrapper">
+			<div class="backbotton btn" ng-click="back()"><i class="iconfont icon-xiangzuo1"></i></div>
+			<div ng-hide="wantVipLevel==1" ng-click="prePage()" class="side-cell left-cell">
+				<div class="in-cell"><i class="iconfont icon-fanhui"></i></div>
+			</div>
+			<div ng-hide="wantVipLevel==(vipLevelImgs.length)" ng-click="nextPage()" class="side-cell right-cell">
+				<div class="in-cell"><i class="iconfont icon-gengduo"></i></div>
+			</div>
+
+			<ion-slide-box 
+				on-slide-changed='changeindex()' 
+				show-pager="false"  
+				delegate-handle='vip-level-slide-handle'
+			>
+				<ion-slide ng-repeat="item in vipLevelImgs track by $index">
+					<div class="img-box"><img ng-src="{{item}}"/></div>
+				</ion-slide>
+			</ion-slide-box>			
+		</div>
+		<div class="slider-pages">
+			<div ng-class="{true:'active',false:''}[$index==(wantVipLevel - 1)]" ng-repeat="item in vipLevelImgs track by $index" class="page"></div>
+		</div>
+		
+		<div class="pay-price" ng-class="">
+			<div ng-if="wantVipLevel<currentVipLevel" class="{{currentClass + ' pay-wrapper'}}">
+				<!-- <div class="up-pay-wrapper"></div> -->
+				<div class="icon-cell">
+					<i ng-if="wantVipLevel==1" class="iconfont personal icon-gerenhuiyuankaitongtubiao"></i>
+					<i ng-if="wantVipLevel==2" class="iconfont team icon-tuanduihuiyuankaitongtubiao"></i>
+					<i ng-if="wantVipLevel==3" class="iconfont shop icon-shanghulaobankaitongtubiao"></i>
+					<i ng-if="wantVipLevel==4" class="iconfont company icon-qiyezhukaitongtubiao"></i>
+				</div>
+				<div class="txt-cell">已包含</div>
+				<div class="icon-cell"><i class="iconfont icon-GO-"></i></div>
+			</div>
+			<div ng-if="wantVipLevel==currentVipLevel" class="{{currentClass + ' pay-wrapper'}}">
+				<!-- <div class="up-pay-wrapper"></div> -->
+				<div class="icon-cell">
+					<i ng-if="wantVipLevel==1" class="iconfont personal icon-gerenhuiyuankaitongtubiao"></i>
+					<i ng-if="wantVipLevel==2" class="iconfont team icon-tuanduihuiyuankaitongtubiao"></i>
+					<i ng-if="wantVipLevel==3" class="iconfont shop icon-shanghulaobankaitongtubiao"></i>
+					<i ng-if="wantVipLevel==4" class="iconfont company icon-qiyezhukaitongtubiao"></i>
+				</div>
+				<div class="txt-cell">当前等级</div>
+				<div class="icon-cell"><i class="iconfont icon-GO-"></i></div>
+			</div>
+			<div ng-if="wantVipLevel>currentVipLevel" ng-click="goPayVip()" class="{{currentClass + ' pay-wrapper'}}">
+				<!-- <div class="up-pay-wrapper"></div> -->
+				<div class="icon-cell">
+					<i ng-if="wantVipLevel==1" class="iconfont personal icon-gerenhuiyuankaitongtubiao"></i>
+					<i ng-if="wantVipLevel==2" class="iconfont team icon-tuanduihuiyuankaitongtubiao"></i>
+					<i ng-if="wantVipLevel==3" class="iconfont shop icon-shanghulaobankaitongtubiao"></i>
+					<i ng-if="wantVipLevel==4" class="iconfont company icon-qiyezhukaitongtubiao"></i>
+				</div>
+				<div class="txt-cell">立即开通</div>
+				<div class="icon-cell"><i class="iconfont icon-GO-"></i></div>
+			</div>
+
+			<div ng-if="wantVipLevel<=currentVipLevel" class="price-wrapper">(剩余时间{{roleDay}}天)</div>
+			<div ng-if="wantVipLevel>currentVipLevel"  class="price-wrapper">
+				(<span ng-if="wantVipLevel==1">￥{{personPrice}}</span>
+				<span ng-if="wantVipLevel==2">￥{{teamPrice}}</span>
+				<span ng-if="wantVipLevel==3">￥{{shopPrice}}</span>
+				<span ng-if="wantVipLevel==4">￥{{businessPrice}}</span>元/年)
+				
+			</div>
+		</div>
+
+		<div ng-hide="wantVipLevel<currentVipLevel" class="offline"></div>
+		<div ng-hide="wantVipLevel<currentVipLevel" class="right-info">
+			<h5>开通权限</h5>
+			<p>获得房田APP“
+				<span ng-show="wantVipLevel==1">个人会员</span>
+				<span ng-show="wantVipLevel==2">团队首领</span>
+				<span ng-show="wantVipLevel==3">商户老板</span>
+				<span ng-show="wantVipLevel==4">企业主</span>
+				”称号一年
+			</p>
+			<p ng-show="currentVipLevel<wantVipLevel">获得
+				<span ng-show="wantVipLevel==1">999</span>
+				<span ng-show="wantVipLevel==2">9999</span>
+				<span ng-show="wantVipLevel==3">19999</span>
+				<span ng-show="wantVipLevel==4">29999</span>
+				元会员专区抵用券（每人每年限购一次）
+			</p>
+			<p ng-show="currentVipLevel>=wantVipLevel">获得
+				<span ng-show="wantVipLevel==1">999</span>
+				<span ng-show="wantVipLevel==2">9999</span>
+				<span ng-show="wantVipLevel==3">19999</span>
+				<span ng-show="wantVipLevel==4">29999</span>
+				元会员专区抵用券（请在“我的”查看）
+			</p>
+		</div>
+		<div class="offline"></div>
+<!-- 个人 -->
+		<div ng-show="wantVipLevel==1&&(currentVipLevel>=wantVipLevel)" class="rights-wrapper">
+			<p class="right-title">
+				开通个人会员  享受专属特权
+			</p>
+			<div class="right-list">
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-gongxiangkongjian-"></use>
+						</svg>
+					</div>
+					<h5>共享空间 </h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-shouxudaiban-"></use>
+						</svg>
+					</div>
+					<h5>手续代办</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-zhongbaozhekoufuwu-"></use>
+						</svg>
+					</div>
+					<h5>众包折扣</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-xianxiamianfeikecheng-"></use>
+						</svg>
+					</div>
+					<h5>免费课程</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-fuwuyouxian-"></use>
+					</svg>
+					</div>
+					<h5>服务优先</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-fabukehufangyuan-"></use>
+					</svg>
+					</div>
+					<h5>发布客户房源</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-dailipingtaifangyuan-"></use>
+					</svg>
+					</div>
+					<h5>代理平台房源</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-yongjintixian-"></use>
+					</svg>
+					</div>
+					<h5>佣金提现</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-jifenduihuan-1"></use>
+					</svg>
+					</div>
+					<h5>积分兑换</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-huiyuanpifajia-"></use>
+					</svg>
+					</div>
+					<h5>会员批发价</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-jifenduihuan-"></use>
+					</svg>
+					</div>
+					<h5>积分换购</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-bozhuquanxian-"></use>
+					</svg>
+					</div>
+					<h5>博主权限</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-paimingyouxian-"></use>
+					</svg>
+					</div>
+					<h5>排名优先</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-youxianqiangdan-"></use>
+					</svg>
+					</div>
+					<h5>优先抢单</h5>
+				</div>
+			</div>
+		</div>
+		<div ng-show="wantVipLevel==1&&(currentVipLevel<wantVipLevel)" class="rights-wrapper">
+			<p class="right-title">
+				开通个人会员  享受专属特权
+			</p>
+			<div class="right-list">
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-gongxiangkongjian-"></i>
+					</div>
+					<h5>共享空间 </h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-shouxudaiban-"></i>
+					</div>
+					<h5>手续代办</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-zhongbaozhekoufuwu-"></i>
+					</div>
+					<h5>众包折扣</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-xianxiamianfeikecheng-"></i>
+					</div>
+					<h5>免费课程</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-fuwuyouxian-"></i>
+					</div>
+					<h5>服务优先</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<div class="iconfont icon-fabukehufangyuan-"></div>
+					</div>
+					<h5>发布客户房源</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-dailipingtaifangyuan-"></i>
+					</div>
+					<h5>代理平台房源</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-yongjintixian-"></i>
+					</div>
+					<h5>佣金提现</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-jifenduihuan-1"></i>
+					</div>
+					<h5>积分兑换</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-huiyuanpifajia-"></i>
+					</div>
+					<h5>会员批发价</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-jifenduihuan-"></i>
+					</div>
+					<h5>积分换购</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-bozhuquanxian-"></i>
+					</div>
+					<h5>博主权限</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-paimingyouxian-"></i>
+					</div>
+					<h5>排名优先</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-youxianqiangdan-"></i>
+					</div>
+					<h5>优先抢单</h5>
+				</div>
+			</div>
+		</div>
+
+<!-- 团队 -->
+		<div ng-show="wantVipLevel==2&&(currentVipLevel>=wantVipLevel)" class="rights-wrapper">
+			<p class="right-title">
+				开通团队会员  享受专属特权
+			</p>
+			<div class="right-list">
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-gongxiangkongjian-"></use>
+					</svg>
+					</div>
+					<h5>人才招聘</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-shouxudaiban-"></use>
+					</svg>
+					</div>
+					<h5>交易特权</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-paimingzhiding-"></use>
+					</svg>
+					</div>
+					<h5>排名置顶</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-chuizhiguanli-"></use>
+					</svg>
+					</div>
+					<h5>垂直管理</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-tuanduishouyijiangli-"></use>
+					</svg>
+					</div>
+					<h5>团队收益奖</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-gerenhuiyuanquanxian-"></use>
+					</svg>
+					</div>
+					<h5>个人会员</h5>
+					<p>个人会员权限</p>
+				</div>
+			</div>
+		</div>
+		<div ng-show="wantVipLevel==2&&(currentVipLevel<wantVipLevel)" class="rights-wrapper">
+			<p class="right-title">
+				开通团队会员  享受专属特权
+			</p>
+			<div class="right-list">
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-gongxiangkongjian-"></i>
+					</div>
+					<h5>人才招聘</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-shouxudaiban-"></i>
+					</div>
+					<h5>交易特权</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-paimingzhiding-"></i>
+					</div>
+					<h5>排名置顶</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-chuizhiguanli-"></i>
+					</div>
+					<h5>垂直管理</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-tuanduishouyijiangli-"></i>
+					</div>
+					<h5>团队收益奖</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-gerenhuiyuanquanxian-"></i>
+					</div>
+					<h5>个人会员</h5>
+					<p>个人会员权限</p>
+				</div>
+			</div>
+		</div>
+<!-- 商户老板 -->
+		<div ng-show="wantVipLevel==3&&(currentVipLevel>=wantVipLevel)" class="rights-wrapper">
+			<p class="right-title">开通商户会员  享受专属特权</p>
+			<div class="right-list">
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-kaidian"></use>
+						</svg>
+					</div>
+					<h5>平台开店权限</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-erp"></use>
+						</svg>
+					</div>
+					<h5>EPR管理后台</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-xuanchuan"></use>
+						</svg>
+					</div>
+					<h5>品牌模块推广</h5>
+					<p>一年</p>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-shangxueyuan"></use>
+						</svg>
+					</div>
+					<h5>商学院特权</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-gerenhuiyuanquanxian-"></use>
+						</svg>
+					</div>
+					<h5>团队首领</h5>
+					<p>团队首领权限</p>
+				</div>
+			</div>
+		</div>
+		<div ng-show="wantVipLevel==3&&(currentVipLevel<wantVipLevel)" class="rights-wrapper">
+			<p class="right-title">开通商户会员  享受专属特权</p>
+			<div class="right-list">
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-kaidian"></i>
+					</div>
+					<h5>平台开店权限</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-erp"></i>
+					</div>
+					<h5>EPR管理后台</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-xuanchuan"></i>
+					</div>
+					<h5>品牌模块推广</h5>
+					<p>一年</p>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-shangxueyuan"></i>
+					</div>
+					<h5>商学院特权</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-gerenhuiyuanquanxian-"></i>
+					</div>
+					<h5>团队首领</h5>
+					<p>团队首领权限</p>
+				</div>
+			</div>
+		</div>
+<!-- 企业主 -->
+		<div ng-show="wantVipLevel==4&&(currentVipLevel>=wantVipLevel)" class="rights-wrapper">
+			<p class="right-title">开通企业会员  享受专属特权</p>
+			<div class="right-list">
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-guanwang"></use>
+						</svg>
+					</div>
+					<h5>定制企业官网</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-pingtaiqiye"></use>
+						</svg>
+					</div>
+					<h5>平台企业权限</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-xuanchuan"></use>
+						</svg>
+					</div>
+					<h5>品牌专栏推广</h5>
+					<p>一年</p>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-shangxueyuan"></use>
+						</svg>
+					</div>
+					<h5>商学院特权</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-gerenhuiyuanquanxian-"></use>
+						</svg>
+					</div>
+					<h5>商户老板</h5>
+					<p>商户老板权限</p>
+				</div>
+			</div>
+		</div>
+		<div ng-show="wantVipLevel==4&&(currentVipLevel<wantVipLevel)" class="rights-wrapper">
+			<p class="right-title">开通企业会员  享受专属特权</p>
+			<div class="right-list">
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-guanwang"></i>
+					</div>
+					<h5>定制企业官网</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-pingtaiqiye"></i>
+					</div>
+					<h5>平台企业权限</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-xuanchuan"></i>
+					</div>
+					<h5>品牌专栏推广</h5>
+					<p>一年</p>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-shangxueyuan"></i>
+					</div>
+					<h5>商学院特权</h5>
+				</div>
+				<div class="right-item">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-gerenhuiyuanquanxian-"></i>
+					</div>
+					<h5>商户老板</h5>
+					<p>商户老板权限</p>
+				</div>
+			</div>
+		</div>
+
+		<div ng-show="roleDay==364" class="offline"></div>
+		<div ng-show="roleDay==364" class="apply-monet">
+			<div ng-click="applyMoney()" class="left-txt">申请退款<i class="iconfont icon-gengduo"></i></div>
+			<div class="right-time">
+				一天内可申请退款
+			</div>
+		</div>
+	</ion-content>
+	
+</ion-view>
+

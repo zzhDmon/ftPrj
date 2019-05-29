@@ -1,0 +1,74 @@
+
+<ion-view id="publish_comment" view-title="商品评价" hide-nav-bar="true">	
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			商品评价
+		</div>
+		<div ng-click="addComment()" class="right">
+			发表
+		</div>
+	</div>
+
+	<ion-content class="publish-comment" has-bouncing="false">
+		<div class="goods-item">
+			<div class="img">
+				<img ng-src="{{productInfo.productInfo.Image}}" alt="">
+			</div>
+			<div class="name overflow-omit-one">{{productInfo.productInfo.Name}}</div>
+		</div>
+
+		<div class="textarea">
+			<textarea ng-change="checkLength()" ng-model="commentData.Content" placeholder="请输入对商品的看法"></textarea>
+		</div>
+		<div class="comment-imgs">
+			<div ng-repeat="item in commentImgs track by $index" class="img-item">
+				<div ng-click="deleteImg($index)" class="del-img">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-y"></use>
+					</svg>
+				</div>
+				<img ng-src="{{item}}" alt="">
+			</div>
+			<div class="img-item click-add">
+				<div class="txt-in">
+					&nbsp;添&nbsp;加<br>&nbsp;图&nbsp;片
+				</div>
+				<input style="display:none;" type="file" name="photo"  accept="image/*" autocomplete="off" />
+			</div>
+		</div>
+
+		<div class="borderline"></div>
+		<div class="is-anonymous" ng-click="switchCheck()">
+			<div class="fake-icon" ng-class="{true:'active',false:''}[!commentData.IsAnonymous]">
+				<svg ng-if="commentData.IsAnonymous" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-xuanze-"></use>
+				</svg>
+			</div>
+			<div class="text-cell">是否匿名</div>
+		</div>
+
+		<div class="score-item">
+			<div class="left-cell">商品评分：</div>
+			<div class="right-cell">
+				<ionic-ratings ratingsobj='ratingsObject' index='$index'></ionic-ratings>
+			</div>
+		</div>
+		<div class="score-item">
+			<div class="left-cell">商家评分：</div>
+			<div class="right-cell">
+				<ionic-ratings ratingsobj='ratingsObjecttwo' index='$index'></ionic-ratings>
+			</div>
+		</div>
+		<div class="score-item">
+			<div class="left-cell">物流评分：</div>
+			<div class="right-cell">
+				<ionic-ratings ratingsobj='ratingsObjectthree' index='$index'></ionic-ratings>
+			</div>
+		</div>
+		
+	</ion-content>
+	
+</ion-view>

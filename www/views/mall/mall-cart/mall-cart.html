@@ -1,0 +1,94 @@
+<ion-view id="mall_cart" view-title="商城购物车" hide-nav-bar="true">	
+	<div class="header">
+		<div class="back">
+			<div ng-click="back()" ng-show="fromStateName==='goodsDetail'" class="in-back">
+				<i class=" iconfont icon-xiangzuo1"></i>
+			</div>
+		</div>
+		<div class="title">
+			购物车
+		</div>
+		<div ng-click="isEditStatus=!isEditStatus" ng-show="!isEditStatus" class="right">编辑</div>
+		<div ng-click="isEditStatus=!isEditStatus" ng-show="isEditStatus" class="right">完成</div>
+	</div>
+
+	<ion-content class="mall-cart">
+		<div class="goods-all">
+			<!-- 一组 -->
+			<div
+				data-ng-init="parentIndex = $index"
+				ng-if="group.CartProductInfos.length>0"
+				class="group-item" 
+				ng-repeat="group in cartGoods track by $index"
+			>
+				<div class="group-title">
+					<div class="left-cell">
+						<i class="iconfont icon-dianpu"></i>
+					</div>
+					<div class="right-cell">
+						{{group.ShopName}}
+					</div>
+				</div>
+				<!-- 一项商品 -->
+				<ion-list>
+					<ion-item ng-repeat="item in group.CartProductInfos track by $index">
+						<div class="goods-item">
+							<div ng-click="echoChange(item,allSelected)" class="left-cell">
+								<svg ng-if="item.Selected" class="icon" aria-hidden="true">
+									<use xlink:href="#icon-xuanze-"></use>
+								</svg>
+								<div ng-if="!item.Selected" class="fake-icon"></div>
+								<input style="display:none;" type="checkbox" ng-checked="item.Selected">
+							</div>
+							<div class="right-cell">
+								<div class="img-cell">
+									<img 
+										ng-src="{{item.Image}}"
+										onError="src='http://imgs.wujiuyun.com//Images//logo.png'"
+										alt="">
+								</div>
+								<div class="info-cell">
+									<div ui-sref="goodsDetail({id:item.ProductId})" class="top-cell overflow-omit-two">{{item.Name}}</div>
+									<div class="mid-cell"><span ng-show="item.UnitScoreO">所需积分&nbsp;{{item.UnitScoreO}}</span></div>
+									<div class="bot-cell">
+										<div class="price">
+											￥<span>{{item.UnitPrice | priceFilter}}</span> 元
+										</div>
+										<div class="count-action">
+											<div ng-click="reduceCount($event,item)" class="reduce action-item">-</div>
+											<div class="count">{{item.Quantity}}</div>
+											<div ng-click="addCount($event,item)" class="add action-item">+</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<ion-option-button class="button-assertive"
+								ng-click="deleteProduct(parentIndex,$index,item)">
+								删除
+						</ion-option-button>
+					</ion-item>
+				</ion-list>
+			</div>
+		</div>
+	</ion-content>
+	
+	<div class="total-action-info">
+		<div ng-click="selectAllClick(!allSelected)" class="left-cell">
+			<div ng-if="!allSelected" class="icon-wrap">
+			</div>
+			<svg ng-if="allSelected" class="icon" aria-hidden="true">
+				<use xlink:href="#icon-xuanze-"></use>
+			</svg>
+			<div class="text-wrap">
+				全选
+			</div>
+		</div>
+		<div class="mid-cell"><span ng-show="!isEditStatus">合计：￥{{moneyTotal}}</span></div>
+		<div ng-click="goConfirmOrder()" ng-show="!isEditStatus" class="right-cell">去结算({{selectedGoods}})</div>
+		<div ng-click="deleteProducts()" ng-show="isEditStatus" class="right-cell delete">删除</div>
+	</div>
+	<!-- tab导航 -->
+	<div ng-include="'views/mall/mall-includes/mallTabs/mallTabs.html'"></div>
+
+</ion-view>

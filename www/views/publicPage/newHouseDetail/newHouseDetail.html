@@ -1,0 +1,192 @@
+
+<!--对话模板-->
+<ion-view id='new_house_detail'  hide-nav-bar="true">
+	<div ng-show="showHeader" class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			{{newHouseInfo.NewHouseName}}
+		</div>
+		<div ng-click="showBottomShareModal()" class="right">
+			<i class="iconfont icon-fenxiang1"></i>
+		</div>
+	</div>
+	
+	<!--底部联系人-->
+	<div class="contacts">
+		<div ng-hide="newHouseInfo.IsProxed" ng-click="applyAgent()" class="contact-item">
+			申请代理
+		</div>
+		<div ng-show="newHouseInfo.IsProxed" class="contact-item">
+			已代理
+		</div>
+		<div ng-hide="newHouseInfo.IsReserve" ui-sref="orderVisit({houseid:newHouseInfo.Id})" class="contact-item">
+			预约看房
+		</div>
+		<div ng-show="newHouseInfo.IsReserve" class="contact-item">
+			已预约
+		</div>
+		<div class="contact-item overflow-omit-one" ui-sref="visitReport({houseid:newHouseInfo.Id})">
+			经纪人报备
+		</div>
+		<div ng-click="goChat(newHouseInfo.UserId)" class="contact-item">
+			微聊
+		</div>
+	</div>
+	
+	<ion-content 
+		class="new-house-detail house-detail"  
+		has-bouncing="false"
+		on-scroll="scrollListen()"
+		delegate-handle="new-house-detail-Scroll"
+	>
+		<div class="backbotton btn" ng-click="back()"><i class="iconfont icon-xiangzuo1"></i></div>
+		<div class="sharebotton btn" ng-click="showBottomShareModal()"><i class="iconfont icon-fenxiang1"></i> </div>
+		
+		<div class="show">
+			<div class="banner-position">
+				<ion-slide-box does-continue="true"  class="detailcursor" on-slide-changed='changeindex()' show-pager="false"  delegate-handle='fydetail-handle'>
+				  <ion-slide ng-repeat="banner in bannerarr track by $index">
+				    <div class="box"><img ng-src="{{banner}}"/></div>
+				  </ion-slide>
+				</ion-slide-box>
+				<div class="slide-page-num">
+                    <div ng-repeat="banner in bannerarr track by $index" class="flex-item" ng-class="{true:'active',false:''}[currentIndex==$index]"></div>
+                </div>  
+			</div>
+			
+			<div class="main-detail">
+				<div class="price-eval-wrap">
+					<div class="price-housetype">
+						<span class="price">￥{{newHouseInfo.Price}}元/m²</span>
+					</div>
+				</div>
+				<h5>{{newHouseInfo.NewHouseName}}</h5>
+				<div class="address-wrapper">
+					<i class="iconfont icon-dingwei"></i>{{newHouseInfo.Address}}
+					
+				</div>
+				<!-- <div class="undertitle">
+					<span ng-repeat="tag in houseinfo.Tags track by $index">{{tag}}</span>
+				</div> -->
+			</div>
+			<br>
+			<div class="house-info">
+				<ul>
+					<!-- <li class="overflow-omit-one"><span class="leftdesc">均价：</span><span class="price">{{newHouseInfo.Price}}元/m²</span> <span ng-if="!newHouseInfo.Price">--</span></li>
+					<li class="overflow-omit-one"><span class="leftdesc">地址：</span>{{newHouseInfo.Address}}</li> -->
+					<li class="overflow-omit-one"><span class="leftdesc">开盘：</span>{{newHouseInfo.OpenTime}}</li>
+					<li class="overflow-omit-one"><span class="leftdesc">交房时间：</span>{{newHouseInfo.DeliverDate}}</li>
+					<li class="overflow-omit-one"><span class="leftdesc">开发商：</span>{{newHouseInfo.LandAgent}}</li>
+					<li class="overflow-omit-one"><span class="leftdesc">建筑类型：</span>{{newHouseInfo.BuildingType}}</li>
+					<li class="overflow-omit-one"><span class="leftdesc">装修状况：</span>{{newHouseInfo.DecorateSituationName}}</li>
+					<li class="overflow-omit-one"><span class="leftdesc">规划户数：</span>{{newHouseInfo.NumberOfHouseholds}}</li>
+					<li class="overflow-omit-one"><span class="leftdesc">绿化率：</span>{{newHouseInfo.Green}}</li>
+					<li class="overflow-omit-one"><span class="leftdesc">容积率：</span>{{newHouseInfo.PlotRatio}}%</li>
+				</ul>
+			</div>
+			<div class="coupon-wrapper">
+				<div ui-sref="usageRules" class="usage-rules">使用规则</div>
+				<div class="coupon">
+					<div class="icon-cell">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-daijinquan-"></use>
+						</svg>
+					</div>
+					<div class="txt-cell">
+						优惠券
+					</div>
+					<div class="right-cell">充10000万抵5000万</div>
+				</div>
+			</div>
+			
+			<div ng-if="newHouseInfo.SupportingFacilities" class="offline"></div>
+			<div ng-if="newHouseInfo.SupportingFacilities" class="fy-miaoshu">
+				<!-- <h5>周边配套</h5>
+				<p>{{newHouseInfo.SupportingFacilities}}</p> -->
+				<h5>新房介绍</h5>
+				<div class="des-wrapper">
+					<div class="des-item">
+						<div class="left-cell">
+							<div class="icon-item">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-huiyuan3"></use>
+								</svg>
+							</div>
+							<div class="txt-item">周边配套</div>
+						</div>
+						<div class="right-cell">{{newHouseInfo.SupportingFacilities}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="offline"></div>
+			<div class="newhuxing-iscroll">
+				<h5>主力户型</h5>
+				<!-- swiper -->
+				<div id="new_house_detail_swiper" class="swiper-container">
+					<div class="swiper-wrapper">
+						<div 
+							class="swiper-slide"
+							on-finish-render-filters
+							ng-repeat="houseRoom in newHouseInfo.HouseRoomSpaces track by $index">
+							<div class="img">
+								<img ng-src="{{houseRoom.ShowImage}}" alt="">
+								<div class="tag onsale">在售</div>
+							</div>
+							<p>{{houseRoom.RoomType}}室{{houseRoom.HallType}}厅{{houseRoom.BathType}}卫/{{houseRoom.Space}}m²</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="offline"></div>
+			<div class="fy-position">
+				<h5>位置</h5>
+				<p>{{newHouseInfo.Address}}</p>
+				<div id="newhousedetail_map" style="width:100vw;height:200px;"></div>
+			</div>
+
+			<!-- <div class="offline"></div>
+			<div class="comment-list">
+				<h5>用户点评</h5>
+				<div class="comment-list">
+					<div class="comment-item">
+						<div class="leftimg">
+							<img ng-src="http://ionicframework.com/img/docs/spengler.jpg"/>
+						</div>
+						<div class="right-txt">
+							<div class="title-like">
+								<div class="title">Just Do it</div>
+								<div ng-click="clickLike($index)" class="like"><i class="iconfont icon-zan"></i>59</div>
+							</div>
+							<div class="comment-content">
+								看了几个盘，还是在这边买吧。朋友在这买了一套，很不错
+							</div>
+							<div class="foot-info">
+								<span ng-if="item.comment.createTime" class="time">2018-05-20</span>
+								<span ng-hide="item.comment.createTime" class="time">2018-05-20</span>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="commit">
+					我要点评
+				</div>
+			</div> -->
+			
+		</div>
+		
+	</ion-content>
+	<!-- 分享 -->
+	<script id="new_house_detail_share_modal" type="text/ng-template">
+		<ion-modal-view ng-click="closeBottomShareModal()" class="bottom-share-modal">
+			<div ng-include="'views/includes/bottomShareModal/bottomShareModal.html'"></div>
+		</ion-modal-view>
+	</script>
+	
+</ion-view>
+

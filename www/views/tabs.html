@@ -1,0 +1,20 @@
+
+<!--tab-bar 选项卡操作-->
+<ion-view >
+	<!--用来加载消息界面的导航视图-->
+	<ion-tabs delegate-handle="tabs" class="tabs-icon-top">
+		<ion-tab title="首页" icon="iconfont icon-home" icon-on="iconfont icon-shouye3" ui-sref="tabs.ifHaveHouse">
+			<ion-nav-view  name="home"></ion-nav-view>
+		</ion-tab>
+		<ion-tab title="客户" icon="iconfont icon-kehu-moren" icon-on="iconfont icon-kehu1"  ui-sref="tabs.contact">
+			 <ion-nav-view name="classify"></ion-nav-view>
+		</ion-tab>
+		<ion-tab title="发现" icon="iconfont icon-faxian" icon-on="iconfont icon-faxian2" ui-sref="tabs.find">
+			 <ion-nav-view name="find"></ion-nav-view>
+		</ion-tab>
+		<ion-tab title="我的" icon="iconfont icon-wode" icon-on="iconfont icon-wode1" ui-sref="tabs.mine">
+			 <ion-nav-view name="mine"></ion-nav-view>
+		</ion-tab>
+	</ion-tabs>
+</ion-view>
+

@@ -1,0 +1,44 @@
+<!--发现界面模板-->
+<ion-view id="publish_guess_price" view-title="发布估价" hide-nav-bar=true>
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			发布估价
+		</div>
+		<div class="right" >
+			
+		</div>
+	</div>
+	
+	<ion-content class="publish-guess-price">
+		<div class="head-img">
+			<div class="img">
+				<img ng-src="{{userInfo.ShowImage}}" alt="">
+			</div>
+			<div class="name overflow-omit-one">
+				{{userInfo.Name}}
+			</div>		
+		</div>
+
+		<div class="input-wrapper">
+			<div class="price-input">
+				<div class="title">估价</div>
+				<div class="input">
+					<input ng-model="subData.Price" placeholder="请输入估价" type="number">
+				</div>
+			</div>
+			<div class="reason-input">
+				<div class="title">估价理由</div>
+				<div class="input">
+					<textarea ng-model="subData.Title" placeholder="请输入估价理由" name="" id="" ></textarea>
+				</div>
+			</div>
+		</div>
+		
+		<div ng-click="saveData()" class="sub-btn">提交</div>
+	</ion-content>
+	
+</ion-view>

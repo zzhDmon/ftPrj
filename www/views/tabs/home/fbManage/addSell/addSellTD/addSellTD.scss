@@ -1,0 +1,16 @@
+#add_sell_t_d{
+    .add-sell-t-d{
+        background-color: rgb(246,246,246);
+        margin: $head-height 0 0;
+        .text{
+            background-color: rgb(246,246,246);
+            padding: 5px 12px 0;
+            box-shadow: none;
+            textarea{
+                border-radius: 3px;
+                width: 100%;
+                padding: 5px 0 0 5px;
+            }
+        }
+    }
+}

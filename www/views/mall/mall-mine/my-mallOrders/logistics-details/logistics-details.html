@@ -1,0 +1,95 @@
+<ion-view id="logistics_details" view-title="物流详情" hide-nav-bar="true">	
+	<!-- <div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			物流详情
+		</div>
+		<div class="right">
+		</div>
+	</div> -->
+	<div class="cus-header">
+		<div class="head-wrapper">
+			<div class="head-content">
+				<div ng-click="back()" class="back"><i class="iconfont icon-xiangzuo1"></i> </div>
+				<div class="avatar"><img src="http://imgs.wujiuyun.com//Images//logo.png" alt=""></div>
+				<div ng-show="paramsData.done" class="txt">已签收</div>
+				<div ng-hide="paramsData.done" class="txt">待收货</div>
+			</div>
+		</div>
+	</div>
+	
+	<ion-content class="logistics-details">
+
+		<!-- <div class="data-from">
+			<div class="icon-wrapper">
+				<svg class="icon" aria-hidden="true">
+					<use xlink:href="#icon-icon_wuliu"></use>
+				</svg>
+			</div>
+			<div class="txt-wrapper overflow-omit-one">本数据由<span>菜鸟裹裹</span>数据提供</div>
+		</div>
+
+		<div class="dispatch-wrapper">
+			<div class="dispatch-content">
+				<div class="top-cell">
+						<div class="avatar"><img src="http://imgs.wujiuyun.com//Images//logo.png" alt=""></div>
+						<div class="info-item">
+							<div class="up">吴鹏承包区</div>
+							<div class="down">
+								平均分
+								<i class="iconfont icon-xing_f"></i>
+								<i class="iconfont icon-xing_f"></i>
+								<i class="iconfont icon-xing_f"></i>
+								<i class="iconfont icon-xing_f"></i>
+								<i class="iconfont icon-xing_f"></i>
+							</div>
+						</div>
+				</div>
+				<div class="bot-cell">中通快递 2654841345412</div>
+			</div>
+		</div> -->
+
+		<p class="shipper">
+			<span ng-show="resData.ShipperCode==='SF'">顺丰速运</span>
+			<span ng-show="resData.ShipperCode==='HTKY'">百世快递</span>
+			<span ng-show="resData.ShipperCode==='ZTO'">中通快递</span>
+			<span ng-show="resData.ShipperCode==='STO'">申通快递</span>
+			<span ng-show="resData.ShipperCode==='YTO'">圆通速递</span>
+			<span ng-show="resData.ShipperCode==='YD'">韵达速递</span>
+			<span ng-show="resData.ShipperCode==='YZPY'">邮政快递包裹</span>
+			<span ng-show="resData.ShipperCode==='EMS'">EMS</span>
+			<span ng-show="resData.ShipperCode==='HHTT'">天天快递</span>
+			<span ng-show="resData.ShipperCode==='JD'">京东快递</span>
+			<span ng-show="resData.ShipperCode==='UC'">优速快递</span>
+			<span ng-show="resData.ShipperCode==='DBL'">德邦快递</span>
+			<span ng-show="resData.ShipperCode==='ZJS'">宅急送</span>
+			<span ng-show="resData.ShipperCode==='TNT'">TNT快递</span>
+			<span ng-show="resData.ShipperCode==='UPS'">UPS</span>
+			<span ng-show="resData.ShipperCode==='DHL'">DHL</span>
+			<span ng-show="resData.ShipperCode==='FEDEX'">FEDEX联邦(国内件)</span>
+			<span ng-show="resData.ShipperCode==='FEDEX_GJ'">FEDEX联邦(国际件)</span>
+			{{resData.LogisticCode}}
+		</p>
+		<div class="review-progress-wrapper">
+			<div class="review-progress">
+				<div ng-repeat="item in resData.Traces track by $index" class="progress-item">
+					<div class="left-cell">
+						<div class="line-wrapper"></div>
+						<div class="icon-wrapper active">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-xuanze-"></use>
+							</svg>
+						</div>
+					</div>
+					<div class="right-cell">
+						<div class="info">{{item.AcceptStation}}</div>
+						<div class="time">{{item.AcceptTime}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+	
+</ion-view>

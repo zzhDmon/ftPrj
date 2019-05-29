@@ -1,0 +1,170 @@
+
+<ion-view id="need_rent_page" view-title="房客求租" hide-nav-bar="true">
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			房客求租
+		</div>
+	</div>
+	<div class="head-bg-houseimg"></div>
+	
+	<ion-content delegate-handle="need-rent-page-Scroll" class="need-rent-page">
+		<ion-refresher 
+            pulling-icon="" 
+            pulling-text="" 
+            spinner="lines"  
+            on-refresh="initData()" 
+		>
+		</ion-refresher>
+		<div class="white-content">
+			<div class="under-head">
+				<ion-slide-box 
+					on-slide-changed="changeAdSlide($index)" 
+					show-pager="false" 
+					delegate-handle='rentpage-svg-slide'
+				>
+					<ion-slide>
+						<div class="fix-wrapper">
+							<div ui-sref="needRentList({type:14})"  class="fix-item">
+								<div class="img zhuzhai">
+									<svg class="icon" aria-hidden="true">
+										<use xlink:href="#icon-pinpaigongyu-1"></use>
+									</svg>
+								</div>
+								<p>品牌公寓</p>
+							</div>
+							<div ui-sref="needRentList({type:3})" class="fix-item">
+								<div class="img shangpu">
+									<svg class="icon" aria-hidden="true">
+										<use xlink:href="#icon-shangpu-"></use>
+									</svg>
+								</div>
+								<p>商铺</p>
+							</div>
+							<div ui-sref="needRentList({type:4})" class="fix-item">
+								<div class="img xiezilou">
+									<svg class="icon" aria-hidden="true">
+										<use xlink:href="#icon-xiezilou-"></use>
+									</svg>
+								</div>
+								<p>写字楼</p>
+							</div>
+							<div ui-sref="needRentList({type:6})" class="fix-item">
+								<div class="img changfang">
+										<svg class="icon" aria-hidden="true">
+												<use xlink:href="#icon-gongchang-"></use>
+											</svg>
+								</div>
+								<p>厂房</p>
+							</div>
+							<div ui-sref="needRentList({type:8})" class="fix-item">
+								<div class="img cangku">
+										<svg class="icon" aria-hidden="true">
+												<use xlink:href="#icon-cangku-"></use>
+											</svg>
+								</div>
+								<p>仓库</p>
+							</div>
+						</div>
+					</ion-slide>
+					<ion-slide >
+						<div class="fix-wrapper">
+							<div class="fix-item">
+								<div ui-sref="needRentList({type:10})" class="img changfang">
+										<svg class="icon" aria-hidden="true">
+												<use xlink:href="#icon-cheku-"></use>
+											</svg>
+								</div>
+								<p>车位</p>
+							</div>
+							<div ui-sref="needRentList({type:2})" class="fix-item">
+								<div class="img cangku">
+										<svg class="icon" aria-hidden="true">
+												<use xlink:href="#icon-zhengzu-"></use>
+											</svg>
+								</div>
+								<p>整租</p>
+							</div>
+							<div class="fix-item">
+								<div ui-sref="needRentList({type:12})" class="img changfang">
+										<svg class="icon" aria-hidden="true">
+												<use xlink:href="#icon-hezu-"></use>
+											</svg>
+								</div>
+								<p>合租</p>
+							</div>
+							<div ui-sref="needRentList({type:16})" class="fix-item">
+								<div class="img cangku">
+									<svg class="icon" aria-hidden="true">
+										<use xlink:href="#icon-fangdongweituo-"></use>
+									</svg>
+								</div>
+								<p>房东委托</p>
+							</div>
+							<div ui-sref="needRentList({type:15})" class="fix-item">
+								<div class="img cangku">
+									<svg class="icon" aria-hidden="true">
+										<use xlink:href="#icon-gerenfangyuan-1"></use>
+									</svg>
+								</div>
+								<p>个人房源</p>
+							</div>
+						</div>
+					</ion-slide>
+				</ion-slide-box>  
+				<div class="svg-slide-page-num">
+					<div class="flex-item" ng-class="{true:'active',false:''}[currentAdSlideIndex==0]"></div>
+					<div class="flex-item" ng-class="{true:'active',false:''}[currentAdSlideIndex==1]"></div>
+				</div>  
+			</div>
+	
+			<div class="offline"></div>
+			<div class="house-need-main">
+				<h5>最新求租客户</h5>
+				<p ng-show="needRentList.length==0" class="baseLine"><span>暂无更多</span></p>
+				<div 
+					ui-sref="needDetail({id:needRent.Id})" 
+					ripple-hold ripple-dark
+					ng-repeat="needRent in needRentArr track by $index" 
+					class="arr-item"
+				>
+					<div class="left-img"><img ng-src="{{needRent.UserInfo.ShowImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt=""></div>
+					<div class="right-text">
+						<div class="title overflow-omit-one">
+							<span ng-if="needRent.UserInfo.Name">{{needRent.UserInfo.Name}}</span>
+							<span ng-if="!needRent.UserInfo.Name">房田用户</span>
+						</div>
+						<div class="br-price-type">
+							<span class="spanprice">
+								<span ng-if="needRent.MinPrize&&!needRent.MaxPrize"><span class="large">{{needRent.MinPrize}}</span>元/月以上</span>
+								<span ng-if="needRent.MinPrize&&needRent.MaxPrize"><span class="large">{{needRent.MinPrize}}~{{needRent.MaxPrize}}</span>元/月</span>
+								<span ng-if="!needRent.MinPrize&&needRent.MaxPrize"><span class="large">{{needRent.MaxPrize}}</span>元/月以下</span>
+								<span ng-if="!needRent.MinPrize&&!needRent.MaxPrize">价格不限</span>
+							</span>
+							<span class="span-gray" ng-if="needRent.Type==2">&nbsp;|&nbsp;整租</span>
+							<span class="span-gray" ng-if="needRent.Type==12">&nbsp;|&nbsp;合租</span>
+							<span class="span-gray" ng-if="needRent.Type==3">&nbsp;|&nbsp;商铺</span>
+							<span class="span-gray" ng-if="needRent.Type==4">&nbsp;|&nbsp;写字楼</span>
+							<span class="span-gray" ng-if="needRent.Type==6">&nbsp;|&nbsp;厂房</span>
+							<span class="span-gray" ng-if="needRent.Type==5">&nbsp;|&nbsp;仓库</span>
+							<span class="span-gray" ng-if="needRent.Type==10">&nbsp;|&nbsp;车位</span>
+						</div>
+					
+						<div class="info">
+							<span class="span-gray"><i class="iconfont icon-dingwei"></i>{{needRent.District}}</span>
+						</div>
+						<div class="by-tags overflow-omit-one">
+							<span ng-if="needRent.RoomType||needRent.HallType||needRent.BathType" class="tag-item">
+								<span ng-if="needRent.RoomType">{{needRent.RoomType}}室</span><span ng-if="needRent.HallType">{{needRent.HallType}}厅</span><span ng-if="needRent.BathType">{{needRent.BathType}}卫</span>
+							</span>
+						</div>
+					</div>
+				</div>
+				
+				<div ui-sref="needRentList({type:2})" class="look-more">查看全部</div>
+			</div> 
+		</div>
+	</ion-content>
+</ion-view>

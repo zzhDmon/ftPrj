@@ -1,0 +1,52 @@
+<ion-view id="bonus_list" view-title="奖励金" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			奖励金
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	<ion-content class="bonus-list">
+		<div class="main-content">
+			<p ng-show="!pageData || pageData.length<1" class="no-bonus">还没有奖励金可领取... <span ng-click="showBottomShareModal()">去邀请<i class="iconfont icon-xiangyou2"></i></span> 	</p>
+			<div 
+				ng-repeat="item in pageData track by $index" 
+				class="bonus-item">
+				<div class="left-cell">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-jianglijin1"></use>
+					</svg>
+					<div class="up-icon">
+						<div class="txt-wrapper">
+							<div class="top">￥<span>{{item.TotalFee / 100}}</span></div>
+							<div class="bot">（奖励金）</div>
+						</div>
+					</div>
+				</div>
+				<div class="right-cell">
+					<div class="top-txt overflow-omit-three">
+						{{item.ShortDesc}}
+					</div>
+					<div class="bot-info">
+						<div class="left-txt small-font-size overflow-omit-one">
+							距可领取时间还有  <span>{{item.StartSec | seconds_to_hhmmss}}</span>
+						</div>
+						<div ui-sref="getBonus({id:item.FromUserId})" class="right-btn">去领取</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+
+	<script id="bonus_list_share_modal" type="text/ng-template">
+		<ion-modal-view class="bottom-share-modal">
+			<div>
+				<div ng-include="'views/includes/bottomShareModal/bottomShareModal.html'"></div>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

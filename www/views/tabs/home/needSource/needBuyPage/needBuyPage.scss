@@ -1,0 +1,122 @@
+#need_buy_page{
+    .header{
+        background-color: transparent;
+        .right{
+            padding: 0;
+            color: white;
+            text-align: center;
+            .top-cell{
+                width: 100%;
+                height: 22px;
+                line-height: 22px;
+                .iconfont{
+                    font-size: 18px;
+                }
+            }
+            .bot-cell{
+                width: 100%;
+                line-height: 14px;
+                font-size: 10px;
+            }
+        }
+    }
+    .need-buy-page{
+        margin: $head-height 0 0;
+        padding: 0;
+        .icon-refreshing{
+            ion-spinner * {
+                width: 28px;
+                height: 28px;
+                stroke: #fff;
+                fill: #f00;
+            }
+        }
+        .white-content{
+            background-color: white;
+        }
+        .under-head{
+            width: 100%;
+            position: relative;
+            .img{
+                img{
+                    display: block;
+                    margin: auto;
+                    width: 100%;
+                    height: 40vw;
+                }
+            }
+            .fix-wrapper{
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                padding: 10px 0 15px;
+                width: 100%;
+                background-color: white;
+                .fix-item{
+                    padding: 0;
+                    width: 20%;
+                    .img{
+                        margin: 0 auto;
+                        width: 44px;
+                        height: 50px;
+                        .iconfont{
+                            font-size: 25px;
+                        }
+                        .icon{
+                            width: 44px;
+                            height: 44px;
+                        }
+                    }
+                    p{
+                        margin: 0;
+                        width: 100%;
+                        text-align: center;
+                        line-height: 16px;
+                        font-size: 12px;
+                        color: $font-main-color;
+                    }
+                } 
+            }
+            .svg-slide-page-num{
+                position: absolute;
+                display: flex;
+                justify-content: flex-end;
+                bottom: 5px;
+                left: 50%;
+                transform: translateX(-50%);
+                height: 10px;
+                .flex-item{
+                    display: inline-block;
+                    margin: 3px 4px;
+                    width: 4px;
+                    height: 4px;
+                    border-radius: 2px;
+                    background-color: rgb(238,238,238);
+                }
+                .active{
+                    background-color: $bg-main-color;
+                }
+            }
+        }
+
+        .house-need-main{
+            padding: 0 $view-padding 0;
+            h5{
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 40px;
+                line-height: 40px;
+                font-size: 16px;
+                color: $font-main-color;
+            }
+			.look-more{
+				line-height: 50px;
+				font-size: 16px;
+				text-align: center;
+				color: $font-sup-color;
+			}
+        }
+        
+    }
+}

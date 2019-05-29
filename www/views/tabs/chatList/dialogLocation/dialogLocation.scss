@@ -1,0 +1,79 @@
+.dialog-location-modalview{
+    width: 100%;
+    min-height: 90px;
+    top: calc(100% - 90px);
+    left: 0;
+    padding: 5px $view-padding;
+    .map-list{
+        .map-item{
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            color: $font-main-color;
+        }
+    }
+}
+#dialog_location{
+    .dialog-location{
+        margin: $head-height 0 0;
+        width: 100%;
+        height: 100vh;
+        .scroll{
+            height: 100%;
+            .map-wrapper{
+                position: relative;
+                padding: 0 0 $head-height;
+                width:100%;
+                height: 100%;
+                #dialog_location_content{
+                    width: 100%;
+                    height: 100%;
+                    .anchorBL{
+                        display: none;
+                    }
+                }
+                .adr-info{
+                    position: absolute;
+                    bottom: $head-height;
+                    left: 0;
+                    z-index: 1;
+                    padding: 10px $view-padding;
+                    width: 100%;
+                    height: 60px;
+                    display: flex;
+                    justify-content: flex-start;
+                    background-color: white;
+                    .left-item{
+                        width: calc(100% - 40px);
+                        height: 40px;
+                        line-height: 20px;
+                        .top-cell{
+                            height: 20px;
+                            font-size: 16px;
+                            color: $font-main-color;
+                        }
+                        .bot-cell{
+                            height: 20px;
+                            font-size: 14px;
+                            color: $font-sup-color;
+                        }
+                    }
+                    .right-item{
+                        width: 40px;
+                        height: 40px;
+                        text-align: center;
+                        line-height: 40px;
+                        font-weight: 500;
+                        border-radius: 50%;
+                        color: white;
+                        background-color: $bg-main-color;
+                        .iconfont{
+                            font-size: 25px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

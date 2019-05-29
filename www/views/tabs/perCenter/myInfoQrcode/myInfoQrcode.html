@@ -1,0 +1,44 @@
+
+<!--对话模板-->
+<ion-view id="my_info_qrcode" view-title="我的二维码" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			我的二维码
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	<ion-content class="my-info-qrcode">
+		<div class="main">
+			<div class="user-info">
+				<div class="avatar">
+					<img 
+						ng-show="hisInfo"
+						ng-src="{{hisInfo.ShowImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" 
+						onError="src='http://imgs.wujiuyun.com//Images//logo.png'"
+						alt="">
+					<img 
+						ng-hide="hisInfo"
+						ng-src="{{myselfInfo.avatar || 'http://imgs.wujiuyun.com//Images//logo.png'}}" 
+						onError="src='http://imgs.wujiuyun.com//Images//logo.png'"
+						alt="">
+				</div>
+				<div class="name">{{hisInfo.NickName || myselfInfo.nick || '房田用户'}}</div>
+				
+				<div class="qrcode-wrap">
+					<div id="my_info_qrcode_detail"></div>
+				</div>
+
+				<div class="text-des">扫一扫，加我好友</div>
+			</div>
+		</div>
+
+		<div>
+			<div ng-repeat="(key,value) in emojiList track by $index">{{key}}{{value}}{{$index}}</div>
+		</div>
+	</ion-content>
+</ion-view>
+

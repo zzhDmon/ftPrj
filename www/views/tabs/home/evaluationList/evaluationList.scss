@@ -1,0 +1,156 @@
+#evaluation_list{
+    .evaluation-list{
+        margin: $head-height 0 0;
+        padding: 0;
+        background-color: $bg-gray-color;
+        .head-img{
+            padding: 10px $view-padding 0;
+            width: 100%;
+            height: 150px;
+            img{
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+            }
+        }
+        .echat-options{
+            margin: 20px auto 0;
+            // padding: 0 $view-padding;
+            width: calc(100% - 24px);
+            border-radius: 10px;
+            display: flex;
+            justify-content: flex-start;
+            box-shadow: 1px 2px 3px 0 rgba(0,0,0,0.35);
+            background-color: white;
+            .echart-wrapper{
+                width: 150px;
+                height: 150px;
+                #evaluation_list_echarts{
+                    width: 150px;
+                    height: 150px;
+                }
+            }
+            .options{
+                width: calc(100% - 150px);
+                .option-title{
+                    margin: 5px 0 0;
+                    width: 100%;
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 18px;
+                    color: rgb(102,152,255);
+                }
+                .option-item{
+                    width: 100%;
+                    height: 30px;
+                    line-height: 30px;
+                    span{
+                        display: inline-block;
+                        vertical-align: top;
+                    }
+                    .left{
+                        width: 80px;
+                        font-size: 14px;
+                    }
+                    .right{
+                        width: calc(100% - 80px);
+                        font-size: 16px;
+                        color: rgb(102,152,255);
+                    }
+                }
+            }
+        }
+        .guess-title{
+            padding: 0 $view-padding;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            color: $font-main-color;
+        }
+        .card-wrapper{
+            width: 100%;
+            padding: 0 $view-padding;
+            .card{
+                margin: 0 0 10px!important;
+                padding: 5px 10px;
+                .top-info{
+                    width: 100%;
+                    .title-time{
+                        width: 100%;
+                        height: 30px;
+                        line-height: 30px;
+                        display: flex;
+                        justify-content: flex-start;
+                        .title{
+                            width: calc(100% - 120px);
+                            font-size: 16px;
+                            color: $font-main-color;
+                        }
+                        .time{
+                            width: 120px;
+                            font-size: 16px;
+                            text-align: right;
+                            color: $font-sup-color;
+                        }
+                    }
+                }
+                .img-wrapper{
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    .img-item{
+                      width: 33.33%;
+                        img{
+                            width: 90%;
+                            margin: auto;
+                            border-radius: 3px;
+                        }  
+                    }
+                }
+                .delete-action{
+                    width: 100%;
+                    height: 30px;
+                    display: flex;
+                    justify-content: flex-end;
+                    .action-item{
+                        width: 25%;
+                        height: 30px;
+                        .action{
+                            margin: auto;
+                            width: 90%;
+                            height: 30px;
+                            line-height: 30px;
+                            text-align: center;
+                            color: $font-price-color;
+                            font-size: 14px;
+                        }
+                    }
+                }
+                .bot-action{
+                    width: 100%;
+                    height: 30px;
+                    display: flex;
+                    justify-content: flex-start;
+                    .action-item{
+                        width: 25%;
+                        height: 30px;
+                        .action{
+                            margin: auto;
+                            width: 90%;
+                            height: 30px;
+                            line-height: 30px;
+                            text-align: center;
+                            color: $font-main-color;
+                            font-size: 14px;
+                        }
+                        .active{
+                            border-bottom: 1px solid $bg-main-color;
+                        }
+                    }
+                }
+            }
+        }
+        .third-price{}
+    }
+}

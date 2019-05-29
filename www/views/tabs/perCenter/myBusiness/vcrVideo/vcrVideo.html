@@ -1,0 +1,95 @@
+<ion-view cache-view='false' class='video' id="vcr_video" hide-nav-bar=true ng-class="{cur:renderData.hideBar}">
+	<!-- 右侧点赞 -->
+	<!-- <div class="fix-right">
+		<div class="fix-item">
+			
+		</div>
+		<div class="fix-item">
+			<div ui-sref="hisBusinessCard({id:pageData.UserId})" class="top-img">
+				<img ng-src="{{pageData.UserImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+				<div ng-click="followHim(pageData,$event)" class="icon-wrapper">
+					<svg ng-hide="pageData.IsFollow" class="icon" aria-hidden="true">
+						<use xlink:href="#icon-tianjia-"></use>
+					</svg>
+				</div>
+			</div>
+		</div>
+		<div ng-click="agreeAction(pageData)" class="fix-item">
+			<div ng-class="{true:'active',false:''}[pageData.agreed]" class="top-icon"><i class="iconfont icon-xihuan1"></i></div>
+			<div class="bot-txt">{{pageData.AgressUsers.length || 0}}</div>
+		</div>
+		<div ng-click="showCommentsModal()" class="fix-item">
+			<div class="top-icon"><i class="iconfont icon-pinglun"></i></div>
+			<div class="bot-txt">{{pageData.ChildrenCount}}</div>
+		</div>
+		<div class="fix-item">
+			<div class="top-icon"><i class="iconfont icon-zhuanfa00"></i></div>
+			<div class="bot-txt"></div>
+		</div>
+		<div class="fix-item">
+			<div class="top-icon"><i class="iconfont icon-liwu"></i></div>
+			<div class="bot-txt"></div>
+		</div>
+	</div> -->
+	<!-- <div class="fix-bottom">
+		<div class="top-text">
+			<h5 class="overflow-omit-one">@{{pageData.UserName}}</h5>
+			<p class="overflow-omit-three"></p>
+		</div>
+		<div class="bot-tabs">
+		</div>
+	</div> -->
+
+
+    <ion-content class="vcr-video" scroll="false" overflow-scroll="true" data-tap-disable="true" scrollbar-y="false" has-bouncing="false">
+		<div class="top-video" ng-class="{'full-screen': renderData.fullScreenStatus}">
+			
+			<!-- ng-click="closeFullscreen()" -->
+			<div ng-click="back()" class="close-fullscreen" >
+				<i class="iconfont icon-xiangzuo1"></i>&nbsp;
+			</div>
+
+				
+			<!-- 视频缓冲loading -->
+			<div ng-if="videoIsLoading" class="video-loading">
+				<ion-spinner icon="spiral" class="spinner-stable"></ion-spinner>
+			</div>
+			<noctr-video-container x-source="renderData.videoSrc" x-image="renderData.videoImage"></noctr-video-container>
+			<!-- <video-container></video-container> -->
+		</div>
+	</ion-content>
+	<!-- 评论回复 -->
+	<script id="noctr_video_comments_modalview" type="text/ng-template">
+		<ion-modal-view class="noctr-video-comments-modalview">
+			<div class="product-tags-modal">
+				<div ng-click="closeCommentsModal()" class="close-btn">
+					<i class="iconfont icon-guanbi1"></i>
+				</div>
+				<ion-content class="product-comments-content">
+					<div ng-repeat="item in pageData.Children track by $index" class="comment-item">
+						<div class="user-info">
+							<div class="img"><img ng-src="{{item.UserImage}}" alt=""></div>
+							<div class="name overflow-omit-one">{{item.UserName || '房田洪湖'}}</div>
+						</div>
+						<div class="comment-content">
+							{{item.Content}}
+						</div>
+					</div>
+				</ion-content>
+
+				<div class="bot-input">
+					<div class="input-wrapper">
+						<div class="textarea">
+							<textarea msd-elastic ng-model="replyData.data" placeholder="回复"></textarea>
+						</div>
+						<div class="send">
+							<div ng-click="replyComment()" class="send-btn">发送</div>
+						</div>
+					</div>
+					<div ng-if="keyboardShow" ng-style="{'height': keyboardHeight + 'px'}"></div>
+				</div>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+<!-- overflow-scroll="true" 与 data-tap-disable="true" 在视频播放中起到了关键的作用，这两句话要加上其中一个 -->

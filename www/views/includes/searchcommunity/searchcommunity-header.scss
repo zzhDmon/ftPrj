@@ -1,0 +1,56 @@
+.searchcommunity-header{
+    height: 69px;
+    display: flex;
+    justify-content: flex-start;
+    .search-wrapper{
+        width: calc(100% - 50px);
+        padding: 0 0 0 $view-padding;
+        .title-search{
+            margin: 5px 0;
+            width: 100%;
+            height: 34px;
+            border-radius: 17px;
+            background-color:white;
+            span.left{
+                display: block;
+                float: left;
+                width: 30px;
+                height: 100%;
+                text-align: center;
+                line-height: 38px;
+                font-size: 12px;
+                color: $font-minor-color;
+                .iconfont{
+                    font-size: 12px;
+                }
+            }
+            input{
+                float: left;
+                padding: 0;
+                width: calc(100% - 50px);
+                height: 100%;
+            }
+            span.right{
+                display: block;
+                float: left;
+                width: 15px;
+                height: 100%;
+                text-align: center;
+                line-height: 34px;
+                font-size: 12px;
+                color: $font-minor-color;
+                .iconfont{
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+    .right-cancel{
+        padding-right: 12px;
+        width: 50px;
+        height: 100%;
+        line-height: 44px;
+        color: white;
+        text-align: right;
+    }
+}

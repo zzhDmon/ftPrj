@@ -1,0 +1,87 @@
+#my_commission{
+    $content-top:$head-height+40px;
+    background-color: $bg-gray-color;
+    .header{
+        background-color: $bg-main-color;
+        border-bottom: none;
+        .back{
+            color: white;
+        }
+        .title{
+            color: white;
+        }
+    }
+    .up-ul{
+        position: absolute;
+        top: $head-height;
+        padding: 0 $view-padding;
+        width: 100%;
+        height: 40px;
+        background-color: $bg-gray-color;
+        div{
+            float: left;
+            height: 40px;
+            width: 33.33%;
+            // text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            color: $font-main-color;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-break: keep-all;
+        }
+        .left{
+            text-align: left;
+        }
+        .mid{
+            text-align: center;
+        }
+        .right{
+            text-align: right;
+        }
+    }
+    .my-commission{
+        $content-top:$head-height +40px;
+        margin: $content-top 0 0;
+        .main{
+           
+            .info-list{
+               width: 100%;
+                li{
+                    padding: 0 $view-padding;
+                    // margin: 0 0 10px;
+                    width: 100%;
+                    background-color: white;
+                    border-bottom: 1px solid $line-main-color;
+                    div{
+                        float: left;
+                        height: 50px;
+                        width: 33.33%;
+                        // text-align: center;
+                        line-height: 50px;
+                        font-size: 16px;
+                        color: $font-main-color;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        word-break: keep-all;
+                    }
+                    .left{
+                        text-align: left;
+                    }
+                    .mid{
+                        text-align: center;
+                    }
+                    .right{
+                        text-align: right;
+                        color: $font-sup-color;
+                    }
+                }
+                li:last-child{
+                    border: none;
+                }
+            }
+        }
+    }
+}

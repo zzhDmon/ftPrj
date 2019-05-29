@@ -1,0 +1,69 @@
+#evaluation_valuation{
+    .switch-list{
+        padding: 5px $view-padding;
+        position: fixed;
+        top:$head-height;
+        z-index: 1;
+        width: 100%;
+        .switch-item{
+            .item-in{
+                margin: auto;
+                width: 80px;
+                height: 30px;
+                text-align: center;
+                line-height: 30px;
+                font-size: 16px;
+                border-radius: 5px;
+                border: 1px solid $line-main-color;
+                color: $font-main-color;
+                // background-color: rgb(243,245,247);
+            }
+        }
+        .active{
+            .item-in{
+                border: 1px solid $bg-main-color;
+                color: $font-main-color;
+                background-color: rgba(253,208,0,0.15); 
+            }
+        }
+    }
+    .evaluation-valuation{
+        $content-top:$head-height + 40px;
+        margin-top: $content-top;
+        .main{
+            width: 100%;
+            padding: 15px $view-padding 10px;
+            //底线
+            p.baseLine{
+                margin: 0;
+                padding: 15px 12px 15px;
+                span {
+                    text-align: center;
+                    display: block;     /*设置为块级元素会独占一行形成上下居中的效果*/
+                    font-size: 14px;
+                    color: #969696;
+                    position: relative;   /*定位横线（当横线的父元素）*/
+                    &:before{
+                        content: '';                 /*CSS伪类用法*/
+                        position: absolute;         /*定位背景横线的位置*/
+                        top: 52%;
+                        background: #e6e6e6;       /*宽和高做出来的背景横线*/
+                        width: 28%;
+                        height: 1px;
+                        left: 0;
+                    }
+                    &:after {
+                        content: '';                 /*CSS伪类用法*/
+                        position: absolute;         /*定位背景横线的位置*/
+                        top: 52%;
+                        background: #e6e6e6;       /*宽和高做出来的背景横线*/
+                        width: 28%;
+                        height: 1px;
+                        right: 0;
+                    }
+                }
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,17 @@
+<!-- <ion-modal-view id="sell_go_login_modal"> -->
+    <div ng-click="closeModal()" class="closeicon"><i class="iconfont icon-guanbi1"></i></div>
+    <div ng-if="modalType=='login'" class="main-cont">
+        <div class="login-img">
+            <h5>您还未登录!</h5>
+        </div>
+        <p class="suc">请先登录/注册再进行操作</p>		
+        <div ui-sref="login" ng-click="closeModal()" class="btn">重新登录</div>
+    </div>
+    <div ng-if="modalType=='realname'" class="main-cont">
+        <div class="realname-img">
+            <img ng-src="imgs/实名认证弹窗.png"/>
+        </div>
+        <p class="suc">您还未实名认证</p>		
+        <div ui-sref="realName" ng-click="closeModal()" class="btn">前往认证</div>
+    </div>
+<!-- </ion-modal-view> -->

@@ -1,0 +1,67 @@
+.share-or-auth-modal{
+    width: 250px;
+    min-height: 175px;
+    top: calc(50% - 100px);
+    left: calc(50% - 125px);
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0);
+    .closeicon{
+        position: absolute;
+        z-index: 1;
+        top: 0px;
+        right: 5px;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+        border-radius: 50%;
+        color: $font-sup-color;
+        background-color: white;
+        .iconfont{
+            font-size: 20px;
+        }
+    }
+    .scroll-content{
+        padding: 0 5px;
+        margin: 25px 0 0;
+        background-color: white;
+        .pub-suc{
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 18px;
+            color: $font-main-color;
+            border-bottom: 1px solid $line-main-color;
+        }
+        .share-auth{
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: flex-start;
+            .item-in{
+                width: 50%;
+                height: 100%;
+                .out-icon{
+                    margin: 10px auto;
+                    width: 40px;
+                    height: 30px;
+                    text-align: center;
+                    line-height: 30px;
+                    .icon{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .text{
+                    width: 100%;
+                    height: 30px;
+                    text-align: center;
+                    line-height: 30px;
+                    font-size: 16px;
+                    color: $font-main-color;
+                }
+            }
+        }
+    }
+}

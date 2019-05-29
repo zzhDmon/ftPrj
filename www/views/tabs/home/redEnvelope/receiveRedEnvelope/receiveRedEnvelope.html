@@ -1,0 +1,25 @@
+
+<ion-view id="receive_red_envelope" hide-nav-bar=true view-title="红包">
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class="iconfont icon-xiangzuo1"></i>
+		</div>
+	</div>
+	<div class="bg-img">
+		<h5 ng-show="redNum.Money">恭喜您获得{{redNum.Money}}抵用金</h5>
+		<h5 ng-hide="redNum.Money">领取记录</h5>
+	</div>
+
+	<ion-content class="receive-red-envelope">
+		<div class="offline"></div>
+		<div class="record-wrapper">
+			<div class="head-title">领取记录</div>
+			
+			<div ng-repeat="item in myRedList track by $index" class="record-item">
+				<div class="top-cell">{{item.RelateName}}</div>
+				<div class="bot-cell">{{item.CreateTime}}</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
+

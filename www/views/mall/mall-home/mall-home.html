@@ -1,0 +1,243 @@
+
+<ion-view id="mall_home" view-title="商城首页" hide-nav-bar="true">	
+	<div class="search-header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div ui-sref="mallSearch" class="title">
+			<div class="fake-input">
+				<div class="fake-search">
+					<i class="iconfont icon-sousuo2"></i>大家都在搜“玛卡羊肉”
+				</div>
+			</div> 
+		</div>
+
+		<div ui-sref="applyForStore" ng-show="!myShopInfo && !statusData.iosInReview" class="right">
+            <div class="top-cell">
+                <i class="iconfont icon-tubiaozhizuomoban-31"></i>
+            </div>
+            <div class="small-font-size bot-cell">申请开店</div>
+		</div>
+		<div ui-sref="hisShop({id:myShopInfo.Id,ismyself:true})" ng-show="myShopInfo && !statusData.iosInReview" class="right">
+            <div class="top-cell">
+                <i class="iconfont icon-yingyeting"></i>
+            </div>
+            <div class="small-font-size bot-cell">管理店铺</div>
+		</div>
+	</div>
+
+
+	
+	<div class="head-bg-houseimg"></div>
+	<ion-content class="mall-home" scrollbar-y="false">
+		<ion-refresher 
+            pulling-icon="" 
+            pulling-text="" 
+            spinner="lines"  
+            on-refresh="loadRefresh()" 
+            >
+		</ion-refresher>
+
+		<div class="ad-slide-wrapper">
+			<ion-slide-box 
+				auto-play="true"
+				does-continue="true"
+				slide-interval="5000"
+				on-slide-changed="changeAdSlide($index)" 
+				show-pager="false" 
+				delegate-handle='mallhome-banner-slide'
+			>
+				<ion-slide ng-repeat-finished ng-repeat="img in adImgList track by $index">
+					<img ng-src="{{img}}" alt="">
+				</ion-slide>
+			</ion-slide-box>  
+			<div class="ad-slide-page-num">
+				<div ng-repeat="img in adImgList track by $index" class="flex-item" ng-class="{true:'active',false:''}[currentAdSlideIndex==$index]"></div>
+			</div>  
+		</div>
+
+		<div class="white-content">
+			<!-- <div id="mall_home_nav" class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><span>家装建材</span></div>
+					<div class="swiper-slide"><span>家居日常</span></div>
+					<div class="swiper-slide"><span>个人品味</span></div>
+					<div class="swiper-slide"><span>智能生活</span></div>
+					<div class="swiper-slide"><span>生鲜超市</span></div>
+					<div class="swiper-slide"><span>排行</span></div>
+					<div class="swiper-slide"><span>折扣</span></div>
+					<div class="swiper-slide"><span>vip专享</span></div>
+					<div class="swiper-slide"><span>特选</span></div>
+				</div>
+			</div> -->
+			
+			<!-- ui-sref="goodsList({type:10,typename:'定制设计',ptype:1})" -->
+
+			<div class="sale-title-wrapper">
+				<div class="sale-title">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-lala-"></use>
+						</svg>
+					</div>特色商品
+				</div>
+			</div>
+			<div class="flex-wrapper-two">
+				<div class="flex-item">
+					<div ui-sref="goodsList({saletype:1})" class="main">
+						<div class="abs-icon">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-xinrenlibao"></use>
+							</svg>
+						</div>
+						<img src="imgs/mall/home/新人礼包.jpg" alt="">
+					</div>
+				</div>
+				<div class="flex-item">
+					<div ui-sref="goodsList({saletype:600})" class="main">
+						<div class="abs-icon">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-yongjinzhuanqu"></use>
+							</svg>
+						</div>
+						<img src="imgs/mall/home/佣金专区.jpg" alt="">
+					</div>
+				</div>
+				
+				<div class="flex-item">
+					<div ui-sref="goodsList({saletype:100})" class="main">
+						<div class="abs-icon">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon--26"></use>
+							</svg>
+						</div>
+						<img src="imgs/mall/home/vip1.jpg" alt="">
+					</div>
+				</div>
+				<!-- <div class="flex-item">
+					<div ui-sref="goodsList({type:26,ptype:25})" class="main">
+						<div class="abs-icon">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon--25"></use>
+							</svg>
+						</div>
+						<img src="imgs/mall/home/vip2.jpg" alt="">
+					</div>
+				</div> -->
+				<div class="flex-item">
+					<div ui-sref="goodsList({saletype:500})" class="main">
+						<div class="abs-icon">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon--28"></use>
+							</svg>
+						</div>
+						<img src="imgs/mall/home/vip3.jpg" alt="">
+					</div>
+				</div>
+			</div>
+			
+			<div class="flex-wrapper-four">
+				<div 
+					ui-sref="goodsList({type:31,typename:'保健品',ptype:30})"
+					class="flex-item">
+					<div class="bg-original-image" ng-style="{'background-image':'url(imgs/mall/home/vip4-1.jpg)'}"></div>
+				</div>
+				<div 
+					ui-sref="goodsList({type:26,ptype:25})"
+					class="flex-item">
+					<div class="bg-original-image" ng-style="{'background-image':'url(imgs/mall/home/手机数码.jpg)'}"></div>
+				</div>
+				<div 
+					ui-sref="goodsList({type:22,ptype:20})"
+					class="flex-item">
+					<div class="bg-original-image" ng-style="{'background-image':'url(imgs/mall/home/洗护专区.jpg)'}"></div>
+				</div>
+				<div 
+					ng-repeat="item in vipFourImgs track by $index"
+					ng-show="$index==3"
+					class="flex-item">
+					<div class="bg-original-image" ng-style="{'background-image':'url('+item+')'}"></div>
+				</div>
+			</div>
+	
+			<div class="sale-title-wrapper">
+				<div class="sale-title activites">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-shaya-"></use>
+						</svg>
+					</div>精彩活动
+				</div>
+			</div>
+			<div class="flex-wrapper-two">
+				<div 
+					ui-sref="goodsDetail({id:52})"
+					class="flex-item">
+					<div class="main">
+						<img ng-src="imgs/mall/home/sale1.jpg" alt="">
+					</div>
+				</div>
+				<div 
+					ui-sref="goodsDetail({id:65})"
+					class="flex-item">
+					<div class="main">
+						<img ng-src="imgs/mall/home/sale2.jpg" alt="">
+					</div>
+				</div>
+				<div 
+					ui-sref="goodsDetail({id:48})"
+					class="flex-item">
+					<div class="main">
+						<img ng-src="imgs/mall/home/sale3.jpg" alt="">
+					</div>
+				</div>
+				<div 
+					ui-sref="goodsDetail({id:53})"
+					class="flex-item">
+					<div class="main">
+						<img ng-src="imgs/mall/home/sale4.jpg" alt="">
+					</div>
+				</div>
+			</div>
+			
+			<div class="flex-wrapper-four">
+				<div 
+					ng-repeat="item in saleFourImgs track by $index"
+					class="flex-item">
+					<div class="bg-original-image" ng-style="{'background-image':'url('+item+')'}"></div>
+				</div>
+			</div>
+			
+			<div class="sale-title-wrapper">
+				<div class="sale-title recommend">
+					<div class="icon-wrapper">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-we-"></use>
+						</svg>
+					</div>为您推荐
+				</div>
+			</div>
+
+			<div class="flex-wrapper-two">
+				<div 
+					ng-repeat="item in productList track by $index"
+					ui-sref="goodsDetail({id:item.Id})"
+					class="product-item">
+					<div class="top-img">
+						<div class="bg-original-image" ng-style="{'background-image':'url('+item.Image+')'}"></div>
+					</div>
+					<div class="product-name overflow-omit-two">{{item.Name}}</div>
+					<div class="product-price">
+						￥{{item.PromotionPrice | priceFilter}}
+						<span ng-show="item.PromotionPrice<item.MarketPrice">￥{{item.MarketPrice | priceFilter}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<ion-infinite-scroll spinner="lines" on-infinite="loadMore(true)" distance="15%" ng-if="haveMore" > </ion-infinite-scroll>
+	</ion-content>
+	
+	<!-- tab导航 -->
+	<div ng-include="'views/mall/mall-includes/mallTabs/mallTabs.html'"></div>
+</ion-view>

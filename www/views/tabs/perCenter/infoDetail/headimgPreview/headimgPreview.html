@@ -1,0 +1,20 @@
+<!--模板-->
+<ion-view id="headimg_preview" view-title="头像预览"  hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			头像预览
+		</div>
+		<div ng-click="show()" class="right" >
+			更换
+		</div>
+	</div>
+	
+	<ion-content class="headimg-preview" has-bouncing=false>
+		<img ng-if="userinfo.ShowImage" ng-src="{{userinfo.ShowImage}}" />
+		<input style="display: none;" type="file" name="photo"  accept="image/*" autocomplete="off" />
+	</ion-content>
+
+</ion-view>

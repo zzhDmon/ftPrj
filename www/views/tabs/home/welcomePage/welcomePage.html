@@ -1,0 +1,19 @@
+<ion-view id="welcome_page" hide-nav-bar=true view-title="欢迎页面">
+	<div class="main-content">
+		<ion-slide-box 
+			on-slide-changed="changeAdSlide($index)" 
+			show-pager="false" 
+			delegate-handle='welcome-banner-slide'
+		>
+			<ion-slide ng-repeat-finished ng-repeat="img in adImgList track by $index">
+				<img ng-src="{{img}}" alt="">
+
+				<div ng-click="goHome()" ng-show="$index == adImgList.length-1" class="go-home"></div>
+			</ion-slide>
+		</ion-slide-box>  
+		<div class="ad-slide-page-num">
+			<div ng-repeat="img in adImgList track by $index" class="flex-item" ng-class="{true:'active',false:''}[currentAdSlideIndex==$index]"></div>
+		</div>  
+	</div>
+</ion-view>
+

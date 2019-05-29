@@ -1,0 +1,73 @@
+<!--模板-->
+<ion-view id="set_alias_name" view-title="修改备注" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			修改备注
+		</div>
+		<div ng-click="save()" class="right" >
+			保存
+		</div>
+	</div>
+	
+	<ion-content class="set-alias-name">
+		<div class="gray-title">备注名</div>
+		<div class="personalname">
+			<input ng-model="userinfo.Name" type="text" name="" placeholder="备注" />
+			<span class="ion-close-circled" ng-click="nameEmpty()" ng-show="userinfo.Name" ></span>
+		</div>
+		<div class="gray-title">标签</div>
+		<div class="form-main">
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">标签</div>
+					<div class="mid-input">
+						<input ng-model="userinfo.Tag" class="setaliasname-tag" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>
+			<div class="offline"></div>
+			<div class="offline"></div>
+			<div class="row-item">
+				<div class="left-name">加入黑名单</div>
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-change="blockChange()" ng-model="isBlack.data" ng-checked="isBlack.data">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+		</div>
+		<!-- <div class="gray-title"></div> -->
+		<!-- 
+			<div class="form-main">
+			<div class="offline"></div>
+			<div class="row-item">
+				<div class="left-name">加入黑名单</div>
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-change="blockChange()" ng-model="isMute" ng-checked="isMute">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+			<div class="row-item">
+				<div class="left-name">不让他看我的空间</div>
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-change="blockChange()" ng-model="isMute" ng-checked="isMute">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+		</div> -->
+		
+		<!-- <div class="offline"></div>
+		<div ng-click="addBlack()">添加</div> -->
+	</ion-content>
+</ion-view>

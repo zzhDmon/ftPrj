@@ -1,0 +1,112 @@
+
+<ion-view id="new_house_arr" view-title="新房" hide-nav-bar="true">
+	<div class="search-header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			<div class="fake-input">
+				<div class="fake-search">
+					<span ng-if="showQueryText">{{showQueryText}}</span>
+					<span ng-hide="showQueryText"><i class="iconfont icon-sousuo2"></i>请输入小区/商圈</span>
+				</div>
+			</div> 
+		</div>
+	</div>
+
+	<!-- 筛选 -->
+	<div class="top-filter-flex" >
+		<div 
+			ng-click="openFilter(0)"
+			ng-class="{true:'active',false:''}[filterActiveIndex==0]"
+			class="flex-item">
+			<div>
+				<span class="text">
+					<span ng-if="showStreetText">{{showStreetText}}</span>
+					<span ng-hide="showStreetText">区域</span>
+				</span>
+				<span class="pullicon"><i class="iconfont icon--pulldown"></i></span>
+				
+			</div>
+		</div>
+		<div 
+			ng-click="openFilter(1)"
+			ng-class="{true:'active',false:''}[filterActiveIndex==1]"
+			class="flex-item" >
+			<div>
+				<span class="text">
+					<span ng-if="showPriceText">{{showPriceText}}</span>
+					<span ng-hide="showPriceText">单价</span>
+				</span>
+				<span class="pullicon"><i class="iconfont icon--pulldown"></i></span>
+				
+			</div>
+		</div>
+		<div 
+			ng-click="openFilter(2)"
+			ng-class="{true:'active',false:''}[filterActiveIndex==2]"
+			class="flex-item" >
+			<div>
+				<span class="text">
+					<span ng-if="showroomType">{{showroomType}}</span>
+					<span ng-hide="showroomType">户型</span>
+					
+				</span>
+				<span class="pullicon"><i class="iconfont icon--pulldown"></i></span>
+			</div>
+		</div>
+		<div 
+			ng-click="openFilter(3)"
+			ng-class="{true:'active',false:''}[filterActiveIndex==3]"
+			class="flex-item" >
+			<div>
+				<span class="text">
+					更多
+				</span>
+				<span class="pullicon"><i class="iconfont icon--pulldown"></i></span>
+			</div>
+		</div>
+	</div>
+	<div ng-include="'views/includes/houseSort/houseSort-new.html'"></div>
+	
+
+	<ion-content delegate-handle="newhouse-list-scroll" class="new-house-arr">
+		<div class="main">
+			<div 
+				ui-sref="newHouseDetail({id:newhouse.Id})"
+				ng-repeat="newhouse in newhousearr track by $index"
+				class="house-list-item"
+				ripple-hold ripple-dark
+			>
+				<div class="left-img"><img ng-src="{{newhouse.Images}}" alt=""></div>
+				<div class="right-text">
+					<div class="title overflow-omit-one">{{newhouse.Title}}</div>
+					<div class="housetype overflow-omit-one"><i class="iconfont icon-dingwei"></i>{{newhouse.Address}}</div>
+					<div class="info overflow-omit-one">
+							{{newhouse.Space}}
+					</div>
+					<div class="price-commission">
+						<div class="left-cell">
+							{{newhouse.Prize}}元/m²
+						</div>
+						<div class="right-cell">
+							<span class="commission">
+								{{newhouse.Bound}}
+							</span>
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-commission"></use>
+							</svg>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="clear: both;"></div>
+			<p ng-show="!newHaveMore" class="baseLine"><span>暂无更多新房源</span></p>
+		</div>
+		<ion-infinite-scroll on-infinite="newLoadMore(true)" distance="15%" ng-if="newHaveMore" > </ion-infinite-scroll>
+	
+	</ion-content>
+	
+	
+
+</ion-view>

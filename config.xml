@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.fangtian.ft" version="3.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>房田</name>
+    <description>
+        An app for Agent.
+    </description>
+    <author email="18850148217@163.com" href="http://wujiuyu.com/">
+        Victor
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <access launch-external="yes" origin="tel:*" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="4000" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="FadeSplashScreen" value="false" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="android-minSdkVersion" value="16" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="orientation" value="portrait" />
+    <feature name="StatusBar">
+        <param name="ios-package" onload="true" value="CDVStatusBar" />
+    </feature>
+    <platform name="android">
+        <splash density="port-ldpi" src="resources\android\splash\drawable-port-ldpi-screen.png" />
+        <splash density="port-mdpi" src="resources\android\splash\drawable-port-mdpi-screen.png" />
+        <splash density="port-hdpi" src="resources\android\splash\drawable-port-hdpi-screen.png" />
+        <splash density="port-xhdpi" src="resources\android\splash\drawable-port-xhdpi-screen.png" />
+        <splash density="port-xxhdpi" src="resources\android\splash\drawable-port-xxhdpi-screen.png" />
+        <splash density="port-xxxhdpi" src="resources\android\splash\drawable-port-xxxhdpi-screen.png" />
+        <icon density="ldpi" src="resources\android\icon\drawable-ldpi-icon.png" />
+        <icon density="mdpi" src="resources\android\icon\drawable-mdpi-icon.png" />
+        <icon density="hdpi" src="resources\android\icon\drawable-hdpi-icon.png" />
+        <icon density="xhdpi" src="resources\android\icon\drawable-xhdpi-icon.png" />
+        <icon density="xxhdpi" src="resources\android\icon\drawable-xxhdpi-icon.png" />
+        <icon density="xxxhdpi" src="resources\android\icon\drawable-xxxhdpi-icon.png" />
+    </platform>
+    <icon src="resources\android\icon\drawable-xhdpi-icon.png" />
+    <allow-navigation href="http://192.168.0.105:8101" />
+    <allow-navigation href="http://192.168.0.105:8100" />
+    <plugin name="com.telerik.plugins.nativepagetransitions" spec="git+https://github.com/Telerik-Verified-Plugins/NativePageTransitions.git#0.6.5" />
+    <plugin name="cordova-plugin-alipay-v2" spec="0.0.4">
+        <variable name="APP_ID" value="2018040402504272" />
+    </plugin>
+    <plugin name="cordova-plugin-app-version" spec="git+https://github.com/whiteoctober/cordova-plugin-app-version.git" />
+    <plugin name="cordova-plugin-baidumaplocation" spec="^3.1.2">
+        <variable name="ANDROID_KEY" value="Nwyg35XreG4GIaYG287DNAf7Quutxrv8" />
+        <variable name="IOS_KEY" value="&lt;API_KEY_IOS&gt;" />
+        <variable name="IOS_LOCATION_DESC" value="请点击'好'以允许访问。" />
+    </plugin>
+    <plugin name="cordova-plugin-contacts" spec="^2.3.1" />
+    <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
+    <plugin name="cordova-plugin-media" spec="^3.0.1" />
+    <plugin name="cordova-plugin-network-information" spec="^1.3.3" />
+    <plugin name="cordova-plugin-screen-orientation" spec="^2.0.1" />
+    <plugin name="cordova-plugin-statusbar" spec="git+https://github.com/apache/cordova-plugin-statusbar.git" />
+    <plugin name="cordova-plugin-wechat" spec="^2.1.0">
+        <variable name="WECHATAPPID" value="wx60f2e980ba9c9e19" />
+    </plugin>
+    <plugin name="cordova-plugin-x-toast" spec="git+https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git" />
+    <plugin name="cordova-umeng-analytics" spec="git+https://github.com/pipitang/cordova-umeng-analytics.git" />
+    <plugin name="org.devgeeks.Canvas2ImagePlugin" spec="https://github.com/devgeeks/Canvas2ImagePlugin.git" />
+    <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
+    <plugin name="cordova-plugin-compat" spec="^1.2.0" />
+    <plugin name="cordova-plugin-camera" spec="^2.4.1" />
+    <plugin name="cordova-plugin-media-capture" spec="^1.4.3" />
+    <plugin name="cordova-plugin-qqsdk" spec="https://github.com/zzhDmon/cordova_qq.git">
+        <variable name="QQ_APP_ID" value="1106295914" />
+    </plugin>
+    <plugin name="phonegap-plugin-barcodescanner" spec="^6.0.8">
+        <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.1" />
+    </plugin>
+    <plugin name="cordova-plugin-file-opener2" spec="^2.0.6" />
+    <plugin name="cordova-plugin-image-picker" spec="^1.1.3" />
+    <plugin name="cordova-plugin-navimap" spec="^1.2.3" />
+    <plugin name="cordova-plugin-appavailability" spec="^0.4.2" />
+    <plugin name="cordova-plugin-mediapicker-dmcsdk" spec="^2.3.8">
+        <variable name="IOS_PHOTO_LIBRARY_USAGE_DESCRIPTION" value="请求访问图库" />
+    </plugin>
+    <plugin name="cordova-plugin-badge" spec="^0.8.7" />
+    <plugin name="jpush-phonegap-plugin" spec="^3.3.2">
+        <variable name="APP_KEY" value="05efb4abd755fffa53a87fe0" />
+    </plugin>
+    <plugin name="cordova-plugin-jcore" spec="^1.1.12" />
+    <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
+    <plugin name="cordova-clipboard" spec="https://github.com/ihadeed/cordova-clipboard.git" />
+    <engine name="android" spec="^6.2.3" />
+</widget>

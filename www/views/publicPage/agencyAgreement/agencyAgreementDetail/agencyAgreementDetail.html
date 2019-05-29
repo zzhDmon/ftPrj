@@ -1,0 +1,33 @@
+<!--发现界面模板-->
+<ion-view id="agency_agreement_detail" view-title="协议详情" hide-nav-bar=true>
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			协议详情
+		</div>
+		<div class="right" >
+			
+		</div>
+	</div>
+	
+	<ion-content class="agency-agreement-detail">
+		<div ng-if="agencyType==1" class="main">
+			<h2>独家代理协议</h2>
+			<p>这是独家代理协议</p>
+			<div ng-click="changeStatus()" class="ft-sub-btn">
+				同意
+			</div>
+		</div>	
+		<div ng-if="agencyType==2" class="main">
+			<h2>多家代理协议</h2>
+			<p>这是多家代理协议</p>
+			<div ng-click="changeStatus()" class="ft-sub-btn">
+				同意
+			</div>
+		</div>	
+	</ion-content>
+	
+</ion-view>

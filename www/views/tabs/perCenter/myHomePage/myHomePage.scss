@@ -1,0 +1,100 @@
+#my_home_page {
+    .my-home-page {
+        margin: $head-height 0 0;
+        .head-info-wrapper{
+            padding: 10px $view-padding 20px;
+            .head-info{
+                padding: 10px;
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                border-radius: 20px;
+                box-shadow: 0 2px 2px 0 rgba(0,0,0,0.35);
+                .left-img{
+                    padding: 20px 0 0;
+                    width: 90px;
+                    .img{
+                        position: relative;
+                        img{
+                            display: block;
+                            width: 90px;
+                            height: 90px;
+                            border-radius: 50%;
+                        }
+                        .level-img{
+                            position: absolute;
+                            z-index: 1;
+                            bottom: 0;
+                            right: 0;
+                            width: 20px;
+                            height: 20px;
+                            .icon{
+                                border-radius: 50%;
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                    }
+                    .user-name{
+                        width: 100%;
+                        height: 35px;
+                        text-align: center;
+                        line-height: 35px;
+                        font-size: 16px;
+                        color: $font-main-color;
+                    }
+    
+                }
+                .right-text{
+                    padding: 5px 10px 0;
+                    width: calc(100% - 90px);
+                    .erweima-wrapper{
+                        width: 100%;
+                        height: 30px;
+                        display: flex;
+                        justify-content: flex-end;
+                        .erweima{
+                            width: 30px;
+                            height: 30px;
+                            .icon{
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                    }
+                    .text-item{
+                        width: 100%;
+                        height: 30px;
+                        line-height: 30px;
+                        font-size: 14px;
+                        color: $font-main-color;
+                        border-bottom: 1px solid $line-main-color;
+                    }
+                }
+            } 
+        }
+        .owner-to-him-wrapper{
+            width: 100%;
+            background-color: $bg-gray-color;
+            .owner-to-him{
+                margin: 10px 0 0;
+                padding: 0 $view-padding;
+                width: 100%;
+                height: 50px;
+                line-height: 50px;
+                display: flex;
+                justify-content: flex-start;
+                font-size: 16px;
+                color: $font-main-color;
+                background-color: white;
+                .owner-name{
+                    width: 110px;
+                }
+                .owner-num{
+                    padding: 0 5px;
+                    width: calc(100% - 110px);
+                }
+            }
+        }
+    }
+}

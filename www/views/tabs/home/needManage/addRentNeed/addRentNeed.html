@@ -1,0 +1,117 @@
+<!--消息界面模板-->
+<ion-view id="add_rent_need" hide-nav-bar="true" view-title="">
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			求租需求
+		</div>
+		<div class="right">
+		</div>
+	</div>
+
+	<ion-content class="add-rent-need">
+		<div class="special-check">
+			<div class="title">求购需求</div>
+			<div class="list checkpicker">
+				<label ng-hide="needInfo && addSubData.Type!=2">
+					<input ng-model="addSubData.Type" type="radio" value="2"/>
+					<span class="wrap">整租</span>	
+				</label>
+				<label ng-hide="needInfo && addSubData.Type!=12">
+					<input ng-model="addSubData.Type" type="radio" value="12"/>
+					<span class="wrap">合租</span>	
+				</label>
+				<label ng-hide="needInfo && addSubData.Type!=16">
+					<input ng-model="addSubData.Type" type="radio" value="16"/>
+					<span class="wrap">房东委托</span>	
+				</label>
+				<label ng-hide="needInfo && addSubData.Type!=15">
+					<input ng-model="addSubData.Type" type="radio" value="15"/>
+					<span class="wrap">个人房源</span>	
+				</label>
+				<label ng-hide="needInfo && addSubData.Type!=4">
+					<input ng-model="addSubData.Type" type="radio" value="14"/>
+					<span class="wrap">品牌公寓</span>	
+				</label>
+				<label ng-hide="needInfo && addSubData.Type!=3">
+					<input ng-model="addSubData.Type" type="radio" value="3"/>
+					<span class="wrap">商铺</span>	
+				</label>
+				<label ng-hide="needInfo && addSubData.Type!=4">
+					<input ng-model="addSubData.Type" type="radio" value="4"/>
+					<span class="wrap">写字楼</span>	
+				</label>
+				<label ng-hide="needInfo && addSubData.Type!=6">
+					<input ng-model="addSubData.Type" type="radio" value="6"/>
+					<span class="wrap">厂房</span>	
+				</label>
+				<label ng-hide="needInfo && addSubData.Type!=8">
+					<input ng-model="addSubData.Type" type="radio" value="8"/>
+					<span class="wrap">仓库</span>	
+				</label>
+				<label ng-hide="needInfo && addSubData.Type!=10">
+					<input ng-model="addSubData.Type" type="radio" value="10"/>
+					<span class="wrap">车位</span>	
+				</label>
+			</div>
+		</div>
+
+		<div class="price-range">
+			<div class="title">您的价格预算</div>
+			<input type="text" id="add_need_rent_price_range" value="" />
+			
+			<div class="title">您想买多大面积</div>
+			<input type="text" id="add_need_rent_space_range" name="example_name" value="" />
+		</div>
+
+		<div class="title-wrapper">您想买的区域是</div>
+		<div class="picker-input-wrapper">
+			<div class="picker-input">
+				<input type="text" class="rent-need-district" name="district" ng-model="subData.District" required=""  placeholder="请选择区域">
+			</div>
+		</div>
+
+		<div ng-show="addSubData.Type==2||addSubData.Type==12||addSubData.Type==16||addSubData.Type==14||addSubData.Type==15" class="title-wrapper">您想买几居</div>
+		<div ng-show="addSubData.Type==2||addSubData.Type==12||addSubData.Type==16||addSubData.Type==14||addSubData.Type==15" class="picker-input-wrapper">
+			<div class="picker-input">
+				<div class="down-input">
+					<div class="cell-item">{{addSubData.RoomType}}</div>
+					<div class="cell-item">室</div>
+					<div class="cell-item">{{addSubData.HallType}}</div>
+					<div class="cell-item">厅</div>
+					<div class="cell-item">{{addSubData.BathType}}</div>
+					<div class="cell-item">卫</div>
+				</div>
+				<input class="rent-need-room-num" type="text">
+			</div>
+		</div>
+
+		<div ng-hide="addSubData.Type==4||addSubData.Type==6||addSubData.Type==8" class="title-wrapper">您的意向小区</div>
+		<div ng-hide="addSubData.Type==4||addSubData.Type==6||addSubData.Type==8" ui-sref="rentNeedBC" class="picker-input-wrapper">
+			<div class="picker-input" ng-class="{true:'pad active',false:'pad'}[addSubData.CommunityName!='']">
+				{{addSubData.CommunityName || '非必填'}}
+			</div>
+		</div>
+
+		<div class="title-wrapper">详细地址</div>
+		<div class="picker-input-wrapper">
+			<div class="fake-textarea">
+				<textarea placeholder="非必填" ng-model="addSubData.Address"></textarea>
+			</div>
+		</div>
+		<div class="title-wrapper">具体需求</div>
+		<div class="picker-input-wrapper">
+			<div class="fake-textarea">
+				<textarea placeholder="非必填" ng-model="addSubData.Attach"></textarea>
+			</div>
+		</div>
+
+		<div ng-click="save()" class="ft-sub-btn button">提交</div>
+	</ion-content>
+
+</ion-view>
+
+
+

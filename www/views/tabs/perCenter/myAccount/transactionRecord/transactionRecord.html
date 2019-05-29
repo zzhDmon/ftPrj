@@ -1,0 +1,67 @@
+
+<!--对话模板-->
+<ion-view id="transaction_record" view-title="交易记录" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			交易记录
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	<ion-content class="transaction-record">
+		<div class="main">
+			<div class="item-wrap">
+					<!-- ui-sref="dealDetail({order:item.RecordType})"  -->
+				<div ng-repeat="item in recordList track by $index" class="record-item">
+					<div class="left-cell">
+						<svg ng-if="item.RecordType==1" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-tuijianjiangli"></use>
+						</svg>
+						<svg ng-if="item.RecordType==2||item.RecordType==3" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-commission"></use>
+						</svg>
+						<svg ng-if="item.RecordType==4" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-tixian-"></use>
+						</svg>
+						<svg ng-if="item.RecordType==5" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-chongzhi-"></use>
+						</svg>
+						<svg ng-if="item.RecordType==6" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-ruzhang"></use>
+						</svg>
+						<svg ng-if="item.RecordType==7" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-chuzhang"></use>
+						</svg>
+						<svg ng-if="item.RecordType==99" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-qita"></use>
+						</svg>
+					</div>
+
+					<div class="mid-cell">
+							<!-- 推荐奖励 = 1, 佣金奖励, 佣金结算, 提现, 充值, 入账, 出账,
+							其他 = 99, -->
+					
+						<div ng-if="item.RecordType==1" class="top-cell">推荐奖励</div>
+						<div ng-if="item.RecordType==2" class="top-cell">佣金奖励</div>
+						<div ng-if="item.RecordType==3" class="top-cell">佣金结算</div>
+						<div ng-if="item.RecordType==4" class="top-cell">提现</div>
+						<div ng-if="item.RecordType==5" class="top-cell">充值</div>
+						<div ng-if="item.RecordType==6" class="top-cell">入账</div>
+						<div ng-if="item.RecordType==7" class="top-cell">出账</div>
+						<div ng-if="item.RecordType==99" class="top-cell">其他</div>
+						<div class="bot-cell">{{item.Time | recordTimeFilter}}</div>
+					</div>
+					<div class="right-cell">
+						{{item.TotalFee | feeNumFilter}}
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</ion-content>
+	
+</ion-view>
+

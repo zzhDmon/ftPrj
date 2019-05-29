@@ -1,0 +1,18 @@
+#change_pwd{
+    .change-pwd{
+        margin-top: $head-height;
+        padding: 0;
+        .input-list{
+            padding: 0 $view-padding;
+            .item-input{
+                margin: 0;
+                padding: 6px 0 5px 0;
+                border: none;
+                font-size: 16px;
+                border-bottom:1px solid $line-main-color; 
+            }
+        }
+        
+    }
+   
+}

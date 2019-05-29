@@ -1,0 +1,116 @@
+
+html{
+	font-size: 16px;
+	color: rgb(51,51,51);
+}
+
+/* iconfont 多色图标*/
+.icon {	 
+	min-width: 10px; 
+	min-height: 10px;
+	/* vertical-align: -0.15em; */
+	fill: currentColor;
+	overflow: hidden;
+}
+/* modal背景层 */
+.modal-backdrop.active{
+    background-color: rgba(0,0,0,0.4);
+}
+/* button */
+.button.activated{
+	border: none;
+}
+
+.card{
+	box-shadow: none;
+	margin: 0!important;
+}
+ul:after {
+	content: "\0020";
+	display: block;
+	height: 0;
+	clear: both;
+	}
+li{
+	list-style: none;
+	float: left;
+}
+/* better-picker去除浮动 */
+li.wheel-item{
+	float: none;
+}
+
+		
+
+
+/*卡片间隔断区域*/
+.offline{
+	width: 100%;
+	height: 10px;
+	background-color:rgb(246,246,246);
+}
+/*1px 间断线*/
+.borderline{
+	width: 100%;
+	height: 0;
+	position: relative;
+    border:none;
+}
+.borderline:after{
+	content: '';
+    position: absolute;
+    z-index: 999;
+    left: 0;
+    /* background: rgb(230,230,230); */
+    background: rgb(224,224,224);
+    width: 100%;
+    height: 1px;
+    -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+    -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+}
+
+
+a.button-small{
+	color: gray;
+}
+.action-sheet .button{
+    font-size: 14px!important;
+}
+
+/*模态框样式*/
+div.loading{
+	padding: 15px!important;
+	font-size: 14px!important;
+}
+
+/*头像裁剪样式*/
+body>div>a{
+	background-color: gray!important;
+	color: rgb(255,255,255)!important;
+}
+
+/*退出及更新确认框样式*/
+.popup{
+	border-radius: 3px!important;
+	background: white!important;
+}
+.popup-buttons {
+  padding: 0!important;
+  min-height: 45px!important;
+   }
+.popup-buttons .button {
+    border-radius: 0!important;
+    margin-right: 0!important;
+}
+.popup-buttons .button-positive {
+    background-color: rgb(255,210,2)!important;
+}
+.popup-buttons .button-default.activated {
+    border-color: rgba(0,0,0,0)!important;
+}
+
+
+
+

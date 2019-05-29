@@ -1,0 +1,96 @@
+#add_sell_room{
+    .add-sell-room{
+        margin: $head-height 0 0;
+        .row-item{
+            padding: 0 $view-padding;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            line-height: 50px;
+            border-bottom: 1px solid $line-main-color;
+            .left-name{
+               width: 120px;
+               height: 50px; 
+               font-size: 16px;
+               color: $font-main-color;
+            }
+            .mid-input{
+                width: calc(100% - 150px);
+                text-align: right;
+                line-height: 50px;
+                font-size: 16px;
+                color: $font-sup-color;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                word-break: keep-all;
+                input{
+                    margin: 0;
+                    padding: 0;
+                    width: 100%;
+                    height: 48px;
+                    text-align: right;
+                    font-size: 16px;
+                    color: $font-sup-color;
+                    background-color: white;
+                }
+            }
+            .mid-input-text{
+                width: calc(100% - 180px);
+
+                text-align: right;
+                line-height: 50px;
+                font-size: 16px;
+                color: $font-sup-color;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                word-break: keep-all;
+                input{
+                    margin: 0;
+                    padding: 0;
+                    width: 100%;
+                    height: 48px;
+                    text-align: right;
+                    font-size: 16px;
+                    color: $font-sup-color;
+                    background-color: white;
+                }
+            }
+            .right-icon{
+                width: 30px;
+                height: 50px;
+                color: $font-minor-color;
+                text-align: right;
+            }
+            .right-text{
+                width: 60px;
+                height: 50px;
+                color: $font-minor-color;
+                text-align: right;
+            }
+            .toggle{
+                padding: 15px 5px 0;
+                .track{
+                    .handle{
+                        top:17px;
+                    }
+                }
+            }
+        }
+
+        .save{
+            margin: 40px auto;
+            width: 90%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 16px;
+            color: $font-main-color;
+            background-color: $bg-main-color;
+            border-radius: 5px;
+
+        }
+    }
+}

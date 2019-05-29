@@ -1,0 +1,223 @@
+
+<!--对话模板-->
+<ion-view id="edit_my_home_page" hide-nav-bar=true  view-title="个人资料编辑" class='dark'>
+	<div class="header header-black">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1" style="font-size: 25px!important;"></i>
+		</div>
+		<div class="title">
+			个人资料编辑
+		</div>
+		<div ng-click="save()" class="right">保存</div>
+	</div>
+
+	<ion-content class="edit-my-home-page">
+		<div class="main">
+			<div ui-sref="headimgPreview" class="img-row-item">
+				<div class="text-cell">头像</div>
+				<div class="img-cell">
+					<img ng-src="{{myInfo.ShowImage}}" alt="">
+				</div>
+			</div>
+
+			<div class="offline"></div>
+			<div ng-show="myInfo.VStatus==2 || myInfo.VStatus==1" class="row-item">
+				<div class="left-cell">姓名</div>
+				<div class="right-big-cell overflow-omit-one">
+					<input ng-disabled="true" ng-model="myInfo.Name" type="text" placeholder="姓名">
+				</div>
+			</div>
+			<div ui-sref="realName" ng-hide="myInfo.VStatus==2 || myInfo.VStatus==1" class="row-item">
+				<div class="left-cell">姓名</div>
+				<div class="right-big-cell overflow-omit-one">
+					<input ng-disabled="true" ng-model="myInfo.Name" type="text" placeholder="姓名">
+				</div>
+			</div>
+
+			<div class="half-offline"></div>
+			<div ui-sref="changeInfo({name:'修改昵称'})" class="row-item">
+				<div class="left-cell">昵称</div>
+				<div class="mid-cell overflow-omit-one">{{myInfo.NickName}}</div>
+				<div class="right-cell"><i class="icon ion-chevron-right"></i></div>
+			</div>
+			<div class="half-offline"></div>
+			<div ui-sref="changeInfo({name:'个性签名'})" class="row-item">
+				<div class="left-cell">个性签名</div>
+				<div class="mid-cell overflow-omit-one">
+					{{myInfo.Discription}}
+					<span style="color:rgb(102,102,102)" ng-show="!myInfo.Discription">请输入个性签名</span>
+				</div>
+				<div class="right-cell"><i class="icon ion-chevron-right"></i></div>
+			</div>
+			<div class="half-offline"></div>
+			<div ui-sref="changeInfo({name:'工作年限'})" class="row-item">
+				<div class="left-cell">工作年限</div>
+				<div class="mid-cell overflow-omit-one">{{myInfo.WorkYears}}年</div>
+				<div class="right-cell"><i class="icon ion-chevron-right"></i></div>
+			</div>
+
+			<div class="half-offline"></div>
+			<div class="row-item row-item-toggle">
+				<div class="left-cell">性别</div>
+				<div class="mid-cell mid-radio">
+					<div class="label">
+						<label><input ng-model="myInfo.Sex" type="radio" name="isnewradio" value="男" /> <i class="iconfont icon-danxuan"></i><span>男</span></label>
+					</div>
+					<div class="label">
+						<label><input ng-model="myInfo.Sex" type="radio" name="isnewradio" value="女" /> <i class="iconfont icon-danxuan"></i><span>女</span></label>
+					</div>
+					<div class="label">
+						<label><input ng-model="myInfo.Sex" type="radio" name="isnewradio" value="保密" /> <i class="iconfont icon-danxuan"></i><span>未知</span></label>
+					</div>
+				</div>
+				<!-- <div ng-click="myInfo.ShowConfig.showMySex=!myInfo.ShowConfig.showMySex" class="right-cell">
+					<i ng-if="myInfo.ShowConfig.showMySex" class="iconfont icon-kejian"></i>
+					<i ng-if="!myInfo.ShowConfig.showMySex" class="iconfont icon-bukejian"></i>
+				</div> -->
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-change="blockChange('showMySex')" ng-model="myInfo.ShowConfig.showMySex" ng-checked="myInfo.ShowConfig.showMySex">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+			<div class="half-offline"></div>
+			<div class="row-item row-item-toggle">
+				<div class="left-cell">电话</div>
+				<div class="mid-cell">
+					<input ng-disabled="true" ng-model="myInfo.UserName" type="text">
+				</div>
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-change="myInfoChange()" ng-model="myInfo.IsShowPhone" ng-checked="myInfo.IsShowPhone">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+			<div class="half-offline" ng-class=""></div>
+			<div class="row-item " ng-class="{true:'row-item-toggle',false:''}[myInfo.Job.length>0]">
+				<div ui-sref="changeInfo({name:'职业'})" class="left-cell">职业</div>
+				<div ui-sref="changeInfo({name:'职业'})" class="mid-cell">
+					{{myInfo.Job}}
+				</div>
+
+				<label ng-show="myInfo.Job" class="toggle toggle-energized">
+					<input type="checkbox" ng-change="blockChange('showMyJob')" ng-model="myInfo.ShowConfig.showMyJob" ng-checked="myInfo.ShowConfig.showMyJob">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+				<div ng-hide="myInfo.Job" class="right-cell"><i class="icon ion-chevron-right"></i></div>
+			</div>
+
+			<div class="half-offline"></div>
+			<div class="row-item" ng-class="{true:'row-item-toggle',false:''}[myInfo.HouseHobby.length>0]">
+				<div ui-sref="changeInfo({name:'选房偏好'})" class="left-cell">选房偏好</div>
+				<div ui-sref="changeInfo({name:'选房偏好'})" class="mid-cell">
+					{{myInfo.HouseHobby}}
+				</div>
+				<label ng-show="myInfo.HouseHobby" class="toggle toggle-energized">
+					<input type="checkbox" ng-change="blockChange('showMyChoosePrefer')" ng-model="myInfo.ShowConfig.showMyChoosePrefer" ng-checked="myInfo.ShowConfig.showMyChoosePrefer">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+				<div ng-hide="myInfo.HouseHobby" class="right-cell"><i class="icon ion-chevron-right"></i></div>
+			</div>
+			
+
+			<div class="offline"></div>
+			<div class="row-item row-item-toggle">
+				<div class="left-cell">我的房源</div>
+				<div class="mid-cell"></div>
+				<!-- <div ng-click="myInfo.ShowConfig.showMyHouse=!myInfo.ShowConfig.showMyHouse" class="right-cell">
+					<i ng-if="myInfo.ShowConfig.showMyHouse" class="iconfont icon-kejian"></i>
+					<i ng-if="!myInfo.ShowConfig.showMyHouse" class="iconfont icon-bukejian"></i>
+				</div> -->
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-change="blockChange('showMyHouse')" ng-model="myInfo.ShowConfig.showMyHouse" ng-checked="myInfo.ShowConfig.showMyHouse">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+			<div class="half-offline"></div>
+			<div class="row-item row-item-toggle">
+				<div class="left-cell">我的需求</div>
+				<div class="mid-cell"></div>
+				<!-- <div ng-click="myInfo.ShowConfig.showMyNeed=!myInfo.ShowConfig.showMyNeed" class="right-cell">
+					<i ng-if="myInfo.ShowConfig.showMyNeed" class="iconfont icon-kejian"></i>
+					<i ng-if="!myInfo.ShowConfig.showMyNeed" class="iconfont icon-bukejian"></i>
+				</div> -->
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-change="blockChange('showMyNeed')" ng-model="myInfo.ShowConfig.showMyNeed" ng-checked="myInfo.ShowConfig.showMyNeed">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+			<div class="half-offline"></div>
+			<div class="row-item row-item-toggle">
+				<div class="left-cell">我的评测</div>
+				<div class="mid-cell"></div>
+				<!-- <div ng-click="myInfo.ShowConfig.showMyEvaluation=!myInfo.ShowConfig.showMyEvaluation" class="right-cell">
+					<i ng-if="myInfo.ShowConfig.showMyEvaluation" class="iconfont icon-kejian"></i>
+					<i ng-if="!myInfo.ShowConfig.showMyEvaluation" class="iconfont icon-bukejian"></i>
+				</div> -->
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-change="blockChange('showMyEvaluation')" ng-model="myInfo.ShowConfig.showMyEvaluation" ng-checked="myInfo.ShowConfig.showMyEvaluation">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+			<div class="half-offline"></div>
+			<div class="row-item row-item-toggle">
+				<div class="left-cell">我的招聘/应聘</div>
+				<div class="mid-cell"></div>
+				<!-- <div ng-click="myInfo.ShowConfig.showMyRecruitment=!myInfo.ShowConfig.showMyRecruitment" class="right-cell">
+					<i ng-if="myInfo.ShowConfig.showMyRecruitment" class="iconfont icon-kejian"></i>
+					<i ng-if="!myInfo.ShowConfig.showMyRecruitment" class="iconfont icon-bukejian"></i>
+				</div> -->
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-change="blockChange('showMyRecruitment')" ng-model="myInfo.ShowConfig.showMyRecruitment" ng-checked="myInfo.ShowConfig.showMyRecruitment">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+			<div class="half-offline"></div>
+			<div class="row-item row-item-toggle">
+				<div class="left-cell">我的店铺</div>
+				<div class="mid-cell"></div>
+				<!-- <div ng-click="myInfo.ShowConfig.showMyShop=!myInfo.ShowConfig.showMyShop" class="right-cell">
+					<i ng-if="myInfo.ShowConfig.showMyShop" class="iconfont icon-kejian"></i>
+					<i ng-if="!myInfo.ShowConfig.showMyShop" class="iconfont icon-bukejian"></i>
+				</div> -->
+				<label class="toggle toggle-energized">
+						<input type="checkbox" ng-change="blockChange('showMyShop')" ng-model="myInfo.ShowConfig.showMyShop" ng-checked="myInfo.ShowConfig.showMyShop">
+						<div class="track">
+							<div class="handle"></div>
+						</div>
+					</label>
+			</div>
+			<div class="half-offline"></div>
+			<div class="row-item row-item-toggle">
+				<div class="left-cell">我的任务</div>
+				<div class="mid-cell"></div>
+				<!-- <div ng-click="myInfo.ShowConfig.showMyTask=!myInfo.ShowConfig.showMyTask" class="right-cell">
+					<i ng-if="myInfo.ShowConfig.showMyTask" class="iconfont icon-kejian"></i>
+					<i ng-if="!myInfo.ShowConfig.showMyTask" class="iconfont icon-bukejian"></i>
+				</div> -->
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-change="blockChange('showMyTask')" ng-model="myInfo.ShowConfig.showMyTask" ng-checked="myInfo.ShowConfig.showMyTask">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+		</div>
+			
+	</ion-content>
+</ion-view>
+

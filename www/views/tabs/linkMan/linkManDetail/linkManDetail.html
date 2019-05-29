@@ -1,0 +1,185 @@
+<!--发现界面模板-->
+<ion-view id="link_man_detail" view-title="联系人详情" hide-nav-bar=true>
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			联系人详情
+		</div>
+		<div ng-hide="!targetInfo.isFriend || myselfInfo.account==targetId" ui-sref="setAliasName({id:targetId})" class="right" >
+			<i class="iconfont icon-sandiangengduo"></i>
+		</div>
+	</div>
+	
+	<ion-content class="link-man-detail">
+		<div ng-if="!targetId" class="main">
+			<div class="msg">
+				用户暂未开通房田账号
+			</div>
+		</div>
+		<div ng-if="targetId" class="main">
+			<div class="head-info">
+				<div class="user-info">
+					<div ng-click="showBigImg(ftInfo.ShowImage || 'http://imgs.wujiuyun.com//Images//logo.png')" class="left-cell">
+						<img class="headimg" ng-if="ftInfo.ShowImage" ng-src="{{ftInfo.ShowImage}}"/>
+						<div ng-if="!ftInfo.ShowImage" class="no-headimg">
+							<i class="iconfont icon-weidenglu"></i>
+						</div>
+					</div>
+					<div class="mid-cell">
+						<div class="top-cell">
+							<div class="left-item overflow-omit-one">{{ftInfo.NickName || '房田用户'}}</div>
+							<div class="mid-item">
+								<svg ng-if="!ftInfo.Role" class="icon" aria-hidden="true">
+									<use xlink:href="#icon-putongyonghu"></use>
+								</svg>
+								<svg ng-if="ftInfo.Role=='白银'" class="icon" aria-hidden="true">
+									<use xlink:href="#icon-gerenhuiyuan"></use>
+								</svg>
+								<svg ng-if="ftInfo.Role=='黄金'" class="icon" aria-hidden="true">
+									<use xlink:href="#icon-tuanduihuiyuan"></use>
+								</svg>
+								<svg ng-if="ftInfo.Role=='铂金'" class="icon" aria-hidden="true">
+									<use xlink:href="#icon-shanghulaobandiaozhuixunzhang"></use>
+								</svg>
+								<svg ng-if="ftInfo.Role=='钻石'" class="icon" aria-hidden="true">
+									<use xlink:href="#icon-qiyezhudiaozhuixunzhang"></use>
+								</svg>
+							</div>
+							<div ng-hide="ftInfo.IsFollow" class="follow-item small-font-size" ng-click="followAction()"><i class="iconfont icon-tianjia"></i>关注</div>
+							<div ng-show="ftInfo.IsFollow" class="follow-item active small-font-size" ng-click="unFollowAction()"><i class="iconfont icon-xuanze"></i>已关注</div>
+						</div>
+						<div class="center-cell overflow-omit-one">{{ftInfo.Discription || '签名'}}</div>
+						<!-- <div class="center-cell overflow-omit-one" ng-bind-html="ftInfo.Discription | highlight:ftInfo.Discription:'在'"></div> -->
+						<div class="bot-cell overflow-omit-one">{{ftInfo.UserName}}</div>
+					</div>
+					<div class="right-cell">
+						<div class="real-name">
+							<div ng-show="ftInfo.VStatus==2" class="icon-cell">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-shimingrenzheng-"></use>
+								</svg>
+							</div>
+							<div ng-show="ftInfo.VStatus==2" class="txt-cell">已实名</div>
+							<div ng-hide="ftInfo.VStatus==2" class="icon-cell">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-weishiming"></use>
+								</svg>
+							</div>
+							<div ng-hide="ftInfo.VStatus==2" class="txt-cell">未实名</div>
+						</div>
+						<div ui-sref="myInfoQrcode({id:targetId})" class="qrcode">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-erweima"></use>
+							</svg>
+						</div>
+						<div class="follow-num">{{ftInfo.FollowNum | overTenThousandFilter}}人已关注</div>
+					</div>
+				</div>
+				<div class="video-photo">
+					<div ui-sref="hisBusinessCard({id:ftInfo.Id})" class="item-cell">
+						<div class="top-cell">
+							<i ng-hide="posterImageUrl" class="iconfont icon-tianjia"></i>
+							<div ng-show="posterImageUrl" class="in-top-cell" ng-style="{'background-image': 'url('+posterImageUrl+')'}"></div>
+						</div>
+						<div class="bot-cell">简介</div>
+					</div>
+					<div ui-sref="myAlbum({uid:ftInfo.Id})" class="item-cell">
+						<div class="top-cell">
+							<i ng-hide="photoBgImg" class="iconfont icon-tianjia"></i>
+							<div ng-show="photoBgImg" class="in-top-cell" ng-style="{'background-image': 'url('+photoBgImg+')'}"></div>
+						</div>
+						<div class="bot-cell">相册</div>
+					</div>
+					<div ui-sref="myPhotosAndVideos({uid:ftInfo.Id})" class="item-cell">
+						<div class="top-cell">
+							<i ng-hide="videoBgImg" class="iconfont icon-tianjia"></i>
+							<div ng-show="videoBgImg" class="in-top-cell" ng-style="{'background-image': 'url('+videoBgImg+')'}"></div>
+						</div>
+						<div class="bot-cell">VCR/视频</div>
+					</div>
+				</div>
+				<!-- 动态 -->
+				<div ng-click="goHisBusiness(ftInfo.Id,4)" class="diary-wrapper">
+					<div class="left-cell">动态</div>
+					<div class="mid-cell minerool">
+						<div class="linkman-detail-tl-swiper swiper-container">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide overflow-omit-one" ng-repeat="item in newsList track by $index">{{item}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 他的业务 -->
+			<div ng-hide="childPageName" class="func-entry-wrapper">
+				<div ng-click="showChildPage('myFT')" class="func-entry">
+					<div class="circle-item housesource">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-fangyuan-"></use>
+						</svg>
+					</div>
+					<div class="name-item">房产</div>
+				</div>
+				<div ng-click="showChildPage('myMall')" class="func-entry">
+					<div ripple ripple-hold ripple-dark class="circle-item store">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-shangcheng-"></use>
+						</svg>
+					</div>
+					<div class="name-item">商城</div>
+				</div>
+				<div class="func-entry">
+					<div ripple ripple-hold ripple-dark class="circle-item college">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-shangxueyuan-"></use>
+						</svg>
+					</div>
+					<div class="name-item">商学院</div>
+				</div>
+				<div ng-click="showChildPage('myHunting')" class="func-entry">
+					<div ripple ripple-hold ripple-dark class="circle-item location">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-bendifuwu-"></use>
+						</svg>
+					</div>
+					<div class="name-item">本地服务</div>
+				</div>
+				<div class="func-entry">
+					<div ripple ripple-hold ripple-dark class="circle-item pinpai">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-pinpai-"></use>
+						</svg>
+					</div>
+					<div class="name-item">品牌</div>
+				</div>
+			</div>
+
+			<!-- <div ng-if="targetInfo.isFriend">
+				<div class="offline"></div>
+				<div ui-sref="setNoteName({id:targetId})" class="set-note">设置备注</div>
+				<div class="offline"></div>
+			</div> -->
+			<!-- <div ng-click="setNote()">
+				<div class="offline"></div>
+				<div class="set-note">设置备注</div>
+				<div class="offline"></div>
+			</div> -->
+			
+			<!-- 自己信息 无法操作 -->
+			<div ng-hide="myselfInfo.account==targetId">																
+				<div class="action-wrapper">
+					<!-- <div ui-sref="personalHomePage({id:targetInfo.account})" ng-if="targetInfo.isFriend" class="action-btn">个人主页</div> -->
+					<!-- <div ui-sref="hisBusinessCard({id:ftInfo.Id})" ng-if="targetInfo.isFriend" class="action-btn">个人主页</div> -->
+					<div ui-sref="dialogBox({id:targetInfo.account})" class="action-btn">发消息</div>
+					<div ng-click="addFriend(targetInfo.account)" ng-if="!targetInfo.isFriend" class="action-btn">添加好友</div>
+					<div ng-click="deleteFriend(targetInfo.account)" ng-if="targetInfo.isFriend" class="action-btn delete-btn">删除好友</div>
+				</div>
+			</div>
+		</div>	
+
+	</ion-content>
+	
+</ion-view>

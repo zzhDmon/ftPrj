@@ -1,0 +1,180 @@
+<!--对话模板-->
+<ion-view id="add_other" view-title="" hide-nav-bar=true >
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			<span ng-if="pageType==2">写字楼</span>
+			<span ng-if="pageType==3">厂房</span>
+			<span ng-if="pageType==4">仓库</span>
+			<span ng-if="pageType==5">车位</span>
+			<span ng-if="behaviour==1">出售</span><span ng-if="behaviour==2">出租</span>{{headtitle}}
+		</div>
+		<div class="right"></div>
+	</div>
+	
+	<ion-content on-scroll="addOtherScrollListing()" class="add-other">
+		<h5>带<span class="bg-main-color">*</span>为必填项</h5>
+		<div class="form-main">
+			<div ui-sref="addOtherCommunity" class="row-item">
+				<div class="left-name">
+					<span ng-show="pageType==2">标地</span>
+					<span ng-hide="pageType==2">小区</span>
+				</div>
+				<div class="mid-input">
+						{{addOtherSubData.CommunityName}}
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangyou1"></i>
+				</div>
+			</div>
+
+			<div class="offline"></div>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">
+						<span ng-if="behaviour==1">售价</span>
+						<span ng-if="behaviour==2">租金</span>
+						<span class="bg-main-color">*</span>
+					</div>
+					<div class="mid-input-text">
+						<input ng-model="addOtherSubData.Price" type="number">
+					</div>
+					<div class="right-text">
+						<span ng-if="behaviour==1">万元</span>
+						<span ng-if="behaviour==2">元/月</span>
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">面积<span class="bg-main-color">*</span></div>
+					<div class="mid-input-text">
+						<input ng-model="addOtherSubData.Space" type="number">
+					</div>
+					<div class="right-text">
+						平米
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div ng-if="pageType==2" class="row-item">
+					<div class="left-name">得房率</div>
+					<div class="mid-input">
+						<input ng-model="addOtherSubData.HouseRate" type="number">
+					</div>
+					<div class="right-icon">
+						%
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div ng-if="pageType==2" class="row-item">
+					<div class="left-name">楼层类型</div>
+					<div class="mid-input">
+						<input ng-model="addOtherShowData.loucengType" class="other-loucengtype" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">代理状态</div>
+					<div class="mid-input">
+						<input ng-model="addOtherShowData.proxType" class="other-proxtype" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>
+			<div class="row-item">
+				<div class="left-name" ng-if="behaviour==1">业主直售</div>
+				<div class="left-name" ng-if="behaviour==2">业主直租</div>
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-model="addOtherSubData.UserType" ng-true-value="3" ng-false-value="2">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+				
+
+			<div class="offline"></div>
+			<div ui-sref="addOtherTD({name:'标题'})" class="row-item">
+				<div class="left-name">标题<span class="bg-main-color">*</span></div>
+				<div class="mid-input">
+					{{addOtherSubData.Title}}
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangyou1"></i>
+				</div>
+			</div>
+			<div ui-sref="addOtherTD({name:'房源描述'})" class="row-item">
+				<div class="left-name">描述</div>
+				<div class="mid-input">
+					{{addOtherSubData.Discription}}
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangyou1"></i>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="offline"></div>
+		<div class="indoor otherIndoorImg" id="other_img_wrapper">
+			<h4>房源图片</h4>
+			<div class="warning">图片宽度和高度都不能低于600像素，至少3张，最多10张（轻拉可拖动换图片次序，首图默认为封面）</div>
+			<ul id="addOther_sortindoor_img">
+				<li ng-repeat="img in addOtherSubData.IndoorShowImages">
+					<div class="img">
+						<img ng-src="{{img}}" alt="房源图"/>
+						<span ng-click="remove($index)"><i class="iconfont icon-guanbi1"></i></span>
+					</div>
+				</li>
+			</ul>
+			
+			<div class="chooseImg">
+				<div ng-click="photoChoose()" class="in-choose">
+					<div class="img">
+						<div class="top"><i class="iconfont icon-tianjia-3"></i></div>
+						<div class="bot">选择图片</div>
+					</div>
+				</div>
+			</div>
+			<div class="chooseImg">
+				<div ng-click="cameraBase()" class="in-choose">
+					<div class="img">
+						<div class="top"><i class="iconfont icon-xiangji-1"></i></div>
+						<div class="bot">拍照上传</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="btn-wrapper">
+			<div ng-click="showPreviewModal()" class="btn-item">预览</div>
+			<div ng-click="publish()" class="btn-item">发布</div>
+		</div>
+	</ion-content>
+
+	
+	
+	<script id="other_GoLogin-modal" type="text/ng-template">		
+		<ion-modal-view class="after_clickpublish_go_login_modal">
+			<div ng-include="'views/includes/afterClickPublish/afterClickPublish.html'"></div>
+		</ion-modal-view>
+	</script>
+	<!-- 预览 -->
+	<script id="add_other_preview_modal" type="text/ng-template">
+		<ion-modal-view class="add-other-preview-modal">
+			<div ng-include="'views/includes/addOtherPreviewModal/addOtherPreviewModal.html'"></div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

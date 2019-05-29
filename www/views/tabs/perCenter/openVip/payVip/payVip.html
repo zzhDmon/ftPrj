@@ -1,0 +1,230 @@
+<ion-view id="pay_vip" view-title="购买会员" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			购买会员
+		</div>
+		<div class="right">
+		</div>
+	</div>
+	<ion-content on-swipe-right="onSwipeRight()" class="pay-vip">
+		<div class="head">
+			<ul>
+				<li>
+					<div class="left">开通服务</div>
+					<div class="right">
+						{{vipName}}
+					</div>
+				</li>
+				<!-- <li>
+					<div class="left left-cell">购买年限</div>
+					<div class="mid-cell">
+						<input ng-change="inputYear()" ng-model="yearValue" placeholder="请输入购买年限" type="text">
+					</div>
+					<div class="right-cell">
+						年
+					</div>
+				</li> -->
+				<li>
+					<div class="left">应付金额</div>
+					<div class="right">￥{{shoulePay}}</div>
+				</li>
+			</ul>
+			<div class="protocol-wrapper">
+				<div ng-click="siwtchAgreeStatus()" ng-hide="agreeProtocol" class="fake-icon"></div>
+				<div ng-click="siwtchAgreeStatus()" ng-show="agreeProtocol" class="icon-wrapper">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-xuanze-"></use>
+					</svg>
+				</div>
+				<div class="txt">本人已阅读并同意签署<span ui-sref="vipProtocol">《房田会员协议》</span></div>
+			</div>
+			<div class="sub-wrapper">
+				<div ng-click="choosePayType()" ng-disabled="orderCanceled" class="button sub-btn">立即支付</div>
+			</div>
+		</div>
+		<div class="offline"></div>
+	</ion-content>
+
+		 
+	<!-- 选择支付方式 -->
+	<script id="vip_pay_modal" type="text/ng-template">
+		<ion-modal-view id="vip_pay_modalview">
+			<div ng-click="closeModal()" class="head-close">
+				<div class="left-icon"><i class="iconfont icon-ego-guanbi"></i></div>
+				<div class="right-txt">支付</div>
+			</div>
+			<div class="pay-for">
+				<div class="money">￥{{shoulePay}}</div>
+				<p><span ng-click="initBalance(true)">刷新</span>账户余额：￥{{myBalance}}</p>
+			</div>
+			<div class="type-list">
+				<label>
+					<div class="oneOf">
+						<div class="left-icon yinhang">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-zhanghuyue-"></use>
+							</svg>
+						</div>
+						<div class="mid-cont">账户余额</div>
+						<div class="right-radio">
+							<input ng-model="payType.type" type="radio" name="paytype" value="0" /><i class="iconfont icon-choosehandle"></i>
+						</div>
+					</div>
+				</label>
+				<label>
+					<div class="oneOf">
+						<div class="left-icon"><i class="iconfont icon-weixinzhifu"></i></div>
+						<div class="mid-cont">微信支付</div>
+						<div class="right-radio">
+							<input ng-model="payType.type" type="radio" name="paytype" value="1" /><i class="iconfont icon-choosehandle"></i>
+						</div>
+					</div>
+				</label>
+				
+				<label>
+					<div class="oneOf">
+						<div class="left-icon">
+							<i class="iconfont icon-zhifubao"></i>
+						</div>
+						<div class="mid-cont">支付宝支付</div>
+						<div class="right-radio">
+							<input ng-model="payType.type" type="radio" name="paytype" value="2" /><i class="iconfont icon-choosehandle"></i>
+						</div>
+					</div>
+				</label>
+<!-- 路由参数设置 -->
+				<div ui-sref="posPay({productid:productId,fee:shoulePay*100,year:yearValue})" class="oneOf">
+					<div class="left-icon yinhang">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-POStubiao"></use>
+						</svg>
+					</div>
+					<div class="mid-cont">POS支付</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangyou1"></i>
+					</div>
+				</div>
+				<!-- <label>
+					<div class="oneOf">
+						<div class="left-icon yinhang">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-chaifenzhifu"></use>
+							</svg>
+						</div>
+						<div class="mid-cont">拆分支付</div>
+						<div class="right-radio">
+							<input ng-model="payType.type" type="radio" name="paytype" value="4" /><i class="iconfont icon-choosehandle"></i>
+						</div>
+					</div>
+				</label> -->
+				<label ng-if="choosedBankCard">
+					<div class="oneOf">
+						<div class="left-icon yinhang">
+							<svg ng-if="choosedBankCard.bankName=='工商银行'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-gongshangyinhang"></use>
+							</svg>
+							<svg ng-if="choosedBankCard.bankName=='农业银行'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-nongyeyinhang"></use>
+							</svg>
+							<svg ng-if="choosedBankCard.bankName=='中国银行'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-zhongguoyinhang"></use>
+							</svg>
+							<svg ng-if="choosedBankCard.bankName=='建设银行'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-jiansheyinhang"></use>
+							</svg>
+							<svg ng-if="choosedBankCard.bankName=='交通银行'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-jiaotongyinhang"></use>
+							</svg>
+							<svg ng-if="choosedBankCard.bankName=='邮储银行'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-youchuyinhang"></use>
+							</svg>
+							<svg ng-if="choosedBankCard.bankName=='招商银行'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-zhaoshangyinhang"></use>
+							</svg>
+							<svg ng-if="choosedBankCard.bankName=='平安银行'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-pinganyinhang"></use>
+							</svg>
+							<svg ng-if="choosedBankCard.bankName=='华夏银行'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-huaxiayinhang"></use>
+							</svg>
+							<svg ng-if="choosedBankCard.bankName=='光大银行'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-guangdayinhang"></use>
+							</svg>
+							<svg ng-if="choosedBankCard.bankName=='浦发银行'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-pufayinhang"></use>
+							</svg>
+							<svg ng-if="choosedBankCard.bankName=='中信银行'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-zhongxinyinhang"></use>
+							</svg>
+							<svg ng-if="choosedBankCard.bankName=='民生银行'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-minshengyinhang"></use>
+							</svg>
+							<svg ng-if="choosedBankCard.bankName=='兴业银行'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-xingyeyinhang"></use>
+							</svg>
+							<svg ng-if="choosedBankCard.bankName=='广发银行'" class="icon" aria-hidden="true">
+								<use xlink:href="#icon-guangfayinhang"></use>
+							</svg>
+						</div>
+						<div class="mid-cont">
+							<div class="top">{{choosedBankCard.bankName}}</div>
+							<div class="bot">（
+								<span ng-if="choosedBankCard.cardType==1">借记卡</span>
+								<span ng-if="choosedBankCard.cardType==2">信用卡</span>
+								{{choosedBankCard.bankCardNo | cardNoFilter}}
+								）
+							</div>
+						</div>
+						<div class="right-radio">
+							<input ng-model="payType.type" type="radio" name="paytype" value="3" /><i class="iconfont icon-choosehandle"></i>
+						</div>
+					</div>
+				</label>
+				<div ui-sref="tabs.myBankCard({actiontype:'choosebankcard'})" class="other-card">
+					<div class="left-text">选择银行卡</div>
+					<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+				</div>
+			</div>
+			<div class="pay-now">
+				<div class="pay" ng-click="Pay()" ng-hide="(myBalance<shoulePay)&&(payType.type==0)">
+					确认支付
+				</div>
+				
+				<div class="pay" ui-sref="tabs.topUp" ng-show="(myBalance<shoulePay)&&(payType.type==0)">
+					余额不足，去充值(-￥{{shoulePay - myBalance | number:2}})
+				</div>
+			</div>
+		</ion-modal-view>
+	</script>
+
+	<!-- 验证码 -->
+	<script id="pay_auth_code_modal" type="text/ng-template">
+		<ion-modal-view class="pay-auth-code-modalview">
+			<div ng-click="closeAuthCodeModal()" class="header">
+				<div class="back"><i class="iconfont icon-guanbi1"></i></div>
+				<div class="title">请输入验证码</div>
+				<div class="right"></div>
+			</div>
+			<ion-content>
+				<div class="main">
+					<div class="money-item">
+						￥{{shoulePay}}
+					</div>
+					<div class="ver-code flex-item">
+						<div class="left-cell">验证码</div>
+						<div class="mid-cell">
+							<input type="text" ng-model="confirmCardData.Code" placeholder="输入验证码">
+						</div>
+					</div>
+					<div class="ft-sub-btn" ng-click="confirmCardPay()">
+						立即付款
+					</div>
+				</div>
+			</ion-content>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

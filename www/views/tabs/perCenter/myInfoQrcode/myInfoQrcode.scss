@@ -1,0 +1,64 @@
+#my_info_qrcode{
+    .my-info-qrcode{
+        margin-top: $head-height;
+        background-color: rgba(0,0,0,0.3);
+        .main{
+            margin: 50px auto 0;
+            padding: 10px;
+            width: 300px;
+            background-color: white;
+            .user-info{
+                width: 100%;
+                .avatar{
+                    margin: auto;
+                    width: 40px;
+                    height: 40px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                    }
+                }
+                .name{
+                    width: 100%;
+                    height: 25px;
+                    text-align: center;
+                    line-height: 25px;
+                    font-size: 16px;
+                    color: $font-main-color;
+                }
+            }
+            .qrcode-wrap{
+                position: relative;
+                margin: 20px auto 0;
+                padding: 0;
+                width: 240px;
+                height: 240px;
+                img{
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                }
+                #my_info_qrcode_detail{
+                    position: absolute;
+                    z-index: 1;
+                    top: 20px;
+                    left: 20px;
+                    //margin:calc(50% - 75px);
+                }
+            }
+            .text-des{
+                margin: 10px 0 0;
+                width: 100%;
+                height: 30px;
+                text-align: center;
+                line-height: 30px;
+                font-size: 16px;
+                font-weight: 500;
+                color: $font-main-color;
+            }
+        }
+        
+        
+    }
+}

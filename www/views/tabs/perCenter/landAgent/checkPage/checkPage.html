@@ -1,0 +1,70 @@
+<!--发现界面模板-->
+<ion-view id="check_page" view-title="审核" hide-nav-bar=true>
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			审核
+		</div>
+		<div class="right" >
+			
+		</div>
+	</div>
+	
+	<ion-content class="check-page" has-bouncing=false>
+			<div class="txt-info">
+				<div class="the-row">
+					<div class="left">带看人</div>
+					<div class="right">{{detailData.ProxerName}}</div>
+				</div>
+				<div class="the-row">
+					<div class="left">看房人</div>
+					<div class="right">{{detailData.BuyerName}}</div>
+				</div>
+				<div class="the-row">
+					<div class="left">楼&#x3000;盘</div>
+					<div class="right">{{detailData.NewHouseName}}</div>
+				</div>
+				<div class="the-row">
+					<div class="left">时&#x3000;间</div>
+					<div class="right">{{detailData.LookTime | limitTo:10}}</div>
+				</div>
+			</div>
+			<div class="img-info">
+				<h5>凭证</h5>
+				<ul ng-if="showType==0">
+					<li ng-repeat="img in detailData.ShowLookImage track by $index">
+						<img ng-src="{{img}}" alt="">
+					</li>
+				</ul>
+				<ul ng-if="showType==1">
+					<li ng-repeat="img in detailData.ShowDoneImage track by $index">
+						<img ng-src="{{img}}" alt="">
+					</li>
+				</ul>
+			</div>
+			<div class="remark">
+				<h5>备注</h5>
+				<textarea ng-model="detailData.Remark" placeholder="非必填"></textarea>
+			</div>
+
+			<div class="btns">
+				
+				<div ng-if="showType==0" class="subbtn">
+					<button ng-click="visitPass()" class="button">通过</button>
+				</div>
+				<div ng-if="showType==1" class="subbtn">
+					<button ng-click="tradePass()" class="button">通过</button>
+				</div>
+				<div class="subbtn">
+					<button ng-click="noPass()" class="button">不通过</button>
+				</div>
+			</div>
+		
+
+	
+	</ion-content>
+	
+</ion-view>

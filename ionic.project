@@ -1,0 +1,26 @@
+{
+  "name": "iApp",
+  "app_id": "",
+  "proxies": [
+    {
+      "path": "/yuanChengDaiLi", 
+      "proxyUrl": "https://app.fang-tian.com"
+    },
+    {
+      "path": "/yuanChengTest", 
+      "proxyUrl": "http://192.168.0.59"
+    },
+    {
+      "path": "/imgDaili", 
+      "proxyUrl": "http://imgs.wujiuyun.com"
+    },
+    {
+      "path": "/backStage", 
+      "proxyUrl": "http://shop.fang-tian.com"
+    },
+    {
+      "path": "/mediaupload", 
+      "proxyUrl": "http://ftm.fang-tian.com"
+    }
+  ]
+}

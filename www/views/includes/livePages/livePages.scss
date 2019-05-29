@@ -1,0 +1,86 @@
+.live-contents{
+    width: 100vw;
+}
+// 首页
+// .live-contents.home{
+//     margin: $head-height 0 0;  
+//     .watch-live{
+//         width: 100%;
+//         height: 100%;
+//         img{
+//             display: block;
+//             width: 100%;
+//             height: 100%;
+//         }
+//     }
+// }
+// 关注
+.live-contents.focus{
+    .scroll-content{
+        margin: $head-height 0 40px;
+        .focus-list{
+            width: 100%;
+            .focus-item{
+                padding: 10px $view-padding;
+                width: 100%;
+                border-bottom: 1px solid $line-main-color;
+                .owner-info{
+                    width: 100%;
+                    height: 40px;
+                    display: flex;
+                    justify-content: flex-start;
+                    .owner-img{
+                        width: 40px;
+                        height: 40px;
+                        img{
+                            display: block;
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                        }
+                    }
+                    .name-time{
+                        padding: 0 0 0 10px;
+                        width: calc(100% - 40px);
+                        line-height: 20px;
+                        .name{
+                            font-size: 16px;
+                            color: $font-main-color;
+                        }
+                        .time{
+                            font-size: 14px;
+                            color: $font-sup-color;
+                        }
+                    }
+                }
+                .preview-item{
+                    padding: 10px 0;
+                    width: 100%;
+                    height: 170px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .item-title{
+                    width: 100%;
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 16px;
+                    color: $font-main-color;
+                }
+                .bot-actions{
+                    width: 100%;
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 16px;
+                    color: $font-sup-color;
+                    .iconfont{
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+

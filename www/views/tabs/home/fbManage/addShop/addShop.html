@@ -1,0 +1,390 @@
+<!--对话模板-->
+<ion-view id="add_shop" view-title="" hide-nav-bar=true >	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			<span ng-if="behaviour==1">出售</span>
+			<span ng-hide="behaviour==1">
+				<span ng-hide="isTransfer.value">出租</span>
+				<span ng-show="isTransfer.value">转让</span>
+			</span>
+			商铺
+			<span ng-hide="paramsId>0">新增</span>
+			<span ng-if="paramsId>0">修改</span>
+			<!-- {{headtitle}} -->
+		</div>
+		<div class="right">
+			
+		</div>
+	</div>
+	
+	<ion-content on-scroll="addShopScrollListing()" class="add-shop">
+		<h5>带<span class="bg-main-color">*</span>为必填项</h5>
+		<div class="form-main">
+			<div ui-sref="addShopCommunity" class="row-item">
+				<div class="left-name">地址</div>
+				<div class="mid-input">
+					{{addShopSubData.CommunityName}}
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangyou1"></i>
+				</div>
+			</div>
+			<div ng-if="behaviour==1" ui-sref="addShopAddress" class="row-item">
+				<div class="left-name">房地坐落<span class="bg-main-color">*</span></div>
+				<div class="mid-input">
+					{{addShopSubData.Address}}
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangyou1"></i>
+				</div>
+			</div>
+
+			<div class="offline"></div>
+			<label for="">
+				<div ng-if="behaviour==1" class="row-item">
+					<div class="left-name">售价<span class="bg-main-color">*</span></div>
+					<div class="mid-input">
+						<input ng-model="addShopSubData.Price" type="number">
+					</div>
+					<div class="right-icon">
+						万元
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">面积<span class="bg-main-color">*</span></div>
+					<div class="mid-input">
+						<input ng-model="addShopSubData.Space" type="number">
+					</div>
+					<div class="right-icon">
+						平米
+					</div>
+				</div>
+			</label>
+			
+
+
+			<div ng-hide="behaviour==1">
+				<label for="">
+					<div class="row-item">
+						<div class="left-name">租金<span class="bg-main-color">*</span></div>
+						<div class="mid-input-text">
+							<input ng-model="addShopSubData.Price" type="number">
+						</div>
+						<div class="right-text">
+							元/月
+						</div>
+					</div>
+				</label>
+				<label for="">
+					<div class="row-item">
+						<div class="left-name">付款方式</div>
+						<div class="mid-input">
+							<input ng-model="addSellShowData.payType" class="shop-paytype" type="text">
+						</div>
+						<div class="right-icon">
+							<i class="iconfont icon-xiangxia2"></i>
+						</div>
+					</div>
+				</label>
+				
+			</div>
+
+			<div class="offline"></div>
+			<!-- <div class="row-item">
+				<div class="left-name">经营中</div>
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-model="addShopSubData.BusinessState" ng-true-value="0" ng-false-value="1">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div> -->
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">经营状态</div>
+					<div class="mid-input">
+						<input ng-model="addShopShowData.businessStatus" class="shop-businessstatus" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>	
+			</label>
+
+			<div class="row-item">
+				<div class="left-name">是否有夹层</div>
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-model="addShopSubData.FloorType" ng-true-value="2" ng-false-value="1">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+
+			<!-- <div class="row-item">
+				<div class="left-name">起始层</div>
+				<div class="mid-input">
+					<input ng-model="addShopSubData.Floor" class="shop-louceng-from" type="text">
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangxia2"></i>
+				</div>
+			</div> -->
+			<label for="">
+				<div ng-show="addShopSubData.FloorType==2" class="row-item">
+					<div class="left-name">夹</div>
+					<div class="mid-input">
+						<input ng-model="addShopSubData.MiddleFloor" type="number">
+					</div>
+					<div class="right-icon">
+						层
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">总楼层</div>
+					<div class="mid-input">
+						<input ng-model="addShopSubData.TotalFloor" class="shop-louceng-total" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>	
+
+			<div class="row-item">
+				<div class="left-name">可经营餐饮</div>
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-model="addShopSubData.manageType" ng-true-value="511574" ng-false-value="200">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+			<!-- <div class="row-item">
+				<div class="left-name">行业分类</div>
+				<div class="mid-input">
+					<input ng-model="addShopShowData.manageType" class="shop-managetype" type="text">
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangxia2"></i>
+				</div>
+			</div>
+			<div class="row-item">
+				<div class="left-name">经营行业</div>
+				<div class="mid-input">
+					<input ng-model="addShopShowData.subType" class="shop-subtype" type="text">
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangxia2"></i>
+				</div>
+			</div> -->
+
+			<div class="offline"></div>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">面宽</div>
+					<div class="mid-input">
+						<input ng-model="addShopSubData.With" type="number">
+					</div>
+					<div class="right-icon">
+						米
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">层高</div>
+					<div class="mid-input">
+						<input ng-model="addShopSubData.Height" type="number">
+					</div>
+					<div class="right-icon">
+						米
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">进深</div>
+					<div class="mid-input">
+						<input ng-model="addShopSubData.Depth" type="number">
+					</div>
+					<div class="right-icon">
+						米
+					</div>
+				</div>
+			</label>	
+				
+			<div ng-hide="behaviour==1 || isTransfer.value">
+				<div class="offline"></div>
+				<label for="">
+					<div class="row-item">
+						<div class="left-name">起租期</div>
+						<div class="mid-input">
+							<input ng-model="addShopSubData.MinMouth" type="number">
+						</div>
+						<div class="right-icon">
+							月
+						</div>
+					</div>
+				</label>
+				<label for="">
+					<div class="row-item">
+						<div class="left-name">免租期</div>
+						<div class="mid-input">
+							<input ng-model="addShopSubData.FreeMouth" type="number">
+						</div>
+						<div class="right-icon">
+							月
+						</div>
+					</div>	
+				</label>
+			</div>
+
+
+			<div ng-hide="behaviour==1" class="offline"></div>
+			<div ng-hide="behaviour==1" class="row-item">
+				<div class="left-name">商铺转让</div>
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-model="isTransfer.value" ng-checked="isTransfer.value">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+			<div ng-show="isTransfer.value">
+				<label for="">
+					<div class="row-item">
+						<div class="left-name">转让费</div>
+						<div class="mid-input">
+							<input ng-model="addShopSubData.TransferFee" type="number" placeholder="0 表示面议">
+						</div>
+						<div class="right-icon">
+							万元
+						</div>
+					</div>
+				</label>
+				<label for="">
+					<div class="row-item">
+						<div class="left-name">剩余租期</div>
+						<div class="mid-input">
+							<input ng-model="addShopSubData.ResiMonth" type="number">
+						</div>
+						<div class="right-icon">
+							月
+						</div>
+					</div>
+				</label>
+			</div>
+			
+
+		<div class="offline"></div>
+		<div class="row-item">
+			<div class="left-name">显示电话</div>
+			<label class="toggle toggle-energized">
+				<input type="checkbox" ng-model="addShopSubData.IsShowPhone" >
+				<div class="track">
+					<div class="handle"></div>
+				</div>
+			</label>
+		</div>
+		<div class="row-item">
+			<div ng-if="behaviour==1" class="left-name">业主直售</div>
+			<div ng-hide="behaviour==1" class="left-name">业主直租</div>
+			<label class="toggle toggle-energized">
+				<input type="checkbox" ng-model="addShopSubData.UserType" ng-true-value="3" ng-false-value="2">
+				<div class="track">
+					<div class="handle"></div>
+				</div>
+			</label>
+		</div>
+
+		<div class="offline"></div>
+		<div class="special-check">
+			<div class="title">商铺配套</div>
+			<div class="list checkpicker">
+				<label ng-repeat="configure in addShopSubData.ConfigurJson track by $index">
+					<input ng-model="configure.isChecked" ng-checked="configure.isChecked" type="checkbox" name="configureCheck" />
+					<span>{{configure.text}}</span>	
+				</label>
+			</div>
+		</div>
+
+		<div class="offline"></div>
+		<div ui-sref="addShopTD({name:'标题'})" class="row-item">
+			<div class="left-name">标题<span class="bg-main-color">*</span></div>
+			<div class="mid-input">
+				{{addShopSubData.Title}}
+			</div>
+			<div class="right-icon">
+				<i class="iconfont icon-xiangyou1"></i>
+			</div>
+		</div>
+		<div ui-sref="addShopTD({name:'商铺详情'})" class="row-item">
+			<div class="left-name">商铺详情</div>
+			<div class="mid-input">
+				{{addShopSubData.Discription}}
+			</div>
+			<div class="right-icon">
+				<i class="iconfont icon-xiangyou1"></i>
+			</div>
+		</div>
+
+		<div class="offline"></div>
+		<div class="indoor shop-indoor-img">
+			<h4>房源图片</h4>
+			<div class="warning">图片宽度和高度都不能低于600像素，至少3张，最多10张（轻拉可拖动换图片次序，首图默认为封面）</div>
+			<ul id="addShop_sortindoor_img">
+				<li ng-repeat="img in addShopSubData.IndoorShowImages">
+					<div class="img">
+						<img ng-src="{{img}}" alt="房源图"/>
+						<span ng-click="remove($index)"><i class="iconfont icon-guanbi1"></i></span>
+					</div>
+				</li>
+			</ul>
+			
+			
+			<div class="chooseImg">
+				<div ng-click="photoChoose()" class="in-choose">
+					<div class="img">
+						<div class="top"><i class="iconfont icon-tianjia-3"></i></div>
+						<div class="bot">选择图片</div>
+					</div>
+				</div>
+			</div>
+			<div class="chooseImg">
+				<div ng-click="cameraBase()" class="in-choose">
+					<div class="img">
+						<div class="top"><i class="iconfont icon-xiangji-1"></i></div>
+						<div class="bot">拍照上传</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="btn-wrapper">
+			<div ng-click="showPreviewModal()" class="btn-item">预览</div>
+			<div ng-click="publish()" class="btn-item">发布</div>
+		</div>
+	</ion-content>
+	
+	<script id="shop_GoLogin-modal" type="text/ng-template">
+		<ion-modal-view class="after_clickpublish_go_login_modal">
+			<div ng-include="'views/includes/afterClickPublish/afterClickPublish.html'"></div>
+		</ion-modal-view>
+	</script>
+	<!-- 预览 -->
+	<script id="add_shop_preview_modal" type="text/ng-template">
+		<ion-modal-view class="add-shop-preview-modal">
+			<div ng-include="'views/includes/addShopPreviewModal/addShopPreviewModal.html'"></div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+	
+	

@@ -1,0 +1,33 @@
+
+<!--对话模板-->
+<ion-view id="location_to_send" view-title="位置信息" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div ng-click="gMap()" class="title">
+			位置信息
+		</div>
+		<div ng-click="send()" class="right">
+			发送
+		</div>
+	</div>
+	
+	<div class="map-wrapper">
+		<div id="location_to_send_bcontent"></div>
+		<div class="adr-list">
+			<ion-content delegate-handle="location-adrlist-scroll" class="adr-list-content">
+				<div ng-click="chooseAddress($index)" ng-repeat="item in addressList track by $index" class="adr-item">
+					<div class="left-cell overflow-omit-one">{{item.title}}</div>
+					<div class="right-cell">
+						<div class="fake-icon" ng-hide="indexChoosed==$index"></div>
+						<svg ng-show="indexChoosed==$index" class="icon" aria-hidden="true">
+							<use xlink:href="#icon-xuanze-"></use>
+						</svg>
+					</div>
+				</div>
+			</ion-content>
+		</div>
+	</div>
+</ion-view>
+

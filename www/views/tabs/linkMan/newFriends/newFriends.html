@@ -1,0 +1,56 @@
+<ion-view id="new_friends" view-title="消息中心" hide-nav-bar=true>  
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			消息中心
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	<div>
+		<ion-content class="new-friends"> 
+			<ul class="clientli">  
+				<li class="client-name" ng-repeat="item in sysMsgs track by $index">                       
+					<div class="avatar">
+						<img 
+							ng-src="{{item.avatar || 'http://imgs.wujiuyun.com//Images//logo.png'}}" 
+							onError="src='http://imgs.wujiuyun.com//Images//logo.png'"
+							alt=""/>
+					</div>
+					<div class="name">
+						<div class="topname">
+							{{item.name}}
+						</div>
+						<div ng-show="item.type=='addFriend'" class="botreason">{{item.name}}添加您为好友</div>
+						<div ng-show="item.type=='applyFriend'" class="botreason">{{item.name}}请求添加您为好友</div>
+						<div ng-show="item.type=='passFriendApply'" class="botreason">{{item.name}}同意了您的好友申请</div>
+						<div ng-show="item.type=='rejectFriendApply'" class="botreason">{{item.name}}拒绝了您的好友申请</div>
+						<div ng-show="item.type=='teamInvite'" class="botreason">{{item.name}}邀请你加入群聊</div>
+						<div ng-show="item.type=='rejectTeamInvite'" class="botreason">{{item.name}}拒绝了你的入群邀请</div>
+						<div ng-show="item.type=='deleteFriend'" class="botreason">{{item.name}}把您从好友列表移除</div>
+					</div>  
+					<!--邀请进群  -->
+					<div ng-show="item.type=='teamInvite' && item.state=='init'" class="action">
+						<div ng-click="acceptTeam(item)" class="pass">同意</div>
+						<div ng-click="rejectTeam(item)" class="passed">拒绝</div>
+					</div> 
+					<div ng-show="item.type=='teamInvite' && item.state!='init'" class="action">
+						<span ng-show="item.state=='passed'">您已同意</span>
+						<span ng-show="item.state=='rejected'">您已拒绝</span>
+					</div> 
+					<!-- 好友申请  -->
+					<div ng-show="item.type=='applyFriend' && item.state=='init'" class="action">
+						<div ng-click="acceptFriend(item)" class="pass">同意</div>
+						<div ng-click="rejectFriend(item)" class="passed">拒绝</div>
+					</div> 
+					<div ng-show="item.type=='applyFriend' && item.state!='init'" class="action">
+						<span ng-show="item.state=='passed'">您已同意</span>
+						<span ng-show="item.state=='rejected'">您已拒绝</span>
+					</div> 
+				</li>  
+			</ul>  
+		</ion-content>  
+	</div>	
+</ion-view>  

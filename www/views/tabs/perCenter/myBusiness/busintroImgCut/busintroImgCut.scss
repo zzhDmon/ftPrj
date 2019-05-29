@@ -1,0 +1,18 @@
+#busintro_img_cut{
+    .busintro-img-cut{
+        .card{
+            box-shadow: none;
+            padding-top: 100px;
+            .img{
+                margin: auto;
+                width: 70%;
+                img{
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                    margin: auto;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,153 @@
+
+<ion-view id="goods_list" view-title="商品列表" hide-nav-bar="true">	
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			<span ng-show="paramsData.saletype==1">新人礼包</span>
+			<span ng-show="paramsData.saletype==600">佣金专区</span>
+			<span ng-show="paramsData.saletype==100">积分特价</span>
+			<span ng-show="paramsData.saletype==500">抵用金特价</span>
+			<span ng-hide="paramsData.saletype==1||paramsData.saletype==100||paramsData.saletype==500||paramsData.saletype==600">{{defaultType.text || queryData.query}}</span>
+		</div>
+		<div class="right">
+			
+		</div>
+	</div>
+
+	<div class="filter-wrapper">
+		<div ng-if="defaultType.text" ng-click="typeSlideToggle()" class="filter-item">
+			<div class="slide-item">{{defaultType.text}}</div>
+			<div class="other-list">
+				<div 
+					ng-click="changeType(item)"
+					ng-repeat="item in typeList track by $index" 
+					class="other-item">
+					{{item.text}}
+				</div>
+			</div>
+		</div>
+		<div class="filter-item">
+			<span ng-class="{true:'active',false:''}[sale==1 || sale==2]">销量</span>
+			<!--  ng-click="changeSale()" -->
+			<!-- <span>
+				<svg ng-if="!sale" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-shengjiangxuanze-"></use>
+				</svg>
+				<svg ng-if="sale==1" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-xiangxia-2"></use>
+				</svg>
+				<svg ng-if="sale==2" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-xiangshang-1"></use>
+				</svg>
+			</span> -->
+		</div>
+		<div ng-click="changeDiscount()" class="filter-item">
+			<span ng-class="{true:'active',false:''}[discount==1 || discount==2]">价格</span>
+			<span>
+				<svg ng-if="!discount" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-shengjiangxuanze-"></use>
+				</svg>
+				<svg ng-if="discount==1" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-xiangxia-2"></use>
+				</svg>
+				<svg ng-if="discount==2" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-xiangshang-1"></use>
+				</svg>
+			</span>
+		</div>
+		<div ng-click="showModal()" class="filter-item">
+			<span>
+				筛选
+				<i class="iconfont icon-shaixuan"></i>
+			</span>
+		</div>
+	</div>
+
+	<ion-content class="goods-list">
+		<ion-refresher 
+            pulling-icon="" 
+            pulling-text="" 
+            spinner="lines"  
+            on-refresh="refreshLoad()" 
+            >
+		</ion-refresher>
+		
+		<div class="goods-wrapper">
+			<div ng-click="goDetail(item)" ng-repeat="item in productList track by $index" class="goods-item">
+				<div class="left-cell">
+					<div class="in-img" ng-style="{'background-image': 'url('+item.Image+')'}"></div>
+				</div>
+				<div class="right-cell">
+					<div class="top-cell overflow-omit-two">{{item.Name}}</div>
+					<div class="mid-cell">
+						<div class="price-comment">
+							<div class="price overflow-omit-one">
+								￥{{item.PromotionPrice | priceFilter}}元
+								<span ng-show="item.Score && item.ProductSaleType==59">抵用金</span>
+								<span ng-show="item.PromotionPrice<item.MarketPrice" class="minor">￥{{item.MarketPrice | priceFilter}}元</span>
+							</div>
+							<div class="vip-price overflow-omit-one">
+								<span ng-show="item.MemberReducePrice">会员价{{(item.PromotionPrice - item.MemberReducePrice) | priceFilter}}&nbsp;</span>
+								<!-- 会员价1000 + 200积分 -->
+								<span ng-show="item.Score && item.ProductSaleType==100">积分最高可抵{{item.Score}}元</span>
+								<span ng-show="item.Score && item.ProductSaleType==500">抵用金最高可抵{{item.Score}}元</span>
+								<!-- <span ng-show="item.Score && item.ProductSaleType==59">抵用金最高可抵{{item.Score}}元</span> -->
+							</div>
+							<div class="comment overflow-omit-one clearfix">
+								{{item.ComCount | overTenThousandFilter}}条评论&#x3000; {{item.ComRate}}好评
+								<div ng-show="item.Commission>0" class="comment-right overflow-omit-one">
+									<div class="icon-wrap">
+										<svg class="icon" aria-hidden="true">
+											<use xlink:href="#icon-shangchengyongjin"></use>
+										</svg>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<p ng-show="!haveMore" class="baseLine"><span>暂无更多</span></p>
+		<ion-infinite-scroll on-infinite="loadMore(true)" distance="15%" ng-if="haveMore"> </ion-infinite-scroll>
+	</ion-content>
+	
+	<script id="goods_list_modal" type="text/ng-template">
+		<ion-modal-view class="goods-list-modalview">
+			<div class="header">
+				<div class="back" ng-click="closeModal()">
+					<i class="iconfont icon-ego-guanbi"></i>
+				</div>
+				<div class="title">{{community_name}}</div>
+			</div>
+			<div class="bot-actions">
+				<div ng-click="closeModal()" class="action-item reset">重置</div>
+				<div ng-click="closeModal()" class="action-item confirm">确认</div>
+			</div>
+			<ion-content class="house-on-map-houses">
+				<div class="check-wrapper">
+					<div class="price-area">
+						<div class="price-input"><input type="number" placeholder="最低价"></div>
+						<div class="mid-line"></div>
+						<div class="price-input"><input type="number" placeholder="最高价"></div>
+					</div>
+					<div ng-repeat="group in moreFilterData track by $index">
+						<!-- 多选	 -->
+						<div ng-hide="group.type=='radio'" class="special-check">
+							<div class="title">{{group.title}}</div>
+							<div class="list checkpicker">
+								<label ng-repeat="item in group.list track by $index">
+									<input ng-model="item.isChecked" ng-checked="item.isChecked" type="checkbox"/>
+									<span class="wrap">{{item.text}}</span>	
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</ion-content>
+		</ion-modal-view>
+	</script>
+</ion-view>

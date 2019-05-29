@@ -1,0 +1,57 @@
+
+<!--对话模板-->
+<ion-view id="my_recommend" view-title="我的推荐" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			我的邀请
+		</div>
+		<div class="right" >
+			
+		</div>
+	</div>
+	<ion-content class="my-recommend" has-bouncing="false" scrollbar-y="false">
+		
+	</ion-content>
+
+	<div class="all-img">
+		<img src="imgs/recommend/recommend.png" alt="">
+		
+		<div class="flex-sref">
+			<div ng-click="showModal()" class="cell-one"></div>
+			<div class="cell-two"></div>
+			<div ui-sref="numberOfInvite" class="cell-three"></div>
+			<div ui-sref="commissionIncome" class="cell-four"></div>
+		</div>
+		<div ng-click="showBottomShareModal()" class="invite-now">
+			一键邀请
+		</div>
+	</div>
+	
+	<script id="vip_rule_modal" type="text/ng-template">
+		<ion-modal-view id="vip_rule_modalview">
+			<div class="close">
+				<div class="clickclose" ng-click="closeModal()"><i class="iconfont icon-guanbi1"></i></div>	
+			</div>
+			<div class="tit">邀请好友规则</div>
+			<div class="main-cont">
+				<p>1.每邀请一名好友成为会员，您即可获得会员费的30%奖励。（如邀请好友成为白银会员，您将获得白银会员费（一千元/年）的30%奖励，即300元</p>
+				<p>2.好友再邀请一名好友成为会员，您将再获得会员费的20%奖励。					</p>
+				<p>3.青铜会员推荐三个白银及以上会员或九个青铜会员可立即升级为白银会员。</p>
+				<p>4.奖励结算次日生效。</p>
+				<p>5.本活动的最终解释权归房田解释</p>
+			</div>
+		</ion-modal-view>
+	</script>
+
+	<script id="my_recommend_share_modal" type="text/ng-template">
+		<ion-modal-view class="bottom-share-modal">
+			<div>
+				<div ng-include="'views/includes/bottomShareModal/bottomShareModal.html'"></div>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

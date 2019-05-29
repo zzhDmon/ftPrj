@@ -1,0 +1,128 @@
+<div ng-click="closePreviewModal()" class="closeicon"><i class="iconfont icon-guanbi1"></i></div>
+<ion-content scrollbar-y="false" ng-click="closePreviewModal()">
+    <ion-slide-box does-continue="false"  class="preview-cursor" on-slide-changed='changeindex()' show-pager="true">
+        <ion-slide ng-repeat="banner in addShopSubData.IndoorShowImages track by $index">
+            <img ng-src="{{banner}}"/>
+        </ion-slide>
+    </ion-slide-box>
+
+    <div class="detailname">
+        <h4>{{addShopSubData.Title}}</h4>
+        <div class="undertitle">
+            <span>环境优美</span><span>交通便利</span><span>物业规范</span>
+        </div>
+        <div class="borderline"></div>
+        <div ng-show="behaviour!==1" class="flex-wrapper">
+            <div class="flex-item">
+                <p class="top">租金</p>
+                <p class="bottom">{{addShopSubData.Price}}元/月</p>
+            </div>
+            <div class="line"></div>
+            <div class="flex-item">
+                <p class="top">付款方式</p>
+                <p class="bottom">
+                    付
+                    <span ng-if="!addShopSubData.PayMouth">--</span>
+                    <span ng-if="addShopSubData.PayMouth">{{addShopSubData.PayMouth}}</span>
+                    押
+                    <span ng-if="!addShopSubData.MortMonth">--</span>
+                    <span ng-if="addShopSubData.MortMonth">{{addShopSubData.MortMonth}}</span>
+                    
+                </p>
+            </div>
+            <div class="line"></div>
+            <div class="flex-item">
+                <p class="top">面积</p>
+                <p class="bottom">{{addShopSubData.Space}}m²</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="houseinfo">
+        <div class="houseinfo-wrapper">
+            <div ng-show="behaviour==1" class="house-item ovwrflow-omit-one">
+                <span class="leftdesc">售价：<span class="price">{{addShopSubData.Price}} 万</span>
+            </div>
+            <div ng-show="behaviour==1" class="house-item ovwrflow-omit-one">
+                <span class="leftdesc">面积：</span> <span class="price">{{addShopSubData.Space}} m²</span> 
+            </div>
+
+            <div class="house-item ovwrflow-omit-one" ng-if="addShopSubData.With"><span class="leftdesc">面宽：</span>{{addShopSubData.With}} m²</div>
+            <div class="house-item ovwrflow-omit-one" ng-if="addShopSubData.Height"><span class="leftdesc">高度：</span>{{addShopSubData.Height}} m</div>
+            <div class="house-item ovwrflow-omit-one" ng-if="addShopSubData.Depth"><span class="leftdesc">进深：</span>{{addShopSubData.Depth}} m</div>
+            <div class="house-item ovwrflow-omit-one" ng-show="behaviour==2">
+                <span class="leftdesc">起租期：</span>
+                <span ng-if="!addShopSubData.MinMouth">--</span>
+                {{addShopSubData.MinMouth}} 月
+            </div>
+            <div class="house-item ovwrflow-omit-one" ng-show="behaviour==2">
+                <span class="leftdesc">免租期：</span>
+                <span ng-if="!addShopSubData.FreeMouth">--</span>
+                {{addShopSubData.FreeMouth}} 月
+            </div>
+            <div class="house-item ovwrflow-omit-one">
+                <span class="leftdesc">经营状态：</span>
+                <span ng-if="addShopSubData.BusinessState==0">经营中</span>
+                <span ng-if="addShopSubData.BusinessState==1">空置中</span>
+            </div>
+            <div class="house-item ovwrflow-omit-one">
+                <span class="leftdesc">可经营餐饮：</span>
+                <span ng-if="addShopSubData.ManageType==511574">是</span>
+                <span ng-hide="addShopSubData.ManageType==511574">否</span>
+            </div>
+            <div class="house-item ovwrflow-omit-one" ng-hide="behaviour==1">
+                <span class="leftdesc">是否转让：</span>
+                <span ng-if="behaviour==3">是</span>
+                <span ng-hide="behaviour==3">否</span>
+            </div>
+            <div class="house-item ovwrflow-omit-one" ng-hide="behaviour==1">
+                <span class="leftdesc">转让费：</span>
+                <span ng-hide="addShopSubData.TransferFee==0">{{addShopSubData.TransferFee}}万</span>
+                <span ng-show="addShopSubData.TransferFee==0">面议</span>
+            </div>
+            <div class="house-item ovwrflow-omit-one">
+                <span class="leftdesc">业主直售</span>
+                <span ng-hide="addShopSubData.UserType==3">个人房源</span>
+                <span ng-show="addShopSubData.UserType==3">房东委托</span>
+            </div>
+
+            <div class="house-item ovwrflow-omit-one">
+                <span class="leftdesc">楼层：</span>{{addShopSubData.Floor}}/{{addShopSubData.TotalFloor}}
+            </div>
+            <div class="house-item allLine ovwrflow-omit-one"><span class="leftdesc">小区名称：</span>{{addShopSubData.CommunityName}}<span ng-if="!addShopSubData.CommunityName">--</span></div>
+        </div>
+    </div>
+
+    <div class="offline"></div>
+    <div class="fymiaoshu">
+        <h5>房源介绍</h5>
+        <p>{{addShopSubData.Discription}}</p>
+    </div>
+
+    <div class="offline"></div>
+    <div class="fypeizhi">
+        <h5>房屋配套</h5>
+        <ul>
+            <li ng-repeat="config in addShopSubData.ConfigurJson track by $index" ng-class="{true:'',false:'disabled'}[config.isChecked]">
+                <i ng-if="config.text=='客梯'" class="iconfont icon-dianti"></i>
+                <i ng-if="config.text=='货梯'" class="iconfont icon-haofangtuo400iconfont2dianti"></i>
+                <i ng-if="config.text=='中央空调'" class="iconfont icon-kongdiao"></i>
+                <i ng-if="config.text=='停车位'" class="iconfont icon-tingchewei"></i>
+                <i ng-if="config.text=='天然气'" class="iconfont icon-meiqitianranqi"></i>
+                <i ng-if="config.text=='电话/网络'" class="iconfont icon-net-device"></i>
+                <i ng-if="config.text=='暖气'" class="iconfont icon-gongnuan"></i>
+                <i ng-if="config.text=='扶梯'" class="iconfont icon-zidongfutiescalator2"></i>
+                <i ng-if="config.text=='上水'" class="iconfont icon-water_icon"></i>
+                <i ng-if="config.text=='下水'" class="iconfont icon-ranqiguandao"></i>
+                <i ng-if="config.text=='排烟'" class="iconfont icon-paiyanfengji"></i>
+                <i ng-if="config.text=='排污'" class="iconfont icon-shafa1"></i>
+                <i ng-if="config.text=='管煤'" class="iconfont icon-ranqiguandao"></i>
+                <i ng-if="config.text=='380V'" class="iconfont icon-photovoltaic"></i>
+                <i ng-if="config.text=='可明火'" class="iconfont icon-huo"></i>
+                <i ng-if="config.text=='可外摆'" class="iconfont icon-kewoyangtai"></i>
+                <span>{{config.text}}</span>
+            </li>
+            
+        </ul>
+    </div>
+</ion-content>

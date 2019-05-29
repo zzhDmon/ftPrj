@@ -1,0 +1,17 @@
+#my_safe{
+    .my-safe{
+        margin-top: $head-height;
+       
+        .headimg{
+            background-color: $bg-main-color;
+            width: 100%;
+            height: 250px;
+            img{
+                display: block;
+                width: 200px;
+                height: 200px;
+                margin: auto;
+            }
+        }
+    }
+}

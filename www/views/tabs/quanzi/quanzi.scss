@@ -1,0 +1,436 @@
+.del-quanzi-tl-popoverview{
+    width: 250px;
+    height: 80px;
+    border-radius: 5px!important;
+    .del-content{
+        font-size: 16px;
+        line-height: 40px;
+        text-align: center;
+        color: $font-main-color;
+        .del-title{
+            width: 100%;
+            height: 40px;
+            border-bottom: 1px solid $line-deep-color;
+        }
+        .del-actions{
+            display: flex;
+            justify-content: flex-start;
+            .del-action{
+                width: 50%;
+                &.cancel{
+                    border-right: 1px solid $line-deep-color;
+                }
+            }
+        }
+    }
+}
+#quanzi{
+    $view-padding:9px;
+    $font-blue-color:rgb(76,160,255);
+    .header{
+        .title{
+            .news-three-sort{
+                margin: 8px 0 0;
+                width: 100%;
+                height: 20px;
+                display: flex;
+                justify-content: center;
+                .news-sort{
+                    margin: 0 10px;
+                    line-height: 20px;
+                    font-size: 16px;
+                    color: white;
+                    &.active{
+                        border-bottom: 1px solid white;
+                    }
+                }
+            }
+        }
+    }
+    .bot-input{
+        position: fixed;
+        z-index: 30;
+        bottom: 0;
+        width: 100%;
+        border-top: 1px solid $line-main-color;
+        background-color: white;
+        .input-wrapper{
+            width: 100%;
+            padding: 5px $view-padding;
+            display: flex;
+            justify-content: flex-start;
+            .textarea{
+                width: calc(100% - 60px);
+                textarea{
+                    padding: 5px;
+                    width: 100%;
+                    height: 30px;
+                    min-height: 30px;
+                    max-height:70px; 
+                    line-height: 20px;
+                    border-radius: 5px;
+                    background-color: $bg-gray-color;
+                }
+            }
+            .send{
+                margin: 0 0 0 10px;
+                width: 40px;
+                min-height: 30px;
+                position: relative;
+                .send-btn{
+                    position: absolute;
+                    bottom: 0;
+                    z-index: 1;
+                    width: 40px;
+                    height: 30px;  
+                    text-align: center;
+                    line-height: 30px;
+                    border-radius: 5px;
+                    color: white;
+                    background-color: rgb(27,187,55);
+                }
+            }
+        }
+    }
+   
+    .quanzi{
+        margin-top: $head-height;
+        margin-bottom:  $tabs-height;
+        padding: 5px 0 0;
+       
+        .white-scroll{
+            background-color: white;
+        }
+        .func-entry-wrapper{}
+        
+        .video-live{}
+        .news-head-content{
+            padding: 15px 0 15px;
+            .news-title{
+                padding: 0 $view-padding;
+                display: flex;
+                justify-content: flex-start;
+                height: 16px;
+                .item-cell{
+                    width: 50%;
+                    font-size: 16px;
+                    &.left-cell{
+                        overflow: hidden;
+                        height: 16px; 
+                        .icon{
+                            margin: -11px 0 0;
+                            width: 38px;
+                            height: 38px;
+                        }
+                    }
+                    &.right-cell{
+                        text-align: right;
+                        color: $font-sup-color;
+                        line-height: 16px;
+                       .iconfont{
+                            font-size: 16px;
+                       } 
+                    }
+                }
+            }
+            
+            // swiper
+            .hot-focus-new{
+                margin: 12px 0 0;
+                height: 30px;
+                display: flex;
+                justify-content: flex-start;
+                background-color: $bg-gray-color;
+                .item-cell{
+                    width: 33.33%;
+                    padding: 0;
+                    display: flex;
+                    justify-content: center;
+                    display: flex;
+                    justify-content: center;
+                    .icon{
+                        margin: 5px 10px 5px 0;
+                        width: 20px;
+                        height: 20px;
+                    }
+                    .txt-wrapper{
+                        height: 30px;
+                        line-height: 30px;
+                        font-size: 12px;
+                        color: $font-sup-color;
+                    }
+                }
+                
+            }
+        }
+        // 动态
+
+        .news-list-content{
+            padding: 10px 12px;
+            // 动态
+            .t-l-item{
+                padding: 10px 0 0;
+                display: flex;
+                justify-content: flex-start;
+                .left-avatar{
+                    width: 39px;
+                    height: 39px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .right-main{
+                    width: calc(100% - 39px);
+                    padding: 0 0 0 6px;
+                    h5.name{
+                        margin: 0 0 5px;
+                        line-height: 18px;
+                        font-size: 16px;
+                        color: $font-blue-color;
+                        overflow: hidden;
+                        span{
+                            padding: 0 5px;
+                            float: right;
+                            color: $font-sup-color;
+                        }
+                    }
+                    .follow-cont-wrapper,.tl-cont-wrapper{
+                        position: relative;
+                        padding: 0 0 20px;
+                        overflow: hidden;
+                        &.show-all{
+                            height: auto;
+                        }
+                        &.show-some{
+                            max-height: 80px;
+                        }
+                        .switch-show-all{
+                            position: absolute;
+                            bottom: 0;
+                            z-index: 1;
+                            width: 100%;
+                            height: 20px;
+                            font-size: 14px;
+                            color: rgb(76,160,255);
+                            background-color: white;
+                        }
+                    }
+                    p.cont{
+                        margin: 0;
+                        font-size: 16px;
+                        line-height: 20px;
+                        color: $font-main-color;
+                    }
+                    // 单张图
+                    .one-img-wrapper{
+                        .img-item{
+                            margin: 0 0 6px; 
+                            max-width: 150px;                        
+                            img{
+                                width: 100%
+                            }
+                        } 
+                    }
+                    // 多张图
+                    .imgs-wrapper{
+                        display: flex;
+                        justify-content: flex-start;
+                        flex-wrap: wrap;
+                        .img-item{
+                            margin: 0 0 6px; 
+                            width: calc(33.33vw - 31px);
+                            height:calc(33.33vw - 31px);
+                            background-color: black;                         
+                            &:nth-child(3n-1){
+                                margin: 0 6px 6px;
+                            }
+                            .in-img-item{
+                                width: 100%;
+                                height: 0;
+                                overflow: hidden;
+                                margin: 0;
+                                padding-bottom: 100%; /* 原图显示关键 */
+                                background-position: center;
+                                background-repeat: no-repeat;
+                                background-size: cover; 
+                            }
+                        }
+                    } 
+                }
+            }
+            .t-l-bot-info{
+                margin: 10px 0 0;
+                height: 25px;
+                line-height: 25px;
+                font-size: 12px;
+                color: $font-sup-color;
+                display: flex;
+                justify-content: flex-start;
+                border-bottom: 1px solid $line-main-color;
+                .bot-cell{
+                    width: 50%;
+                    &.right-cell{
+                        text-align: right;
+                    }
+                    span{
+                        padding-right: 10px;
+                        &:last-child{
+                            padding-right: 0;
+                        }
+                        .iconfont{
+                            font-size: 18px;
+                        }
+                        &.active{
+                            .iconfont{
+                                color: red;
+                            }
+                        }
+                    }
+                }
+            }
+            .t-l-comment-main{
+                .comment-action{
+                    position: relative;
+                    margin: 0 0 3px;
+                    padding: 0 10px;
+                    width: 100%;
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 16px;
+                    color: $font-sup-color;
+                    background-color: rgb(238,238,238);
+                    &:after{
+                        content: '';
+                        border-bottom: 5px solid rgb(238,238,238);
+                        border-top: 5px solid transparent;
+                        border-right: 5px solid transparent;
+                        border-left: 5px solid transparent;
+                        position: absolute;
+                        left: 5px;
+                        top: -10px;
+                    }
+                    .iconfont{
+                        font-size: 18px;
+                    }
+                }
+                .like-o-com{
+                    padding: 10px;
+                    width: 100%;
+                    background-color: rgb(238,238,238);
+                    display: flex;
+                    justify-content: flex-start;
+                    &.like-content{
+                        margin: 0 0 3px; 
+                    }
+                    .left-icon{
+                        width: 30px;
+                        text-align: center;
+                        line-height: 25px;
+                        color: $font-sup-color;
+                    }
+                    .like-list{
+                        width: calc(100% - 30px);
+                        display: flex;
+                        justify-content: flex-start;
+                        flex-wrap: wrap;
+                        .like-item{
+                            margin: 0 3px 3px 0;
+                            width: 30px;
+                            height: 30px;
+                            img{
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                    }
+                    .comment-list{
+                        width: calc(100% - 30px);
+                        .comment-item{
+                            display: flex;
+                            justify-content: flex-start;
+                            .img-cell{
+                                width: 30px;
+                                height: 30px;
+                                img{
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                            } 
+                            .txt-cell{
+                                padding: 0 0 0 6px;
+                                width: calc(100% - 30px);
+                                h5{
+                                    margin: 0;
+                                    height: 16px;
+                                    line-height: 16px;
+                                    font-size: 12px;
+                                    color: $font-blue-color;
+                                    .auth{
+                                        padding: 1px 2px;
+                                        font-size: 10px;
+                                        border-radius: 2px;
+                                        color: white;
+                                        background-color: rgb(242,103,103);
+                                    }
+                                }
+                                p.com-content{
+                                    line-height: 20px;
+                                    font-size: 14px;
+                                    color: $font-main-color;
+                                }
+                            }
+                        }
+                    }
+                }
+                .close-comment{
+                    padding-right: 10px;
+                    width: 100%;
+                    height: 20px;
+                    text-align: right;
+                    color: $font-blue-color;
+                    background-color: rgb(238,238,238);
+                }
+            }
+            
+            .comment-list{
+                padding: 0 0 0 10px;
+                .comment-item{
+                    display: flex;
+                    justify-content: flex-start;
+                    .img-cell{
+                        width: 30px;
+                        height: 30px;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .txt-cell{
+                        width: calc(100% - 30px);
+                        padding: 0 0 0 10px;
+                        h5{
+                            margin: 0;
+                            padding: 0;
+                            height: 20px;
+                            line-height: 20px;
+                            font-size: 16px;
+                            border: none;
+                            color: $font-main-color;
+                        }
+                        p{
+                            margin: 0 0 5px;
+                            color: $font-sup-color;
+                            &.com-content{
+                                font-size: 16px;
+                            }
+                            &.com-time{
+                                font-size: 12px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

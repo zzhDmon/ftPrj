@@ -1,0 +1,61 @@
+
+<!--对话模板-->
+<ion-view id="new_houses" hide-nav-bar=true view-title="一手房源">
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			一手房源
+		</div>
+		<div ui-sref="addNew({id:-1})" class="right">
+			<i class="iconfont icon-tianjia"></i>
+		</div>
+	</div>
+
+	<ion-content class="new-houses">
+		<!--下拉刷新-->
+		<!-- <ion-refresher pulling-icon="" pulling-text="下拉刷新" refreshing-text="正在刷新…" spinner="crescent" on-refresh="newRefresh(false)"></ion-refresher> -->
+		<div  class="ershoufang">
+			<ul>
+				<li ng-repeat="houses in myNewList" ui-sref="newHouseDetail({id:houses.Id})">
+					
+					<div class="img">
+						<img ng-src="{{houses.Images}}"/>
+					</div>
+					<div class="description">
+						<h5>{{houses.Title}}</h5>
+						
+						<div class="mid-float">
+							<div class="space">
+								<!-- {{houses.HouseType}}&nbsp; -->
+								{{houses.Space}}平米 
+							</div>
+							<div class="price">
+								<span>{{houses.Prize}}</span>元/m²
+							</div>
+						</div>
+						<p>{{houses.Address}}</p>
+						
+					</div>
+
+					<div class="li-foot">
+						<div ng-click="soldOut($event)" class="handle">下架</div>
+						<div ng-click="goEdit($event,houses.Id)" ui-sref="addNew({id:houses.Id})" class="handle">编辑</div>
+						<div ng-click="goTrade($event,houses.Id)" ui-sref="tradeData({id:houses.Id})" class="handle">交易统计</div>
+						<div ng-click="goVisit($event,houses.Id)" ui-sref="visitData({id:houses.Id})" class="handle">带看统计</div>
+					</div>
+				</li>
+			</ul>
+			
+			<div style="clear: both;"></div>
+			<p ng-show="baseLine" class="baseLine"><span>人家是有底线的啦</span></p>
+		</div>
+	
+	<!--上拉加载-->
+		<ion-infinite-scroll on-infinite="newLoadMore(true)" distance="15%" ng-if="loadMore" > </ion-infinite-scroll>
+	</ion-content>
+	
+</ion-view>
+

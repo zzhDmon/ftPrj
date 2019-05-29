@@ -1,0 +1,250 @@
+
+<ion-view id="home_classify" view-title="房产分类" hide-nav-bar="true">
+	<div class="header">
+		<div class="back"></div>
+		<div class="title">
+			房产分类
+		</div>
+		<div class="right"></div>
+	</div>
+	<div class="head-bg"></div>
+
+	<ion-content class="home-classify">
+		<ion-refresher 
+            pulling-icon="" 
+            pulling-text="" 
+            spinner="lines"  
+            on-refresh="loadhousetimes()" 
+            >
+        </ion-refresher>
+		<div class="main">
+			<div class="title-wrapper">
+				出租
+			</div>
+			<div class="enter-partner">
+				<div class="in-enter-partner">
+					<div class="enter-wrapper">
+						<div ui-sref="rentHouseList({classify:'住宅'})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-zhuzhai-"></use>
+							</svg>
+							<div class="bot-txt">住宅</div>
+						</div>
+						<div ui-sref="rentHouseList({classify:'商铺'})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-shangpu-"></use>
+							</svg>
+							<div class="bot-txt">商铺</div>
+						</div>
+						<div ui-sref="rentHouseList({classify:'写字楼'})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-xiezilou-"></use>
+							</svg>
+							<div class="bot-txt">写字楼</div>
+						</div>
+						<div ui-sref="rentHouseList({classify:'厂房'})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-gongchang-"></use>
+							</svg>
+							<div class="bot-txt">厂房</div>
+						</div>
+						<div ui-sref="rentHouseList({classify:'仓库'})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-cangku-"></use>
+							</svg>
+							<div class="bot-txt">仓库</div>
+						</div>
+						<div ui-sref="rentHouseList({classify:'车位'})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-cheku-"></use>
+							</svg>
+							<div class="bot-txt">车位</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- <div class="rent-other-type">
+				<div ui-sref="rentHouseList({classify:'住宅',date:2})" class="rent-item">房东直租</div>
+				<div ui-sref="rentHouseList({classify:'住宅',date:3})" class="rent-item">中介房源</div>
+				<div ui-sref="rentHouseList({classify:'住宅',date:0})" class="rent-item">整租</div>
+				<div ui-sref="rentHouseList({classify:'住宅',date:4})" class="rent-item">合租</div>
+				<div class="rent-item">短租</div>
+				<div class="rent-item">品牌公寓</div>
+			</div> -->
+			
+			<div class="title-wrapper">
+				出售
+			</div>
+			<div class="enter-partner">
+				<div class="in-enter-partner">
+					<div class="enter-wrapper">
+						<div ui-sref="ershouHouseList({classify:'住宅'})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-zhuzhai-"></use>
+							</svg>
+							<div class="bot-txt">住宅</div>
+						</div>
+						<div ui-sref="ershouHouseList({classify:'商铺'})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-shangpu-"></use>
+							</svg>
+							<div class="bot-txt">商铺</div>
+						</div>
+						<div ui-sref="ershouHouseList({classify:'写字楼'})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-xiezilou-"></use>
+							</svg>
+							<div class="bot-txt">写字楼</div>
+						</div>
+						<div ui-sref="ershouHouseList({classify:'工厂'})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-gongchang-"></use>
+							</svg>
+							<div class="bot-txt">厂房</div>
+						</div>
+						<div ui-sref="ershouHouseList({classify:'仓库'})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-cangku-"></use>
+							</svg>
+							<div class="bot-txt">仓库</div>
+						</div>
+						<div ui-sref="ershouHouseList({classify:'车位'})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-cheku-"></use>
+							</svg>
+							<div class="bot-txt">车位</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="title-wrapper">
+				求购
+			</div>
+			<div class="enter-partner">
+				<div class="in-enter-partner">
+					<div class="enter-wrapper">
+						<div ui-sref="needBuyList({type:1})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-zhuzhai-"></use>
+							</svg>
+							<div class="bot-txt">住宅</div>
+						</div>
+						<div ui-sref="needBuyList({type:5})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-shangpu-"></use>
+							</svg>
+							<div class="bot-txt">商铺</div>
+						</div>
+						<div ui-sref="needBuyList({type:17})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-xiezilou-"></use>
+							</svg>
+							<div class="bot-txt">写字楼</div>
+						</div>
+						<div ui-sref="needBuyList({type:7})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-gongchang-"></use>
+							</svg>
+							<div class="bot-txt">厂房</div>
+						</div>
+						<div ui-sref="needBuyList({type:9})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-cangku-"></use>
+							</svg>
+							<div class="bot-txt">仓库</div>
+						</div>
+						<div ui-sref="needBuyList({type:11})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-cheku-"></use>
+							</svg>
+							<div class="bot-txt">车位</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="title-wrapper">
+				求租
+			</div>
+			<div class="enter-partner">
+				<div class="in-enter-partner">
+					<div class="enter-wrapper">
+						<div ui-sref="needRentList({type:14})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-pinpaigongyu-1"></use>
+							</svg>
+							<div class="bot-txt">品牌公寓</div>
+						</div>
+						<div ui-sref="needRentList({type:3})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-shangpu-"></use>
+							</svg>
+							<div class="bot-txt">商铺</div>
+						</div>
+						<div ui-sref="needRentList({type:4})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-xiezilou-"></use>
+							</svg>
+							<div class="bot-txt">写字楼</div>
+						</div>
+						<div ui-sref="needRentList({type:6})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-gongchang-"></use>
+							</svg>
+							<div class="bot-txt">厂房</div>
+						</div>
+						<div ui-sref="needRentList({type:8})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-cangku-"></use>
+							</svg>
+							<div class="bot-txt">仓库</div>
+						</div>
+						<div ui-sref="needRentList({type:10})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-cheku-"></use>
+							</svg>
+							<div class="bot-txt">车位</div>
+						</div>
+
+						<div ui-sref="needRentList({type:2})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-zhengzu-"></use>
+							</svg>
+							<div class="bot-txt">整租</div>
+						</div>
+						<div ui-sref="needRentList({type:12})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-hezu-"></use>
+							</svg>
+							<div class="bot-txt">合租</div>
+						</div>
+						<div ui-sref="needRentList({type:16})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-fangdongweituo-"></use>
+							</svg>
+							<div class="bot-txt">房东委托</div>
+						</div>
+						<div ui-sref="needRentList({type:15})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-gerenfangyuan-1"></use>
+							</svg>
+							<div class="bot-txt">个人房源</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</ion-content>
+
+	<!-- tab导航 -->
+	<div ng-include="'views/includes/customHouseTabs/customHouseTabs.html'"></div>
+
+	<script id="home_classify_nav_modal" type="text/ng-template">
+		<ion-modal-view ng-click="closeModal()" id="home_nav_modalview">
+			<div ng-include="'views/includes/botPublicPublish/botPublicPublish.html'"></div>
+		</ion-modal-view>
+	</script>
+</ion-view>

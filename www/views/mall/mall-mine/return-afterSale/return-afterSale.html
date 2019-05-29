@@ -1,0 +1,70 @@
+
+<ion-view id="return_after_sale" view-title="售后申请" hide-nav-bar="true">	
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			售后申请
+		</div>
+		<div class="right">
+		</div>
+	</div>
+	<div class="switch-list">
+		<div ng-click="switchTo(0)" class="switch-item">
+			<div class="in-item" ng-class="{true:'active',false:''}[switchActive==0]">
+				售后申请
+			</div>
+		</div>
+		<div ng-click="switchTo(1)" class="switch-item">
+			<div class="in-item" ng-class="{true:'active',false:''}[switchActive==1]">
+				申请记录
+			</div>
+		</div>
+	</div>
+
+	<ion-content class="return-after-sale" scrollbar-y="false">
+		<div ng-if="switchActive==0">
+			<div ng-repeat="item in housetimesList track by $index" class="goods-item">
+				<div class="order-title">订单编号：65321324656</div>
+				<div class="goods-info">
+					<div class="img-cell"><img ng-src="{{item.Image}}" alt=""></div>
+					<div class="right-cell">
+						<div class="top-cell overflow-omit-one">{{item.Title}}</div>
+						<div class="mid-cell">￥599.00</div>
+						<div class="bot-cell">
+							数量3
+						</div>
+					</div>
+				</div>
+				<div class="bot-info-action">
+					<div class="info-item">该商品已过售后期</div>
+					<div ui-sref="afterSaleService" class="action-item">申请售后</div>
+				</div>
+			</div>
+		</div>
+		
+		<div ng-if="switchActive==1">
+			<div ng-repeat="item in housetimesList track by $index" class="goods-item">
+				<div class="goods-info">
+					<div class="img-cell"><img ng-src="{{item.Image}}" alt=""></div>
+					<div class="right-cell">
+						<div class="top-cell overflow-omit-one">{{item.Title}}</div>
+						<div class="mid-cell">￥599.00</div>
+						<div class="bot-cell">
+							数量3
+						</div>
+					</div>
+				</div>
+				<div class="bot-info-action">
+					<div class="info-item"></div>
+					<div ng-if="$index==1" class="action-item">已驳回</div>
+					<div ng-hide="$index==1||$index==3" class="action-item">已通过</div>
+					<div ui-sref="refundDetail" ng-if="$index==3" class="action-item">审核中</div>
+				</div>
+			</div>
+		</div>
+
+	</ion-content>
+	
+</ion-view>

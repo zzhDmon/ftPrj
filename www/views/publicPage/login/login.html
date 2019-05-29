@@ -1,0 +1,67 @@
+<!--发现界面模板-->
+<ion-view id="login" view-title="登录" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			登录
+		</div>
+		<div ui-sref="registerorback({name:'注册'})" class="right" >
+			注册
+		</div>
+	</div>
+	
+	<!-- has-bouncing=false 不可滚动-->
+	<ion-content class="login" has-bouncing=false>
+		<form novalidate name="formlogin">
+			<div class="login-list">
+				<label class="item item-input">
+		          <input type="tel" name="phone" ng-model="logininfo.username" required=""  placeholder="请输入手机号" pattern="^1[0-9]{10}$">
+		        </label>
+				<label class="item item-input">
+		          <input type="password" name="psw" ng-model="logininfo.password" required="" placeholder="请输入密码" pattern="^.{6,16}$" >
+		        </label>
+			</div>
+
+			<div class="loginbtn">
+				<div class="subbtn">
+					<button ripple ripple-hold ripple-dark ng-disabled="formlogin.$invalid" ng-click="login()" class="button button-balanced">登录</button>
+				</div>
+			</div>			
+			<div ui-sref="registerorback({name:'找回密码'})" class="getBack">
+				忘记密码？
+			</div>
+		</form>
+
+		<p ng-if="wechatInstalled || qqInstalled" class="baseLine"><span>其他方式登录</span></p>
+		<div class="other-ways">
+			<div ng-show="wechatInstalled" ng-click="wxLogin()" class="flex-item">
+				<svg class="icon" aria-hidden="true">
+					<use xlink:href="#icon-weixin-"></use>
+				</svg>
+				<div class="text">微信</div>
+			</div>
+			<div ng-show="qqInstalled" ng-click="qqLogin()" class="flex-item">
+				<svg class="icon" aria-hidden="true">
+					<use xlink:href="#icon-QQ-"></use>
+				</svg>
+				<div class="text">QQ</div>
+			</div>
+		</div>
+	</ion-content>
+	
+	<script id="login_choose_bind_modal" type="text/ng-template">
+        <ion-modal-view class="login-choose-bind-modalview">
+            <div ng-click="closeModal()" class="choose-bind">
+				<div class="head">
+					<i class="iconfont icon-guanbi1"></i>
+				</div>
+				<div ui-sref="bindLogin(bindParams)" class="choose-item">
+					已有账号，绑定此 <span ng-if="bindParams.type=='Weixin'">微信</span> <span ng-if="bindParams.type=='QQ'">QQ</span>
+				</div>
+				<div ui-sref="bindRegister(bindParams)" class="choose-item">没有账号，注册绑定</div>
+			</div>
+        </ion-modal-view>
+    </script>
+</ion-view>

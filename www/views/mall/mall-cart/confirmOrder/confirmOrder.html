@@ -1,0 +1,102 @@
+<ion-view id="confirm_order" view-title="确认订单" hide-nav-bar=true>
+    <div class="header">
+        <div class="back" ng-click="back()">
+            <i class=" iconfont icon-xiangzuo1"></i>
+        </div>
+        <div class="title">
+            确认订单
+        </div>
+        <div class="right">
+            
+        </div>
+    </div>
+    <div class="abs-foot">
+        <div class="left">金额：<span>￥{{totalMoney | priceFilter}}</span></div>
+        <div ng-click="createOrder()" class="right">提交订单</div>
+    </div>
+    <ion-content has-bouncing="false" class="confirm-order">
+        <div ui-sref="addressList" class="buyer-info">
+            <div class="name-phone">
+                <div class="name">
+                    <div class="icon-wrapper"><i class="iconfont icon-fl-renyuan"></i></div>
+                    收货人:{{receiptAddress.Name}}</div>
+                <div class="phone">{{receiptAddress.Phone}}</div>
+            </div>
+            <div class="address">
+                <div class="left-icon icon-in"><i class="iconfont icon-dingwei"></i></div>
+                <div class="mid-txt overflow-omit-two">收货地址:{{receiptAddress.Province}}{{receiptAddress.City}}{{receiptAddress.District}}{{receiptAddress.Street}}{{receiptAddress.Address}}</div>
+                <div class="right-icon icon-in"><i class="iconfont icon-gengduo"></i></div>
+            </div>
+        </div>
+        <div class="offline"></div>
+        <div ng-repeat="group in productList track by $index" class="group-wrapper">
+            <div class="group-title overflow-omit-one">
+                <i class="iconfont icon-dianpu"></i>&nbsp;{{group.ShopName}}
+            </div>
+            <div ng-repeat="item in group.CartProductInfos track by $index" class="order-info">
+                <div class="img">
+                    <div class="in-img" ng-style="{'background-image': 'url('+item.Image+')'}"></div>
+                </div>
+                <div class="text-info">
+                    <div class="product-name overflow-omit-two"> {{item.Name}}</div>
+                    <div class="point-count">
+                        <div class="point overflow-omit-one">￥{{item.UnitPrice}}</div>
+                        <!-- <div class="count">x{{item.Quantity}}</div> -->
+                        <div class="count">
+                            <div ng-click="reduceQuantity(item)" class="action-btn reduce"><i class="iconfont icon-jianshao"></i></div>
+                            <div class="input">{{item.Quantity}}</div>
+                            <div ng-click="addQuantity(item)" class="action-btn add"><i class="iconfont icon-tianjia"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-hide="group.MaxScore==0&&group.MaxVocher==0" class="score-credit">
+                <div class="title">优惠</div>
+                <div ng-hide="group.MaxScore==0" class="flex-wrapper score">
+                    <div class="left-item">
+                        <div class="top-cell overflow-omit-one">积分最高可抵{{group.MaxScore}}元</div>
+                        <div class="bot-cell overflow-omit-one">剩余积分{{pageData.Scores - usingData.UseScore}}</div>
+                    </div>
+                    <div class="right-item">
+                        <div ng-click="reduceScore(group)" class="action-btn reduce"><i class="iconfont icon-jianshao"></i></div>
+                        <div class="input"><input ng-change="scoreChange(group)" ng-model="group.UseScore" type="number"></div>
+                        <div ng-click="addScore(group)" class="action-btn add"><i class="iconfont icon-tianjia"></i></div>
+                    </div>
+                </div>
+                <div ng-hide="group.MaxVocher==0" class="flex-wrapper credit">
+                    <div class="left-item">
+                        <div class="top-cell overflow-omit-one">抵用金最高可抵{{group.MaxVocher}}元</div>
+                        <div class="bot-cell overflow-omit-one">剩余抵用金{{pageData.Vochers - usingData.UseVoucher}}</div>
+                    </div>
+                    <div class="right-item">
+                        <div ng-click="reduceVocher(group)" class="action-btn reduce"><i class="iconfont icon-jianshao"></i></div>
+                        <div class="input">
+                            <input 
+                                ng-change="vocherChange(group)" 
+                                ng-model="group.UseVoucher" type="number"></div>
+                        <div ng-click="addVocher(group)" class="action-btn add"><i class="iconfont icon-tianjia"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="leave-message clearfix">
+                <div class="left-cell">留言</div>
+                <div class="txt-cell">
+                    <textarea placeholder="建议留言前先跟商家沟通确认"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="offline"></div>
+        <div class="score-money-wrapper">
+            <div class="wrapper-item">
+                <div class="item-cell left-cell">购买可获积分</div>
+                <div class="item-cell right-cell overflow-omit-one">小计：+{{totalMoney / 10 | number:2}}</div>
+            </div>
+        </div>
+       
+			 <div class="fake-safe-bottom"></div>
+    </ion-content>
+    
+</ion-view>
+    
+    

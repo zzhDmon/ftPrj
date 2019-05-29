@@ -1,0 +1,46 @@
+
+<ion-view id="open_group_redpacket" hide-nav-bar=true view-title="红包">
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class="iconfont icon-xiangzuo1"></i>
+		</div>
+	</div>
+	<div class="head-info">
+		<div class="top-text">
+			{{paramsData.content.data.text}}
+			<img ng-class="{true:'active',false:''}[rotate]" class="avatar" ng-src="{{paramsData.avatar || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+		</div>
+	</div>
+
+	<ion-content class="open-group-redpacket">
+		<div ng-if="pageData.OpendTotal" class="my-income">
+			<div class="money">￥{{(pageData.OpendTotal/100) | priceFilter}}</div>
+			<div class="text">已存入余额</div>
+		</div>
+		<div class="offline"></div>
+		<div class="record-wrapper">
+			<div class="head-title">
+				<div ng-show="queryData.Type==2" class="icon-wrapper">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-pinhongbao-"></use>
+					</svg>
+				</div>
+				{{pageData.TotalNum}}个红包共{{(pageData.TotalFee/100) | priceFilter}}元<span ng-if="pageData.TotalTime">，{{pageData.TotalTime}}内被抢完</span>
+			</div>
+			
+			<div ng-repeat="item in pageData.Children track by $index" class="record-item">
+				<!-- <div class="top-cell">{{item.NickName || '房田用户'}}</div>
+				<div class="bot-cell">{{item.TotalFee  }}</div> -->
+				<div class="avatar"><img ng-src="{{item.ShowImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt=""></div>
+				<div class="mid-item">
+					<div class="top-cell">{{item.NickName || '房田用户'}}</div>
+					<div class="bot-cell">{{item.CreateTime}}</div>	
+				</div>
+				<div class="right-item">{{(item.TotalFee/100) | priceFilter}}元</div>
+			</div>
+		</div>
+		<!-- 过期 -->
+		<div ng-show="overdueStatus" class="useless-info">未领取的红包过期后会退回零钱</div>
+	</ion-content>
+</ion-view>
+

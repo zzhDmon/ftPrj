@@ -1,0 +1,29 @@
+
+<!--对话模板-->
+<ion-view id="add_new_t_d" view-title="{{name}}" hide-nav-bar=true  class='dark'>
+	<!--<ion-nav-buttons side="secondary">
+		<a ng-click="save()" style="color: gray;font-size: 1.4rem;" class="button button-small button-icon " >保存</a>	
+	</ion-nav-buttons>-->
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			{{name}}
+		</div>
+		<div class="right" ng-click="save()">
+			保存
+		</div>
+	</div>
+	
+	<ion-content on-swipe-right="onSwipeRight()" class="add-new-t-d" has-bouncing=false>
+		<div class="offline">
+			
+		</div>
+		<div class="card">	
+			<textarea name="cont" rows="10" cols="" ng-model="newtd.content" placeholder="请输入房源信息"></textarea>
+		</div>
+	</ion-content>
+	
+</ion-view>
+

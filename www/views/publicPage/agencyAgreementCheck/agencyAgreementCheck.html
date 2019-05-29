@@ -1,0 +1,71 @@
+<!--发现界面模板-->
+<ion-view id="agency_agreement_check" view-title="代理审核" hide-nav-bar=true>
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			代理审核
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	
+	<ion-content has-bouncing="false" class="agency-agreement-check">
+		<div class="main">
+			<div class="arr-item">
+				<div class="left-img"><img ng-src="{{agreementInfo.House.Thumb}}" alt=""></div>
+				<div class="right-text">
+					<div class="title overpoint">{{agreementInfo.House.Title}}</div>
+					<div class="housetype overpoint">{{agreementInfo.House.HouseType}}</div>
+					<div class="tags overpoint">
+						<span ng-repeat="tag in agreementInfo.House.Tags track by $index">{{tag}}</span>
+					</div>
+					<div class="info overpoint">
+						<span class="spanprice">
+							<span>{{agreementInfo.House.Price}}万</span>
+						</span>
+						<span class="span-gray"><i class="iconfont icon-dingwei"></i>{{agreementInfo.House.CommunityName}}</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row-item">
+				<div class="left-cell">代理价格</div>
+				<div class="mid-input">
+					<input ng-disabled="true" ng-model="agreementInfo.Price" type="number" placeholder="请输入价格">
+				</div>
+				<div class="right-cell">万元</div>
+			</div> 
+			<div class="row-item">
+				<div class="left-cell">代理佣金</div>
+				<div class="mid-input">
+					<input ng-disabled="true" ng-model="agreementInfo.Commision" type="number" placeholder="请输入佣金">
+				</div>
+				<div class="right-cell">元</div>
+			</div> 
+			<div class="row-item">
+				<div class="left-cell">代理期限</div>
+				<div class="three-cell">
+					<div class="input"><input ng-disabled="true" type="text" ng-model="agreementInfo.BeginTime" class="from-time" placeholder="起始时间"></div>
+					<div class="mid-row">-</div>
+					<div class="input"><input ng-disabled="true" type="text" ng-model="agreementInfo.EndTime" class="end-time" placeholder="终止时间"></div>
+				</div>
+			</div>
+			
+			<div class="addition-wrapper">
+				<div class="title">
+					补充协议
+				</div>
+				<textarea ng-disabled="true" ng-model="agreementInfo.Remark" name="" id="" placeholder="无附加协议"></textarea>
+			</div>
+			
+			<div class="sub-btn-wrapper">
+				<div ng-click="checkAgency(0)" class="sub-btn-item">同意</div>
+				<div ng-click="checkAgency(1)" class="sub-btn-item">拒绝</div>
+			</div>
+		</div>	
+	</ion-content>
+	
+</ion-view>

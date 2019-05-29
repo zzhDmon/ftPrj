@@ -1,0 +1,300 @@
+
+<!--对话模板-->
+<ion-view id="add_new" view-title="" hide-nav-bar=true >
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			{{headtitle}}
+		</div>
+		<div class="right">
+			
+		</div>
+	</div>
+	
+	<ion-content on-scroll="addNewScrollListing()" class="add-new">		
+		<div class="form-main">
+			<div ui-sref="addNewTD({name:'楼盘名称'})" class="row-item">
+				<div class="left-name">楼盘名称</div>
+				<div class="mid-input">
+					{{addNewSubData.NewHouseName}}
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangyou1"></i>
+				</div>
+			</div>
+			<div ui-sref="addNewTD({name:'开发商名称'})" class="row-item">
+				<div class="left-name">开发商</div>
+				<div class="mid-input">
+					{{addNewSubData.LandAgent}}
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangyou1"></i>
+				</div>
+			</div>
+			<div ui-sref="addNewAddress" class="row-item">
+				<div class="left-name">楼盘地址</div>
+				<div class="mid-input">
+					{{addNewSubData.Address}}
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangyou1"></i>
+				</div>
+			</div>
+			
+			<div class="offline"></div>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">均价</div>
+					<div class="mid-input-text">
+						<input ng-model="addNewSubData.Price" type="number">
+					</div>
+					<div class="right-text">
+						元/m²
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">佣金类型</div>
+					<div class="mid-input">
+							<input ng-model="addNewShowData.CommisionType" class="addnew-commisiontype" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>	
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">佣金</div>
+					<div class="mid-input">
+						<input ng-model="addNewSubData.Commision" type="number">
+					</div>
+					<div class="right-icon"></div>
+				</div>
+			</label>
+
+			<div class="offline"></div>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">所属城市</div>
+					<div class="mid-input">
+						<input ng-model="addNewSubData.CityName" class="addnew-city" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">开盘时间</div>
+					<div class="mid-input">
+						<input ng-model="addNewSubData.OpenTime" class="addnew-opentime" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">交房时间</div>
+					<div class="mid-input">
+						<input ng-model="addNewSubData.DeliverDate" class="addnew-deliverdate" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>	
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">建筑类型</div>
+					<div class="mid-input">
+						<input ng-model="addNewSubData.BuildingType" class="addnew-buildingtype" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">装修状况</div>
+					<div class="mid-input">
+						<input ng-model="addNewSubData.DecorateSituationName" class="addnew-zhuangxiu" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>	
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">房期</div>
+					<div class="mid-input">
+						<input ng-model="addNewSubData.HousePeriodName" class="addnew-houseperiod" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">规划户数</div>
+					<div class="mid-input">
+						<input ng-model="addNewSubData.NumberOfHouseholds" type="number">
+					</div>
+					<div class="right-icon"></div>
+				</div>
+			</label>	
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">绿化率</div>
+					<div class="mid-input">
+						<input ng-model="addNewSubData.Green" type="text">
+					</div>
+					<div class="right-icon">
+						%
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">容积率</div>
+					<div class="mid-input">
+						<input ng-model="addNewSubData.PlotRatio" type="number">
+					</div>
+					<div class="right-icon">
+						%
+					</div>
+				</div>
+			</label>	
+				
+			
+			<!-- <div class="offline"></div>
+			<div class="row-item">
+				<div class="left-name">带看奖励规则</div>
+				<div class="mid-input"></div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangyou1"></i>
+				</div>
+			</div>
+			<div class="row-item">
+				<div class="left-name">佣金奖励规则</div>
+				<div class="mid-input"></div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangyou1"></i>
+				</div>
+			</div> -->
+		</div>
+		
+		<div class="indoor new-loupan-img">
+			<h4>楼盘图</h4>
+			<ul id="addNew_sortindoor_img">
+				<li ng-repeat="img in addNewSubData.ShowBuildingImg">
+					<div class="img">
+						<img ng-src="{{img}}" alt="室内图"/>
+						<span ng-click="remove($index)"><i class="iconfont icon-guanbi1"></i></span>
+					</div>
+				</li>
+			</ul>
+			
+			<div class="chooseImg">
+				<div ng-click="photoChoose()" class="in-choose">
+					<div class="img">
+						<div class="top"><i class="iconfont icon-tianjia"></i></div>
+						<div class="bot">选择图片</div>
+					</div>	
+				</div>
+			</div>
+			<div class="chooseImg">
+				<div ng-click="indoorCameraBase()" class="in-choose">
+					<div class="img">
+						<div class="top"><i class="iconfont icon-xiangji"></i></div>
+						<div class="bot">拍照上传</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+		
+		<div class="offline"></div>
+		<!-- 房型列表 -->
+		<div class="house-room-space">
+			<h4>户型列表</h4>
+			<ul class="house-room-list">
+				<!-- <input class="change-huxing-input" type="file" name="photo"  accept="image/*" autocomplete="off" /> -->
+				<li ng-repeat="houseRoom in addNewSubData.HouseRoomSpaces track by $index">
+					<div class="house-room-img">
+						<img ng-click=onePhotoChoose($index) ng-src="{{houseRoom.ShowImage}}" alt="">
+						<span ng-click="reduceHuxing($index)"><i class="iconfont icon-guanbi1"></i></span>
+					</div>
+					<div class="house-room-info">
+						<div class="top">
+							<label class="item item-input">
+								<span class="input-label">面积</span>
+								<input ng-model="houseRoom.Space" type="number" placeholder="请输入面积" name="" value="" /> 
+							</label>
+						</div>
+						<div class="mid">
+							<label class="item item-input">
+								<input ng-model="houseRoom.RoomType" type="number" name="" value="" /> 
+								<span class="input-label">室</span>
+							</label>
+							<label class="item item-input">
+								<input ng-model="houseRoom.HallType" type="number" name="" value="" /> 
+								<span class="input-label">厅</span>
+							</label>
+							<label class="item item-input">
+								<input ng-model="houseRoom.BathType" type="number" name="" value="" /> 
+								<span class="input-label">卫</span>
+							</label>
+						</div>
+						<div class="bot">
+								<label><input ng-model="houseRoom.SaleStatus" type="radio" value="0" /> <i>✓</i>主推</label>
+								<label><input ng-model="houseRoom.SaleStatus" type="radio" value="1" /> <i>✓</i>在售</label>
+								<label><input ng-model="houseRoom.SaleStatus" type="radio" value="2" /> <i>✓</i>售罄</label>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="borderline"></div>
+			<div class="chooseImg">
+				<div ng-click=onePhotoChoose() class="img">
+					<div class="top"><i class="iconfont icon-tianjia"></i></div>
+					<div class="bot">选择图片</div>
+				</div>
+			</div>
+			<div class="chooseImg">
+				<div ng-click="huxingCameraBase()" class="img">
+					<div class="top"><i class="iconfont icon-xiangji"></i></div>
+					<div class="bot">拍照上传</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="offline"></div>
+		<div class="zhoubian-support">
+			<h4>周边配套</h4>
+			<textarea name="" ng-model="addNewSubData.SupportingFacilities" cols="30" rows="10" placeholder="写点房源周边配套吧！"></textarea>
+		</div>
+
+		<div ng-click="publish()" class="publish-btn">
+			发布
+		</div>
+	</ion-content>
+
+	
+	
+	<script id="newGoLogin-modal" type="text/ng-template">
+		<ion-modal-view class="after_clickpublish_go_login_modal">
+			<div ng-include="'views/includes/afterClickPublish/afterClickPublish.html'"></div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

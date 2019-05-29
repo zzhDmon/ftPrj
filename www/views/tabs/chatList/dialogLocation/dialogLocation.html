@@ -1,0 +1,39 @@
+
+<!--对话模板-->
+<ion-view id="dialog_location" view-title="位置信息" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div ng-click="gMap()" class="title">
+			位置信息
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	
+	<ion-content class="dialog-location" has-bouncing="false">
+		<div class="map-wrapper">
+			<div id="dialog_location_content"></div>
+			<div class="adr-info">
+				<div class="left-item">
+					<div class="top-cell">[位置]</div>
+					<div class="bot-cell overflow-omit-one">{{mark}}</div>
+				</div>
+				<div ng-click="showModal()" class="right-item">
+					<i class="iconfont icon-kehufangxiangluxian"></i>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+
+	<script id="dialog_location_modal" type="text/ng-template">
+		<ion-modal-view ng-click="closeModal()" class="dialog-location-modalview">
+			<div class="map-list">
+				<div ng-click="bMap()" class="map-item">百度地图</div>
+				<div ng-click="gMap()" class="map-item">高德地图</div>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

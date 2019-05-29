@@ -1,0 +1,284 @@
+#add_new{
+    .add-new{
+        margin: $head-height 0 0;      
+        //点击上传图片
+        .new-loupan-img{
+            height: auto;
+            padding: 10px 0;
+            h4{
+                padding: 0 12px 0;
+                margin: 10px 0 5px;
+                font-size: 16px;
+                font-weight: 400;
+                color: $font-main-color;
+            }
+            ul{
+                li{
+                    float: left;
+                    width: 25vw;
+                    height: 95px;
+                    .img{
+                        width: 85px;
+                        height: 85px;
+                        margin: 5px auto;
+                        position: relative;
+                        img{
+                            display: block;
+                            width: 85px;
+                            height: 85px;
+                        }
+                        span{
+                            position: absolute;
+                            z-index: 999;
+                            display: block;
+                            width: 20px;
+                            height: 20px;
+                            font-size: 16px;
+                            text-align: center;
+                            line-height: 20px;
+                            border: 1px solid $bg-main-color;
+                            background-color: $bg-main-color;
+                            color: white;
+                            border-radius: 50%;
+                            top: -5px;
+                            right: -5px;
+                        }
+                    }
+                }
+            }
+            .chooseImg,.new-choose-img{
+                .in-choose{
+                    margin: 5px 0 0 5px;
+                    vertical-align: middle;
+                    width: 85px;
+                    height: 85px;
+                    input{
+                        display: none;
+                    }
+                    .img{
+                        width: 100%;
+                        height: 100%;
+                        border: 1px dashed $line-main-color;
+                        .top{
+                            width: 100%;
+                            height: 14vw;
+                            font-size: 20px;
+                            text-align: center;
+                            line-height: 14vw;
+                            color: $font-minor-color;
+                            .iconfont{
+                                font-size: 20px;
+                            }
+                        } 
+                        .bot{
+                            width: 100%;
+                            height: 6vw;
+                            text-align: center;
+                            line-height: 6vw;
+                            color: $font-minor-color;
+                        }
+                    }
+                }
+            } 
+            
+            input{
+                display: none;
+            }
+            img{
+                float: left;
+                display: block;
+                width: 20vw;
+                height: 20vw;
+            }
+        }
+        .house-room-space{
+            background-color: white;
+            padding: 10px 0;
+            h4{
+                padding: 0 12px 0;
+                margin: 10px 0 5px;
+                font-size: 16px;
+                font-weight: 400;
+                color: $font-main-color;
+            }
+            .house-room-list{
+                .change-huxing-input{
+                    display: none;
+                }
+                li{
+                    width: 100%;
+                    padding: 5px 12px;
+                    .house-room-img{
+                        position: relative;
+                        float: left;
+                        width: 85px;
+                        height: 85px;
+                        img{
+                            width: 85px;
+                            height: 85px;
+                        }
+                        span{
+                            position: absolute;
+                            z-index: 999;
+                            display: block;
+                            width: 20px;
+                            height: 20px;
+                            font-size: 16px;
+                            text-align: center;
+                            line-height: 20px;
+                            border: 1px solid $bg-main-color;
+                            background-color: $bg-main-color;
+                            color: white;
+                            border-radius: 50%;
+                            top: -5px;
+                            right: -5px;
+                        }
+                    }
+                    .house-room-info{
+                        width: calc(100% - 85px);
+                        float: left;
+                        padding: 0 0 0 10px;
+                        .top{
+                            width: 100%;
+                            .item-input{
+                                height: 30px;
+                                width: 100%;
+                                margin: 0;
+                                padding: 0 0 3px;
+                                border: none;
+                                .input-label{
+                                    padding: 0;
+                                }
+                                input{
+                                    height: 27px;
+                                    padding: 0;
+                                    background-color: white;
+                                    border-bottom: 1px solid $bg-main-color;
+                                }
+                            }
+                        }
+                        .mid{
+                            width: 100%;
+                            .item-input{
+                                width: 33.3%;
+                                height: 30px;
+                                float: left;
+                                margin: 0;
+                                padding: 0;
+                                border: none;
+                                .input-label{
+                                    padding: 0 5px;
+                                }
+                                input{
+                                    height: 100%;
+                                    padding: 0 0 0 5px;
+                                    text-align: center;
+                                    background-color: white;
+                                    border: 1px solid $line-main-color;
+                                }
+                            }
+                        }
+                        .mid:after{
+                            content: "\0020";
+                            display: block;
+                            height: 0;
+                            clear: both;
+                        }
+                        .bot{
+                            width: 100%;
+                            padding: 10px 0 0;
+                            label{
+                                padding: 0 15px 0 0;
+                                font-size: 16px;
+                                i{
+                                    font-size:14px;
+                                    font-style:normal;
+                                    display:inline-block;
+                                    width:14px;
+                                    height:14px;
+                                    text-align:center;
+                                    line-height:14px;
+                                    color:#fff;
+                                    vertical-align:middle;
+                                    margin:-2px 2px 1px 0px;
+                                    border: 1px solid $font-minor-color;
+                                } 
+                                input[type="radio"] + i {
+                                    border-radius:7px;
+                                    } 
+                                input[type="radio"] {
+                                    display:none;
+                                    }  
+                                input[type="radio"]:checked + i {
+                                    color:$bg-main-color;
+                                    border: 1px solid $bg-main-color;
+                                }  
+                                input[type="radio"]:disabled + i {
+                                    border-color:#ccc;
+                                }  
+                            }
+                        }
+                    }
+                }
+            }
+            .chooseImg,.new-add-huxing{
+                height: auto;
+                width: 100%;
+                padding: 10px $view-padding;
+                .img{
+                    width: 80px;
+                    height: 80px;;
+                    border: 1px dashed $line-main-color;
+                    .top{
+                        width: 100%;
+                        height: 56px;
+                        font-size: 20px;
+                        text-align: center;
+                        line-height: 56px;
+                        color: $font-minor-color;
+                        .iconfont{
+                            font-size: 20px;
+                        }
+                    } 
+                    .bot{
+                        width: 100%;
+                        height: 24px;
+                        text-align: center;
+                        line-height: 24px;
+                        color: $font-minor-color;
+                    }
+                }
+                input{
+                    display: none;
+                } 
+            }
+        } 
+        .zhoubian-support{
+            padding: 0 $view-padding;
+            width: 100%;
+            h4{
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 40px;
+                line-height: 40px;
+                font-size: 16px;
+            }
+            textarea{
+                width: 100%;
+                height: 200px;
+            }
+        }
+        .publish-btn{
+            margin: 40px auto 10px;
+            width: 90%;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 5px;
+            font-size: 16px;
+            color: white;
+            background-color: $bg-main-color;
+        }                
+    }
+}

@@ -1,0 +1,67 @@
+<!--界面模板-->
+<ion-view id="trade_review" view-title="交易列表" hide-nav-bar=true>
+    
+    <div class="header">
+        <div ng-click="back()" class="back">
+            <i class=" iconfont icon-xiangzuo1"></i>
+        </div>
+        <div class="title">
+            交易列表
+        </div>
+        <div class="right" >
+            
+        </div>
+    </div>
+
+    <div class="head-slide">
+        <ul>
+            <li ng-click="headSlide(0)" ng-class="{true:'active',false:''}[showType==0]">待审核</li>
+            <li ng-click="headSlide(1)" ng-class="{true:'active',false:''}[showType==1]">已完成</li>
+        </ul>
+        <div class="under-line"></div>
+    </div>
+
+    <div ng-show="showType==0">
+        <ion-content class="trade-review" >
+            <div class="main">
+                <div class="up-ul">
+                    <div class="left">带看人姓名</div>
+                    <div class="mid">楼盘名称</div>
+                    <div class="right">时间</div>
+                </div>
+                <ul class="info-list">
+                    <li ui-sref="checkPage({buyerid:info.BuyerId,proxerid:info.ProxerId,houseid:info.NewHouseId,showtype:1})" ng-repeat="info in willdoneList track by $index">
+                        <div class="left">{{info.ProxerName || '房田经纪人'}}</div>
+                        <div class="mid">{{info.NewHouseName}}</div>
+                        <div class="right">{{info.LookTime | limitTo:10}} <i class="iconfont icon-gengduo"></i></div>
+                    </li>
+                </ul>
+            </div>
+        </ion-content>
+    </div>
+
+    <div ng-show="showType==1">
+        <ion-content class="trade-review" >
+            <div class="main">
+                <div class="up-ul">
+                    <div class="left">带看人姓名</div>
+                    <div class="mid">楼盘名称</div>
+                    <div class="right">时间</div>
+                </div>
+                <ul class="info-list">
+                    <li ng-repeat="info in doneList track by $index">
+                        <div class="left">{{info.ProxerName || '房田经纪人'}}</div>
+                        <div class="mid">{{info.NewHouseName}}</div>
+                        <div class="right">{{info.LookTime | limitTo:10}}</div>
+                    </li>
+                </ul>
+            </div>
+        </ion-content>
+    </div>
+</ion-view>
+
+    
+    
+    
+    
+    

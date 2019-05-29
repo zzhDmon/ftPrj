@@ -1,0 +1,71 @@
+<!--发现界面模板-->
+<ion-view id="guess_price" view-title="系统估价" hide-nav-bar=true>
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			系统估价
+		</div>
+		<div ui-sref="evaluationValuation({type:1})" class="right" >
+			我的房源
+		</div>
+	</div>
+	
+	<ion-content class="guess-price">
+
+		<div class="form-main">
+			<div ui-sref="tabs.guessPriceCommunity" class="row-item">
+				<div class="left-name">小区名称</div>
+				<div class="mid-input">
+					{{subData.query}}
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangyou1"></i>
+				</div>
+			</div>
+			<div class="row-item">
+				<div class="left-name">面积</div>
+				<div class="mid-input-text">
+					<input ng-model="subData.space" placeholder="请输入大于0的数字" type="number">
+				</div>
+				<div class="right-text">平米</div>
+			</div>
+			<div class="row-item">
+				<div class="left-name">户型</div>
+				<div class="mid-input">
+					<input ng-model="subData.houseType" class="guess-huxing" type="text">
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangxia2"></i>
+				</div>
+			</div>
+			<div class="row-item">
+				<div class="left-name">朝向</div>
+				<div class="mid-input">
+					<input ng-model="subData.orientation" class="guess-chaoxiang" type="text">
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangxia2"></i>
+				</div>
+			</div>
+			<!-- <div class="row-item">
+				<div class="left-name">楼层</div>
+				<div class="mid-input">
+					<input ng-model="subData.floor" type="text">
+				</div>
+				<div class="right-icon"></div>
+			</div> -->
+		</div>
+
+
+		<div  class="step" ng-click="submitData()">
+			查看估价结果
+		</div>
+
+
+	
+	</ion-content>
+	
+</ion-view>

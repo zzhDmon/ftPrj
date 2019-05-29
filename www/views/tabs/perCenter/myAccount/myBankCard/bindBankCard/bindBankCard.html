@@ -1,0 +1,142 @@
+
+<!--对话模板-->
+<ion-view id="bind_bank_card" view-title="绑定银行卡" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			<span ng-if="stepNumber==1">绑定手机号</span>
+			<span ng-if="stepNumber==2">身份信息</span>
+			<span ng-if="stepNumber==3">绑定银行卡</span>		
+			<span ng-if="stepNumber==4">确认绑定银行卡</span>		
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	<ion-content class="bind-bank-card">
+		<!-- 绑定手机 -->
+		<form ng-show="stepNumber==1" novalidate name="bindphone">
+			<div class="data-list">
+				<div class="data-item">
+					<div class="item-left">手机号</div>
+					<div class="input-item">
+						<input type="tel" name="name" ng-model="bindphoneData.phone" required="" placeholder="请输入手机号">
+					</div>
+				</div>
+				<div class="borderline"></div>
+				<div class="data-item">
+					<div class="item-left">验证码</div>
+					<div class="item-mid input-item">
+						<input type="text" name="code" ng-model="bindphoneData.code" required="" placeholder="请输入验证码">
+					</div>
+					<div ng-click="sendMsg(bindphoneData.phone)" ng-show="!showCountDown" class="item-right button">
+						获取验证码
+					</div>
+					<div ng-show="showCountDown" ng-disabled="true" class="item-right button">
+						{{countDownNum}}s后重新获取
+					</div>
+				</div>
+			</div>
+			<div class="subbtn">
+				<button ng-disabled="bindphone.$invalid" ng-click="bindPhone()" class="button">下一步</button>
+			</div>
+		</form>
+		<!-- 实名 -->
+		<form ng-show="stepNumber==2" novalidate name="setname">
+			<div class="data-list">
+				<div class="data-title">请绑定持卡本人的银行卡</div>
+				<div class="data-item">
+					<div class="item-left">持卡人</div>
+					<div class="input-item">
+						<input type="text" name="name" ng-model="setnameData.name" required="" placeholder="请输入姓名">
+					</div>
+				</div>
+				<div class="borderline"></div>
+				<div class="data-item">
+					<div class="item-left">身份证</div>
+					<div class="input-item">
+						<input type="text" name="idnumber" ng-model="setnameData.idNumber" required="" placeholder="请输入身份证号">
+					</div>
+				</div>
+			</div>
+			<div class="subbtn">
+				<button ng-disabled="setname.$invalid" ng-click="setName()" class="button">下一步</button>
+			</div>
+		</form>
+		<!-- 绑定银行卡 -->
+		<form ng-show="stepNumber==3" novalidate name="addbank">
+			<div class="data-list">
+				<div class="data-item">
+					<div class="item-left">持卡人</div>
+					<div class="input-item">
+						{{cardData.Name}}
+						<!-- <input type="text" name="Name" ng-model="cardData.Name" required="" placeholder="持卡人姓名"> -->
+					</div>
+				</div>
+				<div class="borderline"></div>
+				<div class="data-item">
+					<div class="item-left">卡号</div>
+					<div class="input-item">
+						<input type="text" name="CardNo" ng-model="cardData.CardNo" required="" placeholder="请输入卡号">
+					</div>
+				</div>
+				<div class="borderline"></div>
+				<div class="data-item">
+					<div class="item-left">卡类型</div>
+					<div class="input-item">
+						{{cardInfo.bankName}}
+						<span ng-if="cardInfo.cardType==1">借记卡</span>
+						<span ng-if="cardInfo.cardType==2">信用卡</span>
+					</div>
+				</div>
+				<div class="borderline"></div>
+				<div class="data-item">
+					<div class="item-left">身份证号</div>
+					<div class="input-item">
+						{{cardData.IdentityNo}}
+						<!-- <input type="text" name="IdentityNo" ng-model="cardData.IdentityNo" required="" placeholder="请输入身份证号"> -->
+					</div>
+				</div>
+				<div class="borderline"></div>
+				<div class="data-item">
+					<div class="item-left">手机号</div>
+					<div class="input-item">
+						<input type="text" name="Phone" ng-model="cardData.Phone" required="" placeholder="请输入手机号">
+					</div>
+				</div>
+				<div class="borderline"></div>
+				<div class="data-item">
+					<div class="item-left">验证码</div>
+					<div class="item-mid input-item">
+						<input type="text" name="Code" ng-model="confirmcardData.Code" required="" placeholder="请输入验证码">
+					</div>
+					<div ng-click="applyBindCard()" ng-show="!showCountDown" class="item-right button">
+						获取验证码
+					</div>
+					<div ng-show="showCountDown" ng-disabled="true" class="item-right button">
+						{{countDownNum}}s后重新获取
+					</div>
+				</div>
+				<div ng-show="cardInfo.cardType==2" class="borderline"></div>
+				<div ng-show="cardInfo.cardType==2" class="data-item">
+					<div class="item-left">有效期</div>
+					<div class="input-item">
+						<input type="text" name="deadTime" ng-model="cardData.Validate" placeholder="请输入有效期">
+					</div>
+				</div>
+				<div ng-show="cardInfo.cardType==2" class="borderline"></div>
+				<div ng-show="cardInfo.cardType==2" class="data-item">
+					<div class="item-left">CVV2</div>
+					<div class="input-item">
+						<input type="text" name="Cvv2" ng-model="cardData.Cvv2" placeholder="请输入CVV2">
+					</div>
+				</div>
+			</div>
+			<div class="subbtn">
+				<button ng-disabled="addbank.$invalid" ng-click="confirmBindCard()" class="button">完成</button>
+			</div>
+		</form>
+	</ion-content>
+</ion-view>
+

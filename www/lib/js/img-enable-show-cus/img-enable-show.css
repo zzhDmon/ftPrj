@@ -1,0 +1,62 @@
+/* Empty. Add your own CSS if you like */
+.action-img-backdrop.active {
+    background-color: rgba(5, 5, 5, 5.96);
+}
+
+.action-img-backdrop {
+    -webkit-transition: background-color 150ms ease-in-out;
+    transition: background-color 150ms ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    width: 100%;
+    height: 100%;
+}
+
+.action-img-backdrop .large-img-group {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0,0);
+    -webkit-transition: all cubic-bezier(0.36, 0.66, 0.1, 1) 400ms;
+    transition: all cubic-bezier(0.36, 0.66, 0.1, 1) 400ms;
+    left: 0;
+    right:0;
+    width:100%;
+    height:100%;    
+}
+.large-img-group .img-slide-box {
+    width:100%;
+    height:100%;
+    /* display:flex;
+    justify-content: center;
+    align-items:center; */
+    position: relative;
+    overflow: hidden;
+}
+.large-img-group .img-slide-box img{
+    /* display: block; */
+    width:100%;
+    height:auto;
+    transform-origin:"50% 50%";
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+    overflow: hidden;
+    border-radius: 50px;
+}
+
+
+/* .all-image-wrapper{
+    width: 100%;
+    height: calc(100% - 40px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    &.honor-image-wrapper{
+        height: calc(100% - 80px);
+    }
+    .all-image{
+        width: 100%;
+    }
+} */

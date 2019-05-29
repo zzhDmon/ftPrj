@@ -1,0 +1,34 @@
+
+angular.module('App').controller('forgetPayPasswordCtl',function(enterViewLoad,appUtils,$state,$http,$Factory,$scope,$rootScope,$stateParams,$timeout){
+	$scope.back=function(){
+		appUtils.back();
+	}
+	
+	$http.post($Factory.Allin.querycards.url+'?CardNo='+"ALL")
+		.then(function(resData){
+				if(resData.data.return_code=="SUCCESS"){
+					$scope.cardList=resData.data.return_msg.bindCardList
+				}else{
+					enterViewLoad.customload(resData.data.return_msg);
+				}
+			}).catch(function(err){
+				if(err.status==500){
+					enterViewLoad.customload('还未实名绑卡');
+				}else{
+					enterViewLoad.customload('获取列表失败');
+				}
+			})
+	//解绑并重新绑定 
+	$scope.unBind=function(item){
+		$http.post($Factory.Allin.unbindcard.url+'?CardNo='+item.bankCardNo)
+				.then(function(resData){
+					if(resData.data.return_code=='SUCCESS'){
+						$state.go('bindBankCard',{isreset:true})
+					}else{
+						enterViewLoad.customload(resData.data.return_msg);
+					}
+				}).catch(function(){
+					enterViewLoad.customload('解绑失败');
+				})
+	}
+})

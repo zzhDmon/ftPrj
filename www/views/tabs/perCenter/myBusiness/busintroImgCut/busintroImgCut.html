@@ -1,0 +1,24 @@
+<!--模板-->
+<ion-view id="busintro_img_cut" view-title="简介图裁剪" hide-nav-bar=true class='dark'>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			简介图裁剪
+		</div>
+		<div ng-click="save()" class="right" >
+			使用
+		</div>
+	</div>
+
+	<ion-content class="busintro-img-cut" has-bouncing=false>
+		<!--<img src="{{imgurl}}" />-->
+		<div class="card">
+			<div class="img">
+				<img class="square" ng-src="{{view}}"/>
+			</div>
+		</div>
+	</ion-content>
+
+</ion-view>

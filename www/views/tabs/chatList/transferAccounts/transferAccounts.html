@@ -1,0 +1,83 @@
+
+<!--对话模板-->
+<ion-view id="transfer_accounts" view-title="转账" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			转账
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	<ion-content class="transfer-accounts">
+		<div class="main">
+			<div class="head-info">
+				<div class="img-wrapper">
+					<img 
+						src="{{targetInfo.avatar || 'http://imgs.wujiuyun.com//Images//logo.png'}}" 
+						onError="src='http://imgs.wujiuyun.com//Images//logo.png'"
+						alt="">
+				</div>
+				<div class="name-line">{{targetInfo.nick || '房田用户'}}</div>
+			</div>
+
+			<div class="transfer">转账金额</div>
+			<form novalidate name="subtopup">
+				<div class="data-item">
+					<div class="left-cell">￥</div>
+					<div class="input-cell">
+						<input type="number" name="money" ng-model="subData.money" placeholder="请输入转账金额" required="">
+					</div>
+				</div>
+				
+				<div class="subbtn">
+					<button ng-disabled="subtopup.$invalid || subData.money<=0" ng-click="nextStep()" class="button">转账</button>
+				</div>
+			</form>
+		</div>
+
+	</ion-content>
+	
+	<script id="transfer_accounts_password_modal" type="text/ng-template">
+		<ion-modal-view class="transfer-accounts-password-modalview">
+			<div class="head">
+				<div ng-click="closeModal()" class="close"><i class="iconfont icon-guanbi1"></i></div>
+				<div class="thumb"><img ng-src="{{myselfInfo.ShowImage}}" alt=""></div>
+				<div class="text-item">请输入支付密码</div>
+			</div>
+			<div class="head-borderline"></div>
+
+			<div class="main-info">
+				<div class="money-num">
+					<div class="text-item">转账</div>
+					<div class="money-item">￥<span>{{subData.money}}</span></div>
+				</div>
+				<div class="consume-from">
+					<div style="width:calc(50% - 30px);" class="be-left"></div>
+					<div class="icon-wrapper">
+						<img src="imgs/pwdicon/money.png" alt="">
+					</div>
+					<div class="text-wrap">
+						零钱
+					</div>
+				</div>
+				<div class="six-pwd-input">
+					<input type="tel" ng-model="pwdInput.value" ng-change="inputPwd()" name="password" class="password" maxlength="6">
+					<ul class="showView">
+						<li><i class="circle"></i></li>
+						<li><i class="circle"></i></li>
+						<li><i class="circle"></i></li>
+						<li><i class="circle"></i></li>
+						<li><i class="circle"></i></li>
+						<li><i class="circle"></i></li>
+					</ul>
+				</div>
+				<div style="clear:both;"></div>
+				<div ui-sref="forgetPayPassword" class="forget-pwd">忘记密码</div>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

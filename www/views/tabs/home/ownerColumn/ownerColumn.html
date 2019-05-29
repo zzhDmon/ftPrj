@@ -1,0 +1,113 @@
+
+<ion-view id="owner_column" view-title="业主专栏" hide-nav-bar="true">
+	<div class="header house-header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			业主专栏 
+		</div>
+		<div class="right"></div>
+	</div>
+	<div class="head-bg"></div>
+
+	
+	<ion-content has-bouncing="false"  class="owner-column">
+		<ion-refresher 
+            pulling-icon="" 
+            pulling-text="" 
+            spinner="lines"  
+            on-refresh="initData()" 
+            >
+        </ion-refresher>
+		<div class="main">
+			<h5 class="off-tit">房产走势</h5>
+			<div class="echart-wrapper">
+				<div class="left-loc">
+					<i class="iconfont icon-dingwei"></i>
+					<span class="overflow-omit-one">厦门国金广场</span>
+				</div>
+				<div class="right-cell">
+					<div class="top-item">{{currentMonth}}月参考价格</div>
+					<div class="bot-item">
+						<span class="price">43483</span>元/平
+					</div>
+				</div>
+	
+				<div id="owner_column_trend_echarts" class="echart-cont">
+				</div>
+			</div>
+			
+			<div class="enter-partner">
+				<div class="in-enter-partner">
+					<div class="enter-wrapper">
+						<div ui-sref="fbTypeChoose({type:0})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-tongdao-6"></use>
+							</svg>
+							<div class="bot-txt">出售</div>
+						</div>
+						<div ui-sref="fbTypeChoose({type:1})" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-tongdao-4"></use>
+							</svg>
+							<div class="bot-txt">出租</div>
+						</div>
+						<div ng-click="goHome(3)" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-tongdao-5"></use>
+							</svg>
+							<div class="bot-txt">求购</div>
+						</div>
+						<div ng-click="goHome(4)" class="enter-item">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-tongdao-3"></use>
+							</svg>
+							<div class="bot-txt">求租</div>
+						</div>
+					</div>
+					<div class="borderline"></div>
+					<div class="partner">
+						<div class="left-text">
+							<div class="top">成为合伙人</div>
+							<div class="bot">
+								想了解更多详情？快加入我们吧
+							</div>
+						</div>
+						<div class="right-btn">申请加入</div>
+					</div>
+				</div>
+			</div>
+	
+			<!-- <h5 class="off-tit">案例分析</h5> -->
+			<div class="title-line">
+				<div class="left-cell">
+					<div class="borderline"></div>
+				</div>
+				<div class="mid-cell">案例分析</div>
+				<div class="right-cell">
+					<div class="borderline"></div>
+				</div>
+			</div>
+			<div class="case-list-wrapper">
+				<div class="case-list">
+					<div 
+					ui-sref="sellHouseDetail({id:house.Id})"
+					ng-repeat="house in oldhousearr track by $index"
+					class="case-item">
+						<div class="left-cell"><img ng-src="{{house.Thumb}}" alt=""></div>
+						<div class="mid-cell">
+							<div class="title overflow-omit-one">{{house.Title}}</div>
+							<div class="house-type overflow-omit-one">{{house.HouseType}}</div>
+							<div class="community overflow-omit-one">{{house.CommunityName}}</div>
+						</div>
+						<div class="right-cell overflow-omit-one">
+							{{house.Price}}万
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+
+</ion-view>

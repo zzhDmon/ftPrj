@@ -1,0 +1,66 @@
+<!--发现界面模板-->
+<ion-view id="agency_agreement" view-title="{{headTitle}}" hide-nav-bar=true>
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			{{headTitle}}
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	
+	<ion-content class="agency-agreement">
+		<div class="main">
+			<div class="row-item">
+				<div class="left-cell">代理价格</div>
+				<div class="mid-input">
+					<input ng-model="subData.agencyPrice" type="number" placeholder="请输入价格">
+				</div>
+				<div class="right-cell">万元</div>
+			</div> 
+			<div class="row-item">
+				<div class="left-cell">代理佣金</div>
+				<div class="mid-input">
+					<input ng-model="subData.agencyCommision" type="number" placeholder="请输入佣金">
+				</div>
+				<div class="right-cell">元</div>
+			</div> 
+			<div class="row-item">
+				<div class="left-cell">代理期限</div>
+				<div class="three-cell">
+					<div class="input"><input type="text" ng-model="subData.beginTime" class="from-time" placeholder="起始时间"></div>
+					<div class="mid-row">-</div>
+					<div class="input"><input type="text" ng-model="subData.endTime" class="end-time" placeholder="终止时间"></div>
+				</div>
+			</div>
+			
+			<div class="addition-wrapper">
+				<div class="title">
+					补充协议
+				</div>
+				<textarea ng-model="subData.agencyAddition" name="" id="" placeholder="请在此输入…"></textarea>
+			</div>
+			<div class="row-item-agree">
+				<div class="left-cell">
+					代理合同
+					<span ui-sref="agencyAgreementDetail({agencytype:agencyType})">详情</span>
+				</div>
+				
+				<div class="right-cell">
+					<div ng-click="changeAgree()" class="label">
+						<input ng-model="subData.isAgree" type="radio" name="isnewradio" value="1" />
+						<span>同意</span>
+						<i class="iconfont icon-fuxuansel"></i>
+					</div>
+				</div>
+			</div>
+			<div ng-click="save()" class="ft-sub-btn">
+				发送协议
+			</div>
+		</div>	
+	</ion-content>
+	
+</ion-view>

@@ -1,0 +1,112 @@
+
+<!--对话模板-->
+<ion-view id="with_draw" view-title="提现" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			提现
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	<ion-content class="with-draw">
+		<div class="offline"></div>
+		<div ui-sref="tabs.myBankCard({actiontype:'choosebankcard'})" class="bank-item flex-item">
+			<div ng-show="choosedBankCard" class="left-icon">
+				<svg ng-if="choosedBankCard.bankName=='工商银行'" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-gongshangyinhang"></use>
+				</svg>
+				<svg ng-if="choosedBankCard.bankName=='农业银行'" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-nongyeyinhang"></use>
+				</svg>
+				<svg ng-if="choosedBankCard.bankName=='中国银行'" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-zhongguoyinhang"></use>
+				</svg>
+				<svg ng-if="choosedBankCard.bankName=='建设银行'" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-jiansheyinhang"></use>
+				</svg>
+				<svg ng-if="choosedBankCard.bankName=='交通银行'" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-jiaotongyinhang"></use>
+				</svg>
+				<svg ng-if="choosedBankCard.bankName=='邮储银行'" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-youchuyinhang"></use>
+				</svg>
+				<svg ng-if="choosedBankCard.bankName=='招商银行'" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-zhaoshangyinhang"></use>
+				</svg>
+				<svg ng-if="choosedBankCard.bankName=='平安银行'" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-pinganyinhang"></use>
+				</svg>
+				<svg ng-if="choosedBankCard.bankName=='华夏银行'" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-huaxiayinhang"></use>
+				</svg>
+				<svg ng-if="choosedBankCard.bankName=='光大银行'" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-guangdayinhang"></use>
+				</svg>
+				<svg ng-if="choosedBankCard.bankName=='浦发银行'" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-pufayinhang"></use>
+				</svg>
+				<svg ng-if="choosedBankCard.bankName=='中信银行'" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-zhongxinyinhang"></use>
+				</svg>
+				<svg ng-if="choosedBankCard.bankName=='民生银行'" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-minshengyinhang"></use>
+				</svg>
+				<svg ng-if="choosedBankCard.bankName=='兴业银行'" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-xingyeyinhang"></use>
+				</svg>
+				<svg ng-if="choosedBankCard.bankName=='广发银行'" class="icon" aria-hidden="true">
+					<use xlink:href="#icon-guangfayinhang"></use>
+				</svg>
+			</div>
+			<div ng-show="choosedBankCard" class="mid-tetx">
+				<div class="top">{{choosedBankCard.bankName}}</div>
+				<div class="bot">（
+					<span ng-if="choosedBankCard.cardType==1">储蓄卡</span>
+					<span ng-if="choosedBankCard.cardType==2">信用卡</span>
+					{{choosedBankCard.bankCardNo | cardNoFilter}}
+					）
+				</div>
+			</div>
+			<div ng-hide="choosedBankCard" class="choose-text">
+				选择银行卡
+			</div>
+			<div class="right-icon"><i class="iconfont icon-xiangyou1"></i></div>
+		</div>
+		<div class="offline"></div>
+
+		<form ng-hide="showConfirmForm" novalidate name="subtopup">
+			<div class="data-list">
+				<div class="data-title">提现金额</div>
+				<div class="data-item">
+					<div class="item-left">￥</div>
+					<div class="input-item">
+						<!-- subData.money -->
+						<input type="number" name="money" ng-model="subData.money" placeholder="请输入提现金额" required="">
+					</div>
+				</div>
+			</div>
+
+			<div class="surplus-money">
+				可用余额&nbsp;{{myBalance || 0.00}}&nbsp;元&nbsp;<span style="color:rgb(196,26,22);">交易手续费(银联扣除0.6% + 1.5元)</span>
+			</div>
+			
+			<div class="subbtn">
+				<button ng-disabled="subtopup.$invalid " ng-click="drawNow()" class="button">确认</button>
+			</div>
+		</form>
+
+		
+		<div ng-show="showConfirmForm" class="subbtn">
+			<button ng-click="confirmDraw()" class="button">完成</button>
+		</div>
+		
+		<div class="problem" style="width:100%;margin:200px 0 0;text-align:center;color:rgb(102,102,102)">
+			联系客服
+		</div>
+	</ion-content>
+	
+</ion-view>
+

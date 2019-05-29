@@ -1,0 +1,24 @@
+{
+    "Floor":[
+        {"text":"低区","value":1},
+        {"text":"中区","value":2},
+        {"text":"高区","value":3}
+    ],
+    "RentalUnit":[
+        {"text":"元/月","value":1},
+        {"text":"元/m²*天","value":2},
+        {"text":"元/m²月","value":3}
+    ],
+    "ImageType":[
+        {"text":"所有分类","value":0},
+        {"text":"办公区域","value":1},
+        {"text":"楼内公共区域","value":2},
+        {"text":"外立面","value":3},
+        {"text":"周边环境","value":4},
+        {"text":"平面图","value":5}
+    ],
+    "TimeLine":[
+        {"tetx":"时间从近到远","value":1},
+        {"tetx":"时间从远到近","value":2}
+    ]
+}

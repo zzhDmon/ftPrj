@@ -1,0 +1,29 @@
+<div class="save-templete-cont">
+    <div class="btns">
+        <div ng-click="save()" class="submit btn">提交文本</div>
+        <div ng-click="saveTemp()" ng-hide="name=='标题'" class="save btn">保存模板</div>
+    </div>
+    <div ng-show="showTemplete&&name!=='标题'" class="templetes">
+        <div ng-click="closeTemplete()" class="head-close"><i class="iconfont icon-guanbi2"></i></div>
+        
+        <!-- <div ng-show="selfArr.length>0" class="self-tit tit">个人模板</div> -->
+        <div class="templete row" ng-repeat="templete in selfArr track by $index">
+            <div ng-click="chooseTemp(templete.Content)" class="col-90 left">
+                {{templete.Content}}	
+            </div>
+            <div ng-click="delTemp(templete.Id)" class="col-10 right">
+                <i class="iconfont icon-guanbi1"></i>
+            </div>
+        </div>
+
+        <!-- <div ng-show="pubArr.length>0" class="pub-tit tit">公共模板</div> -->
+        <div ng-click="chooseTemp(templete.Content)" class="templete row" ng-repeat="templete in pubArr track by $index">
+            <div class="col-90 left">	
+                    {{templete.Content}}	
+            </div>
+            <div class="col-10 right">
+                
+            </div>
+        </div>
+    </div>
+</div>

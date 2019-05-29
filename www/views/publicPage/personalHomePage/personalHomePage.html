@@ -1,0 +1,115 @@
+
+<!--对话模板-->
+<ion-view id="personal_home_page" hide-nav-bar=true  view-title="{{headTitle}}" class='dark'>
+	
+	
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1" style="font-size: 25px!important;"></i>
+		</div>
+		<div class="title">
+			个人主页
+		</div>
+		<div class="right">
+			
+		</div>
+	</div>
+
+	<div class="head-info">
+		
+	</div>
+	<ion-content class="personal-home-page">
+		<div class="head-info-wrapper">
+			<div class="head-info">
+				<div class="left-img">
+					<div class="img">
+						<img ng-src="{{hisInfo.ShowImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+						
+						<!-- <div ng-if="!hisInfo.Role" class="level-img">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-qingtong-"></use>
+							</svg>
+						</div>
+						<div ng-if="hisInfo.Role=='白银'" class="level-img">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-baiyin-"></use>
+							</svg>
+						</div>
+						<div ng-if="hisInfo.Role=='黄金'" class="level-img">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-huangjin-"></use>
+							</svg>
+						</div>
+						<div ng-if="hisInfo.Role=='铂金'" class="level-img">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-baijin-"></use>
+							</svg>
+						</div>
+						<div ng-if="hisInfo.Role=='钻石'" class="level-img">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-zuanshi-"></use>
+							</svg>
+						</div>
+						<div ng-if="hisInfo.Role=='股东'" class="level-img">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-gudong-"></use>
+							</svg>
+						</div> -->
+					</div>
+					<div class="user-name overflow-omit-one">{{hisInfo.Name}}</div>
+				</div>
+	
+				<div class="right-text">
+					<div class="text-item overflow-omit-one">
+						<span ng-if="hisInfo.IsShowPhone">电话：{{hisInfo.UserName}}</span>
+						<span ng-if="!hisInfo.IsShowPhone">电话：不可见</span>
+					</div>
+					<div class="text-item overflow-omit-one">
+						<span ng-if="hisInfo.ShowConfig.showMySex">性别：{{hisInfo.Sex}}</span>
+						<span ng-if="!hisInfo.ShowConfig.showMySex">性别：不可见</span>
+					</div>
+					<div class="text-item overflow-omit-one">
+						<span ng-if="hisInfo.ShowConfig.showMyJob">职业：{{hisInfo.Job}}</span>
+						<span ng-if="!hisInfo.ShowConfig.showMyJob">职业：不可见</span>
+					</div>
+					<div class="text-item overflow-omit-one">
+						<span ng-if="hisInfo.ShowConfig.showMyChoosePrefer">选房偏好：{{hisInfo.HouseHobby}}</span>
+						<span ng-if="!hisInfo.ShowConfig.showMyChoosePrefer">选房偏好：不可见</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="offline"></div>
+
+		<div class="owner-to-him-wrapper">
+			<div ui-sref="personalHouse({id:userId})" ng-if="hisInfo.ShowConfig.showMyHouse" class="owner-to-him">
+				<div class="owner-name">他的房源</div>
+				<div class="owner-num overflow-omit-one"></div>
+			</div>
+			<div ui-sref="personalNeed({id:userId})" ng-if="hisInfo.ShowConfig.showMyNeed" class="owner-to-him">
+				<div class="owner-name">他的需求</div>
+				<div class="owner-num overflow-omit-one"></div>
+			</div>
+			<div ng-if="hisInfo.ShowConfig.showMyEvaluation" class="owner-to-him">
+				<div class="owner-name">他的评测</div>
+				<div class="owner-num overflow-omit-one"></div>
+			</div>
+			<div ng-if="hisInfo.ShowConfig.showMyRecruitment" class="owner-to-him">
+				<div class="owner-name">他的招聘/应聘</div>
+				<div class="owner-num overflow-omit-one"></div>
+			</div>
+			<div ng-if="hisInfo.ShowConfig.showMyShop" class="owner-to-him">
+				<div class="owner-name">他的店铺</div>
+				<div class="owner-num overflow-omit-one"></div>
+			</div>
+			<div ng-if="hisInfo.ShowConfig.showMyTask" class="owner-to-him">
+				<div class="owner-name">他的任务</div>
+				<div class="owner-num overflow-omit-one"></div>
+			</div>
+		</div>
+			
+	</ion-content>
+</ion-view>
+

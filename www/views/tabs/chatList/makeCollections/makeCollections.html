@@ -1,0 +1,36 @@
+
+<!--对话模板-->
+<ion-view id="make_collections" view-title="{{headTitle}}" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			{{headTitle}}
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	<ion-content class="make-collections">
+		<div class="main">
+			<div class="head-info">
+				<div class="img-wrapper">
+					<img src="{{targetInfo.avatar || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+				</div>
+				<div class="name-line">{{targetInfo.nick || '房田用户'}}</div>
+			</div>
+
+			<div ng-if="pageType==13" class="transfer-explain">向您转账</div>
+			<div ng-hide="pageType==13" class="transfer-explain">收到红包</div>
+			
+			<div class="show-money">
+				￥ <span>{{fee}}</span> 
+			</div>
+			
+			<div class="subbtn">
+				<button ng-click="inCome()" class="button">接收</button>
+			</div>			
+		</div>
+	</ion-content>
+</ion-view>
+

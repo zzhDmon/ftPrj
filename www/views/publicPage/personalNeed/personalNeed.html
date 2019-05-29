@@ -1,0 +1,166 @@
+<!--界面模板-->
+<ion-view id="personal_need" view-title="个人需求" hide-nav-bar=true>
+    
+    <div class="header">
+        <div ng-click="back()" class="back">
+            <i class=" iconfont icon-xiangzuo1"></i>
+        </div>
+        <div class="title">
+            个人需求
+        </div>
+        <div ng-click="switchBuySell()" class="right" >
+            <div class="item-text">
+                {{headTitle}} 
+            </div>
+            <div class="item-icon">
+                <i class="iconfont icon-qiehuan1"></i>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="isBuy" class="switch-buy-rent-list">
+        <div ng-click="switchHouseType(0)" ng-class="{true:'active',false:''}[houseType==0]" class="switch-item col-25">
+            <div class="item-in">新房</div>
+        </div>
+        <div ng-click="switchHouseType(1)" ng-class="{true:'active',false:''}[houseType==1]" class="switch-item col-25">
+            <div class="item-in">二手房</div>
+        </div>
+        <div ng-click="switchHouseType(5)" ng-class="{true:'active',false:''}[houseType==5]" class="switch-item col-25">
+            <div class="item-in">商铺</div>
+        </div>
+        <div ng-click="switchHouseType(17)" ng-class="{true:'active',false:''}[houseType==17]" class="switch-item col-25">
+            <div class="item-in">写字楼</div>
+        </div>
+        <div ng-click="switchHouseType(7)" ng-class="{true:'active',false:''}[houseType==7]" class="switch-item col-25">
+            <div class="item-in">厂房</div>
+        </div>
+        <div ng-click="switchHouseType(9)" ng-class="{true:'active',false:''}[houseType==9]" class="switch-item col-25">
+            <div class="item-in">仓库</div>
+        </div>
+        <div ng-click="switchHouseType(11)" ng-class="{true:'active',false:''}[houseType==11]" class="switch-item col-25">
+            <div class="item-in">车位</div>
+        </div>
+    </div>
+    <div ng-hide="isBuy" class="switch-buy-rent-list">
+        <div ng-click="switchHouseType(2)" ng-class="{true:'active',false:''}[houseType==2]" class="switch-item col-25">
+            <div class="item-in">整租</div>
+        </div>
+        <div ng-click="switchHouseType(12)" ng-class="{true:'active',false:''}[houseType==12]" class="switch-item col-25">
+            <div class="item-in">合租</div>
+        </div>
+        <div ng-click="switchHouseType(14)" ng-class="{true:'active',false:''}[houseType==14]" class="switch-item col-25">
+            <div class="item-in">品牌公寓</div>
+        </div>
+        <div ng-click="switchHouseType(15)" ng-class="{true:'active',false:''}[houseType==15]" class="switch-item col-25">
+            <div class="item-in">个人房源</div>
+        </div>
+        <div ng-click="switchHouseType(16)" ng-class="{true:'active',false:''}[houseType==16]" class="switch-item col-25">
+            <div class="item-in">房东委托</div>
+        </div>
+        <div ng-click="switchHouseType(3)" ng-class="{true:'active',false:''}[houseType==3]" class="switch-item col-25">
+            <div class="item-in">商铺</div>
+        </div>
+        <div ng-click="switchHouseType(4)" ng-class="{true:'active',false:''}[houseType==4]" class="switch-item col-25">
+            <div class="item-in">写字楼</div>
+        </div>
+        <div ng-click="switchHouseType(6)" ng-class="{true:'active',false:''}[houseType==6]" class="switch-item col-25">
+            <div class="item-in">厂房</div>
+        </div>
+        <div ng-click="switchHouseType(8)" ng-class="{true:'active',false:''}[houseType==8]" class="switch-item col-25">
+            <div class="item-in">仓库</div>
+        </div>
+        <div ng-click="switchHouseType(10)" ng-class="{true:'active',false:''}[houseType==10]" class="switch-item col-25">
+            <div class="item-in">车位</div>
+        </div>
+    </div>
+
+    <ion-content ng-show="isBuy" class="personal-need small-margin">
+        <div class="main">
+            <div ng-click="showAction(needBuy.Id)" ng-repeat="needBuy in needList track by $index" class="arr-item">
+                <div class="left-img"><img ng-src="{{needBuy.UserInfo.ShowImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt=""></div>
+                <div class="right-text">
+                    <div class="title">
+                        <span ng-if="needBuy.UserInfo.Name">{{needBuy.UserInfo.Name}}</span>
+                        <span ng-if="!needBuy.UserInfo.Name">房田用户</span>
+                        求购
+                        <span ng-show="needBuy.Type==0||needBuy.Type==1">
+                            {{needBuy.RoomType}}室{{needBuy.HallType}}厅{{needBuy.BathType}}卫
+                        </span>
+                        <span ng-show="needBuy.Type==5">商铺</span><span ng-show="needBuy.Type==17">写字楼</span><span ng-show="needBuy.Type==7">厂房</span>
+                        <span ng-show="needBuy.Type==9">仓库</span><span ng-show="needBuy.Type==11">车位</span>
+                    </div>
+                    
+                    <div class="adr">
+                        <span class="span-gray"><i class="iconfont icon-dingwei"></i>{{needBuy.District}}</span>
+                        <span class="span-gray" ng-if="needBuy.Type==0">&nbsp;|&nbsp;新房</span>
+                        <span class="span-gray" ng-if="needBuy.Type==1">&nbsp;|&nbsp;二手房</span>
+                    </div>
+                    <div class="time">
+                        {{needBuy.Time | limitTo:10}}
+                    </div>
+                    <div class="info">
+                        <span class="spanprice">
+                            <span ng-if="needBuy.MinPrize&&!needBuy.MaxPrize">{{needBuy.MinPrize}}万以上</span>
+                            <span ng-if="needBuy.MinPrize&&needBuy.MaxPrize">{{needBuy.MinPrize}}~{{needBuy.MaxPrize}}万</span>
+                            <span ng-if="!needBuy.MinPrize&&needBuy.MaxPrize">{{needBuy.MaxPrize}}万以下</span>
+                            <span ng-if="!needBuy.MinPrize&&!needBuy.MaxPrize">价格不限</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <p ng-show="needList.length<1" class="baseLine"><span>暂无更多</span></p>
+        </div>   
+    </ion-content>
+
+    <ion-content ng-hide="isBuy" class="personal-need large-margin">
+        <div class="main">
+            <div ng-click="showAction(needRent.Id)" on-finish-render-filters ng-repeat="needRent in needList track by $index" class="arr-item">
+                <div class="left-img"><img ng-src="{{needRent.UserInfo.ShowImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt=""></div>
+                <div class="right-text">
+                    <div class="title overpoint">
+                        <span ng-if="needRent.UserInfo.Name">{{needRent.UserInfo.Name}}</span>
+                        <span ng-if="!needRent.UserInfo.Name">房田用户</span>
+                        求租
+                        <span ng-show="needRent.RoomType||needRent.HallType||needRent.BathType">
+                            <span ng-if="needRent.RoomType">{{needRent.RoomType}}室</span>
+                            <span ng-if="needRent.HallType">{{needRent.HallType}}厅</span>
+                            <span ng-if="needRent.BathType">{{needRent.BathType}}卫</span>
+                        </span>
+                        <span ng-show="!needRent.RoomType&&!needRent.HallType&&!needRent.BathType">
+                            <span ng-if="needRent.Type==2">整租</span><span ng-if="needRent.Type==12">合租</span><span ng-if="needRent.Type==3">商铺</span>
+                            <span ng-if="needRent.Type==4">写字楼</span><span ng-if="needRent.Type==6">厂房</span><span ng-if="needRent.Type==5">仓库</span>
+                            <span ng-if="needRent.Type==10">车位</span>
+                        </span>
+                    </div>
+                    <div class="adr overpoint">
+                        <span class="span-gray"><i class="iconfont icon-dingwei"></i>{{needRent.District}}</span>
+                        <span class="span-gray" ng-if="needRent.Type==2">&nbsp;|&nbsp;整租</span>
+                        <span class="span-gray" ng-if="needRent.Type==3">&nbsp;|&nbsp;商铺</span>
+                        <span class="span-gray" ng-if="needRent.Type==4">&nbsp;|&nbsp;写字楼</span>
+                    </div>
+                    <div class="time overpoint">
+                        {{needRent.Time | limitTo:10}}
+                    </div>
+                    <div class="info overpoint">
+                        <span class="spanprice">
+                            <span ng-if="needRent.MinPrize&&!needRent.MaxPrize">{{needRent.MinPrize}}元/月以上</span>
+                            <span ng-if="needRent.MinPrize&&needRent.MaxPrize">{{needRent.MinPrize}}~{{needRent.MaxPrize}}元/月</span>
+                            <span ng-if="!needRent.MinPrize&&needRent.MaxPrize">{{needRent.MaxPrize}}元/月以下</span>
+                            <span ng-if="!needRent.MinPrize&&!needRent.MaxPrize">价格不限</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <p ng-show="needList.length<1" class="baseLine"><span>暂无更多</span></p>
+        </div>
+    </ion-content>
+
+</ion-view>
+
+    
+    
+    
+    
+    

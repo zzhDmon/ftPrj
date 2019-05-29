@@ -1,0 +1,242 @@
+<!--对话模板-->
+<ion-view id='other_house_detail'  hide-nav-bar="true">
+	<div ng-show="showHeader" class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			{{houseinfo.Title}}
+		</div>
+		<div ng-click="showBottomShareModal()" class="right">
+			<i class="iconfont icon-fenxiang1"></i>
+		</div>
+	</div>
+	<div class="contacts">
+		<div ng-show="userinfo" class="contact-item his-info">
+			<div class="left-cell">
+				<img ng-src="{{userinfo.avatar || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+			</div>
+			<div class="right-cell overflow-omit-one">
+				{{userinfo.agentName || '房田用户'}}
+			</div>
+		</div>
+		<div class="contact-item">
+			申请代理
+		</div>
+		<div ng-hide="myselfInfo.Id == houseinfo.AccountId" ng-click="goChat(houseinfo.AccountId)" class="contact-item">
+			微聊
+		</div>
+		<div ng-if="houseinfo.IsShowPhone" class="contact-item">
+			<a href="tel:{{userinfo.phone}}">电话</a>
+		</div>
+	</div>
+	
+	<ion-content 
+		on-scroll="scrollListen()"
+		delegate-handle="other-house-detail-Scroll"
+		has-bouncing="false"
+		class="other-house-detail house-detail">
+		<div class="backbotton btn" ng-click="back()"><i class="iconfont icon-xiangzuo1"></i></div>
+		<div class="sharebotton btn" ng-click="showBottomShareModal()"><i class="iconfont icon-fenxiang1" style="font-size: 20px!important;"></i> </div>
+		
+		<div class="show">
+			<div class="banner-position">
+				<ion-slide-box class="detailcursor" on-slide-changed='changeindex()' show-pager="false"  delegate-handle='other-house-detail-handle'>
+				  <ion-slide ng-repeat="banner in bannerarr track by $index">
+				    <div class="box"><img ng-src="{{banner}}"/></div>
+				  </ion-slide>
+				</ion-slide-box>
+				<div class="slide-page-num">
+                    <div ng-repeat="banner in bannerarr track by $index" class="flex-item" ng-class="{true:'active',false:''}[currentIndex==$index]"></div>
+                </div> 
+			</div>
+			
+
+			<div class="main-detail">
+				<div class="price-eval-wrap">
+					<div class="price-housetype">
+						<span class="price">
+							￥{{houseinfo.Price}}<span ng-if="houseinfo.Behaviour==1">万</span><span ng-hide="houseinfo.Behaviour==1">元/月</span>
+						</span>
+						&nbsp;<span ng-hide="houseinfo.Behaviour==1" class="housetype">(付
+								<span ng-if="!houseinfo.PayMouth">--</span>
+								<span ng-if="houseinfo.PayMouth">{{houseinfo.PayMouth}}</span>
+								押
+								<span ng-if="!houseinfo.MortMonth">--</span>
+								<span ng-if="houseinfo.MortMonth">{{houseinfo.MortMonth}}</span>)
+							</span>
+					</div>
+				</div>
+				<h5>{{houseinfo.Title}}</h5>
+				<div class="address-wrapper">
+					<div class="left-cell">
+						<i class="iconfont icon-dingwei"></i>{{houseinfo.Address}}
+					</div>
+				</div>
+				<div class="undertitle">
+					<span ng-repeat="tag in houseinfo.Tags track by $index">{{tag}}</span>
+				</div>
+			</div>
+					
+			<!-- 商铺 -->
+			<div ng-show="isshop=='true'" class="house-info">
+				<ul>
+					<li class="overflow-omit-one">
+						<span class="leftdesc">面积：</span>
+						<span class="price">{{houseinfo.Space}} m²</span>
+					</li>
+					
+					<li class="overflow-omit-one" ng-if="houseinfo.With"><span class="leftdesc">面宽：</span>{{houseinfo.With}} m²</li>
+					<li class="overflow-omit-one" ng-if="houseinfo.Height"><span class="leftdesc">高度：</span>{{houseinfo.Height}} m</li>
+					<li class="overflow-omit-one" ng-if="houseinfo.Depth"><span class="leftdesc">进深：</span>{{houseinfo.Depth}} m</li>
+					<li class="overflow-omit-one" ng-show="houseinfo.Behaviour==2">
+						<span class="leftdesc">起租期：</span>
+						<span ng-if="!houseinfo.MinMouth">--</span>
+						{{houseinfo.MinMouth}} 月
+					</li>
+					<li class="overflow-omit-one" ng-show="houseinfo.Behaviour==2">
+						<span class="leftdesc">免租期：</span>
+						<span ng-if="!houseinfo.FreeMouth">--</span>
+						{{houseinfo.FreeMouth}} 月
+					</li>
+					<li class="overflow-omit-one">
+						<span class="leftdesc">可经营餐饮：</span>
+						<span ng-if="houseinfo.ManageType==511574">是</span>
+						<span ng-hide="houseinfo.ManageType==511574">否</span>
+					</li>
+					<li class="overflow-omit-one">
+						<span class="leftdesc">经营状态：</span>
+						<span ng-if="houseinfo.BusinessState==0">经营中</span>
+						<span ng-if="houseinfo.BusinessState==1">空置中</span>
+					</li>
+					<li class="overflow-omit-one" ng-hide="houseinfo.Behaviour==1">
+						<span class="leftdesc">是否转让：</span>
+						<span ng-if="houseinfo.Behaviour==3">是</span>
+						<span ng-hide="houseinfo.Behaviour==3">否</span>
+					</li>
+					<li class="overflow-omit-one" ng-hide="houseinfo.Behaviour==1">
+						<span class="leftdesc">转让费：</span>
+						<span ng-hide="houseinfo.TransferFee==0">{{houseinfo.TransferFee}}万</span>
+						<span ng-show="houseinfo.TransferFee==0">面议</span>
+					</li>
+					<li class="overflow-omit-one">
+						<span class="leftdesc">业主直售</span>
+						<span ng-hide="houseinfo.UserType==3">个人房源</span>
+						<span ng-show="houseinfo.UserType==3">房东委托</span>
+					</li>
+
+					<li class="overflow-omit-one">
+							<span class="leftdesc">楼层：</span>
+							<span ng-if="houseinfo.Floor<=7">小高层</span>
+							<span ng-if="houseinfo.Floor>7 && houseinfo.Floor<=14">中高层</span>
+							<span ng-if="houseinfo.Floor>14">高层</span>
+					</li>
+					<li class="overflow-omit-one allLine"><span class="leftdesc">小区名称：</span>{{houseinfo.CommunityName}}<span ng-if="!houseinfo.CommunityName">--</span></li>
+				</ul>
+			</div>
+
+			<!-- 写字楼 -->
+			<div ng-show="isshop=='false'" class="house-info">
+				<ul>
+					<li ng-show="houseinfo.Behaviour==1">
+						<span class="leftdesc">面积：</span>
+						<span class="price">{{houseinfo.Space}} m²</span>
+					</li>
+					<li>
+						<span class="leftdesc">楼层类型：</span>
+						<span ng-show="houseinfo.FloorType==1||houseinfo.FloorType==0">低区</span>
+						<span ng-show="houseinfo.FloorType==2">中区</span>
+						<span ng-show="houseinfo.FloorType==3">高区</span>
+						<span ng-show="!houseinfo.FloorType&&houseinfo.FloorType!=0">--</span>
+					</li>
+					<li>
+						<span class="leftdesc">得房率：</span>
+						<span ng-if="houseinfo.HouseRate">{{houseinfo.HouseRate}}%</span>
+						<span ng-hide="houseinfo.HouseRate">--</span>
+						
+					</li>
+					<li class="allLine"><span class="leftdesc">小区名称：</span>{{houseinfo.CommunityName}}<span ng-if="!houseinfo.CommunityName">--</span></li>
+				</ul>
+			</div>
+			
+			<div ng-if="houseinfo.Discription" class="offline"></div>
+			<div ng-if="houseinfo.Discription&&!isObj" class="fy-miaoshu">
+				<h5>房源介绍</h5>
+				<div class="des-wrapper">
+					<div class="des-item">
+						<div class="left-cell">
+							<div class="icon-item">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-huiyuan2"></use>
+								</svg>
+							</div>
+							<div class="txt-item">房源详情</div>
+						</div>
+						<div class="right-cell">{{houseinfo.Discription}}</div>
+					</div>
+				</div>
+			</div>
+
+			<div ng-show="isshop=='true'" class="offline"></div>
+			<div ng-show="isshop=='true'" class="fy-peizhi">
+				<h5>房屋配套</h5>
+				<div class="config-wrapper">
+					<div ng-show="config.isChecked" ng-repeat="config in houseinfo.ConfigurJson track by $index" class="config-item">
+						<div class="in-item overflow-omit-one">
+							{{config.text}}
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="offline"></div>
+			<div class="fy-position">
+				<h5>位置</h5>
+				<p>{{houseinfo.CommunityName}}</p>
+				<div id="other_house_detail_map" style="width:100vw;height:200px;"></div>
+			</div>
+
+			<div ng-if="otherArr" class="offline"></div>
+			<div ng-if="otherArr" class="similar-house" >
+				<h5>相似房源</h5>
+				<ul>
+					<li ng-repeat="otherhouse in otherArr track by $index" ui-sref="sellHouseDetail({id:otherhouse.Id})">
+						<div class="img">
+							<img ng-src="{{otherhouse.Thumb}}"/>
+						</div>
+						<div class="description">
+							<h6>{{otherhouse.Title}}</h6>
+							<p>{{otherhouse.CommunityName}}</p>
+							<div>
+								<div class="space">
+									{{otherhouse.HouseType}}&nbsp;{{otherhouse.Space}}平米 
+								</div>
+								<div class="price">
+									<span>{{otherhouse.Price}}</span>万
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		
+		<div style="width: 100%;height: 50px;"></div>
+		
+		<!--分享浮动框 ion-popover-view-->
+		<script id="other_HouseDetailpopover.html" type="text/ng-template">
+			<ion-popover-view class="Bottom-share-popover">
+				<div ng-include="'views/includes/bottomShareModal/bottomShareModal.html'"></div>
+			</ion-popover-view>	
+		</script>
+		<!-- 分享 -->
+		<script id="other_house_detail_share_modal" type="text/ng-template">
+			<ion-modal-view ng-click="closeBottomShareModal()" class="bottom-share-modal">
+				<div ng-include="'views/includes/bottomShareModal/bottomShareModal.html'"></div>
+			</ion-modal-view>
+		</script>
+	</ion-content>
+</ion-view>
+

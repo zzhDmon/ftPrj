@@ -1,0 +1,82 @@
+<!--发现界面模板-->
+<ion-view id="third_guess_price" view-title="第三方估价" hide-nav-bar=true>
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			第三方估价
+		</div>
+		<div ui-sref="tabs.publishGuessPrice({houseid:houseId})" class="right" >
+			<i class="iconfont icon-tianjia"></i>
+		</div>
+	</div>
+	
+	<ion-content class="third-guess-price">
+		<div class="head-img">	
+			<img ng-src="{{houseInfo.house.IndoorShowImages[0]}}" alt="">	
+		</div>
+
+		<div class="echat-options">
+			<div class="echart-wrapper">
+				<div id="third_guess_price_echarts"></div>
+			</div>
+			<div class="options">
+				<div class="option-title">数据参考</div>
+				<div class="option-item overflow-omit-one">
+					<span class="left">前月均价</span>
+					<span class="right">55880元/平</span>
+				</div>
+				<div class="option-item overflow-omit-one">
+					<span class="left">价格区间</span>
+					<span class="right">200-240万</span>
+				</div>
+				<div class="option-item overflow-omit-one">
+					<span class="left">相比上月</span>
+					<span class="right">上涨0.87%</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="guess-title">估价列表</div>
+		<div class="card-wrapper">
+			<div ng-repeat="item in commentList track by $index" class="card">
+				<div class="top-info">
+					<div class="left-img">
+						<img ng-src="{{item.Image}}" alt="">
+					</div>
+					<div class="right-text">
+						<div class="name-time">
+							<div class="name">{{item.Name}}</div>
+							<div class="time">{{item.CreateTime}}</div>
+						</div>
+						<div class="price">估价：{{item.Price}}万</div>
+						<div class="reason">估价理由：{{item.Title}}</div>
+					</div>
+				</div>
+				<div ng-if="item.UserId==myselfInfo.Id" class="delete-action">
+					<div ng-click="deleteComment(item)" class="action-item">
+						<div class="action">删除</div>
+					</div>
+				</div>
+				<div class="bot-action">
+					<!-- <div class="action-item">
+						<div class="action">回复{{item.ReplyNum}}</div>
+					</div> -->
+					<div ng-click="actionDo(item,1,0,0)" class="action-item">
+						<div class="action">点赞{{item.AgreeNum}}</div>
+					</div>
+					<div ng-click="actionDo(item,0,1,0)" class="action-item">
+						<div class="action">差评{{item.DisAgreeNum}}</div>
+					</div>
+					<div ng-click="actionDo(item,0,0,1)" class="action-item">
+						<div class="action">打赏{{item.Tips}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</ion-content>
+	
+</ion-view>

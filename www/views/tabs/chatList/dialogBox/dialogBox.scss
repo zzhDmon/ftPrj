@@ -1,0 +1,27 @@
+.dialog-center-small-modalview{
+    &.max-height{
+        min-height: 122px;
+    }
+}
+.ft-dialog-message-action{
+    margin: 0;
+    width: 60px;
+    height: 40px;
+    border-radius: 0!important;
+    .action-item{
+        width: 100%;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        font-size: 16px;
+        color: $font-main-color;
+    }
+    .popover-arrow{
+        display: none;
+    }
+}
+#dialog_box{
+    .dialog-box{
+        margin: $head-height 0 0;
+    }
+}

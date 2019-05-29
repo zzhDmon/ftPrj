@@ -1,0 +1,36 @@
+<div id="house_tab_nav" class="house-tab-nav">
+    <ul class="nohouse">
+        <li ng-class="{true:'active',false:''}[tabActiveName=='firstTab']" ui-sref="tabs.Home">
+            <div class="img">
+                <i class="iconfont icon-shouye1"></i>
+            </div>
+            <p>首页</p>
+        </li>
+        <li ng-class="{true:'active',false:''}[tabActiveName=='secondTab']"  ui-sref="homeClassify">
+            <div class="img">
+                <i class="iconfont icon-fenlei-"></i>
+            </div>
+            <p>分类</p>
+        </li>
+        <li ng-class="{true:'active',false:''}[tabActiveName=='thirdTab']"  class="mid" ng-click="showModal()">
+            <div class="img">
+                <i class="iconfont icon-zhuangtailan-fabu-"></i>
+            </div>
+            <p>发布</p>
+        </li>
+        <li ng-class="{true:'active',false:''}[tabActiveName=='forthTab']" ui-sref="tabs.chatList">
+            <div class="img">
+                <i class="iconfont icon-xiaoxi-"></i>
+            </div>
+            <p>消息</p>
+            <div ng-if="0<totalUnread&&totalUnread<99" class="unread-count">{{totalUnread}}</div>
+            <div ng-if="totalUnread>99" class="unread-count">99+</div>
+        </li>
+        <li ng-class="{true:'active',false:''}[tabActiveName=='fifthTab']" ui-sref="tabs.perCenter">
+            <div class="img">
+                <i class="iconfont icon-wode-1"></i>
+            </div>
+            <p>我的</p>
+        </li>
+    </ul>
+</div>

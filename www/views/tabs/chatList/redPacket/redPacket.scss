@@ -1,0 +1,173 @@
+.read-packer-password-modalview{
+    width: 300px;
+    min-height: 250px;
+    top: 150px;
+    left: calc(50% - 150px);
+    .head{
+        width: 100%;
+        height: 50px;
+        padding: 5px $view-padding;
+        display: flex;
+        justify-content: flex-start;
+        line-height: 40px;
+        .close{
+            width: 30px;
+            .iconfont{
+                font-size: 18px;
+            }
+        }
+        .thumb{
+            width: 40px;
+            height: 40px;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .text-item{
+            width: calc(100% - 70px);
+            font-size: 16px;
+            color: $font-main-color;
+        }
+    }
+    .head-borderline{
+        width: 100%;
+        height: 0;
+        position: relative;
+        border:none;
+        &:after{
+            content: '';
+            position: absolute;
+            z-index: 999;
+            left: 0;
+            /* background: rgb(230,230,230); */
+            background: $bg-main-color;
+            width: 100%;
+            height: 1px;
+            -webkit-transform: scaleY(0.5);
+                    transform: scaleY(0.5);
+            -webkit-transform-origin: 0 0;
+                    transform-origin: 0 0;
+        }    
+    }
+    .main-info{
+        padding: 0 $view-padding;
+        .money-num{
+            width: 100%;
+            text-align: center;
+            color: $font-main-color;
+            .text-item{
+                width: 100%;
+                height: 30px;
+                line-height: 30px;
+                font-size: 16px;
+            }
+            .money-item{
+                width: 100%;
+                height: 40px;
+                line-height: 40px;
+                font-size: 25px;
+                font-weight: 500;
+            }
+        }
+        .consume-from{
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            border-top: 1px solid $line-deep-color;
+            border-bottom: 1px solid $line-deep-color;
+            display: flex;
+            justify-content: flex-start;
+            .icon-wrapper{
+                width: 30px;
+                height: 50px;
+                img{
+                    margin: 10px 0;
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+            .text-wrap{
+                width: 30px;
+                height: 50px; 
+            }
+        }
+        .six-pwd-input{
+            margin: 10px auto 0;
+        }
+        .forget-pwd{
+            width: 100%;
+            height: 30px;
+            font-size: 14px;
+            text-align: center;
+            line-height: 30px;
+            color: rgb(102,153,255);
+        }
+    }
+}
+#red_packet{
+    .red-packet{
+        margin: $head-height 0 0;
+        background-color: $bg-gray-color;
+        .data-list{
+            width: 100%;
+            padding: 10px $view-padding;
+            .data-item{
+                margin: 10px 0 0;
+                padding: 0 10px;
+                width: 100%;
+                height: 50px;
+                line-height: 50px;
+                font-size: 16px;
+                background-color: white;
+                border-radius: 5px;
+                display: flex;
+                justify-content: flex-start;
+                .left-cell{
+                    width: 80px;
+                    color: $font-main-color;
+                }
+                .input-cell{
+                    width: calc(100% - 110px);
+                    height: 50px;
+                    &.input-large{
+                        width: calc(100% - 80px); 
+                    }
+                    input{
+                        padding: 0;
+                        width: 100%;
+                        height: 100%;
+                        font-size: 16px;
+                        text-align: right;
+                        background-color: white;
+                    }    
+                }
+                .right-cell{
+                    width: 30px;
+                    text-align: center;
+                }
+            }
+        }
+        .show-money{
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            span{
+                font-size: 22px;  
+            }
+        }
+        .subbtn{
+            width: 80%;
+            height: 40px;
+            margin: 30px auto 0;
+            .button{
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                background-color: $bg-main-color;
+            }
+        }
+    }
+}

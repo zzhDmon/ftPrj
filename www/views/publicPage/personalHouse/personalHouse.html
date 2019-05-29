@@ -1,0 +1,155 @@
+
+<!--对话模板-->
+<ion-view id="personal_house" hide-nav-bar=true view-title="个人房源"  class='dark'>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div ng-click="openPopover()" class="title">
+			个人房源
+		</div>
+		<div class="right">
+			
+		</div>
+	</div>
+	
+
+	<div class="switch-list row">
+		<div ng-click="switchSlide(0)" ng-class="{true:'active',false:''}[activeIndex==0]" class="switch-item col-25">
+			<div class="item-in">二手房</div>
+		</div>
+		<div ng-click="switchSlide(1)" ng-class="{true:'active',false:''}[activeIndex==1]" class="switch-item col-25">
+			<div class="item-in">租房</div>
+		</div>
+		<div ng-click="switchSlide(2)" ng-class="{true:'active',false:''}[activeIndex==2]" class="switch-item col-25">
+			<div class="item-in">商铺</div>
+		</div>
+		<div ng-click="switchSlide(3)" ng-class="{true:'active',false:''}[activeIndex==3]" class="switch-item col-25">
+			<div class="item-in">写字楼</div>
+		</div>
+	</div>
+
+	<ion-content ng-show="activeIndex==0" class="personal-house">
+		<!--下拉刷新-->
+		<!-- <ion-refresher pulling-icon="" pulling-text="下拉刷新" refreshing-text="正在刷新…" spinner="crescent" on-refresh="alikedoRefresh(false)"></ion-refresher> -->
+		<div class="main">
+			<div ui-sref="sellHouseDetail({id:sellhouse.Id})" ng-repeat="sellhouse in myOldList track by $index" class="arr-item">
+				<div class="left-img"><img ng-src="{{sellhouse.Thumb}}" alt=""></div>
+				<div class="right-text">
+					<div class="title overpoint">{{sellhouse.Title}}</div>
+					<div class="housetype overpoint">{{sellhouse.HouseType}}</div>
+					<div class="tags overpoint">
+						<span ng-repeat="tag in sellhouse.Tags track by $index">{{tag}}</span>
+					</div>
+					<div class="info overpoint">
+						<span class="spanprice">
+							<span>{{sellhouse.Price}}万</span>
+						</span>
+						<span class="span-gray"><i class="iconfont icon-dingwei"></i>{{sellhouse.CommunityName}}</span>
+					</div>
+				</div>
+			</div>
+			
+			<div style="clear: both;"></div>
+			<p ng-show="baseLine" class="baseLine"><span>人家是有底线的啦</span></p>
+		</div>
+	
+		<!-- <ion-infinite-scroll on-infinite="alikeloadMore(true)" distance="15%" ng-if="noMore" > </ion-infinite-scroll> -->
+	</ion-content>
+
+	<ion-content ng-show="activeIndex==1" class="personal-house">
+		<div class="main">
+			<div ui-sref="rentHouseDetail({id:sellhouse.Id})" ng-repeat="sellhouse in myRentList track by $index" class="arr-item">
+				<div class="left-img"><img ng-src="{{sellhouse.Thumb}}" alt=""></div>
+				<div class="right-text">
+					<div class="title overpoint">{{sellhouse.Title}}</div>
+					<div class="housetype overpoint">{{sellhouse.HouseType}}</div>
+					<div class="tags overpoint">
+						<span ng-repeat="tag in sellhouse.Tags track by $index">{{tag}}</span>
+					</div>
+					<div class="info overpoint">
+						<span class="spanprice">
+							<span>{{sellhouse.Price}}元/月</span>
+						</span>
+						<span class="span-gray"><i class="iconfont icon-dingwei"></i>{{sellhouse.CommunityName}}</span>
+					</div>
+				</div>
+			</div>
+			
+			<div style="clear: both;"></div>
+			<p ng-show="baseLine" class="baseLine"><span>人家是有底线的啦</span></p>
+		</div>
+	
+		<!--上拉加载-->
+		<!-- <ion-infinite-scroll on-infinite="alikeloadMore(true)" distance="15%" ng-if="noMore" > </ion-infinite-scroll> -->
+	</ion-content>
+
+	<ion-content ng-show="activeIndex==2" class="personal-house">
+		<div class="main">
+			<div ui-sref="otherHouseDetail({id:sellhouse.Id,isshop:'true'})" ng-repeat="sellhouse in myShopList track by $index" class="arr-item">
+				<div class="left-img">
+					<img ng-src="{{sellhouse.Thumb}}" alt="">
+					<span ng-if="sellhouse.Behaviour==1" class="sell-tag">出售</span>
+					<span ng-if="sellhouse.Behaviour==2" class="sell-tag">出租</span>
+				</div>
+				<div class="right-text">
+					<div class="title overpoint">{{sellhouse.Title}}</div>
+					<div class="housetype overpoint">{{sellhouse.HouseType}}</div>
+					<div class="tags overpoint">
+						<span ng-repeat="tag in sellhouse.Tags track by $index">{{tag}}</span>
+					</div>
+					<div class="info overpoint">
+						<span class="spanprice">
+							<span>
+								{{sellhouse.Price}}<span ng-if="sellhouse.Behaviour==1">万</span><span ng-if="sellhouse.Behaviour==2">元/月</span>
+							</span>
+						</span>
+						<span class="span-gray"><i class="iconfont icon-dingwei"></i>{{sellhouse.CommunityName}}</span>
+					</div>
+				</div>
+			</div>
+			
+			<div style="clear: both;"></div>
+			<p ng-show="baseLine" class="baseLine"><span>人家是有底线的啦</span></p>
+		</div>
+	
+		<!--上拉加载-->
+		<!-- <ion-infinite-scroll on-infinite="alikeloadMore(true)" distance="15%" ng-if="noMore" > </ion-infinite-scroll> -->
+	</ion-content>
+
+	<ion-content ng-show="activeIndex==3" class="personal-house">
+		<div class="main">
+			<div ui-sref="otherHouseDetail({id:sellhouse.Id,isshop:'false'})" ng-repeat="sellhouse in myOfficList track by $index" class="arr-item">
+				<div class="left-img">
+					<img ng-src="{{sellhouse.Thumb}}" alt="">
+					<span ng-if="sellhouse.Behaviour==1" class="sell-tag">出售</span>
+					<span ng-if="sellhouse.Behaviour==2" class="sell-tag">出租</span>
+				</div>
+				<div class="right-text">
+					<div class="title overpoint">{{sellhouse.Title}}</div>
+					<div class="housetype overpoint">{{sellhouse.HouseType}}</div>
+					<div class="tags overpoint">
+						<span ng-repeat="tag in sellhouse.Tags track by $index">{{tag}}</span>
+					</div>
+					<div class="info overpoint">
+						<span class="spanprice">
+							<span>
+								{{sellhouse.Price}}<span ng-if="sellhouse.Behaviour==1">万</span><span ng-if="sellhouse.Behaviour==2">元/月</span>	
+							</span>
+						</span>
+						<span class="span-gray"><i class="iconfont icon-dingwei"></i>{{sellhouse.CommunityName}}</span>
+					</div>
+				</div>
+			</div>
+			
+			<div style="clear: both;"></div>
+			<p ng-show="baseLine" class="baseLine"><span>人家是有底线的啦</span></p>
+		</div>
+	
+		<!--上拉加载-->
+		<!-- <ion-infinite-scroll on-infinite="alikeloadMore(true)" distance="15%" ng-if="noMore" > </ion-infinite-scroll> -->
+	</ion-content>
+	
+	
+</ion-view>
+

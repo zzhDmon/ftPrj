@@ -1,0 +1,23 @@
+
+<ion-view id="video_upload" view-title="视频上传" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			视频上传
+		</div>
+		<div class="right"></div>
+	</div>
+	
+	<ion-content has-bouncing="false" class="video-upload">
+		<input type="file" accept="video/avi,video/mp4,video/flv,video/3gp,video/swf" onchange="angular.element(this).scope().onFileChange(this.files)" >	
+		
+		<video onloadeddata="angular.element(this).scope().onLoadedData()" id="previewVideo" ng-show="videoFile||videoFileName" controls="controls" style="width: 100%">
+			<source src="{{videoFile}}"/>  
+		</video>
+
+		<div ng-click="save()">提交</div>
+	</ion-content>
+
+</ion-view>

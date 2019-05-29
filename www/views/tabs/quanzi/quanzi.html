@@ -1,0 +1,247 @@
+<ion-view id="quanzi" view-title="圈子" hide-nav-bar="true">
+	<div class="header house-bg-header">
+        <div class="back"></div>
+        <div class="title">
+            <div class="news-three-sort">
+                <div class="news-sort" ng-click="switchFirstSortIndex(0)" ng-class="{true:'active',false:''}[firstSortIndex==0]">已关注</div>
+                <div class="news-sort" ng-click="switchFirstSortIndex(1)" ng-class="{true:'active',false:''}[firstSortIndex==1]">动态</div>
+            </div>
+        </div>
+        
+        <div ui-sref="publishDynamic" class="right"><i class="iconfont icon-fabu1"></i></div>
+    </div>
+       
+    <ion-content 
+        class="quanzi" 
+        scrollbar-y="false" 
+        delegate-handle="quanzi-main-Scroll" 
+        has-bouncing="true">
+        
+        <!-- 轮播图外白色底 -->
+        <div class="white-scroll">
+            <div class="offline"></div>
+            <div class="news-head-content">
+                <div class="news-title">
+                    <div class="item-cell left-cell">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-kandian-"></use>
+                        </svg>
+                    </div>
+                   
+                </div>
+               
+              
+                <div ng-hide="firstSortIndex==0" class="hot-focus-new">
+                    <div class="item-cell">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-zuire-"></use>
+                        </svg>
+                    <div class="txt-wrapper"> 最热</div>
+                    </div>
+                    <div class="item-cell">
+                        <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-zuiduoguanzhu-"></use>
+                        </svg>
+                        <div class="txt-wrapper">关注最多</div>
+                    </div>
+                    <div class="item-cell">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-zuixin-"></use>
+                        </svg>
+                        <div class="txt-wrapper">最新</div>
+                    </div>
+                </div>
+            </div>
+            <div class="offline"></div>
+
+            <!-- 关注 -->
+            <div ng-show="firstSortIndex==0" class="news-list-content">
+                <div ng-repeat="item in tlFollowArr track by $index">
+                    <div class="t-l-item">
+                        <div ng-click="toLinkMan(item.UserId)" class="left-avatar">
+                            <img ng-src="{{item.UserImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+                        </div>
+                        <div class="right-main">
+                            <h5 class="name overflow-omit-one">
+                                {{item.UserName || '房田用户'}} 
+                                <span ng-show="item.IsDelete" ng-click="openDelTLPopover($event,item,$index,tlFollowArr)"><i class="iconfont icon-lajitong"></i></span>
+                            </h5>
+                            <div class="follow-cont-wrapper" ng-class="{true:'show-all',false:'show-some'}[item.showAll]">
+                                <p class="cont">{{item.Content.text}}</p>
+                                <div ng-click="switchFollowShowAll(item)" ng-show="!item.showAll && item.showAllBtn" class="switch-show-all">全文</div>
+                                <div ng-click="switchFollowShowAll(item)" ng-show="item.showAll && item.showAllBtn" class="switch-show-all">收起</div>
+                            </div>
+                            <div ng-show="item.Content.imgs.length==1" class="one-img-wrapper">
+                                <div 
+                                    ng-click="showBigImg(item.Content.imgs,$index)" 
+                                    ng-repeat="img in item.Content.imgs track by $index" 
+                                    class="img-item">
+                                    <img ng-src="{{img}}" alt="">
+                                </div>              
+                            </div>
+                            <div ng-show="item.Content.imgs.length>1" class="imgs-wrapper">
+                                <div 
+                                    ng-click="showBigImg(item.Content.imgs,$index)" 
+                                    ng-repeat="img in item.Content.imgs track by $index" 
+                                    class="img-item">
+                                    <div class="in-img-item" ng-style="{'background-image': 'url('+img+')'}"></div>
+                                </div>              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="t-l-bot-info overflow-omit-one">
+                        <div class="bot-cell left-cell"><span>{{item.ChildrenCount || 0}}评论</span><span>{{item.agreeNum || 0}}赞</span><span>{{item.CreateTime}}</span></div>
+                        <div class="bot-cell right-cell">
+                            <span ng-click="agreeAction(item)" ng-class="{true:'active',false:''}[item.agreed]"><i class="iconfont icon-dianzan-"></i></span>
+                            <span ng-click="switchShowCom(item)"><i class="iconfont icon-pinglun2"></i></span>
+                        </div>
+                    </div>
+                    <div ng-show="item.showCom" class="t-l-comment-main">
+                        <div ng-click="clickComment(item)" class="comment-action"><i class="iconfont icon-bianji1"></i>我有话要说...</div>
+                        <div ng-show="item.agreeUsers.length>0" class="like-o-com like-content">
+                            <div class="left-icon"><i class="iconfont icon-dianzan-"></i></div>
+                            <div class="like-list">
+                                <div ng-repeat="agree in item.agreeUsers track by $index" class="like-item">
+                                    <img ng-src="{{agree.Image}}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="item.Children.length>0" class="like-o-com comment-content">
+                            <div class="left-icon"><i class="iconfont icon-pinglun2"></i></div>
+                            <div class="comment-list">
+                                <div ng-repeat="com in item.Children track by $index" class="comment-item">
+                                    <div class="img-cell"><img ng-src="{{com.UserImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt=""></div>
+                                    <div on-hold="deleteCom(com,item.Children,$index)" class="txt-cell">
+                                        <h5 class="overflow-omit-one">
+                                            {{com.UserName || '房田用户'}}
+                                            <span ng-show="item.UserId==com.UserId" class="auth small-font-size">作者</span>
+                                        </h5>
+                                        <p class="com-content">{{com.Content}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-click="switchShowCom(item)" class="close-comment">收起</div>
+                    </div>
+                </div>  
+            </div>  
+            <!-- 动态 -->
+            <div ng-show="firstSortIndex==1" class="news-list-content">
+                <div ng-repeat="item in timeLineArr track by $index">
+                    <div class="t-l-item">
+                        <div ng-click="toLinkMan(item.UserId)" class="left-avatar">
+                            <img ng-src="{{item.UserImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt="">
+                        </div>
+                        <div class="right-main">
+                            <h5 class="name overflow-omit-one">
+                                {{item.UserName || '房田用户'}}
+                                <span ng-show="item.IsDelete" ng-click="openDelTLPopover($event,item,$index,timeLineArr)"><i class="iconfont icon-lajitong"></i></span>
+                            </h5>
+                            <div class="tl-cont-wrapper" ng-class="{true:'show-all',false:'show-some'}[item.showAll]">
+                                <p class="cont">{{item.Content.text}}</p>
+                                <div ng-click="switchShowAll(item)" ng-show="!item.showAll && item.showAllBtn" class="switch-show-all">全文</div>
+                                <div ng-click="switchShowAll(item)" ng-show="item.showAll && item.showAllBtn" class="switch-show-all">收起</div>
+                            </div>
+                            <div ng-show="item.Content.imgs.length==1" class="one-img-wrapper">
+                                <div 
+                                    ng-click="showBigImg(item.Content.imgs,$index)" 
+                                    ng-repeat="img in item.Content.imgs track by $index" 
+                                    class="img-item">
+                                    <img ng-src="{{img}}" alt="">
+                                </div>              
+                            </div>
+                            <div ng-show="item.Content.imgs.length>1" class="imgs-wrapper">
+                                <div 
+                                    ng-click="showBigImg(item.Content.imgs,$index)" 
+                                    ng-repeat="img in item.Content.imgs track by $index" 
+                                    class="img-item">
+                                    <div class="in-img-item" ng-style="{'background-image': 'url('+img+')'}"></div>
+                                </div>              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="t-l-bot-info overflow-omit-one">
+                        <div class="bot-cell left-cell"><span>{{item.ChildrenCount || 0}}评论</span><span>{{item.agreeNum || 0}}赞</span><span>{{item.CreateTime}}</span></div>
+                        <div class="bot-cell right-cell">
+                            <span ng-click="agreeAction(item)" ng-class="{true:'active',false:''}[item.agreed]"><i class="iconfont icon-dianzan-"></i></span>
+                            <span ng-click="switchShowCom(item)"><i class="iconfont icon-pinglun2"></i></span>
+                            <span ng-click="followAction(item)" ng-class="{true:'active',false:''}[item.IsFollow]">
+                                <i ng-show="!item.IsFollow" class="iconfont icon-jiahaoyou"></i>
+                                <i ng-show="item.IsFollow" class="iconfont icon-yijiahaoyou"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div ng-show="item.showCom" class="t-l-comment-main">
+                        <div ng-click="clickComment(item)" class="comment-action"><i class="iconfont icon-bianji1"></i>我有话要说...</div>
+                        <div ng-show="item.agreeUsers.length>0" class="like-o-com like-content">
+                            <div class="left-icon"><i class="iconfont icon-dianzan-"></i></div>
+                            <div class="like-list">
+                                <div ng-repeat="agree in item.agreeUsers track by $index" class="like-item">
+                                    <img ng-src="{{agree.Image}}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="item.Children.length>0" class="like-o-com comment-content">
+                            <div class="left-icon"><i class="iconfont icon-pinglun2"></i></div>
+                            <div class="comment-list">
+                                <div ng-repeat="com in item.Children track by $index" class="comment-item">
+                                    <div class="img-cell"><img ng-src="{{com.UserImage || 'http://imgs.wujiuyun.com//Images//logo.png'}}" alt=""></div>
+                                    <div on-hold="deleteCom(com,item.Children,$index)" class="txt-cell">
+                                        <h5 class="overflow-omit-one">
+                                            {{com.UserName || '房田用户'}}
+                                            <span ng-show="item.UserId==com.UserId" class="auth small-font-size">作者</span>
+                                        </h5>
+                                        <p class="com-content">{{com.Content}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-click="switchShowCom(item)" class="close-comment">收起</div>
+                    </div>
+                </div>  
+            </div>  
+            
+            
+        </div>
+
+        <!-- 加载更多 -->
+        <!-- 关注 -->
+        <ion-infinite-scroll on-infinite="tlFollowLoadMore(true)" distance="15%" ng-if="tlFollowHaveMore&&firstSortIndex==0" > </ion-infinite-scroll>
+        <!-- 动态 -->
+        <ion-infinite-scroll on-infinite="timeLineLoadMore(true)" distance="15%" ng-if="timeLineHaveMore&&firstSortIndex==1" > </ion-infinite-scroll>
+    </ion-content>
+</div>
+
+<!-- tab导航 -->
+<div ng-include="'views/includes/customTabs/customTabs.html'"></div>
+
+<div ng-if="showBotReply" class="bot-input">
+    <div class="input-wrapper">
+        <div class="textarea">
+            <textarea msd-elastic autofocus ng-model="replyData.data" placeholder="回复"></textarea>
+        </div>
+        <div class="send">
+            <div ng-click="replyComment()" class="send-btn">发送</div>
+        </div>
+    </div>
+    <div ng-if="keyboardShow" ng-style="{'height': keyboardHeight + 'px'}"></div>
+</div>
+
+<script id="real_home_nav_modal" type="text/ng-template">
+    <ion-modal-view ng-click="closeModal()" id="real_home_nav_modalview">
+        <div ng-include="'views/includes/botPublicPublish/botPublicPublish.html'"></div>
+    </ion-modal-view>
+</script>
+<!-- 删除 -->
+<script id="del_quanzi_tl_popover.html" type="text/ng-template">
+    <ion-popover-view class="del-quanzi-tl-popoverview">
+        <div class="del-content">
+            <div class="del-title">确认删除吗？</div>
+            <div class="del-actions">
+                <div ng-click="closeDelTLPopover()" class="del-action cancel">取消</div>
+                <div ng-click="deleteTL()" class="del-action">确认</div>
+            </div>
+        </div>
+    </ion-popover-view>
+</script>
+</ion-view>

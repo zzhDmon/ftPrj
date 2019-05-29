@@ -1,0 +1,136 @@
+#with_draw{
+    .with-draw{
+        margin: $head-height 0 0;
+        .bank-item{
+            padding: 5px;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: flex-start;
+            border-bottom: 1px solid $line-main-color;
+            .left-icon{
+                width: 40px;
+                height: 40px;
+                .icon{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .mid-tetx{
+                padding: 0 5px;
+                width: calc(100% - 60px);
+                height: 40px;
+                line-height: 20px;
+                .top{
+                    width: 100%;
+                    height: 20px;
+                }
+                .bot{
+                    width: 100%;
+                    height: 20px;
+                }
+            }
+            .choose-text{
+                width: calc(100% - 20px);
+                line-height: 40px;
+                font-size: 16px;
+                color: $font-main-color;
+            }
+            .right-icon{
+                width: 20px;
+                height: 40px;
+                text-align: center;
+                line-height: 40px;
+                color: $font-sup-color;
+                .iconfont{
+                    font-size: 16px;
+                }
+            }
+        }
+        
+        .data-list{
+            width: 100%;
+            padding: 10px $view-padding;
+            background-color: white;
+            border-bottom: 1px solid $line-main-color;
+            // box-shadow: 0 0 5px 0 rgba(0,0,0,0.3);
+            .data-title{
+                width: 100%;
+                height: 25px;
+                line-height: 25px;
+                font-size: 16px;
+                color: $font-main-color;
+            }
+            .data-item{
+                margin: 10px 0 0;
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                .item-left{
+                    width: 40px;
+                    height: 60px;
+                    text-align: center;
+                    line-height: 60px;
+                    font-size: 25px;
+                    color: $font-main-color;
+                }
+                
+                .input-item{
+                    width: calc(100% - 40px);
+                    height: 60px;
+                    input{
+                        padding: 0;
+                        width: 100%;
+                        height: 100%;
+                        font-size: 16px;
+                        background-color: white;
+                    }    
+                }
+                .item-left-lg{
+                    padding: 0 15px 0 0;
+                    width: 80px;
+                    height: 60px;
+                    text-align:justify;
+                    text-justify:distribute-all-lines;/*ie6-8*/
+                    text-align-last:justify;/* ie9*/
+                    -moz-text-align-last:justify;/*ff*/
+                    -webkit-text-align-last:justify;/*chrome 20+*/
+                    line-height: 60px;
+                    font-size: 16px;
+                    color: $font-main-color;
+                }
+                .input-item-lg{
+                    width: calc(100% - 80px);
+                    height: 60px;
+                    line-height: 60px;
+                    font-size: 16px;
+                    input{
+                        padding: 0;
+                        width: 100%;
+                        height: 100%;
+                        font-size: 16px;
+                        background-color: white;
+                    }     
+                }
+            }
+        }
+        .surplus-money{
+            padding: 0 $view-padding;
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            color: $font-sup-color;
+        }
+        .subbtn{
+            width: 80%;
+            height: 40px;
+            margin: 30px auto;
+            .button{
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                background-color: $bg-main-color;
+            }
+        }
+    }
+}

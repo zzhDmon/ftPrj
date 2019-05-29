@@ -1,0 +1,65 @@
+<ion-view id="my_album" view-title="我的相册" hide-nav-bar=true>
+	<div class="header header-black">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			<span ng-show="paramsData.uid">他的相册</span>
+			<span ng-hide="paramsData.uid">我的相册</span>
+		</div>
+		<div ng-hide="paramsData.uid" ng-click="switchShowAction()" class="right">		
+			<span ng-show="!showAction">操作</span>	
+			<span ng-show="showAction">取消</span>	
+		</div>
+	</div>
+
+	<ion-content ng-click="cancelShowAction()" class="my-album" has-bouncing="false">
+		<div class="head-bg-img">
+			<div ng-click="uploadBgImg()" ng-show="!bgImage" ng-hide="paramsData.uid" class="no-bg-img">点击添加背景</div>
+			<!-- <div ng-click="showActionSheet()" ng-show="bgImage" class="bg-img" ng-style="{'background-image': 'url('+bgImage+')'}"></div> -->
+			<img ng-click="showActionSheet()" ng-show="bgImage" ng-src="{{bgImage}}" alt="">
+		</div>
+
+		<p class="no-result" ng-if="paramsData.type=='photo' && (!showImgList||showImgList.length<1)">还没有上传照片~</p>
+		
+		
+		<div class="album-list">
+			<div ng-if="!paramsData.uid" ng-click="showModal()" class="album-item">
+				<div class="top-img">
+					<div class="icon-cell">
+						<i class="iconfont icon-tianjia"></i>
+					</div>
+					<div class="txt-cell">
+						新建相册
+					</div>
+				</div>
+			</div>
+
+			<div ui-sref="myPhotos({id:album.Id,uid:paramsData.uid})" ng-repeat="album in albumList track by $index" class="album-item">
+				<div ng-show="showAction" ng-click="removeImg($index,album,$event)" class="del-btn"><i class="iconfont icon-guanbi1"></i></div>
+				<div ng-class="{true:'headShake',false:''}[showAction]" class="top-img animated infinite">
+					<div ng-style="{'background-image': 'url('+(album.ShowInList || 'imgs/percenter/album/default.jpg')+')'}" class="in-top-img"></div>
+				</div>
+				<div class="bot-txt">{{album.Title}}</div>
+				<div class="sup-txt">{{album.Content.length}}张</div>
+			</div>
+		</div>
+		<p ng-show="albumList.length<1" class="no-result">还未创建相册~</p>
+	</ion-content>
+
+	<script id="myalbum_addalbum_modal" type="text/ng-template">
+		<ion-modal-view class="myalbum-addalbum-modalview">
+			<div class="header header-black">
+				<div class="back" ng-click="closeModal()">取消</div>
+				<div class="title">新建相册</div>
+				<div class="right" >
+				</div>
+			</div>
+			<div class="main">
+				<textarea ng-model="addAlbumData.Title" placeholder="请输入相册名称"></textarea>
+				<div ng-click="addAlbum()" class="ft-sub-btn">完成</div>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

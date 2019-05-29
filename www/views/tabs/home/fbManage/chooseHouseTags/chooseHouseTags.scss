@@ -1,0 +1,16 @@
+#choose_house_tags{
+    .choose-house-tags{
+        margin: $head-height 0 0;
+        
+        .form-main{
+            .no-result{
+                width: 100%;
+                height: 25px;
+                text-align: center;
+                line-height: 25px;
+                font-size: 14px;
+                color: $font-sup-color;
+            }
+        }
+    }
+}

@@ -1,0 +1,78 @@
+
+<!--对话模板-->
+<ion-view id="address_list" view-title="选择收货地址" hide-nav-bar=true>
+        <div class="header">
+            <div class="back" ng-click="back()">
+                <i class=" iconfont icon-xiangzuo1"></i>
+            </div>
+            <div class="title">
+                选择收货地址
+            </div>
+            <div class="right">          
+            </div>
+        </div>
+
+        <div ui-sref="shippingAddress" class="abs-foot">
+            <i class="iconfont icon-tianjia"></i> 新增地址 
+        </div>
+        <ion-content has-bouncing="false" class="address-list">
+            <div class="addresses">
+                <div 
+                    ng-click="chooseAddress(item)"
+                    class="adr-item" 
+                    ng-repeat="item in addressList track by $index"
+                    ng-class="{true:'active',false:''}[chooseIndex==0]">
+                    <div class="info-wrapper">
+                        <div class="left-info">
+                            <div class="name-phone">
+                                <div class="name overflow-omit-one">{{item.Name}}</div>
+                                <div ng-if="item.IsDefault" class="tag default">默认</div>
+                                <div ng-if="!item.IsDefault&&item.Tag==0" class="tag">家</div>
+                                <div ng-if="!item.IsDefault&&item.Tag==10" class="tag">公司</div>
+                                <div ng-if="!item.IsDefault&&item.Tag==250" class="tag">学校</div>
+                                <div class="phone overflow-omit-one">{{item.Phone}}</div>
+                            </div>
+                            <div class="address overflow-omit-two">
+                                {{item.Province}}{{item.City}}{{item.Districe}}{{item.Street}}{{item.Address}}
+                            </div>
+                        </div>
+                        <div class="right-radio">
+                            <div class="radio">
+                                <i class="iconfont icon-choosehandle"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bot-actions">
+                        <div ng-click="goShipping(item,$event)" class="action-item">编辑</div>
+                        <div ng-click="deleteAdr(item,$event)" class="action-item gray">删除</div>
+                    </div>
+                </div>
+
+                <!-- <div class="adr-item" ng-click="changeIndex(1)" ng-class="{true:'active',false:''}[chooseIndex==1]">
+                    <div class="info-wrapper">
+                        <div class="left-info">
+                            <div class="name-phone">
+                                <div class="name">李四</div>
+                                <div class="phone">1885148211</div>
+                            </div>
+                            <div class="address">
+                                厦门市思明区前铺路506号国金广场A栋15楼
+                            </div>
+                        </div>
+                        <div class="right-radio">
+                            <div class="radio">
+                                <i class="iconfont icon-choosehandle"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bot-actions">
+                        <div ui-sref="shippingAddress" class="action-item">编辑</div>
+                        <div ng-click="deleteAdr()" class="action-item gray">删除</div>
+                    </div>
+                </div> -->
+            </div>
+        </ion-content>
+        
+    </ion-view>
+    
+    

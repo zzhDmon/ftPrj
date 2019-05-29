@@ -1,0 +1,56 @@
+<ion-view id="transfer_team" view-title="群主转让" hide-nav-bar=true>  
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			群主转让
+		</div>
+		<div ng-click="transferDone()" class="right">
+			确定
+		</div>
+	</div>
+
+	<!--显示客户列表-->
+	<div>
+		<ion-content class="transfer-team" delegate-handle="transferTeamScroll" has-bouncing="false">  
+			<div ng-show="friendArr.length<1" class="no-results">
+				<p>暂无联系人</p>
+			</div>
+			<ul class="letterli">   
+				<li class="client-list" ng-if="group.value.length>0" ng-repeat="group in formatContacts | orderBy:'key'" id={{"transfer_team_index-"+group.key}}>  
+					<div class="label" id={{"client-"+group.key}}><strong>{{group.key}}</strong></div>  
+					<ul class="clientli">  
+						<label ng-repeat="item in group.value | orderBy:'pinyinName'">
+							<li ng-hide="myselfInfo.account==item.account" class="client-name">                       
+								<div class="avatar">
+									<img 
+										ng-src="{{item.avatar || 'http://imgs.wujiuyun.com//Images//logo.png'}}" 
+										onError="src='http://imgs.wujiuyun.com//Images//logo.png'"
+										alt=""/
+									>
+								</div>
+								<div class="name">{{item.nick || '房田用户'}}</div> 
+								    
+								<div class="label-check">
+									<input ng-disabled="item.existed" type="radio" name="teamOwner" ng-model="subData.account" value="{{item.account}}" />
+									<i class="iconfont icon-fuxuansel"></i>
+								</div>      
+							</li>  
+						</label>
+					</ul>  
+				</li>  
+			</ul> 
+		</ion-content>  			
+	</div>
+	
+	<!-- 返回顶部 -->
+	<div ng-click="backTop()" class="back-top">
+		<i class="iconfont icon-jiageshengxu-"></i>
+	</div>
+	<!--右侧导航-->
+	<div class="linkman-shortcuts">  
+		<a href="" ng-repeat="letter in letterarr"  ng-touchmove="mTouch($event,letter)" ng-click="mTouch($event,letter)">{{letter}}</a>
+	</div> 
+	
+</ion-view>  

@@ -1,0 +1,57 @@
+#other_house_detail { 
+    //底部联系人
+    .contacts{
+        padding: 5px $view-padding 0;
+        position: fixed;
+        z-index: 999;
+        bottom: 0;
+        width: 100%;
+        $height: 50px + $safe-bottom;
+        height: $height;
+        display: flex;
+        justify-content: space-around;
+        background-color: white;
+        box-shadow: 0 -2px 4px 0 rgba(0,0,0,0.3);
+        .contact-item{
+            &.his-info{
+                background-color: white;
+                display: flex;
+                justify-content: flex-start;
+                .left-cell{
+                    width: 40px;
+                    height: 40px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                    }
+                }
+                .right-cell{
+                    padding: 0 3px;
+                    width: calc(100% - 40px);
+                    line-height: 40px;
+                    font-size: 14px;
+                }
+            }
+            width: calc(33.33% - 5px);
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 16px;
+            border-radius: 5px;
+            color: $font-main-color;
+            background-color: $bg-main-color;
+            a{
+                display: block;
+                width: 100%;
+                height: 100%;
+                text-decoration: none;
+                color: $font-main-color;
+            }
+        }
+    }  
+    .other-house-detail {
+        $margin-bottom:50px + $safe-bottom;
+        margin-bottom: $margin-bottom;
+    }
+}

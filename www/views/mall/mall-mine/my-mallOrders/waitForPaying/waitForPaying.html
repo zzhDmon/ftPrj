@@ -1,0 +1,76 @@
+<ion-view id="wait_for_paying" view-title="订单详情" hide-nav-bar="true">	
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div class="title">
+			订单详情
+		</div>
+		<div class="right">
+		</div>
+	</div>
+	
+	<ion-content class="wait-for-paying">
+
+		<div class="count-down">
+			<img src="imgs/mallwaitpay/banner.png" alt="">
+			<div class="left-cell">
+				<i class="iconfont icon-shijian"></i>等待付款
+			</div>
+			<div class="right-cell">
+				<div class="top-time">
+					剩余时间： {{timeLeft}}秒
+				</div>
+				<div class="bot-money">
+					需付款：￥59.90
+				</div>
+			</div>
+		</div>
+
+		<div class="offline"></div>
+		<div class="adr-item">
+			<div class="left-cell"><i class="iconfont icon-wodedizhi"></i></div>
+			<div class="mid-cell overflow-omit-two">福建省厦门市思明区前埔东路506号国际广场A栋1505</div>
+			<div class="right-cell"><i class="iconfont icon-xiangyou1"></i></div>
+		</div>
+
+		<div class="offline"></div>
+		<div class="goods-item">
+			<div class="goods-info">
+				<div class="img-cell"><img ng-src="{{housetimesList[0].Image}}" alt=""></div>
+				<div class="right-cell">
+					<div class="top-cell overflow-omit-two">{{housetimesList[0].Title}}</div>
+					<div class="mid-cell">￥599.00</div>
+					<div class="bot-cell">
+						数量3
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="offline"></div>
+		<div class="cell-item">
+			<div class="left-cell">订单编号：</div>
+			<div class="right-cell overflow-omit-one">张卫健</div>
+		</div>
+		<div class="cell-item">
+			<div class="left-cell">下单时间：</div>
+			<div class="right-cell overflow-omit-one">12345678910</div>
+		</div>
+		<div class="borderline"></div>
+		<div class="cell-item">
+			<div class="left-cell">支付方式：</div>
+			<div class="right-cell overflow-omit-one">在线支付</div>
+		</div>
+		<div class="cell-item">
+			<div class="left-cell">配送方式：</div>
+			<div class="right-cell overflow-omit-one">普通快递</div>
+		</div>
+	</ion-content>
+		
+	<div class="bot-actions">
+		<div ng-click="cancelOrder()" class="action-item">取消订单</div>
+		<div class="action-item active">去支付</div>
+	</div>
+	
+</ion-view>

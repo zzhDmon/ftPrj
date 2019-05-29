@@ -1,0 +1,271 @@
+
+<!--对话模板-->
+<ion-view id="add_rent" view-title="{{headtitle}}" hide-nav-bar=true  class='dark'>
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			{{headTitle}}{{doType}}
+		</div>
+		<div class="right">
+			
+		</div>
+	</div>
+	
+	<ion-content on-scroll="addRentScrollListing()" class="add-rent">
+		<h5>带<span class="bg-main-color">*</span>为必填项</h5>
+		<div class="form-main">	
+			<div ui-sref="addRentCommunity" class="row-item">
+				<div class="left-name">小区名称<span class="bg-main-color">*</span></div>
+				<div class="mid-input">
+					{{addRentSubData.CommunityName}}
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangyou1"></i>
+				</div>
+			</div>
+			<div class="offline"></div>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">租金<span class="bg-main-color">*</span></div>
+					<div class="mid-input-text">
+						<input type="number" ng-model="addRentSubData.Price" />
+					</div>
+					<div class="right-text">
+						元/月
+					</div>
+				</div>
+			</label>
+
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">付款方式</div>
+					<div class="mid-input">
+						<input ng-model="addRentShowData.fukuanType" class="zf-fukuan" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>
+				
+			<div ng-show="attach==1||attach==2||attach==3" class="row-item">
+				<div class="left-name">租房方式</div>
+				<div class="mid-input">
+					<input ng-model="addRentSubData.RentType" class="zf-zufang"/>
+				</div>
+				<div class="right-text">
+					<i class="iconfont icon-xiangxia2"></i>
+				</div>
+			</div>
+			<!-- <div ng-hide="attach==1||attach==2||attach==3" class="row-item">
+				<div class="left-name">房源类型</div>
+				<div class="mid-input">
+					<input ng-model="addRentShowData.userType" class="zf-usertype" />
+				</div>
+				<div class="right-text">
+					<i class="iconfont icon-xiangxia2"></i>
+				</div>
+			</div> -->
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">面积<span class="bg-main-color">*</span></div>
+					<div class="mid-input-text">
+						<input type="number" ng-model="addRentSubData.Space" />
+					</div>
+					<div class="right-text">
+						平米
+					</div>
+				</div>
+			</label>
+
+			<div class="offline"></div>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">户型<span class="bg-main-color">*</span></div>
+					<div class="mid-input">
+						<input ng-model="addRentShowData.fangXing" class="zf-fangxing" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">楼层</div>
+					<div class="mid-input">
+						<input ng-model="addRentShowData.louCeng" class="zf-louceng" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">类型</div>
+					<div class="mid-input">
+						<input ng-model="addRentSubData.BuildType" class="zf-leixing" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">朝向</div>
+					<div class="mid-input">
+						<input ng-model="addRentSubData.Orientation" class="zf-chaoxiang" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>
+			<label for="">
+				<div class="row-item">
+					<div class="left-name">装修</div>
+					<div class="mid-input">
+						<input ng-model="addRentSubData.Fitment" class="zf-zhuangxiu" type="text">
+					</div>
+					<div class="right-icon">
+						<i class="iconfont icon-xiangxia2"></i>
+					</div>
+				</div>
+			</label>
+				
+
+			<!--合租 -->
+			<div class="offline" ng-show="attach==4"></div>
+			<div class="row-item" ng-show="attach==4">
+				<div class="left-name">出租间</div>
+				<div class="mid-input">
+					<input ng-model="addRentShowData.chuzujian" class="zf-chuzujian" type="text">
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangxia2"></i>
+				</div>
+			</div>
+			<div class="row-item" ng-show="attach==4">
+				<div class="left-name">出租要求</div>
+				<div class="mid-input">
+					<input ng-model="addRentSubData.OwnerPsy" class="zf-roomate" type="text">
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangxia2"></i>
+				</div>
+			</div>
+
+
+			<div class="offline"></div>
+			<div class="row-item">
+				<div class="left-name">显示电话</div>
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-model="addRentSubData.IsShowPhone" ng-checked="addRentSubData.ExProp.IsShowPhone">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+			<div class="row-item">
+				<div class="left-name">业主直租</div>
+				<label class="toggle toggle-energized">
+					<input type="checkbox" ng-model="addRentSubData.UserType" ng-true-value="3" ng-false-value="2">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+
+
+			<div class="offline"></div>
+			<div class="special-check">
+				<div class="title">配置</div>
+				<div class="list checkpicker">
+					<label ng-repeat="configure in addRentSubData.ExProp track by $index">
+						<input ng-model="configure.isChecked" ng-checked="configure.isChecked" type="checkbox" name="configureCheck" />
+						<span>{{configure.text}}</span>	
+					</label>
+				</div>
+			</div>
+
+			<div class="offline"></div>
+			<div ui-sref="addRentTD({name:'标题'})" class="row-item">
+				<div class="left-name">标题<span class="bg-main-color">*</span></div>
+				<div class="mid-input">
+					{{addRentSubData.Title}}
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangyou1"></i>
+				</div>
+			</div>
+			<div ui-sref="addRentTD({name:'房源描述'})" class="row-item">
+				<div class="left-name">描述</div>
+				<div class="mid-input">
+					{{addRentSubData.Discription}}
+				</div>
+				<div class="right-icon">
+					<i class="iconfont icon-xiangyou1"></i>
+				</div>
+			</div>
+
+
+
+		</div>
+
+		<div class="offline"></div>
+		<div class="indoor" id="zufangIndoorImg">
+			<h4>房源图片</h4>
+			<div class="warning">图片宽度和高度都不能低于600像素，至少3张，最多10张（轻拉可拖动换图片次序，首图默认为封面）</div>
+			<ul id="addrent_sortindoor_img">
+				<li ng-repeat="img in addRentSubData.IndoorShowImages">
+					<div class="img">
+						<img ng-src="{{img}}" alt="室内图"/>
+						<span ng-click="remove($index)"><i class="iconfont icon-guanbi1"></i></span>
+					</div>
+				</li>
+			</ul>
+			
+			<div class="chooseImg">
+				<div ng-click="photoChoose()" class="in-choose">
+					<div class="img">
+						<div class="top"><i class="iconfont icon-tianjia-3"></i></div>
+						<div class="bot">选择图片</div>
+					</div>
+				</div>
+			</div>
+			<div class="chooseImg">
+				<div ng-click="cameraBase()" class="in-choose">
+					<div class="img">
+						<div class="top"><i class="iconfont icon-xiangji-1"></i></div>
+						<div class="bot">拍照上传</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="btn-wrapper">
+			<div ng-click="showPreviewModal()" class="btn-item">预览</div>
+			<div ng-click="publish()" class="btn-item">发布</div>
+		</div>
+	</ion-content>
+	
+	
+	<script id="rentGoLogin-modal" type="text/ng-template">
+		<ion-modal-view class="after_clickpublish_go_login_modal">
+			<div ng-include="'views/includes/afterClickPublish/afterClickPublish.html'"></div>
+		</ion-modal-view>
+	</script>
+	<!-- 预览 -->
+	<script id="add_rent_preview_modal" type="text/ng-template">
+		<ion-modal-view class="add-rent-preview-modal">
+			<div ng-include="'views/includes/addRentPreviewModal/addRentPreviewModal.html'"></div>
+		</ion-modal-view>
+	</script>
+
+</ion-view>
+

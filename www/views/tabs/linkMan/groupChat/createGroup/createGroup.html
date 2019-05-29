@@ -1,0 +1,72 @@
+<ion-view id="create_group" view-title="新建群聊" hide-nav-bar=true>  
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			新建群聊
+		</div>
+		<div ng-click="confirmGroup()" class="right">
+			确定
+		</div>
+	</div>
+
+	<!--显示客户列表-->
+	<div>
+		<ion-content class="create-group" delegate-handle="clientScroll" has-bouncing="false">  
+			<div ng-show="friendArr.length<1" class="no-results">
+				<p>暂无联系人</p>
+			</div>
+			<ul class="letterli">   
+				<li class="client-list" ng-if="group.value.length>0" ng-repeat="group in formatContacts | orderBy:'key'" id={{"create_group_index-"+group.key}}>  
+					<div class="label" id={{"client-"+group.key}}><strong>{{group.key}}</strong></div>  
+					<ul class="clientli">  
+						<label ng-repeat="item in group.value | orderBy:'pinyinName'">
+							<li class="client-name">                       
+								<div class="avatar">
+									<img 
+										ng-src="{{item.avatar || 'http://imgs.wujiuyun.com//Images//logo.png'}}" 
+										onError="src='http://imgs.wujiuyun.com//Images//logo.png'"
+										alt=""
+									>
+								</div>
+								<div class="name">{{item.nick || '房田用户'}}</div> 
+								<div class="label-check">
+									<input type="checkbox" name="ischeckbox" value="{{item.account}}" />
+									<i class="iconfont icon-fuxuansel"></i>
+								</div>      
+							</li>  
+						</label>
+					</ul>  
+				</li>  
+			</ul> 
+		</ion-content>  			
+	</div>
+	
+	<!-- 返回顶部 -->
+	<div ng-click="backTop()" class="back-top">
+		<i class="iconfont icon-jiageshengxu-"></i>
+	</div>
+	<!--右侧导航-->
+	<div class="linkman-shortcuts">  
+		
+		<a href="" ng-repeat="letter in letterarr"  ng-touchmove="mTouch($event,letter)" ng-click="mTouch($event,letter)">{{letter}}</a>
+	</div> 
+	
+	<script id="create_group_modal" type="text/ng-template">
+		<ion-modal-view class="create_group_input_modalview">
+			<div ng-click="closeModal()" class="close-icon">
+				<i class="iconfont icon-guanbi1"></i>
+			</div>
+			<div class="input">
+				<input ng-model="subData.groupName" placeholder="请输入群名" type="text">
+			</div>
+			<div class="input">
+				<input ng-model="subData.groupDesc" placeholder="请输入群描述" type="text">
+			</div>
+			<div ng-click="createGroup()" class="sub-btn">
+				确定
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>  

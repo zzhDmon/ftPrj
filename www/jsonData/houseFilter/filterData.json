@@ -1,0 +1,522 @@
+{
+    "oldhouseType":[
+        {"id":1,"text":"住宅"},
+        {"id":2,"text":"商铺"},
+        {"id":3,"text":"写字楼"}
+    ],
+    "renthouseType":[
+        {"id":1,"text":"住宅"},
+        {"id":2,"text":"商铺"},
+        {"id":3,"text":"写字楼"},
+        {"id":3,"text":"整租"},
+        {"id":3,"text":"合租"}
+    ],
+    "newPrice":[
+        {"id":null,"minprice":null,"maxprice":null},
+        {"id":1,"minprice":null,"maxprice":4000},
+        {"id":2,"minprice":4001,"maxprice":8000},
+        {"id":3,"minprice":8001,"maxprice":10000},
+        {"id":4,"minprice":10001,"maxprice":15000},
+        {"id":5,"minprice":15001,"maxprice":25000},
+        {"id":6,"minprice":25001,"maxprice":35000},
+        {"id":6,"minprice":35001,"maxprice":50000},
+        {"id":6,"minprice":50001,"maxprice":null}
+    ],
+    "oldPrice":[
+        {"id":null,"minprice":null,"maxprice":null},
+        {"id":1,"minprice":null,"maxprice":100},
+        {"id":2,"minprice":100,"maxprice":300},
+        {"id":3,"minprice":300,"maxprice":500},
+        {"id":4,"minprice":500,"maxprice":700},
+        {"id":5,"minprice":700,"maxprice":900},
+        {"id":6,"minprice":900,"maxprice":null}
+    ],
+    "rentPrice":[
+        {"id":null,"minprice":null,"maxprice":null},
+        {"id":1,"minprice":null,"maxprice":500},
+        {"id":2,"minprice":500,"maxprice":1000},
+        {"id":3,"minprice":1000,"maxprice":1500},
+        {"id":4,"minprice":1500,"maxprice":2000},
+        {"id":5,"minprice":2000,"maxprice":3000},
+        {"id":6,"minprice":3000,"maxprice":5000},
+        {"id":6,"minprice":5000,"maxprice":null}
+    ],
+    "roomNum":[
+        {"id":null,"text":"不限"},
+        {"id":1,"text":"一室"},
+        {"id":2,"text":"二室"},
+        {"id":3,"text":"三室"},
+        {"id":4,"text":"四室"},
+        {"id":5,"text":"五室"},
+        {"id":6,"text":"五室以上"}
+    ],
+    "newsort":[
+        {"id":null,"text":"不限"},
+        {"id":1,"text":"面积从大到小"},
+        {"id":2,"text":"面积从小到大"},
+        {"id":3,"text":"单价从小到大"},
+        {"id":4,"text":"单价从大到小"}
+    ],
+    "oldsort":[
+        {"id":null,"text":"不限"},
+        {"id":1,"text":"面积从大到小"},
+        {"id":2,"text":"面积从小到大"},
+        {"id":3,"text":"售价从小到大"},
+        {"id":4,"text":"售价从大到小"}
+    ],
+    "rentsort":[
+        {"id":null,"text":"不限"},
+        {"id":1,"text":"面积从大到小"},
+        {"id":2,"text":"面积从小到大"},
+        {"id":3,"text":"租金从小到大"},
+        {"id":4,"text":"租金从大到小"}
+    ],
+    "districts": [
+        {
+            "id": "不限", 
+            "text": "不限", 
+            "children": [
+                {
+                    "id": "不限", 
+                    "text": "不限", 
+                    "children": null
+                }
+            ]
+        },
+        {
+            "id": "翔安", 
+            "text": "翔安", 
+            "children": [
+                {
+                    "id": "马巷", 
+                    "text": "马巷", 
+                    "children": null
+                }, 
+                {
+                    "id": "隧道口", 
+                    "text": "隧道口", 
+                    "children": null
+                }, 
+                {
+                    "id": "新店", 
+                    "text": "新店", 
+                    "children": null
+                }, 
+                {
+                    "id": "大嶝", 
+                    "text": "大嶝", 
+                    "children": null
+                }, 
+                {
+                    "id": "翔安周边", 
+                    "text": "翔安周边", 
+                    "children": null
+                }, 
+                {
+                    "id": "新圩", 
+                    "text": "新圩", 
+                    "children": null
+                }
+            ]
+        }, 
+        {
+            "id": "思明", 
+            "text": "思明", 
+            "children": [
+                {
+                    "id": "槟榔", 
+                    "text": "槟榔", 
+                    "children": null
+                }, 
+                {
+                    "id": "滨北", 
+                    "text": "滨北", 
+                    "children": null
+                }, 
+                {
+                    "id": "白鹭洲", 
+                    "text": "白鹭洲", 
+                    "children": null
+                }, 
+                {
+                    "id": "富山", 
+                    "text": "富山", 
+                    "children": null
+                }, 
+                {
+                    "id": "观音山", 
+                    "text": "观音山", 
+                    "children": null
+                }, 
+                {
+                    "id": "鼓浪屿", 
+                    "text": "鼓浪屿", 
+                    "children": null
+                }, 
+                {
+                    "id": "会展中心", 
+                    "text": "会展中心", 
+                    "children": null
+                }, 
+                {
+                    "id": "火车站", 
+                    "text": "火车站", 
+                    "children": null
+                }, 
+                {
+                    "id": "禾祥东", 
+                    "text": "禾祥东", 
+                    "children": null
+                }, 
+                {
+                    "id": "禾祥西", 
+                    "text": "禾祥西", 
+                    "children": null
+                }, 
+                {
+                    "id": "莲前东", 
+                    "text": "莲前东", 
+                    "children": null
+                }, 
+                {
+                    "id": "莲前西", 
+                    "text": "莲前西", 
+                    "children": null
+                }, 
+                {
+                    "id": "莲坂", 
+                    "text": "莲坂", 
+                    "children": null
+                }, 
+                {
+                    "id": "莲花", 
+                    "text": "莲花", 
+                    "children": null
+                }, 
+                {
+                    "id": "鹭江道", 
+                    "text": "鹭江道", 
+                    "children": null
+                }, 
+                {
+                    "id": "前埔", 
+                    "text": "前埔", 
+                    "children": null
+                }, 
+                {
+                    "id": "思北", 
+                    "text": "思北", 
+                    "children": null
+                }, 
+                {
+                    "id": "松柏", 
+                    "text": "松柏", 
+                    "children": null
+                }, 
+                {
+                    "id": "文园路", 
+                    "text": "文园路", 
+                    "children": null
+                }, 
+                {
+                    "id": "文灶", 
+                    "text": "文灶", 
+                    "children": null
+                }, 
+                {
+                    "id": "厦大", 
+                    "text": "厦大", 
+                    "children": null
+                }, 
+                {
+                    "id": "瑞景", 
+                    "text": "瑞景", 
+                    "children": null
+                }, 
+                {
+                    "id": "禾祥西路", 
+                    "text": "禾祥西路", 
+                    "children": null
+                }, 
+                {
+                    "id": "龙山", 
+                    "text": "龙山", 
+                    "children": null
+                }
+            ]
+        }, 
+        {
+            "id": "湖里", 
+            "text": "湖里", 
+            "children": [
+                {
+                    "id": "湖边水库", 
+                    "text": "湖边水库", 
+                    "children": null
+                }, 
+                {
+                    "id": "五缘湾", 
+                    "text": "五缘湾", 
+                    "children": null
+                }, 
+                {
+                    "id": "保税区", 
+                    "text": "保税区", 
+                    "children": null
+                }, 
+                {
+                    "id": "嘉园路", 
+                    "text": "嘉园路", 
+                    "children": null
+                }, 
+                {
+                    "id": "枋湖", 
+                    "text": "枋湖", 
+                    "children": null
+                }, 
+                {
+                    "id": "江头", 
+                    "text": "江头", 
+                    "children": null
+                }, 
+                {
+                    "id": "南山路", 
+                    "text": "南山路", 
+                    "children": null
+                }, 
+                {
+                    "id": "祥店", 
+                    "text": "祥店", 
+                    "children": null
+                }, 
+                {
+                    "id": "SM商圈", 
+                    "text": "SM商圈", 
+                    "children": null
+                }, 
+                {
+                    "id": "金尚", 
+                    "text": "金尚", 
+                    "children": null
+                }, 
+                {
+                    "id": "大唐", 
+                    "text": "大唐", 
+                    "children": null
+                }, 
+                {
+                    "id": "东渡", 
+                    "text": "东渡", 
+                    "children": null
+                }, 
+                {
+                    "id": "殿前", 
+                    "text": "殿前", 
+                    "children": null
+                }, 
+                {
+                    "id": "五缘湾南区", 
+                    "text": "五缘湾南区", 
+                    "children": null
+                }, 
+                {
+                    "id": "五缘湾北区", 
+                    "text": "五缘湾北区", 
+                    "children": null
+                }
+            ]
+        }, 
+        {
+            "id": "同安", 
+            "text": "同安", 
+            "children": [
+                {
+                    "id": "城南", 
+                    "text": "城南", 
+                    "children": null
+                }, 
+                {
+                    "id": "城东", 
+                    "text": "城东", 
+                    "children": null
+                }, 
+                {
+                    "id": "城北", 
+                    "text": "城北", 
+                    "children": null
+                }, 
+                {
+                    "id": "城西", 
+                    "text": "城西", 
+                    "children": null
+                }, 
+                {
+                    "id": "同集中路", 
+                    "text": "同集中路", 
+                    "children": null
+                }, 
+                {
+                    "id": "西柯", 
+                    "text": "西柯", 
+                    "children": null
+                }, 
+                {
+                    "id": "同集北路", 
+                    "text": "同集北路", 
+                    "children": null
+                }, 
+                {
+                    "id": "同安北", 
+                    "text": "同安北", 
+                    "children": null
+                }
+            ]
+        }, 
+        {
+            "id": "集美", 
+            "text": "集美", 
+            "children": [
+                {
+                    "id": "集美文教区", 
+                    "text": "集美文教区", 
+                    "children": null
+                }, 
+                {
+                    "id": "杏林区", 
+                    "text": "杏林区", 
+                    "children": null
+                }, 
+                {
+                    "id": "同集南路", 
+                    "text": "同集南路", 
+                    "children": null
+                }, 
+                {
+                    "id": "杏滨路", 
+                    "text": "杏滨路", 
+                    "children": null
+                }, 
+                {
+                    "id": "华侨大学", 
+                    "text": "华侨大学", 
+                    "children": null
+                }, 
+                {
+                    "id": "集美新城", 
+                    "text": "集美新城", 
+                    "children": null
+                }, 
+                {
+                    "id": "杏北", 
+                    "text": "杏北", 
+                    "children": null
+                }, 
+                {
+                    "id": "灌口", 
+                    "text": "灌口", 
+                    "children": null
+                }
+            ]
+        }, 
+        {
+            "id": "海沧", 
+            "text": "海沧", 
+            "children": [
+                {
+                    "id": "马青路", 
+                    "text": "马青路", 
+                    "children": null
+                }, 
+                {
+                    "id": "海滨社区", 
+                    "text": "海滨社区", 
+                    "children": null
+                }, 
+                {
+                    "id": "沧虹路", 
+                    "text": "沧虹路", 
+                    "children": null
+                }, 
+                {
+                    "id": "沧林路", 
+                    "text": "沧林路", 
+                    "children": null
+                }, 
+                {
+                    "id": "未来海岸片区", 
+                    "text": "未来海岸片区", 
+                    "children": null
+                }, 
+                {
+                    "id": "蒿屿", 
+                    "text": "蒿屿", 
+                    "children": null
+                }, 
+                {
+                    "id": "海沧区政府", 
+                    "text": "海沧区政府", 
+                    "children": null
+                }, 
+                {
+                    "id": "自贸区", 
+                    "text": "自贸区", 
+                    "children": null
+                }, 
+                {
+                    "id": "海沧生活区", 
+                    "text": "海沧生活区", 
+                    "children": null
+                }
+            ]
+        }, 
+        {
+            "id": "其他", 
+            "text": "其他", 
+            "children": [
+                {
+                    "id": "龙池", 
+                    "text": "龙池", 
+                    "children": null
+                }, 
+                {
+                    "id": "漳州港", 
+                    "text": "漳州港", 
+                    "children": null
+                }, 
+                {
+                    "id": "角美", 
+                    "text": "角美", 
+                    "children": null
+                }, 
+                {
+                    "id": "泉州", 
+                    "text": "泉州", 
+                    "children": null
+                }, 
+                {
+                    "id": "龙岩", 
+                    "text": "龙岩", 
+                    "children": null
+                }
+            ]
+        }, 
+        {
+            "id": "厦门周边", 
+            "text": "厦门周边", 
+            "children": [
+                {
+                    "id": "泉州", 
+                    "text": "泉州", 
+                    "children": null
+                }, 
+                {
+                    "id": "漳州", 
+                    "text": "漳州", 
+                    "children": null
+                }
+            ]
+        }
+    ]
+}
+
+

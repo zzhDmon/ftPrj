@@ -1,0 +1,55 @@
+#need_type_choose{
+    .header{
+        background-color: $bg-main-color;
+        .back{
+            color: white;
+        }
+        .title{
+            color: white;
+        }
+    }
+    .need-type-choose{
+        margin-top: $head-height;
+        .main{
+            width: 100%;
+            .flex-wrapper{
+                margin: 0;
+                .wrapper{
+                    width: 100%;
+                    padding: 0 $view-padding;
+                    width: 100%;
+                    height: 50px;
+                    line-height: 50px;
+                    display: flex;
+                    justify-content: flex-start;
+                    .left-icon{
+                        width: 30px;
+                        height: 50px;
+                        .icon{
+                            margin: 10px 0;
+                            width: 30px;
+                            height: 30px;
+                        }
+                    }
+                    .mid-cont{
+                        padding: 0 0 0 10px;
+                        width: calc(100% - 50px);
+                        height: 50px;
+                        font-size: 16px;
+                    }
+                    .right-icon{
+                        float: left;
+                        width: 20px;
+                        height: 50px;
+                        text-align: center;
+                        color: $font-minor-color;
+                        .iconfont{
+                            color: $font-minor-color;
+                            font-size: 20px;
+                        }
+                    }
+                }
+            }
+        } 
+    }
+}

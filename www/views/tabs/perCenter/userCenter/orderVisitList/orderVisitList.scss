@@ -1,0 +1,140 @@
+#order_visit_list{
+    background-color: $bg-gray-color;
+    .header{
+        background-color: $bg-main-color;
+        border-bottom: none;
+        .back{
+            color: white;
+        }
+        .title{
+            color: white;
+        }
+    }
+    .flex-wrapper{
+        position: absolute;
+        top: $head-height;
+        width: 100%;
+        height: 40px;
+        display: flex;
+        justify-content: flex-start;
+        .flex-item{
+            width: 50%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 16px;
+            color: $font-main-color;
+            background-color: white;
+        }
+        .under-line{
+            position: absolute;
+            width: 20%;
+            height: 0;
+            border-top: 1px solid $bg-main-color;
+            bottom: 0;
+            left: 6.5%;
+        }
+    }
+    .order-visit-list{
+        $content-top:$head-height + 40px;
+        margin: $content-top 0 0;
+        .main{
+            h5{
+                margin: 10px 0 0;
+                width: 100%;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                font-size: 16px;
+                color: $font-main-color;
+                background-color: white;
+            }
+            .up-ul{
+                padding: 0 $view-padding;
+                width: 100%;
+                height: 40px;
+                background-color: $bg-gray-color;
+                div{
+                    float: left;
+                    height: 40px;
+                    width: 33.33%;
+                    // text-align: center;
+                    line-height: 40px;
+                    font-size: 14px;
+                    color: $font-main-color;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    word-break: keep-all;
+                }
+                .left{
+                    text-align: left;
+                }
+                .mid{
+                    text-align: center;
+                }
+                .right{
+                    text-align: right;
+                }
+            }
+            .info-list{
+               width: 100%;
+                li{
+                    padding: 0 $view-padding;
+                    margin: 0 0 10px;
+                    width: 100%;
+                    background-color: white;
+                    div.equal{
+                        float: left;
+                        height: 50px;
+                        width: 33.33%;
+                        line-height: 50px;
+                        font-size: 16px;
+                        color: $font-main-color;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        word-break: keep-all;
+                    }
+                    .left{
+                        text-align: left;
+                    }
+                    .mid{
+                        text-align: center;
+                    }
+                    .right{
+                        text-align: right;
+                        color: $font-sup-color;
+                    }
+                    .info-foot:before{
+                        display: block;
+                        content: '';
+                        height: 0;
+                        clear: both;
+                    }
+                    .info-foot{
+                        width: 100%;
+                        height: 60px;
+                        padding: 10px 0;
+                        border-top: 1px solid $line-main-color;
+                        .foot{
+                            float: right;
+                            padding: 0 10px;
+                            margin: 0 5px 0 0;
+                            height: 40px;
+                            line-height: 40px;
+                            text-align: center;
+                            font-size: 16px;
+                            color: $bg-main-color;
+                            border: 1px solid $bg-main-color;
+                            border-radius: 3px;
+                        }
+                    }
+                }
+                li:last-child{
+                    border: none;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+
+<!--对话模板-->
+<ion-view id="publish_dynamic" view-title="发布心情" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			取消
+		</div>
+		<div class="title">
+			
+		</div>
+		<div ng-click="save()" class="right">
+			发表
+		</div>
+	</div>
+
+	<ion-content class="publish-dynamic" has-bouncing="false">
+		<div class="text-wrapper">
+			<textarea ng-model="subContent.text" placeholder="这一刻的想法是什么呢…"></textarea>
+		</div>
+
+		<div class="flex-wrapper">
+			<div ng-repeat="item in subContent.imgs track by $index" class="flex-item">
+				<img ng-src="{{item}}" alt="">
+				<div ng-click="removeImg($index)" class="del-btn"><i class="iconfont icon-guanbi1"></i></div>
+			</div>
+			<div ng-hide="subContent.imgs.length==9" ng-click="showModal()" class="flex-item add-item"><i class="iconfont icon-tianjia"></i></div>
+		</div>
+	</ion-content>
+
+	<script id="publish_dynamic_typechoose_modal" type="text/ng-template">
+		<ion-modal-view class="publish-dynamic-typechoose-modalview">
+			<div class="choose-type">
+				<div ng-click="cameraChoose()" class="type-item">拍摄</div>
+				<div ng-click="photoChoose()" class="type-item">从相册获取</div>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

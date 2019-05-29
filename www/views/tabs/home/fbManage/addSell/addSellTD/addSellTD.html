@@ -1,0 +1,25 @@
+
+<!--对话模板-->
+<ion-view id="add_sell_t_d" view-title="{{name}}" hide-nav-bar=true  class='dark'>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			{{name}}
+		</div>
+		<div class="right">
+		</div>
+	</div>
+	
+	<ion-content on-swipe-right="onSwipeRight()" class="add-sell-t-d" has-bouncing=false>
+		<div class="offline"></div>
+
+		<div ng-click="closeTemplete()" class="text">	
+			<textarea name="cont" rows="10" cols="" ng-model="ershoutd.content" placeholder="{{placeholder}}"></textarea>
+		</div>
+		
+		<div ng-include="'views/includes/textTemplete/textTemplete.html'"></div>
+	</ion-content>
+</ion-view>
+

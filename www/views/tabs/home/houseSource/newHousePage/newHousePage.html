@@ -1,0 +1,185 @@
+<ion-view id="new_house_page" view-title="新房" hide-nav-bar="true">
+	<div class="search-header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i> 
+		</div>
+		<div ui-sref="houseSearch({type:0})" class="title">
+			<div class="fake-input">
+				<div class="fake-search">
+					<i class="iconfont icon-sousuo2"></i>请输入小区/商圈
+				</div>
+			</div> 
+		</div>
+	</div>
+	<div class="head-bg-houseimg"></div>
+
+	<ion-content delegate-handle="newhouse-page-Scroll" class="new-house-page">
+		<ion-refresher 
+            pulling-icon="" 
+            pulling-text="" 
+            spinner="lines"  
+            on-refresh="initData()" 
+            >
+		</ion-refresher>
+		
+		<div class="main-content">
+			<div class="under-head">
+				<div class="newhouse-page-swiper-container swiper-container">
+					<div class="swiper-wrapper">
+						<div ui-sref="tabs.newHouseArr" class="swiper-slide">
+							<div class="top-icon">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-quanbuloupan-1"></use>
+								</svg>
+							</div>
+							<div class="bot-txt">全部楼盘</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="top-icon">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-zuixinkaipan-1"></use>
+								</svg>
+								<svg class="icon abs-icon" aria-hidden="true">
+									<use xlink:href="#icon-tubiaozhizuomoban-2"></use>
+								</svg>
+							</div>
+							<div class="bot-txt">最新开盘</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="top-icon">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-dijialoupan-"></use>
+								</svg>
+								<svg class="icon abs-icon" aria-hidden="true">
+									<use xlink:href="#icon-tubiaozhizuomoban-2"></use>
+								</svg>
+							</div>
+							<div class="bot-txt">低价楼盘</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="top-icon">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-youshiloupan-"></use>
+								</svg>
+								<svg class="icon abs-icon" aria-hidden="true">
+									<use xlink:href="#icon-tubiaozhizuomoban-2"></use>
+								</svg>
+							</div>
+							<div class="bot-txt">优势楼盘</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="top-icon">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-remenbangdan-"></use>
+								</svg>
+								<svg class="icon abs-icon" aria-hidden="true">
+									<use xlink:href="#icon-tubiaozhizuomoban-2"></use>
+								</svg>
+							</div>
+							<div class="bot-txt">热门楼盘</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="top-icon">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-yuyuedaikan-1"></use>
+								</svg>
+								<svg class="icon abs-icon" aria-hidden="true">
+									<use xlink:href="#icon-tubiaozhizuomoban-2"></use>
+								</svg>
+							</div>
+							<div class="bot-txt">预约带看</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+	
+			<div class="offline"></div>
+			<div class="hot-list">
+				<h5>热门榜单</h5>
+				<div class="switch-list-wrapper">
+					<div class="switch-list">
+						<div class="switch-item" ng-click="hotSwitch(6)" ng-class="{true:'active',false:''}[hotSwitchIndex==6]">带看最多</div>
+						<div class="switch-item" ng-click="hotSwitch(7)" ng-class="{true:'active',false:''}[hotSwitchIndex==7]">交易最多</div>
+						<div class="switch-item" ng-click="hotSwitch(8)" ng-class="{true:'active',false:''}[hotSwitchIndex==8]">关注最多</div>
+					</div>
+				</div>
+				<div class="hot-list-wrapper">
+					<div 
+						ui-sref="newHouseDetail({id:item.Id})"
+						ng-repeat="item in hotListData track by $index"
+						class="hot-list-item">
+						<div ng-show="$index==0" class="left-icon">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-shanghu-"></use>
+							</svg>
+						</div>
+						<div ng-show="$index==1" class="left-icon">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-geren-"></use>
+							</svg>
+						</div>
+						<div ng-show="$index==2" class="left-icon">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-tuandui-"></use>
+							</svg>
+						</div>
+						<div ng-show="$index==3" class="left-icon left-gray">4</div>
+						<div ng-show="$index==4" class="left-icon left-gray">5</div>
+	
+	
+						<div class="mid-text">
+							<div class="onerow name">
+								{{item.Title}}<span class="tag">普通住宅</span>
+							</div>
+							<div class="onerow info">{{item.District}}|售价{{item.Prize}}元/m²</div>
+						</div>
+	
+						<div ng-show="$index==3" class="right-state right-up">
+							<i class="iconfont icon-xiangshang1"></i>2
+						</div>
+						<div ng-show="$index==4" class="right-state right-down">
+							<i class="iconfont icon-xiangxia"></i>2
+						</div>
+					</div>
+				</div>
+	
+				
+			</div>
+	
+			
+			<div class="main">
+				<h5>热门楼盘</h5>
+				<div 
+					ui-sref="newHouseDetail({id:newhouse.Id})"
+					ng-repeat="newhouse in newhousearr track by $index"
+					class="house-list-item"
+					ripple-hold ripple-dark
+				>
+					<div class="left-img"><img ng-src="{{newhouse.Images}}" alt=""></div>
+					<div class="right-text">
+						<div class="title overflow-omit-one">{{newhouse.Title}}</div>
+						<div class="housetype overflow-omit-one"><i class="iconfont icon-dingwei"></i>{{newhouse.Address}}</div>
+						<div class="info overflow-omit-one">
+							{{newhouse.Space}}
+						</div>
+						<div class="price-commission">
+							<div class="left-cell">
+								{{newhouse.Prize}}元/m²
+							</div>
+							<div class="right-cell">
+								<span class="commission">
+									{{newhouse.Bound}}
+								</span>
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-commission"></use>
+								</svg>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div ui-sref="tabs.newHouseArr" class="look-more">查看全部房源</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

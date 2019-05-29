@@ -1,0 +1,50 @@
+<!--模板-->
+<ion-view id="change_info" view-title="{{name}}" hide-nav-bar=true>
+	<!--<ion-nav-buttons side="secondary">
+		<a ng-click="save()" style="color: gray;font-size: 1.4rem;" class="button button-small button-icon " >保存</a>	
+	</ion-nav-buttons>-->
+	
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			{{name}}
+		</div>
+		<div ng-click="save()" class="right" >
+			保存
+		</div>
+	</div>
+	
+	<ion-content class="change-info">
+		<div ng-show="name=='修改昵称'" class="card personalname">
+			<div class="tex">昵称</div>
+			<input ng-model="userinfo.NickName" type="text" name="" id="" value="" placeholder="请输入昵称" />
+		</div>
+		<div ng-show="name=='职业'" class="card personalname">
+			<div class="tex">职业</div>
+			<input ng-model="userinfo.Job" type="text" name="" id="" value="" placeholder="请输入职业" />
+		</div>
+		<div ng-show="name=='修改性别'" class="card personalsex">
+			<ion-radio ng-repeat="item in clientSideList"
+					ng-value="item.value"
+					ng-model="userinfo.Sex">
+	          	{{ item.text }}
+	        </ion-radio>
+		</div>
+
+		<div ng-show="name=='工作年限'" class="card personalyear">
+			<div class="tex">工作年限</div>
+			<input ng-model="userinfo.WorkYears" type="" name="" id="" value="" placeholder="请输入工作年限" />
+			<div class="rightcell">年</div>
+		</div>
+
+		<div ng-show="name=='个性签名'" class="card personalsign">
+			<textarea name="cont" rows="10" cols="" ng-model="userinfo.Discription" placeholder="请输入个性签名"></textarea>
+		</div>
+		<div ng-show="name=='选房偏好'" class="card personalsign">
+			<textarea name="cont" rows="10" cols="" ng-model="userinfo.HouseHobby" placeholder="请输入选房偏好"></textarea>
+		</div>
+	</ion-content>
+
+</ion-view>

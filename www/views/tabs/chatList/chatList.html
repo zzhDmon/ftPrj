@@ -1,0 +1,112 @@
+<!--界面模板-->
+<ion-view id="chat_list" view-title="我的消息" hide-nav-bar=true>
+    <div class="header house-bg-header">
+        <div class="back">        
+        </div>
+        <div ng-click="getsession()" class="title">
+            我的消息
+        </div>
+        <div class="right"><!-- <i class="iconfont icon-tianjia"></i> --></div>
+    </div>
+        
+    <!--页面内容-->
+    <ion-content class="chat-list" has-bouncing="true">
+       <ion-list delegate-handle ="chatList-handle">
+            <ion-item 
+                ng-click="goDialogBox(con)" 
+                ng-repeat="con in conList track by $index" 
+                class="item-avatar"
+            >
+                <img 
+                    ng-src="{{con.avatar || 'http://imgs.wujiuyun.com//Images//logo.png'}}" 
+                    onError="src='http://imgs.wujiuyun.com//Images//logo.png'"/>
+                <div class="top-name">
+                    <div class="name">{{con.name || '房田用户'}}</div>
+                    <div class="time">{{con.updateTime | timeStamp}}</div>
+                </div>
+                <div class="bot-message">
+                    <div ng-if="con.lastMsg.type=='notification' && con.scene=='team'" class="message">
+                        群通知
+                    </div>
+                    
+                    <div ng-if="con.lastMsg.type && con.lastMsg.type=='text'" class="message">
+                        <span ng-show="con.scene=='team'">{{con.lastMsg.fromNick || '房田用户'}}：</span>{{con.lastMsg.text}}
+                    </div>
+                    <div ng-if="con.lastMsg.type=='tip'" class="message">
+                        {{con.lastMsg.tip}}
+                    </div>
+
+                    <div ng-if="con.lastMsg.type=='geo'" class="message">
+                        <span ng-show="con.scene=='team'">{{con.lastMsg.fromNick}}：</span>[位置]
+                    </div>
+                    <div ng-if="con.lastMsg.type=='image'" class="message">
+                        <span ng-show="con.scene=='team'">{{con.lastMsg.fromNick}}：</span>[图片]
+                    </div>
+                    <div ng-if="con.lastMsg.type=='audio'" class="message">
+                        <span ng-show="con.scene=='team'">{{con.lastMsg.fromNick}}：</span>[语音]
+                    </div>
+                    <div ng-if="con.lastMsg.type=='video'" class="message">
+                        <span ng-show="con.scene=='team'">{{con.lastMsg.fromNick}}：</span>[视频]
+                    </div>
+                    <div ng-if="con.lastMsg.type=='custom'" class="message">
+                        <span ng-show="!con.lastMsg.content.type">{{con.lastMsg.content.title}}</span>
+                        <span ng-show="con.lastMsg.content.type==101">[红包]</span>
+                        <span ng-show="con.lastMsg.content.type==102">[领取红包]</span>
+                        <span ng-show="con.lastMsg.content.type==103">[转账]</span>
+                        <span ng-show="con.lastMsg.content.type==104">[接收转账]</span>
+                        <span ng-show="con.lastMsg.content.type==105">代理申请</span>
+                        <span ng-show="con.lastMsg.content.type==110">[奖励金]</span>
+                    </div>
+                    
+                    <!-- 未读数 -->
+                    <div ng-if="0<con.unread&&con.unread<99" class="message-count">{{con.unread}}</div>
+                    <div ng-if="con.unread>99" class="message-count">99+</div>
+
+                    <div ng-if="con.scene=='p2p'" class="vip-level">
+                        <svg ng-if="!con.custom.vip" class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-putongyonghu"></use>
+                        </svg>
+                        <svg ng-if="con.custom.vip=='白银'" class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-gerenhuiyuan"></use>
+                        </svg>
+                        <svg ng-if="con.custom.vip=='黄金'" class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-tuanduihuiyuan"></use>
+                        </svg>
+                        <svg ng-if="con.custom.vip=='铂金'" class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-shanghulaobandiaozhuixunzhang"></use>
+                        </svg>
+                        <svg ng-if="con.custom.vip=='钻石'" class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-qiyezhudiaozhuixunzhang"></use>
+                        </svg>
+                    </div>
+                    <div ng-if="con.scene=='team'" class="vip-level">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-qunliao-2"></use>
+                        </svg>
+                    </div>
+                </div>
+                <ion-option-button class="button-assertive"
+                        ng-click="deleteSession(con,$index,con.unread)">
+                        删除
+                </ion-option-button>
+            </ion-item>
+        </ion-list>  
+        <!-- <div ng-click="sendRobot()">发送机器人信息</div> -->
+    </ion-content>
+
+    <!-- tabs导航 -->
+	<div ng-hide="tabsType=='HOUSE'" ng-include="'views/includes/customTabs/customTabs.html'"></div>
+	<div ng-show="tabsType=='HOUSE'" ng-include="'views/includes/customHouseTabs/customHouseTabs.html'"></div>
+
+    <script id="chatList_nav_modal" type="text/ng-template">
+        <ion-modal-view ng-click="closeModal()" id="home_nav_modalview">
+            <div ng-include="'views/includes/botPublicPublish/botPublicPublish.html'"></div>
+        </ion-modal-view>
+    </script>
+</ion-view>
+
+    
+    
+    
+    
+    

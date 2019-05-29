@@ -1,0 +1,109 @@
+
+<!--对话模板-->
+<ion-view id="group_red_packet" view-title="群红包" hide-nav-bar=true>
+	<div class="header">
+		<div class="back" ng-click="back()">
+			<i class=" iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">
+			群红包
+		</div>
+		<div class="right" >
+		</div>
+	</div>
+	<ion-content class="group-red-packet">
+		<form novalidate name="subtopup">
+			<div class="data-list">
+				<div ng-show="tooSmall" class="warring-info small-font-size">单个红包不小于0.01元</div>
+				<div ng-show="subData.Type==1" class="data-item">
+					<div class="left-cell">单个金额</div>
+					<div class="input-cell">
+						<input ng-change="perFeeChange()" type="number" name="permoney" ng-model="subData.PerFee" placeholder="请输入单个金额" required="">
+					</div>
+					<div class="right-cell">元</div>
+				</div>
+				<div ng-show="subData.Type==2" class="data-item">
+					<div class="left-cell">
+						<div class="icon-wrapper">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-pinhongbao-"></use>
+							</svg>
+						</div>
+						总金额
+					</div>
+					<div class="input-cell">
+						<input ng-change="perFeeChange()" type="number" name="money" ng-model="subData.TotalFee" placeholder="请输入红包金额" required="">
+					</div>
+					<div class="right-cell">元</div>
+				</div>
+				<div class="small-info small-font-size">
+					当前为
+					<span ng-show="subData.Type==1">普通红包</span>
+					<span ng-show="subData.Type==2">拼手气红包</span>,
+					<span class="font-blue" ng-click="changeType(2)" ng-show="subData.Type==1">改为拼手气红包</span>
+					<span class="font-blue" ng-click="changeType(1)" ng-show="subData.Type==2">改为普通红包</span>
+				</div>
+				<div class="data-item">
+					<div class="left-cell">红包个数</div>
+					<div class="input-cell">
+						<input ng-change="numChange()" type="tel" name="number" ng-model="subData.TotalNum" placeholder="红包个数" required="">
+					</div>
+					<div class="right-cell">个</div>
+				</div>
+				<div class="small-info small-font-size">本群共{{teamMembersNum}}人</div>
+				<div class="data-item">
+					<div class="left-cell">留言</div>
+					<div class="input-cell input-large">
+						<input type="text" name="message" ng-model="subData.message" placeholder="恭喜发财,大吉大利">
+					</div>
+				</div>
+			</div>
+			
+			<div class="show-money">￥<span>{{subData.TotalFee  | priceFilter}}</span></div>
+			<div class="subbtn">
+				<button ng-disabled="subtopup.$invalid || subData.TotalFee<=0 || subData.TotalNum<=0 || tooSmall" ng-click="nextStep()" class="button">塞钱进红包</button>
+			</div>
+		</form>
+
+	</ion-content>
+	
+	<script id="group_read_packer_password_modal" type="text/ng-template">
+		<ion-modal-view class="groupread-packer-password-modalview">
+			<div class="head">
+				<div ng-click="closeModal()" class="close"><i class="iconfont icon-guanbi1"></i></div>
+				<div class="thumb"></div>
+				<div class="text-item">请输入支付密码</div>
+			</div>
+			<div class="head-borderline"></div>
+			<div class="main-info">
+				<div class="money-num">
+					<div class="text-item">红包</div>
+					<div class="money-item">￥{{subData.TotalFee}}</div>
+				</div>
+				<div class="consume-from">
+					<div style="width:calc(50% - 30px);" class="be-left"></div>
+					<div class="icon-wrapper">
+						<img src="imgs/pwdicon/money.png" alt="">
+					</div>
+					<div class="text-wrap">
+						零钱
+					</div>
+				</div>
+				<div class="six-pwd-input">
+					<input type="tel" ng-model="pwdInput.value" ng-change="inputPwd()" name="password" class="password" maxlength="6">
+					<ul class="showView">
+						<li><i class="circle"></i></li>
+						<li><i class="circle"></i></li>
+						<li><i class="circle"></i></li>
+						<li><i class="circle"></i></li>
+						<li><i class="circle"></i></li>
+						<li><i class="circle"></i></li>
+					</ul>
+				</div>
+				<div style="clear:both;"></div>
+				<div ui-sref="forgetPayPassword" class="forget-pwd">忘记密码</div>
+			</div>
+		</ion-modal-view>
+	</script>
+</ion-view>
+

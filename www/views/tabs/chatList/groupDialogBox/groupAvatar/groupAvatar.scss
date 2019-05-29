@@ -1,0 +1,12 @@
+#group_avatar{
+    .group-avatar{
+        margin-top: $head-height;
+        background-color: $bg-gray-color;
+        img{
+            display: block;
+            max-width:calc(100vw - 24px);
+            height:auto;
+            margin: 50px auto 0;
+        }
+    }
+}

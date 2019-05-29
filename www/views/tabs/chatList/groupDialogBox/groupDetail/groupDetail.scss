@@ -1,0 +1,96 @@
+#group_detail{
+    .group-detail{
+        margin: $head-height 0 0;
+        .group-members{
+            padding: 10px $view-padding;
+            width: 100%;
+            .member-title{
+                height: 20px;
+                line-height: 20px;
+                font-size: 16px;
+                color: $font-main-color;
+            }
+            .members-wrapper{
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                .member-item{
+                    padding: 10px 0 0;
+                    width: 20%;
+                    border-radius: 50%;
+                    .img-wrap{
+                        position:relative;
+                        margin: auto;
+                        width: 50px;
+                        height: 50px;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 50%;
+                        }
+                        .icon-wrap{
+                            position: absolute;
+                            top:-2px;
+                            right:-2px;
+                            z-index: 1;
+                            width: 25px;
+                            height: 25px;
+                            .icon{
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                        .icon{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .nickname{
+                        &.main-color{
+                            color: $bg-main-color;
+                        }
+                        width: 100%;
+                        height: 20px;
+                        line-height: 20px;
+                        text-align: center;
+                        font-size: 14px;
+                        color: $font-sup-color;
+                    }
+                }
+            }
+        }
+
+        .form-main{
+            .text-item{
+                padding: 0 $view-padding;
+                height: 50px;
+                line-height: 50px;
+                display: flex;
+                justify-content: flex-start;
+                .left-cell{
+                    width: 120px;
+                    font-size: 16px;
+                    color: $font-main-color;
+                }
+                .right-cell{
+                    width: calc(100% - 120px);
+                    text-align: right;
+                    font-size: 14px;
+                    color: $font-sup-color;
+                    img{
+                        margin: 5px 0;
+                        float: right;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                    }
+                }
+            }
+
+            .ft-sub-btn{
+                margin: 25px auto 0;
+            }   
+        }
+    }
+}

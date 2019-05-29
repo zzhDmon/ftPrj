@@ -1,0 +1,32 @@
+<ion-view id="order_agent_list" view-title="经纪人列表" hide-nav-bar=true>
+	<div class="header">
+		<div ng-click="back()" class="back">
+			<i class="iconfont icon-xiangzuo1"></i>
+		</div>
+		<div class="title">经纪人列表</div>
+	</div>
+	
+
+	<ion-content class="order-agent-list">
+		<div class="main-list">
+			<ul>
+				<li ng-click="chooseAgent(agent)" ng-repeat="agent in agentList track by $index">
+					<div class="left"><img ng-src="{{agent.Image}}" alt=""></div>
+					<div class="right">
+						<div class="top heng">{{agent.Name||'房田用户'}} <span>{{agent.Discription | positionFilter}}</span></div>
+						<div class="bot heng">{{agent.Discription | storeFilter}}</div>
+						<div class="mid heng">工作年限：{{agent.WorkYears}}</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</ion-content>
+</ion-view>
+
+
+	
+	
+		
+		
+
+
